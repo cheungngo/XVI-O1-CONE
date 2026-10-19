@@ -1,0 +1,2772 @@
+ALBERTA-THY 17-96, DSF-T-23/96, hep-th/9605153
+
+Cones, Spins and Heat Kernels
+
+arXiv:hep-th/9605153v1 22 May 1996
+
+Dmitri V. Fursaev1,2 and Gennaro Miele3
+
+1
+
+2
+
+Theoretical Physics Institute, Department of Physics, University of Alberta,
+Edmonton, Canada T6G 2J1
+
+Joint Institute for Nuclear Research, Bogoliubov Laboratory of Theoretical Physics,
+Dubna Moscow Region, Russia
+3
+
+Dipartimento di Scienze Fisiche, Università di Napoli - Federico II -, and INFN
+Sezione di Napoli, Mostra D’Oltremare Pad. 20, 80125, Napoli, Italy
+
+Abstract
+The heat kernels of Laplacians for spin 1/2, 1, 3/2 and 2 fields, and the asymptotic expansion of their traces are studied on manifolds with conical singularities.
+The exact mode-by-mode analysis is carried out for 2-dimensional domains and then
+extended to arbitrary dimensions. The corrections to the first Schwinger-DeWitt
+coefficients in the trace expansion, due to conical singularities, are found for all the
+above spins. The results for spins 1/2 and 1 resemble the scalar case. However, the
+heat kernels of the Lichnerowicz spin 2 operator and the spin 3/2 Laplacian show
+a new feature. When the conical angle deficit vanishes the limiting values of these
+traces differ from the corresponding values computed on the smooth manifold. The
+reason for the discrepancy is breaking of the local translational isometries near a
+conical singularity. As an application, the results are used to find the ultraviolet
+divergences in the quantum corrections to the black hole entropy for all these spins.
+
+PACS number(s): 04.60.+n, 12.25.+e, 97.60.Lf, 11.10.Gh
+
+e-mail: dfursaev@phys.ualberta.ca; miele@axpna1.na.infn.it
+1
+
+1
+
+Introduction
+
+Manifolds with conical singularities appear in different physical applications. The wellknown examples are the physics of cosmic strings [1], compactifications in the superstring
+theory [2], and off-shell computations of the black hole entropy [3]-[16] addressing its
+statistical-mechanical origin. Such problems involve manifolds Mβ where the line element
+near the singularity has the form
+ds2 = u(r)dτ 2 + dr 2 + γab (r, y)dy ady b
+
+.
+
+(1.1)
+
+Here τ is a cyclic coordinate 0 ≤ τ ≤ β, r ≥ 0 is a radial coordinate and u(r) ≃ r 2
+at r → 0. The structure of Mβ near the singular hypersurface Σ, at r = 0, is Cβ × Σ,
+where Cβ is a conical space. We normalize τ in such a way that at β = 2π the conical
+singularity is zero and the space is smooth. The important feature of Mβ is that near
+Σ the components of the Riemann tensor can be defined only as distributions. The
+parameter β can be related to the tension of a cosmic string [1], or, as in black hole
+thermodynamics [17],[18], it can be associated with the inverse temperature and in this
+case Σ is the Euclidean horizon.
+Quantum effects in the presence of conical singularities have been studied from different points of view and applied to several physical situations, see for instance [19] - [22].
+The important quantity needed to calculate the effective action in hthe theories
+on curved
+i
+−s△
+. The properties
+backgrounds is the trace of the heat kernel operators TrK(s) = Tr e
+of TrK on cones have been studied in detail for the scalar fields in [25] - [30] and recently
+for spins 1 and 1/2 in [9],[11]. It is an interesting fact that the trace of the heat kernel
+operators on Mβ turns out to be a well-defined integral despite the fact that integral
+characteristics constructed of the powers of the Riemann tensor do not have in general a
+strict meaning [32].
+In this paper we analyze TrK for Laplacians △(j) which appear under quantization
+of all physically interesting spins j. Our main aim is to find the modification of the
+(j)
+coefficient A1 in the asymptotic expansion
+h
+
+TrK (j) (s) = Tr e−s△
+
+(j)
+
+i
+
+=
+
+
+
+1
+(j)
+(j)
+2 (j)
+A
++
+sA
++
+s
+A
++
+....
+0
+1
+2
+(4πs)d/2
+
+(1.2)
+
+on the spaces with metric (1.1) which is important for the analysis of the ultraviolet
+divergences and the conformal anomalies in quantum theory. Spins 2 and 3/2 fields remain
+an interesting research subject and we will show that TrK (j) in these cases have different
+properties than the trace for other spins. The point is that the Laplace operators for spins
+2 and 3/2 are sensitive to the isometries of the background manifold. Locally the manifolds
+possess translational symmetries which are broken by conical singularities. It results in
+changing the properties of the heat kernel operators near the singular hypersurface Σ in
+such a way that even in the limit β → 2π their traces differ from the corresponding traces
+on smooth manifolds. It turns out that in this limit conical singularities give corrections in
+2
+
+the diagonal element of the heat kernels having the form of a delta-function concentrated
+on the hypersurface Σ.
+In this paper we also discuss the off-shell computations of the entropy of quantum
+fields on black-hole backgrounds. Our new result is the ultraviolet divergent quantum
+corrections to the entropy for spins 3/2 and 2. We show that for spin 2, contrary to
+other spins, the properties of the Lichnerowicz operator on singular manifolds result to
+the entropy divergences which cannot be removed under the standard renormalization of
+the Newton constant.
+The paper is organized as follows. In Sec. 2 we define the operators △(j) , outline the
+(j)
+strategy for the computation of the coefficients A1 , and briefly summarize the results.
+(j)
+Sec.’s 3 and 4 are devoted to the explicit derivation of A1 for spins 1, 2, and 1/2,
+3/2, respectively. In particular, we first analyze the cones Cβ and the two-dimensional
+spherical domains Sβ2 with conical singularities and then make a generalization to arbitrary
+(j)
+dimensions. In Sec. 5 we compare the properties of A1 on singular spaces Mβ and on the
+corresponding manifolds with blunted singularities. Here we also compute the divergent
+quantum corrections to the entropy for all considered spins on black-hole backgrounds
+and discuss their renormalization. The conclusions are presented in Sec. 6. The explicit
+computation of the spectrum of the Dirac operator on Sβ2 is left for the Appendix.
+
+2
+
+Definitions and results
+
+The wave operator △(j) for the fields of different spins j is defined as follows [33]. On the
+spin- 12 field ψ this operator acts as
+△
+
+(1/2)
+
+1
+ψ = −(γ ∇α ) ψ = −∇ ∇α + R ψ
+4
+α
+
+
+
+2
+
+
+
+α
+
+,
+
+(2.1)
+
+where γ µ are the Dirac γ-matrices, and for the vector field Vµ it reads
+
+
+
+
+△(1) Vµ = −∇α ∇α δµν + Rµν Vν
+
+.
+
+(2.2)
+
+Analogously, for the spin- 32 field ψµ we have
+△
+
+(3/2)
+
+α
+
+2
+
+ψµ = −(γ ∇α ) ψµ =
+
+1
+1
+−∇ ∇α + R δµν − Rνµρσ γ σ γ ρ ψν
+4
+2
+
+
+
+
+
+
+
+α
+
+,
+
+(2.3)
+
+and for the spin-2 field hµν
+
+
+
+
+△(2) hµν = −∇α ∇α δµρ δνσ + Rµρ δνσ + Rνσ δµρ − 2Rµ ρ ν σ hρσ
+
+.
+
+(2.4)
+
+The operator △(1) is the Hodge-deRham operator acting on 1-forms and it appears under
+quantizing in the gauge ∇µ V µ = 0. The operator △(3/2) is the wave operator for the
+Rarita-Schwinger field [34] in the harmonic gauge γ µ ψµ = 0 (see Ref. [35]). Finally,
+the operator △(2) coincides with the Lichnerowicz operator, which rules the dynamics of
+3
+
+small perturbations hµν of the metric gµν in the linearized Einstein equations, when the
+harmonic gauge ∇µ (hµν − 12 gµν hσσ ) = 0 is fixed [36]. Note that, all the above operators
+can be represented in the form △(j) = −∇α ∇α + X (j) , where the matrices X (j) play the
+role of potential terms, and are linear in the curvature of the background space. For this
+reason in order to have the well-defined operators we suppose that X (j) are defined in the
+regular domain Mβ − Σ of the background space (1.1), and thus they do not include any
+singular terms.
+Let us denote the coordinates r, τ, y a in (1.1) as the polar coordinates, thus the
+tetrades which are parallel to this coordinate basis will be called polar tetrades (cf [23]).
+These tetrades are particularly relevant since they perform the complete rotation when
+τ is increased by β. For this reason the connections in the operators △(j) will be
+computed for polar tetrades, and in this case the (anti)periodicity conditions for fields
+Φ = (ψ, Vµ , ψµ , hµν ) have the standard form
+Φ(τ + β, r, y a) = (−1)2j Φ(τ, r, y a ) ,
+
+(2.5)
+
+provided the tensor components are defined in the polar coordinates.
+(j)
+It is well-known that on a regular compact manifold M the coefficients A1 in the
+asymptotic heat kernel expansion (1.2) can be written as [33]
+(j)
+A1 =
+
+Z
+
+M
+
+"
+
+
+
+N (j)
+R − Tri X (j) P (j)
+6
+
+#
+
+.
+
+(2.6)
+
+Hereafter Tri denotes the trace over the indices, P (j) is the projector on the corresponding
+representation of the Lorentz group and N (j) = Tri P (j) is its dimension. If d is the
+dimension of space M, then for the Dirac spinors N (1/2) = 2[d/2] , for vector fields N (1) = d,
+and for spin 3/2 fields N (3/2) = 2[d/2] d. In these cases P (j) is the unit matrix. For rank-2
+1 ρ σ
+σ ρ
+(2)
+symmetric tensors (P (2) )ρσ
+= d(d + 1)/2.
+µν = 2 (δµ δν + δµ δν ) and N
+On the background manifold Mβ with a set Σ of singular points, Eq. (1.1), the
+(0)
+coefficient A1 for the scalar operator △(0) = −∇µ ∇µ reads [27, 28, 30]
+(0)
+
+(0)
+
+(0)
+
+Ā1 = A1 + Aβ,1
+1
+(0)
+A1 =
+6
+
+Z
+
+Mβ −Σ
+
+R ,
+
+,
+
+
+
+2π
+β
+(0)
+Aβ,1 = 
+6
+β
+
+(2.7)
+!2
+
+
+
+− 1
+
+Z
+
+Σ
+
+.
+
+(2.8)
+R
+
+Here R denotes the Riemann curvature calculated in the regular domain Mβ − Σ, and Σ
+R
+is the volume of Σ (in two dimensions Σ is the number of singular points).
+We will demonstrate that for arbitrary spins the above coefficient on Mβ has an
+expression similar to the one of the scalar case (2.7), and can be represented as the sum
+(j)
+
+(j)
+
+(j)
+
+Ā1 = A1 + Aβ,1
+
+4
+
+.
+
+(2.9)
+
+(j)
+
+The term A1 is given by the integral (2.6) over the smooth domain of Mβ . The presence
+(j)
+of the conical singularities results in the additional term Aβ,1 , proportional to the volume
+(j)
+of the singular surface Σ. The precise form of Aβ,1 for the different spins is the following
+(1/2)
+
+Aβ,1
+
+= −
+
+(1)
+
+N (1/2) (0)
+Aβ,1
+2
+
+,
+
+(2.10)
+
+(0)
+
+Aβ,1 = N (1) Aβ,1 + 2(β − 2π)
+(3/2)
+Aβ,1
+
+Z
+
+,
+
+Σ
+
+N (3/2) (0)
+Aβ,1 + 2βN (1/2)
+= −
+2
+Σ
+
+(2)
+
+Z
+
+(0)
+
+(2.11)
+,
+
+Aβ,1 = N (2) Aβ,1 + (2(d + 2)(β − 2π) + 8π)
+
+(2.12)
+Z
+
+Σ
+
+,
+
+(2.13)
+
+(0)
+
+where Aβ,1 is given by formula (2.8). Note that for spins 2 and 3/2 the surface contributions do not vanish even when β = 2π.
+(j)
+The reason why Aβ,1 have the structure (2.9) can be explained as follows. Let Σǫ
+be a small domain of thickness ǫ including Σ, then the trace of the heat kernel can be
+represented as the sum
+(j)
+
+TrK (s) =
+=
+
+Z
+
+Mβ
+
+Z
+
+√
+dd x g Tri K (j) (x, x, s)
+
+Mβ −Σǫ
+
+√
+dd x g Tri K (j) (x, x, s) +
+
+Z
+
+Σǫ
+
+√
+dd x g Tri K (j) (x, x, s) . (2.14)
+
+The first integral in the r.h.s. of the above equation goes over the region Mβ − Σǫ
+which does not include the conical singularities. Since in this domain one can use for
+Tri K (j) (x, x, s) the standard Schwinger-DeWitt asymptotic expansion, the above integral
+(j)
+approaches the term A1 given by Eq. (2.6) when ǫ → 0. On the other hand, in this
+limit the second term in the r.h.s. of (2.14) becomes an integral over Σ. From Eq. (1.2)
+(j)
+it follows that Aβ,1 has the dimensionality Ld−2 , where L is a length (the proper time
+R
+parameter s in (1.2) has the dimensionality L2 ). The dimensionality of Σ is Ld−2 , and so
+(j)
+the only form which Aβ,1 can have is
+(j)
+Aβ,1 = f (j) (β)
+
+Z
+
+Σ
+
+,
+
+(2.15)
+(j)
+
+where f (j) (β) is a dimensionless function which has to be found. As a result, Aβ,1 cannot
+depend on the curvature of Mβ near Σ, so in order to determine its expression the space
+Mβ can be safely approximated by Cβ × Σ
+(j)
+
+Aβ,1
+
+(j)
+
+Mβ
+
+= Aβ,1
+
+(j)
+
+Cβ ×Σ
+
+.
+
+(2.16)
+
+To compute Aβ,1 on spaces where ∂/∂τ is the globally defined Killing field we will also
+use the formula
+β (j)
+(j)
+(j)
+Aβ,1 = Ā1
+−
+A
+.
+(2.17)
+Mβ
+2π 1 Mβ=2π
+5
+
+The last term in (2.17) subtracts the contribution of the smooth domain Mβ − Σ. These
+contributions for Mβ and for the corresponding manifold Mβ=2π without singularities
+differ from each other by the coefficient β/2π, which is related to the different periods in
+τ on these spaces.
+
+3
+
+Integer spin fields
+
+3.1
+
+Vector field
+
+Let us consider the wave operator (2.2) for the vector field. The eigen-value problem
+for this operator has a simple solution in two dimensions since its eigen-functions can be
+expressed in terms of the scalar ones corresponding to the operator △(0) . Indeed, in this
+case one can use the Hodge-deRham decomposition of the vector Vµ into transverse VµT ,
+longitudinal VµL and harmonic VµH parts
+Vµ = VµT + VµL + VµH
+
+,
+
+(3.1)
+
+and in two dimension it results
+VµT = ǫµν φ,ν
+
+,
+
+VµL = ρ,µ
+
+,
+
+∇µ VµH = ǫµν ∇µ VνH = 0 ,
+
+(3.2)
+
+where ǫµν is the rank 2 antisymmetric tensor, and φ, ρ are two scalar fields. By using
+(3.2) one can easily check that
+△(1) (ρ,µ ) = (△(0) ρ),µ
+
+,
+
+△(1) (ǫµν φ,ν ) = ǫµν (△(0) φ),ν
+
+.
+
+(3.3)
+
+Therefore, from Eq.(3.3) and the decomposition (3.1) one gets the following relation between the traces
+TrK (1) = 2 TrK (0) + n1 − 2n0 ,
+(3.4)
+where n1 , n0 are the numbers of zero modes of the operators △(1) and △(0) respectively.
+Note that the harmonic vectors VµH are zero modes of △(1) . Equation (3.4) means that
+all Schwinger-DeWitt coefficients in the expansion of the vector heat kernel are twice the
+scalar ones. The exception is the A1 -coefficient which according to (3.4) obeys a simple
+index theorem
+(0)
+(1)
+2A1 − A1 = 4π(2n0 − n1 ) .
+(3.5)
+The last result can be represented in another form by making use of the following identity
+n0 − n1 + n2 = χ[M] ,
+
+(3.6)
+
+which expresses the Euler characteristics χ[M] of the background manifold M in terms of
+Betti numbers np or, which is the same, numbers of the harmonic p-forms. For a compact
+manifold n2 = n0 , and Eq. (3.5) reads
+(0)
+
+(1)
+
+2A1 − A1 = 4πχ[M] .
+6
+
+(3.7)
+
+The expression (3.5) can be strictly proved for smooth manifolds.
+(1)
+In order to get the coefficient A1 for the singular space Mβ we can use the results
+of Ref. [32], where it has been shown that the Euler characteristics on manifolds with
+conical singularities have well defined expressions. In particular, in 2 dimensions the Euler
+number can be written in the form [3],[32]
+1
+χ[Mβ ] =
+2(2π − β) +
+R
+4π
+Σ
+Mβ
+Z
+
+Z
+
+!
+
+,
+
+(3.8)
+
+(if the manifold has a boundary one must also add a boundary term). Thus, by using
+(3.5) and (3.8) one gets
+(1)
+Ā1
+
+=
+
+(0)
+(0)
+2Ā1 − 4πχ[Mβ ] = 2Ā1 − 2(2π − β)
+(0)
+
+(1)
+
+= A1 + 2 Aβ,1
+
+Cβ
+
+Z
+
+Σ
+
+−
+
+Z
+
+Mβ −Σ
+
+R
+
++ 2(β − 2π) .
+
+(3.9)
+(1)
+
+Consequently, in 2 dimensions the contribution to the vector coefficient Ā1 due to the
+conical singularity is
+(1)
+(0)
+Aβ,1 = 2 Aβ,1 + 2(β − 2π) ,
+(3.10)
+Cβ
+
+Cβ
+
+and it agrees with the result of Kabat [9] found by a different method. To extend this
+result to arbitrary dimension we use Eq.(2.16) and calculate this coefficient on the space
+Cβ ×Σ. In this case, one needs first to decompose the vector field onto the parts orthogonal
+and tangent to Σ. According to this decomposition one has
+TrK (1)
+
+Cβ ×Σ
+
+= Tr K (1)
+
+Cβ
+
+TrK (0)
+
+Σ
+
++ Tr K (0)
+
+Cβ
+
+TrK (1)
+
+.
+
+Σ
+
+(3.11)
+
+By taking into account (3.11) we come to the formula
+(1)
+
+(1)
+
+Aβ,1 = Aβ,1
+=
+
+
+
+Cβ
+
+Z
+
+(0)
+
+Σ
+
+(0)
+dAβ,1
+C
+
+β
+
++ Aβ,1
+
+Cβ
+
+(d − 2)
+
++ 2(β − 2π)
+
+Z
+
+Z
+
+Σ
+(0)
+
+Σ
+
+= dAβ,1 + 2(β − 2π)
+
+Z
+
+Σ
+
+.
+
+(3.12)
+
+Eq. (3.12) gives the contribution (2.11) due to the conical singularities to the heat coefficient of the vector operator in d dimensions.
+
+3.2
+
+Lichnerowicz operator
+
+The Lichnerowicz operator △(2) acting on the symmetric second-rank tensors hµν can
+be obtained by expanding the Ricci tensor with respect to the perturbation hµν of the
+background metric gµν [36]
+1
+Rµν (g + h) − Rµν (g) = △(2) hµν + O(h2) ,
+2
+
+(3.13)
+
+when the gauge condition ∇µ (hµν − 21 gµν hσσ ) = 0 is imposed. As it can be easily shown,
+the quantization of the gravitational field in this gauge leads to the computation of the
+7
+
+determinant of △(2) [33]. For the following applications it is convenient to report two
+properties of △(2)
+△(2) gµν φ = gµν △(0) φ ,
+
+(3.14)
+
+△(2) (∇µ Vν + ∇ν Vµ ) = ∇µ △(1) Vν + ∇ν △(1) Vµ
+
+.
+
+(3.15)
+
+Eq. (3.14) holds in general, while (3.15) is valid on Einstein spaces where Rµν = gµν Λ,
+with Λ denoting a (cosmological) constant.
+In analogy to the spin 1 case, we start our considerations in 2 dimensions. According
+to (3.15) the properties of △(2) are simplified on the constant curvature spaces. For this
+reason we consider the compact space Sβ2 with the metric
+ds2 = cos2 θdτ 2 + dθ2
+
+,
+
+(3.16)
+
+where 0 ≤ τ ≤ β and −π/2 ≤ θ ≤ +π/2. Eq. (3.16) describes a two-dimensional unit
+sphere with two conical singularities at the poles x1 and x2 (θ = ±π/2). It is convenient
+to study first this simplest case because △(2) has a compact spectrum on Sβ2 which can be
+found exactly. To this aim, let us remind that the second rank tensor in two dimensions
+can be decomposed as follows [36]
+1
+hµν = hTµνT + hLµν + gµν hσσ
+2
+
+,
+
+(3.17)
+
+where hTµνT and hLµν are the traceless tensors
+∇µ hTµνT = 0 ,
+
+(3.18)
+
+hLµν = ∇µ Vν + ∇ν Vµ − gµν ∇σ Vσ
+
+,
+
+(3.19)
+
+and Vµ is a vector. We define △(2) on the second-rank symmetric tensors hµν obeying the
+condition (2.5) and having the finite norm
+2
+
+||h|| =
+
+Z
+
+Sβ2
+
+√
+
+gd2 x h∗µν hµν < ∞ .
+
+(3.20)
+
+One can show that there are no transverse tensors hTµνT on Sβ2 obeying these conditions.
+So by taking into account Eqs.(3.14),(3.15) and (3.17) one can represent the trace of the
+Lichnerowicz operator as
+(2)
+
+(0)
+
+(1)
+
+TrKβ (s) = TrKβ (s) + TrKβ (s) −
+
+nck
+X
+
+e−sλl
+
+.
+
+(3.21)
+
+l=1
+
+For the reasons which will be clear later, we will write the subscript β for the heat kernel
+on Sβ2 (β 6= 2π). The last term in the r.h.s. of (3.21) subtracts from the vector heat
+kernel TrK (1) (s) the contribution of nck vector modes, for which the tensor modes hLµν
+
+8
+
+are identically zero. From the definition (3.19) it follows that such vector modes are the
+solutions of the two dimensional conformal Killing equation
+∇µ Vν + ∇ν Vµ − gµν ∇σ Vσ = 0 .
+
+(3.22)
+
+The results of the previous section enable one to rewrite (3.21) in the form
+nck
+X
+(2)
+(0)
+2
+TrKβ (s) = 3TrKβ (s) − χ[Sβ ] −
+e−sλl
+l=1
+
+,
+
+(3.23)
+
+where χ[Sβ2 ] = 2 is the Euler number, and to get the expression for the first coefficient in
+(2)
+the asymptotic expansion for TrKβ (s)
+(2)
+
+(0)
+
+Ā1 = 3Ā1 − 4π(χ[Sβ2 ] + nck ) .
+
+(3.24)
+
+It is worth examining how this formula works on S 2 . In this case there are 6 solutions
+of (3.22): 3 true Killing fields (V l )µ = ǫµν ∇µ φl (corresponding to the SO(3) isometry of
+S 2 ) and 3 conformal Killing vectors (V̄ l )µ = ǫµν (V l )ν . It is easy to check that φl are 3
+spherical (dipole) eigen-functions φ0 , φ± of the scalar Laplacian on S 2 ,
+△(0) φl = 2φl
+φ0 = sin θ
+
+,
+
+,
+
+(3.25)
+
+φ± = cos θe±iτ
+
+.
+
+(3.26)
+
+Thus, the formula (3.24) gives for A1 -coefficient the expression
+(2)
+
+(0)
+
+A1 = 3A1 − 4π(2 + 6) ,
+
+(3.27)
+
+which exactly coincides with general expression (2.6). Note that in 2d case Tri (P X (2) ) =
+4R = 8.
+Let us consider now the singular space Sβ2 with β 6= 2π. In this case, the conical
+singularities near the poles break the symmetry SO(3) × SO(3), corresponding to the
+conformal Killing fields on S 2 , to O(1) × O(1) 1 . Hence, the number of solutions of (3.22)
+reduces to 2 vectors determined by the scalar mode φ0 , Eq. (3.26). The later, as before,
+is the eigen-mode of △(0) . The other scalar modes φ± transform on Sβ2 into the functions
+φ±
+β
+2π
+±
+△(0) φ±
+,
+(3.28)
+, α=
+β = α(α + 1)φβ
+β
+α
+±iατ
+φ±
+β = cos θe
+
+.
+
+(3.29)
+
+±
+± µ
+The corresponding vector modes (Vβ± )µ = ǫµν ∇ν φ±
+β and (V̄β )µ = ǫµν (Vβ ) are no more
+the solutions of (3.22), and, according to (3.19), one can construct in terms of them the
+following second rank tensors
+
+
+
+1
+C(β) ∇µ (Vβ± )ν + ∇ν (Vβ± )µ
+,
+2
+
+
+= C(β) ∇µ (V̄β± )ν + ∇ν (V̄β± )µ − gµν ∇σ (V̄β± )σ
+
+(h±
+β )µν =
+(h̄±
+β )µν
+1
+
+(3.30)
+,
+
+(3.31)
+
+The symmetry is unbroken only when β = 2πk, where k ≥ 2 is a natural number, see a comment in
+the end of this section.
+
+9
+
+where C(β) is a normalization constant. The tensor modes (3.30) and (3.31) have the
+following properties:
+i) they obey the periodicity condition (2.5),
+ii) are the eigen-functions of △(2) ,
+iii) can be normalized on Sβ2 if β < 2π (α > 1)
+2
+± 2
+3/2
+||h±
+(α − 1)
+β || = ||h̄β || = 4π
+
+Γ(α + 3)
+|C(β)|2
+Γ(α + 3/2)
+
+.
+
+(3.32)
+
+Consequently, at β < 2π the Lichnerowicz operator acquires 4 new additional eigen-modes
+±
+(h±
+β )µν and (h̄β )µν , which we will call for simplicity the dipole modes. We will consider
+first the case β < 2π, then the results can be generalized on arbitrary β’s with the help
+of analytical continuation.
+(2)
+Obviously, in the presence of the dipole modes the limiting value of the trace TrKβ
+when β → 2π does not coincide with the trace TrK (2) on S 2 . Let us discuss this question
+(2)
+in more detail. The heat kernel Kβ at β < 2π can be represented in the form (for
+simplicity we do not write here the tensor indexes)
+(2)
+
+(2)
+
+(2)
+
+Kβ (s)(x, x′ , s) = K̃β (x, x′ , s) + Dβ (x, x′ , s) ,
+(2)
+
+K̃β (x, x′ , s) =
+
+X
+
+hλ (x)∗ hλ (x′ )e−sλ
+
+(3.33)
+
+,
+
+(3.34)
+
+λ6=α(α+1)
+(2)
+
+Dβ (x, x′ , s) =
+
+X
+
+
+
+∗
+± ′
+± ∗
+± ′
+−sα(α+1)
+(h±
+β ) (x)hβ (x ) + (h̄β ) (x)h̄β (x ) e
+
+±
+
+≡
+
+X
+
+(fβ± (x, x′ ) + f¯β± (x, x′ ))e−sα(α+1)
+
+.
+
+(3.35)
+
+±
+
+(2)
+
+(2)
+
+The quantity K̃β denotes the part of Kβ which does not include the dipole modes h±
+β,
+(2)
+±
+h̄β . There is a one-to one correspondence between the modes in K̃β and the modes of
+the heat-kernel operator K (2) on sphere S 2 . Therefore, in the limit β → 2π the both
+kernels coincide
+(2)
+lim K̃β (x, x′ , s) = K (2) (x, x′ , s) .
+(3.36)
+β→2π
+
+(2)
+
+Let us investigate now the same limit for Dβ , defined in Eq. (3.35). The normalization
+condition for the dipole modes is
+Z
+
+Tri fβ± (x, x) =
+
+Z
+
+± 2
+2
+Tri f¯β± (x, x) = ||h±
+β || = ||h̄β || = 1 .
+
+(3.37)
+
+Thus, as it follows from (3.32), the normalization constant C(β) diverges as (2π − β)−1/2
+as β → 2π. It is easy to see, using Eqs. (3.29), (3.30) and (3.31), that when β → 2π the
+functions fβ± and f¯β± vanish as fast as (2π−β) in the all points of Sβ2 except its two poles x1
+and x2 (at θ = ±π/2). However, near the poles (det gµν (x))1/2 Tri fβ± (x, x) ∼ cos2α−3 θ (the
+10
+
+same is true for f¯β± ), and there is a singularity which is not integrable at β = 2π (α = 1).
+The above properties demonstrate that functions Tri fβ± (x, x) are the distributions when
+β = 2π
+1
+lim Tri fβ± (x, x) = lim Tri f¯β± (x, x) = (δ(x, x1 ) + δ(x, x2 )) ,
+(3.38)
+β→2π
+β→2π
+2
+where δ(x, xi ) are the covariant δ-functions on S 2 . It means that the dipole modes in the
+limit β = 2π give to the heat kernel a contribution concentrated on the poles. Hence, by
+making use of (3.36) and (3.38) one can find the following limit
+(2)
+
+lim Tri Kβ (x, x, s) = Tri K (2) (x, x, s) + 2 (δ(x, x1 ) + δ(x, x2 )) e−2s
+
+β→2π
+
+.
+
+(3.39)
+
+The factor 2 in the last term in of r.h.s. of Eq. (3.39) corresponds to the number of
+the Killing generators which are broken in the presence of conical singularities. Note
+that the singular term in (3.39) can only appear in integral quantities. Thus, in the
+physical applications the last term in (3.39) will not contribute to the local observables
+(for instance, the averages of the field operators) calculated with the help of the heat
+(2)
+kernel Kβ (x, x′ , s).
+Consider now how the conical singularities change the A1 -coefficient for the Lichnerowicz operator. It follows from (3.23) that
+(2)
+
+(0)
+
+TrKβ (s) = 3TrKβ (s) − χ[Sβ2 ] − 2e−2s
+
+,
+
+(3.40)
+
+and the complete coefficient looks as
+(2)
+
+(0)
+
+Ā1 = 3Ā1 − 4πχ[Sβ2 ] − 8π
+(2)
+
+Let Aβ,1
+
+.
+
+(3.41)
+
+(2)
+
+Cβ
+
+be the contribution into Ā1 from one conical singularity. Two singular points
+
+of Sβ2 give the correction which can be found by making use of (2.17)
+(2)
+
+(2)
+
+2 Aβ,1
+
+Cβ
+
+= Ā1 −
+
+β (2)
+A
+2π 1
+
+,
+
+(3.42)
+
+(2)
+
+where A1 is the value of the heat coefficient on S 2 , Eq. (3.27). Then Eqs. (3.27) and
+(3.42) result in the expression
+(2)
+
+Aβ,1
+
+(0)
+
+Cβ
+
+= 3 Aβ,1
+
+Cβ
+
++ 8(β − 2π) + 2 · 4π
+
+.
+
+(3.43)
+
+The dipole modes give in (3.43) the additional term 2 · 4π which survives even in the
+limit β = 2π. This term depends only on the conical geometry Cβ near a singular point,
+(2)
+and for this reason it must be universal in A1 of TrKβ for all manifolds with the given
+kind of singularities. The factor 2 is the number of Killing generators (corresponding to
+translation symmetry) which are broken when the plane R2 is changed by the cone Cβ .
+Note that the same number of symmetries are broken in the transition from S 2 to Sβ2 .
+11
+
+The generalization of (3.43) to arbitrary dimensional manifolds is analogous to the
+vector case. It is sufficient to consider the space product Cβ × Σ and to use the relation
+Tr K (2)
+
+Cβ ×Σ
+
+= Tr K (0)
+
+Cβ
+
+Tr K (2)
+
+Σ
+
++ Tr K (2)
+
+Cβ
+
+Tr K (0)
+
+Σ
+
++ Tr K (1)
+
+Cβ
+
+Tr K (1)
+
+Σ
+
+.
+
+(3.44)
+This formula follows from the definition (2.4) of the Lichnerowicz operator and the decomposition of a rank 2 tensor onto tensors with the components either tangent or orthogonal
+to Σ, and a tensor with the mixed components. By making use of (3.44) and the results
+for the vector field we get
+(2)
+
+(0)
+
+Āβ,1 = Aβ,1
+
+Cβ
+
+N (2) (d − 2)
+
+Z
+
+Σ
+
+(2)
+
++ Aβ,1
+
+Cβ
+
+Z
+
+(1)
+
+Σ
+
++ Aβ,1
+
+(d − 2)
+
+Cβ
+
+Z
+
+Σ
+
+.
+
+(3.45)
+
+Thus, by observing that
+N (2) (d − 2) + 3 + 2(d − 2) = N (2) (d) ,
+
+(3.46)
+
+we finally get the formula
+(2)
+
+(0)
+
+Āβ,1 = N (2) Āβ,1 + (2(d + 2)(β − 2π) + 8π)
+
+Z
+
+,
+
+Σ
+
+(3.47)
+
+already reported in Sec. 2.
+On manifolds with the periodicity β = 2πk, where k is a natural number ≥ 2, the
+Killing vectors are the same as on the corresponding smooth spaces (β = 2π). The
+properties of K (2) when β approaches 2πk are also the same and the investigation of this
+limit is similar to the analysis given in this section.
+
+4
+
+Fields with half odd-integer spins
+
+4.1
+
+Dirac field
+
+As in the previous sections, in order to find the contribution of the conical singularities
+to TrK (1/2) for the Dirac field ψ we begin with the simple spaces. We consider the cone
+Cβ
+ds2 = r 2 dτ 2 + dr 2 , 0 ≤ τ ≤ β ,
+(4.1)
+where the trace of the heat kernel operator can be found in the same way as for the spin-0
+kernel, see Ref.s [27, 28]. As a check, in the Appendix we find the spectrum of the Dirac
+operator on Sβ2 , and prove that the computation of A1 -coefficient on this space in terms
+of the ζ-function is in agreement with the results obtained on Cβ .
+It is convenient to choose the following representation for the γ matrices
+γτ = σ1
+
+,
+
+γr = σ2
+
+,
+
+{γi , γj } = 2δij
+
+,
+
+(4.2)
+
+where σk are the Pauli matrices. The covariant derivative is defined as
+i
+∇µ ψ = (∂µ + σ3 wµ )ψ
+2
+12
+
+.
+
+(4.3)
+
+The connection wµ is calculated by using the tetrades which are parallel to the polar
+coordinates (4.1). This gives w = wµ dxµ = −dτ . According to our general definition
+(2.5), the corresponding spinors ψ on Cβ obey the antiperiodic conditions
+ψ(r, τ + β) = −ψ(r, τ ) .
+
+(4.4)
+
+To simplify the calculation one can get rid of the connection wµ by the gauge-like transformation
+ i
+
+i
+∇µ ψ = ∇µ e− 2 σ3 τ ψ ′ = e− 2 σ3 τ ∂µ ψ ′ ,
+(4.5)
+with the corresponding change of the periodicity condition (4.4) to
+i
+
+ψ ′ (r, τ + β) = −e 2 σ3 β ψ ′ (r, τ ) .
+
+(4.6)
+
+The operator △(1/2) acts on the transformed spinors ψ ′ as operator △(0) . Thus, on Cβ one
+can write the following relation
+(0)
+
+(0)
+
+TrK (1/2) = TrKδ+ + TrKδ−
+
+,
+
+(4.7)
+
+(0)
+
+where Kδ± are the heat kernels for the scalar Laplacians with the ”twisted” conditions
+φ(r, τ + β) = −e±iβ/2 φ(r, τ ) ≡ eiδ± φ(r, τ ) ,
+(0)
+
+imposed on the fields. The form of Kδ± was already studied in the literature. As was
+(0)
+shown by Dowker [31], the heat kernel Kδ (r, r ′ , τ − τ ′ , s) for the Laplacian with the more
+general condition φ(r, τ + β) = eiδ φ(r, τ ) on Cβ can be expressed in terms of the heat
+kernel K (0) (r, r ′ , τ − τ ′ , s) on the plane R2 with δ = 0
+(0)
+Kδ (r, r ′ , τ − τ ′ , s)
+C
+
+β
+
+=K
+
+(0)
+
+1
+(r, r , τ −τ , s)+
+2iβ
+′
+
+′
+
+(τ − τ ′ + z)
+exp i (δ−π)
+β
+
+Z
+
+sin βπ (τ − τ ′ + z)
+
+A
+
+K (0) (r, r ′ , z, s)dz .
+
+(4.8)
+Note that this equation holds when 0 < δ ≤ 2π. The contour A lies in the complex plane
+and consists of two curves, going from −π + i∞ to −π − i∞ and from π − i∞ to π + i∞.
+From equation (4.8) one gets for the trace
+1
+β
+TrK (0) (s) 2 +
+=
+R
+β
+2π
+8πis
+
+(0)
+TrKδ (s)
+C
+
+Z ∞
+0
+
+rdr
+
+Z
+
+A
+
+dz
+
+exp i (δ−π)
+z
+β
+
+r 2 sin2 z2
+s
+
+, (4.9)
+
+δ
+(2π − δ) .
+4πβ
+
+(4.10)
+
+sin πβ z
+
+exp
+
+which gives when one integrates first over r and then over z
+
+
+β
+β  2π
+(0)
+TrKδ (s) =
+TrK (0) (s) 2 +
+Cβ
+R
+2π
+24π
+β
+
+!2
+
+
+
+− 1 −
+
+In our case one can choose the following phase factors
+δ± = π ±
+13
+
+β
+2
+
+,
+
+(4.11)
+
+which is possible when β ≤ 2π. (One can go to others values β > 2π by means of an
+analytical continuation.) Then Eqs. (4.7), (4.8) result in the relation on Cβ
+
+
+β
+β  2π
+TrK (1/2) (s) =
+TrK (1/2) (s) 2 −
+Cβ
+R
+2π
+24π
+β
+
+!2
+
+
+
+− 1
+
+,
+
+(4.12)
+
+which agrees with the result of Kabat [9]. Eq.(4.12) has the trivial consequence
+
+
+2π
+β
+=− 
+β
+6
+β
+
+(1/2)
+A1
+C
+
+!2
+
+
+
+− 1
+
+.
+
+(4.13)
+(1/2)
+
+Comparing (4.13) with (2.7) one can see that the heat coefficient A1
+of the spin 1/2
+Laplacian on a cone is just the minus of the same coefficient of the scalar operator.
+This result for the Dirac fields can be generalized on arbitrary manifolds with conical
+singularities. As before, we need to calculate the A1 -coefficient on the space product
+Cβ × Σ where the heat kernel operator is
+TrK (1/2)
+
+Cβ ×Σ
+
+= TrK (1/2)
+
+Cβ
+
+TrK (1/2)
+
+.
+
+Σ
+
+(4.14)
+
+Then, by observing that N (1/2) (d − 2) = 12 N (1/2) (d) and using Eq. (4.13) we find the
+correction to the heat coefficient from the conical singularities
+(1/2)
+
+Aβ,1 = −
+
+N (1/2) (d) (0)
+Aβ,1
+2
+
+.
+
+(4.15)
+
+One immediate consequence of this formula is that the known relation between complete
+scalar and spinor coefficients
+(1/2)
+
+Ā1
+
+=−
+
+N (1/2) (d) (0)
+Ā1
+2
+
+,
+
+(4.16)
+
+holds as well on manifolds with conical singularities.
+
+4.2
+
+Rarita-Schwinger field
+
+The Rarita-Schwinger field ψµ plays an important role in supergravity where it appears
+as gravitino, a superpartner of graviton. If the background metric obeys the vacuum
+Einstein equations the Lagrangian of Rarita and Schwinger [34] is invariant under gauge
+transformations2 . In the harmonic gauge γ µ ψµ = 0 the wave operator for ψµ is reduced to
+△(3/2) [35], Eq.(2.3), and this is the reason why the latter was chosen for our consideration.
+Further, we will use the following relations
+
+
+△(3/2) (γ µ ψ) = γ µ (△(1/2) − Λ)ψ
+
+
+
+,
+
+(4.17)
+
+2
+For non-zero cosmological constant the Rarita-Schwinger action must include an additional term, see
+Ref. [37].
+
+14
+
+
+
+△(3/2) (∇µ ψ) = ∇µ (△(1/2) − Λ)ψ
+γ µ △(3/2) ψµ = (△(1/2) − Λ)γ µ ψµ
+
+
+
+∇µ △(3/2) ψµ = (△(1/2) − Λ)∇µ ψµ
+
+,
+
+(4.18)
+
+,
+
+(4.19)
+,
+
+(4.20)
+
+which hold on Einstein spaces Rµν = Λgµν . Then, as in the case of the Lichnerowicz
+operator, we analyze the properties of △(3/2) on the spherical domain Sβ2 . In this case it
+is convenient to introduce the modified derivatives Dµ = ∇µ + 2i γµ for fields with half
+odd-integer spins. When acting on a spinor on Sβ2 these derivatives commute
+[Dµ , Dν ]ψ = 0 .
+
+(4.21)
+
+We will use this fact to write for the Rarita-Schwinger field on Sβ2 the decomposition
+ψµ = ψµL + ψµT + ψµH
+
+,
+
+(4.22)
+
+which is analogous to the Hodge-deRham decomposition (3.1) for the vector field. Here
+ψµL = Dµ ψ
+
+ψµT = ǫµν D ν ξ
+
+,
+
+D µ ψµH = 0 ,
+
+,
+
+(4.23)
+
+ǫµν Dµ ψνH = 0 ,
+
+(4.24)
+
+and ψ and ξ are the Dirac spinors. The fields ψµL , ψµT and ψµH are orthogonal with respect
+to the scalar product
+Z
+µ
+(ψ1 , ψ2 ) = 2 (ψ1 )+
+.
+(4.25)
+µ (ψ2 )
+Sβ
+
+The orthogonality of ψµL and ψµT is the consequence of their definitions with the help of
+Dµ
+D µ ψµT = 0 , ǫµν Dµ ψνL = 0 .
+(4.26)
+Now Eqs. (4.17)-(4.20), where Λ = 1, can be rewritten in the form
+
+
+△(3/2) (Dµ ψ) = Dµ (△(1/2) − 1)ψ
+
+
+
+,
+
+D µ △(3/2) ψµ = (△(1/2) − 1)D µ ψµ
+
+,
+
+(4.27)
+
+which enables one to relate on Sβ2 the operators △(3/2) and (△(1/2) − 1). One can show
+that normalizable harmonic modes ψµH on Sβ2 are absent for any β. Therefore the trace of
+K (3/2) can be represented as
+TrK (3/2) = 2TrK (1/2) es − 2nk
+
+,
+
+(4.28)
+
+where nk ≤ 2 is the number of the so-called Killing spinors ǫi which are the antiperiodic
+solutions of the equations
+Dµ ǫi = 0 .
+(4.29)
+The spinors ǫi are also the zero-modes of the operator (△(1/2) − 1). As follows from (4.23)
+there are no modes ψµL and ψµT corresponding to ǫi , and so they were subtracted in the
+r.h.s. of Eq. (4.28). As it is shown in the Appendix, Eq. (4.29) has two independent
+15
+
+solutions on S 2 and no solutions on Sβ2 (β 6= 2πk). Hence, the cases β = 2π and β 6= 2π
+must be considered separately.
+The situation reminds the difference of the Killing fields on Sβ2 and on S 2 which was
+crucial for the analysis of the Lichnerowicz operator. This fact has a simple explanation,
+because vectors ǫ+
+i γµ ǫj constructed from ǫi obey automatically the Killing equation. Thus
+if some of the Killing generators are broken then there is a limitation on the number of
+spinors ǫi . The relation of the Killing spinors ǫi and the Killing vectors V l on S 2 reads
++
+(V 0 )µ = ǫ+
+1 γµ ǫ1 = −ǫ2 γµ ǫ2
+
+(V + )µ = ((V − )µ )∗ = ǫ+
+2 γµ ǫ1
+
+,
+
+,
+
+(4.30)
+
+where ǫi are given in the Appendix, Eq. (A.5), and V l are defined in terms of spherical
+harmonic φl , Eq. (3.26). On Sβ2 (β 6= 2πk) two generators corresponding to V ± are broken
+and it prohibits solutions of (4.29) on this space.
+For this reason, the operator △(3/2) at β 6= 2πk has 4 additional non-trivial modes.
+Then one can follow the same line of arguments as in the Section 3.2 and show that these
+modes are normalizable and they add a finite term to TrK (3/2) which does not vanish at
+β = 2π. On the other hand, in the each point of Sβ2 , except the poles, the diagonal part
+of K (3/2) vanishes when β → 2π. So the contribution of the additional modes in K (3/2)
+converges to a δ-function on the poles and does not affect the local quantities.
+The expression for the Schwinger-DeWitt coefficients can be found from (4.28). In
+particular, one has
+(3/2)
+(1/2)
+Ā1
+= 2Ā1
++ 4 · 2β − 4π · 2nk .
+(4.31)
+(3/2)
+
+(1/2)
+
+On S 2 nk = 2 and Eq.(4.31) simplifies to the equality A1
+= 2A1
+which is in complete
+agreement with the general formula (2.6). If β 6= 2π the two singular points give the
+correction to the heat coefficient
+(3/2)
+
+(3/2)
+
+2 Aβ,1
+
+Cβ
+
+= Ā1
+
+−
+
+β (3/2)
+A
+S2
+2π 1
+
+,
+
+(4.32)
+
+following from formula (2.17). Thus one gets
+(3/2)
+
+Aβ,1
+(1/2)
+
+where the quantity Aβ,1
+
+Cβ
+
+(1/2)
+
+Cβ
+
+= 2 Aβ,1
+
+Cβ
+
++ 4β
+
+,
+
+(4.33)
+
+is given by (4.13). To generalize this equation on the space
+
+Cβ × Σ one must decompose the field ψµ onto parts normal and tangent to the surface Σ.
+According to this decomposition one has
+TrK (3/2)
+
+Cβ ×Σ
+
+= TrK (3/2)
+
+Cβ
+
+TrK (1/2)
+
+Σ
+
++ Tr K (1/2)
+
+Cβ
+
+TrK (3/2)
+
+.
+
+Σ
+
+(4.34)
+
+Hence, the correction to the A1 -coefficient due to the conical singularities reads
+(3/2)
+Aβ,1
+
+=
+
+
+
+N
+
+(1/2)
+
+(3/2)
+(d − 2) A1
+C
+
+β
+
++N
+
+(3/2)
+
+(1/2)
+(d − 2) A1
+C
+
+β
+
+1
+(0)
+= − N (3/2) (d)Aβ,1 + 2βN (1/2) (d)
+2
+Σ
+Z
+
+16
+
+,
+
+Z
+
+Σ
+
+(4.35)
+
+which is the result reported in (2.12). Note that in Eq. (4.35) the simple relation
+1
+2N (1/2) (d − 2) + N (3/2) (d − 2) = N (3/2) (d)
+2
+
+(4.36)
+
+was used.
+
+5
+
+Discussion
+
+5.1
+
+Comparison with ”blunt” cones
+
+In some physical problems conical singularities appear only as an idealization of the properties of smooth manifolds. It reflects the simple fact that one can describe a singular space
+Mβ as a convergent sequence of manifolds M̃β with the ”blunted” conical singularities.
+This is the way, for instance, how one can define the integral geometrical characteristics of
+Mβ constructed from the powers of the Riemann tensor [32]. In particular, this procedure
+R
+gives the following well-known result for the integral curvature R̃ of Mβ
+Z
+
+Mβ
+
+R̃ ≡
+
+lim
+M̃β →Mβ
+
+Z
+
+M̃β
+
+R=
+
+Z
+
+Mβ −Σ
+
+R + 2(2π − β)
+
+Z
+
+,
+
+Σ
+
+(5.1)
+
+where R is the standard scalar curvature calculated on the smooth domain Mβ − Σ.
+On the other hand, the general form of the first Schwinger-DeWitt coefficient in the
+asymptotic expansion on the smooth manifolds is defined by the integral curvature3
+(j)
+A1 = c(j)
+
+Z
+
+R ,
+
+(5.2)
+
+where the coefficients c(j) depend on the spin j and can be found from Eq.(2.6):
+1
+N (1/2)
+N (1)
+N (3/2)
+N (2)
+, c(1/2) = −
+, c(1) =
+− 1 , c(3/2) = −
+, c(2) =
+− (d + 2) .
+6
+12
+6
+12
+6
+(5.3)
+Therefore if the integral curvature is calculated as the limit (5.1), the coefficients (5.2)
+(j)
+have the finite values Ã1 on the singular space Mβ
+c(0) =
+
+(j)
+Ã1 =
+
+lim
+M̃β →Mβ
+
+(j)
+(j)
+A1 [M̃β ] = A1 + c(j) 2(2π − β)
+
+(j)
+
+Z
+
+Σ
+
+,
+
+(5.4)
+
+where A1 is given by the integral (5.2) over the domain Mβ − Σ. It is worth comparing
+A1 -coefficients (5.4) computed on the manifolds M̃β with the blunted singularities and
+the results (2.9)-(2.13) obtained by the direct computation of TrK (j) on Mβ . In the
+both cases the coefficients have the similar structures and the conical singularities add
+(j)
+the surface terms. However, the contributions Aβ,1 given by (2.10)-(2.13) and the surface
+3
+
+To be more precise it is true on manifolds without boundaries.
+
+17
+
+terms in (5.4) are different. Only for spins j = 0, 1/2 and 1 and only in the limit of small
+deficits of the conical angle one has a correspondence
+(j)
+Aβ,1 = c(j) 2(2π − β)
+
+Z
+
+Σ
+
+
+
++O (2π − β)2
+
+
+
+,
+
+j = 0,
+
+1
+, 1 ,
+2
+
+(5.5)
+
+which holds up to the terms of the second order in (2π − β). Thus, as it follows from (2.9)
+and (5.4), the relation between the complete coefficients reads
+(j)
+
+(j)
+
+
+
+Ā1 = Ã1 + O (2π − β)2
+
+
+
+,
+
+j = 0,
+
+1
+, 1 .
+2
+
+(5.6)
+
+On the contrary, for spins 3/2 and 2 the relation (5.6) does not hold, because the surface
+corrections in these cases do not vanish at β = 2π. This disagreement occurs because the
+local isometries of the blunted manifolds M̃β are not broken by the singularities. Therefore
+the heat kernels for spins 3/2 and 2 on M̃β cannot be used as the approximation of the
+corresponding kernels on the singular manifolds Mβ even when M̃β → Mβ .
+
+5.2
+
+One-loop ultraviolet divergencies
+
+Let us consider now the one-loop effective action W (j) for a spin j on a curved background.
+In the Schwinger-DeWitt representation it looks as
+1
+1
+W (j) = (−1)2j log det △(j) = −(−1)2j
+2
+2
+
+Z ∞
+δ2
+
+ds
+TrK (j) (s) ,
+s
+
+(5.7)
+
+where δ 2 stands for an ultraviolet cut-off and the factor (−1)2j is related to the statistics.
+The structure of the ultraviolet divergences of W (j) is determined by the asymptotic
+behavior of TrK (j) (s) at small s, where one can use the asymptotic expansion (1.2). In
+(j)
+(j)
+particular, the divergence Wdiv,1 related to the first heat coefficient A1 is
+(−1)2j (j)
+(j)
+Wdiv,1 = −
+A
+32π 2 δ 2 1
+
+.
+
+(5.8)
+
+(j)
+
+According to Eq.(5.2), on the smooth manifolds A1 is proportional to the integral of the
+scalar curvature R, and so the divergence (5.8) is removed by the renormalization of the
+1 R
+Newton constant G in the bare gravitational action 16πG
+R, see for instance [38].
+In the last years much attention has been paid to the same renormalization problem
+on manifolds Mβ with conical singularities [4]-[11]. To discuss this problem we will follow
+the line of arguments of [8]. It is reasonable to assume that the bare gravitational action is
+determined by the total integral curvature (5.1) of Mβ , which is the limiting value of the
+curvature on the blunted spaces M̃β . Thus, by taking into account Eqs.(5.6) and (5.8),
+one can write for spins j = 0, 1/2, 1 on singular spaces the following chain of relations
+1
+16πGbare
+
+Z
+
+
+
+Mβ
+
+M̃β →Mβ
+
+1
+16πGbare
+
+Z
+
+
+
+(j)
+
+R̃ + Wdiv,1 [Mβ ] =
+
+
++O (2π − β)2 =
+
+1
+16πGren
+
+lim
+
+Mβ
+
+Z
+
+R̃ + O (2π − β)2
+18
+
+(j)
+
+M̃β
+
+
+
+!
+
+R + Wdiv,1 [M̃β ]
+,
+
+j = 0,
+
+1
+, 1 .
+2
+
+(5.9)
+
+The connection between the bare Gbare and renormalized Gren constants is standard
+because M̃β are smooth manifolds. It means that for spins j = 0, 1/2, 1 the standard
+renormalization of the gravitational constant removes the divergences up to the terms of
+the second order in (2π − β). This property, however, is not true for spins j = 3/2 and 2.
+
+5.3
+
+Off-shell calculations of the entropy on black-hole backgrounds
+
+We now briefly discuss our results in connection with off-shell calculations of the entropy
+on black hole instantons with conical singularities. The off-shell methods are required for
+the statistical-mechanical computations in quantum theory on black-hole backgrounds (a
+review of off-shell approaches can be found in [39]). In the Euclidean formulation of the
+gravitational thermodynamics [17],[18] the fields are taken on the Euclidean section of
+the corresponding Lorentzian manifold. The imaginary time period β is associated with
+the inverse temperature. In the case of black holes the Euclidean instanton Mβ has the
+conical singularities if β 6= 2π. The regularity condition β = 2π at the Euclidean horizon
+is, at the same time, the condition of the thermal equilibrium of the black hole and its
+radiation.
+The free-energy for a spin j is proportional to the one-loop effective action W (j) ,
+Eq.(5.7), and the contribution S (j) of the given field into the entropy is
+S
+
+(j)
+
+=
+
+!
+
+∂
+β
+− 1 W (j)
+∂β
+β=2π
+
+,
+
+(5.10)
+
+where the derivative is taken over the period of the singular instanton Mβ . The divergent
+(j)
+(j)
+part Wdiv,1 of the action W (j) on Mβ results in the divergent correction Sdiv,1 to S (j)
+R
+proportional to the horizon area Σ :
+(j)
+
+Sdiv,1 = (−1)
+
+2j c
+
+(j) Z
+
+8δ 2
+
+Σ
+
+, for j = 0, 1/2, 1, 3/2 ,
+
+1
+Sdiv,1 = 2 (c(2) + 2)
+8δ
+Σ
+Z
+
+(2)
+
+,
+
+(5.11)
+(5.12)
+
+where c(j) are defined in (5.3). Formally this effect occurs because of the conical singular(j)
+ities, and it drawn a considerable interest in the literature [4]-[11] because Sdiv,1 has the
+
+1
+same form as the mysterious Bekenstein-Hawking entropy SBH = 4G
+Σ [40],[41]. This has
+(j)
+the important consequence. As follows from (5.9) the surface divergences Wdiv,1 removed
+under standard renormalization of the gravitational constant up to terms O ((2π − β)2 )
+which do not contribute to the entropy (5.10). Thus, for spins j = 0, 1/2, 1 the correction
+(j)
+1 R
+Sdiv,1 renormalizes the Bekenstein-Hawking entropy SBH = 4G
+Σ , see [4]-[11].
+For spin 3/2 the entropy divergences can be also renormalized because the part of
+(3/2)
+Aβ,1 , which does not vanish at β = 2π, is proportional to β (see Eq. (2.12)), and so it
+does not contribute to the entropy calculated by formula (5.10). However for this spin the
+
+R
+
+19
+
+∂
+non-renormalizable correction appear in the energy E (j) = ∂β
+W (j) . Finally, our analysis
+shows that the renormalization of the off-shell one-loop corrections to the entropy does
+not work for tensor fields. The origin of this result is in the specific properties of the
+Lichnerowicz operator.
+The complete investigation of the renormalization problem for the graviton and gravitino must also take into account the ghosts, whose wave operators are similar to the
+vector △(1) and spinor △(1/2) Laplacians. Note, however, that in the conical singularity
+method the study of the quantum corrections to the black hole entropy from the gravitons
+may be non-trivial problem. In this case one must first formulate the quantum theory for
+the metric perturbations on singular backgrounds. We will return to this question in the
+next section.
+
+In the end a small comment about entropy of the Maxwell field on two-dimensional
+Rindler-like spaces is in order. This question was discussed in [9]. As it was pointed out in
+this paper, there are no dynamical degrees of freedom in two dimensional Maxwell theory
+because of two gauge constraints. For this reason any kind of entropy for the Maxwell
+field must vanish.
+The results of Section 3.1 can be used to show that the off-shell calculation of the
+entropy on two-dimensional manifolds with conical singularities is in agreement with that
+general observation. Indeed, in the Feynmann gauge ∇µ Vµ = 0 the one-loop effective
+action Wgauge of the abelian gauge field is determined as
+exp(−Wgauge ) =
+
+det′ (△(0) )
+1/2
+
+(det′ (△(1) ))
+
+.
+
+(5.13)
+
+Eq. (5.13) can be obtained from the corresponding functional integral which includes
+the Faddeev-Popov ghosts. For the considered gauge the wave operator for the ghosts is
+the scalar Laplacian △(0) . The determinants in (5.13) with the prime appear from the
+Gauss integrals over the vector and ghost fields and do not include the zero modes modes.
+Consequently, the Schwinger-DeWitt representation (5.7) for Wgauge reads
+i
+1 Z ∞ ds h
+Wgauge = −
+TrK (1) (s) − n1 − 2(TrK (0) (s) − n0 )
+2 δ s
+
+,
+
+(5.14)
+
+where n0 and n1 is the number of vector and scalar zero modes. In two dimensions,
+however, the traces of the spin 1 and spin 0 Laplacians are related by Eq.(3.4) and the
+effective action for the gauge field vanish: Wgauge = 0. This result does not depend on the
+background metric and also holds on manifolds with conical singularities. Therefore, the
+off-shell entropy obtained from Wgauge with the help of (5.10) is zero for two-dimensional
+abelian gauge field. This result agrees with the general requirement. In our mind, the
+different conclusion that has been made in [9] does not take properly into account the
+zero modes.
+
+20
+
+6
+
+Conclusions
+
+In this paper we study the heat kernels of the Laplace operators which appear under
+quantization of non-zero spin fields on manifolds with conical singularities. The twodimensional domains are the simplest arena where one can obtain the heat kernels explicitly and understand some of their general features. Our main conclusion is that the
+properties of the operators for spins 1/2 and 1 are very similar to the properties of the
+scalar Laplacian considered in the literature earlier. However, studying the spins 3/2 and
+2 brings something new. The eigen-functions of the wave operators for these spins are
+sensitive to the isometries of the background space. This can be very well illustrated
+by examining these operators on the simplest spherical domains Sβ2 . There the spin 2
+eigen-modes constructed with the help of the Killing vectors or spin 3/2 modes obtained
+from the Killing spinors are identically zero on S 2 and the corresponding eigen-values do
+not appear in the spectrum. Conical singularities break the isometries of S 2 and introduce new modes. Interestingly, the contribution of these modes into the trace of the heat
+kernel operator doesn’t vanish even in the limit when the conical deficit tends to zero.
+This happens, however, only on the singular points, but outside them, no matter how
+close, the discrepancy with the heat kernels on the smooth spaces is absent. This picture
+is also true for arbitrary singular spaces with the structure Cβ × Σ near the hypersurface
+Σ where the conical singularities break the local translational isometries.
+The way in which the conical singularities change the form of the first SchwingerDeWitt coefficient in the asymptotic expansion of the heat kernel operator has been
+determined. We carried out the analysis on Sβ2 and then generalized it to higher dimensions. As a check of these results, it would be useful to investigate explicitly the heat
+kernel expansion for spin 3/2 and 2 operators on singular spaces with dimension higher
+than 2 and confirm our results. This is a subject for further analysis.
+One of the applications of our results is the quantization of gravity (and supergravity)
+in the presence of conical singularities. This problem is beyond the scope of the present
+paper, but some remarks are in order. Taking into account the properties of the heat
+kernels K (2) and K (3/2) one can expect that the effective action of the graviton and
+gravitino on spaces with conical singularities will not be reduced to the action on the
+regular manifolds. The ghosts which appear under the quantization are described by
+the vector and spinor fields and do not seem to change this conclusion. Therefore, one
+can speculate that quantization of the metric perturbations on singular and smooths
+backgrounds may be quite different and may not coincide to each other even in the limit
+β → 2π.
+In connection with this problem it is worth pointing out the canonical formulation
+of gravity in the presence of conical defects which was suggested recently by Carlip and
+Teitelboim [12],[13] and used for the explanation of the Bekenstein-Hawking entropy. By
+analyzing the action principle, the authors showed that the deficit angle and the area of Σ
+21
+
+are canonical conjugates. If these variables are quantized, then the naive limit β → 2π in
+such quantum theory seems to be inconsistent. From this point of view the disagreement
+between the determinants for spin 2 field on singular and smooth backgrounds would not
+lead to a contradiction. This problem is an interesting subject for further research.
+Acknowledgements: D.V.F. is very grateful to Valeri Frolov and Andrei Zelnikov for
+helpful discussions, and G.M. would like to thank Giovanni Sparano, Gianpiero Mangano
+and Giampiero Esposito for valuable comments and suggestions. This work was supported
+in part by the Natural Sciences and Engineering Research Council of Canada.
+
+22
+
+A
+
+Dirac field on Sβ2
+
+In this Appendix, in order to check the validity of Eq. (2.10) obtained in Sec. 4.1 , we
+study the Dirac operator γ µ ∇µ on Sβ2 . On this space γ µ ∇µ has the following eigen-values
+2π
+π 1
+± iλn,m = ±i n +
+m+ +
+β
+β 2
+
+!
+
+,
+
+(A.1)
+
+where n, m = 0, 1, .. and each eigen-value has double degeneracy. This spectrum can be
+used to study the ζ-function for theoperator △(1/2) = −(γ µ ∇µ )2
+ζ
+
+(1/2)
+
+(z) = 4
+
+∞
+X
+
+λ−2z
+n,m
+
+.
+
+(A.2)
+
+n,m=0
+
+In particular, this enables one to find A1 -coefficient, using the formula
+(1/2)
+
+Ā1
+
+= 4πζ (1/2) (0) ,
+
+(A.3)
+
+and check that Eq. (A.3) agrees with Eq.(4.16) obtained by using the heat kernel on Cβ .
+To this aim we will follow approach of [42] and study first the Killing spinors which are
+the solutions of Eq. (4.29)
+i
+Dµ ǫj = ∇µ + γµ ǫj = 0 ,
+2
+
+
+
+
+(A.4)
+
+where ∇µ ψ = ∂µ ψ + 2i σ3 ωµ ψ and ω = − sin θ dτ . It is easy to see that in general Eq.
+(A.4) admits two independent solutions
+
+
+ǫ1 (τ, θ) = eiτ /2 
+
+
+sin(θ/2 + π/4)
+− cos(θ/2 + π/4)
+
+
+
+
+
+,
+
+
+
+ǫ2 (τ, θ) = e−iτ /2 
+
+
+cos(θ/2 + π/4)
+sin(θ/2 + π/4)
+
+
+
+
+
+. (A.5)
+
+These spinors obey the following conditions
+ǫ1 (τ + β, θ) = eiβ/2 ǫ1 (τ, θ) ,
+
+ǫ2 (τ + β, θ) = e−iβ/2 ǫ2 (τ, θ) ,
+
+(A.6)
+
+and are normalized as ǫ†i ǫj = δij with i, j = 1, 2. Thus the antiperiodic solutions of (A.4)
+exist only on S 2 (and, more generally, at β = 2πk). According to the method described
+in [42], the eigen-functions ψλ of the Dirac operator
+γ ρ ∇ρ ψλ = iλ ψλ
+
+,
+
+(A.7)
+
+can be represented as the linear combinations
+ψλ = [iλφλ + γ µ (∂µ φλ )]ǫi
+
+,
+
+ψ−λ−1 = [−i(λ + 1)φλ + γ µ (∂µ φλ )]ǫi
+23
+
+(A.8)
+,
+
+(A.9)
+
+constructed in terms of the spinors ǫi and the eigen-functions φλ of the scalar operator
+∆(0)
+∆(0) φλ = λ(λ + 1)φλ .
+(A.10)
+The periodicity conditions for scalar functions φλ must be chosen in such a way to get
+antiperiodic eigen-vectors for the Dirac operator ψλ (τ + β) = −ψλ (τ ). Let us denote by
+φλ and φ̃λ the scalar modes corresponding to ǫ1 and ǫ2 spinors, respectively. Then they
+satisfy the following conditions
+φλ (τ + β, θ) = −e−iβ/2 φλ (τ, θ) ,
+
+φ̃λ (τ + β, θ) = −eiβ/2 φ̃λ (τ, θ) .
+
+(A.11)
+
+The both modes φλ (τ, θ) and φ̃λ (τ, θ) admit the same eigen-values. In particular, one gets
+the eigen-values λn,m (λn,m + 1) with the double degeneracy, where
+λn,m = n +
+
+(2m + 1)π 1
++
+β
+2
+
+,
+
+n, m = 0, 1, 2, ...
+
+(A.12)
+
+whose two corresponding eigen-functions are
+φ(1)
+n,m = φn+1,m
+
+φ(2)
+n,m = φn,−m−1
+
+,
+
+(A.13)
+
+φ̃(2)
+n,m = φ̃n+1,−m−1
+
+,
+
+(A.14)
+
+,
+
+for φλ (τ, θ) modes and
+φ̃(1)
+n,m = φ̃n,m
+
+,
+
+for φ̃λ (τ, θ) modes. The functions φn,m and φ̃n,m are defined as
+φn,m (τ, θ) ≡ exp (iqτ ) (cos θ)|q| Pn(|q|,|q|)(sin θ) ,
+
+φ̃n,m (τ, θ) ≡ exp (iq̃τ ) (cos θ)|q̃| Pn(|q̃|,|q̃|) (sin θ) ,
+
+(A.15)
+(A.16)
+
+where Pn(|q|,|q|)(x) stand for Jacobi polynomials, n, |m| = 0, 1, ..., and
+q≡
+
+(2m + 1)π 1
+−
+β
+2
+
+,
+
+q̃ ≡
+
+(2m + 1)π 1
++
+β
+2
+
+.
+
+(A.17)
+
+The operator △(0) also has non-degenerate eigen-values λm (λm + 1), where
+λm =
+
+(2m + 1)π 1
+−
+β
+2
+
+,
+
+m = 0, 1, 2, ... ,
+
+(A.18)
+
+whose corresponding eigen-vectors are
+φm = φ0,m
+
+,
+
+φ̃m = φ̃0,−m−1
+
+.
+
+(A.19)
+
+For the Dirac operator on Sβ2 the eigen-values ±iλn,m can have double degeneracy, because
+the corresponding eigen-value problem consists of two first order differential equations.
+The eigen-vectors constructed by means of spinors ǫ1 and ǫ2 have the same eigen-values.
+Therefore for double degenerate modes corresponding to eigen-values ±iλn,m , Eq. (A.12),
+24
+
+one can only use one of these spinors, for instance ǫ1 . In this case we can use the property
+λn,m + 1 = λn+1,m , and represent the corresponding modes in the form
+h
+
+i
+
+(+,l)
+(l)
+(l)
+ψn,m
+= iλn,m φn,m
++ γ µ (∂µ φn,m
+) ǫ1
+(l)
+
+h
+
+(l)
+
+i
+
+(−,l)
+ψn,m
+= −iλn,m φn−1,m + γ µ (∂µ φn−1,m) ǫ1
+
+, n, m = 0, 1, 2, ..,
+
+(A.20)
+
+, n = 1, 2, ... m = 0, 1, 2, ..,
+
+(A.21)
+
+(l)
+where φn,m
+with l = 1, 2 denote the scalar solutions (A.13). Functions (A.20), (A.21)
+obey the equations
+(±,l)
+(±,l)
+γ µ ∇µ ψn,m
+= ±iλn,m ψn,m
+.
+(A.22)
+
+Other eigen-functions can be obtained by making use of non-degenerate scalar modes φm
+and φ̃m for which we have the identities:
+h
+
+[iλm φm + γ µ (∂µ φm )] ǫ1 = 0 ,
+
+i
+
+iλm φ̃m + γ µ (∂µ φ̃m ) ǫ2 = 0 ,
+
+(A.23)
+
+following from (A.15) and (A.16). They show that spinors φm ǫ1 and γ µ (∂µ φm )ǫ1 ( φ̃m ǫ2
+and γ µ (∂µ φ̃m )ǫ2 ) are not independent, and so the only combinations one can construct
+from them are
+(−,1)
+(−,2)
+ψ0,m = φm ǫ1 , ψ0,m = φ̃m ǫ2 .
+(A.24)
+(−,1)
+
+(−,2)
+
+As the consequence of (A.23), ψ0,m and ψ0,m have the coinciding eigen-values −i(λm +
+1) = −iλ0,m . Finally one can check the orthogonality of the modes (A.20), (A.21) and
+(A.24). By gathering all the eigen-values one gets the spectrum of the Dirac operator on
+Sβ2 in the form (A.1). At β = 2π it reproduces the spectrum of this operator on S 2 [43].
+To calculate the zeta-function (A.2) it is suitable to write ζ (1/2) in the different form
+(cf [44])
+ζ
+
+(1/2)
+
+∞
+X
+
+4 Z ∞ y 2z−1 −γy
+1
+ζR (2z, αm + γ) =
+(z) = 4
+e
+Γ(2z) 0 1 − e−y
+1 − e−αy
+m=0
+
+
+
+
+dy
+
+,
+
+(A.25)
+
+where γ ≡ (π/β) + (1/2), α = 2π/β and ζR (z) is the Riemann zeta-function. Then one
+can decompose the quantity (1 − e−αy )−1 in the series in powers of αy. After that the
+simple calculation gives
+ζ
+
+(1/2)
+
+4
+π
+β
+(0) = − ζR (−1, γ) − 4B1 ζR (0, γ) + 2αB2 = −
++
+α
+12π 3β
+
+!
+
+,
+
+(A.26)
+
+where Bn are the Bernoulli numbers. As one can check now, Eq. (A.26) gives the value of
+A1 -coefficient on Sβ2 defined by Eq.(A.2) which exactly coincides with the results obtained
+in Sec. 4.1 by the different method using the heat kernel operator on Cβ .
+
+25
+
+References
+[1] A.A. Vilenkin, Phys. Rep. 121, N5 (1985) 263.
+[2] M.B. Green, J.H. Schwarz, and E. Witten, Superstring Theory (Cambridge University
+Press, Cambridge, England, 1987), Vol. 2.
+[3] M. Bañados, C. Teitelboim and J. Zanelly, Phys. Rev. Lett. 72 (1994) 957.
+[4] L. Susskind and J. Uglum, Phys. Rev. D50 (1994) 2700.
+[5] C. Callan and F. Wilczek, Phys. Lett. B333 (1994) 55.
+[6] S.N. Solodukhin, Phys. Rev. D51 (1994) 609, ibid D51 (1995) 618.
+[7] D.V. Fursaev, Mod. Phys. Lett. A10 (1995) 649.
+[8] D.V. Fursaev and S.N. Solodukhin, Phys. Lett. B365 (1996) 51.
+[9] D. Kabat, Nucl. Phys. 453 (1995) 281.
+[10] D. Kabat, S.H. Shenker, M.J. Strassler, Phys. Rev. D52 (1995) 7027.
+[11] F. Larsen and F. Wilczek, Nucl. Phys. B458 (1996) 249.
+[12] S. Carlip and C. Teitelboim, Class. Quantum. Grav. 12 (1995) 1699.
+[13] C. Teitelboim, Phys. Rev. D53 (1996) 2870.
+[14] V.P. Frolov, W. Israel, and S.N. Solodukhin, On One-loop Quantum Corrections to
+the Thermodynamics of Charged Black Holes, ALBERTA-THY-06-96, hep-th/9602105.
+[15] S. Zerbini, G. Cognola, and L. Vanzo, Euclidean Approach to the Entropy for a Scalar
+Field in Rindler-like Space-Times, preprint-UTF 372, hep-th/9603106.
+[16] R.B. Mann and S. Solodukhin, Conical Geometry and Quantum Entropy of a Charged
+Kerr Black Hole, WATPHYS-TH-96-04, hep-th/9604118.
+[17] G.W. Gibbons and S.W. Hawking, Phys. Rev. D15 (1976) 2752.
+[18] S.W. Hawking, In: General Relativity: An Einstein Centenary Survey. (eds. S.W.
+Hawking and W. Israel), Cambridge Univ.Press, Cambridge, 1979.
+[19] J.S. Dowker, J. Phys. A: Math. Gen. 10 (1977) 115.
+[20] T.M. Halliwell and D.A. Konkowsky, Phys. Rev. D33 (1986) 1918.
+[21] J.S. Dowker, Phys. Rev. D36 (1987) 3095.
+
+26
+
+[22] V.P. Frolov and E.M. Serebriany, Phys. Rev. D35 (1987) 3779.
+[23] J.S. Dowker, Phys. Rev. 36 (1987) 3742.
+[24] S. Deser and R. Jackiw, Commun. Math. Phys. 118 (1988) 495.
+[25] H. Donnelly, Math. Ann. 224 (1976) 161.
+[26] J. Cheeger, J. Differential Geometry 18 (1983) 675.
+[27] G. Cognola, K. Kirsten and L. Vanzo, Phys. Rev. D49 (1994) 1029.
+[28] D.V. Fursaev, Class. Quantum Grav. 11 (1994) 1431.
+[29] D.V. Fursaev, Phys. Lett. B334 (1994) 53.
+[30] J.S. Dowker, Class. Quantum Grav. 11 (1994) L137.
+[31] J.S. Dowker, Phys. Rev. D50 (1994) 6369.
+[32] D.V. Fursaev and S.N. Solodukhin, Phys. Rev. D52 (1995) 2133.
+[33] S.M. Christensen and M.J. Duff, Nucl. Phys. B154 (1979) 301.
+[34] W. Rarita and J. Schwinger, Phys. Rev. 60 (1941) 61.
+[35] A. Das and D.Z. Freedman, Nucl. Phys. B114 (1976) 271.
+[36] G.W. Gibbons and M.J. Perry, Nucl. Phys. 146 (1978) 90.
+[37] P.K. Townsend, Phys. Rev. D15 (1977) 2802.
+[38] N.D. Birrell and P.C.W. Davies, Quantum Fields in Curved Space, Cambridge University Press, Cambridge 1982.
+[39] V.P. Frolov, D.V. Fursaev and A.I. Zelnikov, Black Hole Entropy: Off-Shell versus
+On-Shell, ALBERTA-THY 33-95, hep-th/9512184.
+[40] J.D. Bekenstein, Nuov. Cim. Lett. 4 (1972) 737, Phys. Rev. D7 (1973) 2333, Phys.
+Rev. D9 (1974) 3292.
+[41] S.W. Hawking, Comm. Math. Phys. 43 (1975) 199.
+[42] S.M. Christensen, M.J. Duff, G.W. Gibbons and M. Rocek, One Loop Effects in
+Supergravity with a Cosmological Constant, preprint, March 1981 (unpublished).
+[43] R. Camporesi and A. Higuchi, On the Eigen Functions of the Dirac Operator on
+Spheres and Real Hyperbolic Spaces, preprint BUTP-95-12, gr-qc/9505009.
+[44] D.V. Fursaev and G. Miele, Phys. Rev. D49 (1994) 987.
+
+27
+
+

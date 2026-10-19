@@ -1,0 +1,298 @@
+%======================================================================
+\section{What v12 adds, and what it does not}
+\label{sec:whatv12}
+%======================================================================
+
+v12 keeps every v11 statement \cite{CheungConeV11} except those
+amended in Section~\ref{sec:v12changes}. The new items and their
+status are:
+
+\begin{center}
+\small
+\begin{longtable}{@{}L{.30\linewidth}L{.62\linewidth}@{}}
+\caption{v12 verdicts (all executed; hashes in Appendix~\ref{app:v12artifacts}).}\label{tab:v12verdict}\\
+\toprule
+Item & Status\\
+\midrule
+Closed form of the mixed \(r^2\) mode functional \(F(\mu,\nu)\) & \emph{Identified} and verified against all 414 quadrature values to \(4.8\times10^{-28}\) relative (Proposition~\ref{prop:v12F}). Not derived.\\
+D04 pairing and frame intertwiner & \emph{Derived} from the channel labelling and the constant density: \(e^{\pm\ii\theta}\) shifts \(k\) by \(\pm\alpha\), which is the channel offset itself. The pairing is the same-\(k\) rule P0, and P1 is excluded (Proposition~\ref{prop:v12pair}).\\
+Large-\(k\) asymptotics and the P0 pole & \emph{Exact} given the closed form: only odd powers of \(1/h\) appear, with \(a_4(d)=d^2(d^2-4)/240\), so the pole is \(-\alpha/40\) (Corollary~\ref{cor:v12pole}).\\
+Regulator & \(R_k,R_h,R_\mu,R_\nu\) differ by an explicit local counterterm (Proposition~\ref{prop:v12ct}, verified to \(10^{-39}\)). The XVI-P prescription (DRED, \(\overline{\rm MS}\), normalization N4) induces no cone mode regulator, so the choice is a normalization. D04 is unique once it is declared; v12 declares \(R_h\).\\
+\(M_{10}\) & 40 digits at four angles (Table~\ref{tab:v12M10}). Closed forms at \(\alpha=1,\tfrac12\) found by PSLQ; none at \(\tfrac3{10}\) or \(\tfrac{7071}{10000}\).\\
+Chamber walls \(\alpha=\tfrac13,\tfrac12,\tfrac23\) & Exact \(\mathbb Q(\ii)\) certificates at the walls (Table~\ref{tab:v12walls}).\\
+Weight \(\pm1,\pm2\) traces; 84 mixed weight-0 sums; dictionary; 20 Ward combinations; 34-/18-dim maps; \(e_5,e_6\) & \OPEN{} (Section~\ref{sec:v12open}). No residual is reported.\\
+Transverse loop momentum & \OPEN; feasibility statement in Section~\ref{sec:v12open}.\\
+Registry & Unchanged (258 ids, re-fetched 04:40 UTC); no new sheet directory.\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+%======================================================================
+\section{v12: closed form of the mixed \texorpdfstring{\(r^2\)}{r2} mode functional}
+\label{sec:v12F}
+%======================================================================
+
+\begin{proposition}[Identified closed form; \loc{code/v12/F_closed.py}]
+\label{prop:v12F}
+Let \(h=(\mu+\nu)/2\) and \(d=\mu-\nu\). Then, to the precision of
+every evaluation made,
+\[
+F(\mu,\nu)=\int_0^1T_1(x;\mu,\nu)\,\mathrm dx
+=\frac{h^3}{3}+\Bigl(\frac{d^2}{6}-\frac13\Bigr)h+d^2(d^2-4)\,\Psi(h),
+\]
+\[
+\Psi(h)=\frac{h^3}{48}+\frac{h^2}{96}-\frac{5h}{288}-\frac1{96}-\frac{h^2(h^2-1)}{48}\,\psi_1(h).
+\]
+\end{proposition}
+\noindent\emph{How it was found.}
+\begin{enumerate}[label=(\alph*)]
+\item Fits to the v11 cache at fixed \(d\) give
+\(F\sim\sum_ia_{2i}(d)h^{3-2i}\): the odd coefficients are
+\(\le10^{-17}\) (\loc{code/v12/phi_asym_fit.py}).
+\item At \(h=\tfrac32,\tfrac72,5\) and \(d=\tfrac12,1,3\), the ratio
+\(\bigl(F-\tfrac{h^3}3-(\tfrac{d^2}6-\tfrac13)h\bigr)/(d^2(d^2-4))\)
+is independent of \(d\) to 20 digits, and at \(d=2\) the remainder
+vanishes to \(10^{-29}\) (\loc{code/v12/structure_test.py}).
+\item PSLQ puts \(\Psi\) in \(\mathbb Q+\mathbb Q\pi^2\) at those
+\(h\). For example, \(\Psi(5)=(987-100\pi^2)/48\) and
+\(\Psi(\tfrac32)=(448-45\pi^2)/1536\).
+\item Matching the asymptotic coefficients \(1/240\) and \(-1/840\)
+fixes the coefficient of \(\psi_1\) as \(-h^2(h^2-1)/48\). This
+predicts the next two coefficients, \(1/840\) and \(-1/440\); the
+fits confirm both.
+\end{enumerate}
+\emph{Verification.} The formula agrees with all 414 cached
+tanh--sinh values (v11 evaluator; \(h\) up to 190, \(d\) in
+\(\{\tfrac12,0.414,1,2,\tfrac73,3,\dots\}\)). The maximum differences
+are \(4.5\times10^{-22}\) absolute and \(4.8\times10^{-28}\) relative
+(\loc{logs/v12/F_closed.json}). \emph{Status.} The formula is
+identified and verified, not derived. A derivation would follow from
+a closed evaluation of the Appell \(F_4\) finite part; v12 did not
+attempt one.
+
+\begin{corollary}[Asymptotics and the P0 pole]
+\label{cor:v12pole}
+Given Proposition~\ref{prop:v12F}, the expansion
+\(\psi_1(h)\sim h^{-1}+\tfrac12h^{-2}+\sum_{n\ge1}B_{2n}h^{-2n-1}\)
+gives \(F\sim\tfrac{h^3}3+(\tfrac{d^2}6-\tfrac13)h+d^2(d^2-4)
+\bigl(\tfrac1{240h}-\tfrac1{840h^3}+\tfrac1{840h^5}-\tfrac1{440h^7}+\dots\bigr)\).
+The expansion has no logarithms and no even powers. In a family
+\(h_k=k/\alpha+\sigma\), the coefficient of \(k^{-1}\) is
+\(\alpha a_4(d)\): the binomial re-expansion of \(h^{3-j}\), \(j\le3\),
+produces no \(k^{-1}\) term. Summed over the two families of a
+pairing, the pole is \(2\alpha a_4(d)=\alpha d^2(d^2-4)/120\). For
+P0 (\(d=1\)) this is \(-\alpha/40\), the value seen numerically in
+v11. For P1 (\(d=1/\alpha-1\)) it reproduces the v11 numbers, for
+example \(637/32400\) at \(\alpha=\tfrac3{10}\).
+\end{corollary}
+The proof of the pole value is complete given
+Proposition~\ref{prop:v12F}, and only to that extent.
+
+%======================================================================
+\section{v12: the D04 pairing and frame intertwiner}
+\label{sec:v12pair}
+%======================================================================
+
+\begin{proposition}[Pairing]
+\label{prop:v12pair}
+Assume (i) the v8 channel labelling: the spin-weight-\(s\) component
+with frame label \(k\) has Bessel order \(|k+s\alpha|/\alpha\); and
+(ii) the v10 D04 density \(\rho_{(1,0)}=\kappa^2/4\pi\), which is
+independent of \(\theta\) in the helicity frame. Then:
+\begin{enumerate}[label=(\alph*)]
+\item On \(C_\alpha\), angular modes are \(e^{\ii k\theta/\alpha}\),
+\(\theta\in[0,2\pi\alpha)\). The frame rotation \(e^{\pm\ii\theta}\)
+multiplies a mode by \(e^{\pm\ii\alpha\theta/\alpha}\), so it shifts
+\(k/\alpha\) by \(\pm1\), that is, \(k\) by \(\pm\alpha\). This is
+the channel offset in (i). The rotation is therefore already
+absorbed in the channel orders, and the intertwiner \(H_I\) acts as
+the identity on \(k\).
+\item The helicity frame is the only frame defined globally on
+\(C_\alpha\), because of the holonomy \(e^{2\pi\ii s\alpha}\). A
+\(\theta\)-independent insertion in it commutes with
+\(-\ii\partial_\theta\), so the \((1,0)\) trace is diagonal in \(k\).
+This is pairing P0:
+\((|k+\alpha|/\alpha,|k|/\alpha)\) for all \(k\in\mathbb Z\).
+\item The v11 pairing P1 (\(k\to k+1\)) would need the insertion
+\(e^{\pm\ii\theta/\alpha}\), a scalar angular harmonic that does
+not occur in \(\rho_{(1,0)}\). P1 is excluded.
+\end{enumerate}
+\end{proposition}
+Scope: this derivation uses (i) and (ii) as stated. It does not
+re-derive the frozen vertex tensors.
+
+%======================================================================
+\section{v12: regulators, counterterm, and \texorpdfstring{\(M_{10}\)}{M10} to 40 digits}
+\label{sec:v12reg}
+%======================================================================
+
+\begin{proposition}[Local counterterm; \loc{code/v12/counterterm.py}]
+\label{prop:v12ct}
+Let \(f(k)\sim\sum_ic_ik^{3-i}\) be a power expansion with no
+logarithms (by Corollary~\ref{cor:v12pole}), and let
+\(w_k=s(k+t)\). Then
+\[
+\mathrm{FP}\sum_kf(k)k^{-\epsilon}-\mathrm{FP}\sum_kf(k)w_k^{-\epsilon}
+=c_4\log s+\sum_{m=1}^{4}\frac{(-1)^{m+1}t^m}{m}\,c_{4-m}.
+\]
+\end{proposition}
+\begin{proof}
+\(k^{-\epsilon}-w_k^{-\epsilon}=\epsilon k^{-\epsilon}[\log
+s+\log(1+t/k)]+O(\epsilon^2)\). Both sums have only simple poles at
+\(\epsilon=0\), so the difference of finite parts is the residue of
+\(\sum_kf(k)k^{-\epsilon}[\log s+\log(1+t/k)]\), which is the
+coefficient of \(k^{-1}\).
+\end{proof}
+For each pair of regulators, the formula matches the 40-digit
+differences to \(\le1.3\times10^{-39}\). In particular,
+\(M_{10}^{R_h}-M_{10}^{R_\mu}=M_{10}^{R_h}-M_{10}^{R_\nu}=\alpha/32\)
+for P0. \emph{Which regulator?} XVI-P's declared prescription is
+DRED with \(\overline{\rm MS}\) and the normalization condition N4,
+under which the local ambiguity is fixed by normalization
+(\loc{XVI-P/code/p5_entry/prescription_d11.py}, read only). It
+defines no mode regulator on the cone. The regulator choice is
+therefore exactly the choice of the local term in
+Proposition~\ref{prop:v12ct}. v12 \emph{declares} \(R_h\): it is
+symmetric in \(\mu\leftrightarrow\nu\), and it reproduces scheme Z on
+the diagonal (v11: \(11/180\) at \(\alpha=1\)). Every other value
+follows from the counterterm.
+
+\paragraph{\(M_{10}\).} The terms \(k<K\) are evaluated exactly from
+Proposition~\ref{prop:v12F}. The tail \(k\ge K\) uses the exact
+asymptotic series in the regulator variable, summed through Hurwitz
+\(\zeta\). Runs with \((K,J)=(300,36)\) and \((600,48)\) agree to
+\(\le2\times10^{-34}\) (\loc{code/v12/m10_exact.py},
+\loc{logs/v12/m10_exact_dps40.json}). All values lie inside the
+v11 error bars.
+
+\begin{center}
+\small
+\begin{longtable}{@{}lllll@{}}
+\caption{\(M_{10}\) (finite part, 32 digits shown) and the \(1/\epsilon\) pole coefficient. P0 is the derived pairing (Proposition~\ref{prop:v12pair}); P1 is shown only for comparison with v11.}\label{tab:v12M10}\\
+\toprule
+\(\alpha\) & pairing & reg. & \(M_{10}\) & pole\\
+\midrule
+@@M10TABLE@@
+\bottomrule
+\end{longtable}
+\end{center}
+
+\paragraph{D04.} With the derived pairing P0 and the declared
+regulator \(R_h\), the D04 part of the second \(\phi\phi\) value is
+\(\tfrac{\kappa^2}{4\pi}M_{10}^{\rm P0,R_h}\), with a pole
+\(-\tfrac{\kappa^2}{4\pi}\tfrac{\alpha}{40\epsilon}\). At the
+certified angles,
+\(M_{10}^{\rm P0,R_h}(\tfrac3{10})=0.11574388259581850963848639109243\)
+and
+\(M_{10}^{\rm P0,R_h}(\tfrac{7071}{10000})=-0.04322206410166229544037429665527\).
+Status: \PARTIAL, for two reasons: the closed form is identified
+rather than derived, and the regulator is a declared normalization.
+Beyond that, the value is unique.
+
+\paragraph{Closed forms (PSLQ, 40 digits, coefficients \(\le1600\);
+\loc{code/v12/m10_pslq.py}).}
+\[
+M_{10}^{R_h}(1)=\frac{1-40\log2-20\gamma}{800},\qquad
+M_{10}^{R_k}(1)=-\frac{6+10\log2+5\gamma}{200},
+\]
+\[
+M_{10}^{R_h}(\tfrac12)=\frac{1-40\log2-20\gamma}{1600},\qquad
+M_{10}^{R_k}(\tfrac12)=-\frac{6+15\log2+5\gamma}{400}.
+\]
+\(R_\mu=R_\nu=R_k\) at \(\alpha=1\), as Proposition~\ref{prop:v12ct}
+requires. At \(\alpha=\tfrac3{10}\) and \(\tfrac{7071}{10000}\), no
+relation was found in the bases \(\{1,\zeta(3),\zeta(3)/\pi^2,\pi^2,\log2\}\),
+\(\{1,\zeta(3)/\pi^2,\log2,\zeta'(-1),\zeta'(-3),\gamma\}\) or
+\(\{1,\zeta(3)/\pi^2,\pi^2,\log2,\log\alpha\}\). The large-coefficient
+outputs are spurious. For rational \(\alpha=p/q\), the sum
+\(\sum_kh_k^n\psi_1(h_k)\) is a Barnes-type double zeta value that
+reduces to Hurwitz data at arguments \(j/(2p)\). That reduction was
+not carried out.
+
+%======================================================================
+\section{v12: exact certificates at the chamber walls}
+\label{sec:v12walls}
+%======================================================================
+
+\loc{code/v12/wall_certificate.py} is the v8 certificate program
+with only the output path changed. It was run at
+\(\alpha=\tfrac13,\tfrac12,\tfrac23\) on CR and F, in exact
+\(\mathbb Q(\ii)\) arithmetic, with \(\mathrm{DM}=6\) and the
+\(6\times6\) \(q\)-grid (\loc{logs/v12/walls/}).
+
+\begin{center}
+\small
+\begin{longtable}{@{}llrrrrrr@{}}
+\caption{Wall certificates: \(N\) = constrained basis size, rank = Ward-constrained count \(N-\dim Z\), image-column rank, \(\dim H^0\), seconds.}\label{tab:v12walls}\\
+\toprule
+\(\alpha\) & branch & \(N\) & rank & \(\dim Z\) & img. rank & \(\dim H^0\) & s\\
+\midrule
+@@WALLS@@
+\bottomrule
+\end{longtable}
+\end{center}
+
+@@WALLTEXT@@
+
+%======================================================================
+\section{v12: open items and precise obstructions}
+\label{sec:v12open}
+%======================================================================
+
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Weight \(\pm1,\pm2\) traces and the 84 mixed weight-0
+sums.} v12 wrote no weight-one evaluator. Proposition~\ref{prop:v12F}
+supplies, for every channel pair \((s,t)\) under the derived same-\(k\)
+pairing, the \emph{constant-density} part of a mixed weight-0 entry
+in closed form. A low-cost path for the 84 entries therefore exists
+for those with constant densities. Entries whose densities depend on
+\(x\) need the moments \(\int x^nT_1\,\mathrm dx\), which are not
+covered by the closed form. Neither the per-entry densities nor the
+CR flip of channel~2 were tabulated, so no entry is evaluated. The
+split of the weight-\(\pm1\) traces into a scheme-independent log
+coefficient and a finite part is not computed. Status: \OPEN.
+\item \emph{Dictionary, 20 Ward combinations, 34-/18-dim maps,
+\(e_5,e_6\).} These depend on (a) and on the jet-key to \((C,n,j,i)\)
+dictionary, which was not constructed. No residual was evaluated.
+Status: \OPEN.
+\item \emph{Transverse loop momentum (feasibility).} A minimal
+construction needs three pieces. First, each catalogue vertex must
+be exported as a polynomial in \(p_\perp\) up to the order needed:
+degree 4 for the hh sector, by the N4 power counting. Second, the
+\(p_\perp\) integrals in DRED (\(d-2\) transverse dimensions) reduce
+these polynomials to \(\Gamma\)-function multiples of
+\(s^{-(d-2)/2}\) times powers of the heat time. Third, the extra
+powers of \(s\) shift the Mellin variable of scheme Z, so the
+per-mode functionals change from \(F(\mu,\nu)\) to its Mellin-shifted
+analogues. Nothing in this chain is beyond the present tools, but the
+first step, a \(p_\perp\) export from the v8 slice engine, does not
+exist. Status: \OPEN{} (feasible, not started).
+\end{enumerate}
+
+%======================================================================
+\section{Changes to v11 statements}
+\label{sec:v12changes}
+%======================================================================
+
+\begin{enumerate}[label=(C\arabic*)]
+\item Section~\ref{sec:v11M10}: ``a power expansion without
+logarithms is an ansatz'' is now a consequence of
+Proposition~\ref{prop:v12F}, which is identified, not derived. The
+fitted tail is replaced by the exact tail, and the quoted precision
+of ``4--8 digits'' by 40 digits (Table~\ref{tab:v12M10}). The v11
+values lie inside their error bars.
+\item Section~\ref{sec:v11M10}: P1 was ``v11's implementation of the
+frame intertwiner \(H_I\)''. This is withdrawn: \(H_I\) acts as the
+identity on \(k\), and P1 is excluded (Proposition~\ref{prop:v12pair}).
+\item Section~\ref{sec:v11M10}: ``the P0 pole coefficient equals
+\(-\alpha/40\) (identified numerically, not derived)'' becomes
+Corollary~\ref{cor:v12pole}, which is exact given the closed form.
+\item Section~\ref{sec:v11M10}: ``\(M_{10}\) is not regulator
+independent'' is sharpened. The regulators differ by the explicit
+local counterterm of Proposition~\ref{prop:v12ct}.
+\item Section~\ref{sec:v11M10}: ``PSLQ: no closed form'' is
+superseded at \(\alpha=1,\tfrac12\) (Section~\ref{sec:v12reg}).
+\item The certificate scope of Section~\ref{sec:v11D}, which excluded
+the walls, is supplemented by Section~\ref{sec:v12walls}.
+\end{enumerate}
+No other v11 statement is changed.

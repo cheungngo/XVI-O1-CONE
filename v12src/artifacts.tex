@@ -1,0 +1,101 @@
+
+%======================================================================
+\section{v12 artifacts, hashes and rerun commands}
+\label{app:v12artifacts}
+%======================================================================
+
+Paths are relative to \loc{/workspace/XVI-O1-CONE/}. Long jobs ran
+detached with \loc{setsid} and were logged. Environment: Python~3.13.5, SymPy~1.14.0, mpmath~1.3.0.
+Frozen trees before \(=\) after: XVI-P: yes, XVI-Q: yes, XVI-R: yes.
+Digests: XVI-P \texttt{ec965c15ae25cd3b\ldots}, XVI-Q \texttt{0df9a0d10409d31a\ldots}, XVI-R \texttt{57187bc6825f5c6a\ldots}.
+The v9, v10 and v11 sources and PDFs are unchanged: yes. The v1--v8 sources are unchanged: yes.
+The full manifest is \loc{logs/v12/artifact_manifest_v12.sha256}; the \TeX{} source and PDF are hashed in \loc{SHA256SUMS_v12}.
+The last append to \loc{CHECKPOINT_v12.md} precedes this hashing.
+
+\paragraph{Rerun commands.}
+\begin{verbatim}
+cd /workspace/XVI-O1-CONE
+python3 code/v12/phi_asym_fit.py; python3 code/v12/structure_test.py
+python3 code/v12/F_closed.py
+python3 code/v12/m10_exact.py 40; python3 code/v12/counterterm.py
+python3 code/v12/m10_pslq.py
+setsid nohup bash code/v12/walls_driver.sh > /dev/null 2>&1 &
+python3 code/v12/make_tables.py
+python3 code/artifacts_v12.py && python3 code/build_v12.py
+pdflatex -halt-on-error XVI-O1-CONE-v12.tex   # until stable
+\end{verbatim}
+
+{\small
+\begin{longtable}{@{}p{.50\linewidth}p{.46\linewidth}@{}}
+\caption{SHA-256 of v12 artifacts.}\\
+\toprule
+File & SHA-256\\
+\midrule
+\endfirsthead
+\toprule
+File & SHA-256\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\textit{Base source (read-only)} (1 files)}\\
+{\scriptsize\loc{XVI-O1-CONE-v11.tex}} & \texttt{\tiny 863bb08efc04416464d5628041d98ec7478015315b4c804cacc6b260181f203e}\\
+\multicolumn{2}{@{}l}{\textit{v12 programs} (11 files)}\\
+{\scriptsize\loc{code/v12/F_closed.py}} & \texttt{\tiny 0456cb703049723257452addde7e3783799d113deca58085b661b7a0c419ce00}\\
+{\scriptsize\loc{code/v12/counterterm.py}} & \texttt{\tiny 7342f223780372c078030725bc1d11960f119b4615c340fb72c2e24ab3ce22bc}\\
+{\scriptsize\loc{code/v12/m10_exact.py}} & \texttt{\tiny 202e65ba9d96c8b93b91a305061e845cc0a03e006e1a9525bcb242076876d773}\\
+{\scriptsize\loc{code/v12/m10_pslq.py}} & \texttt{\tiny 74df977c35cc874c14b09ac4413ea56a4c22f745daea393afc140a02797de7e4}\\
+{\scriptsize\loc{code/v12/make_tables.py}} & \texttt{\tiny c34407b1fdce5641ce96b36bb878e0534c0cc82ad4371e8cbdb79c4fdce16e53}\\
+{\scriptsize\loc{code/v12/phi_asym_fit.py}} & \texttt{\tiny 7fc2ba6ecddf002e4c7b5e5536014a8b7aad9c082a61ebe53ec7e86ca4923037}\\
+{\scriptsize\loc{code/v12/structure_test.py}} & \texttt{\tiny 93ed4137164b4514f64c991e3d254cb53c6c5757b689f1b5312bacfd7ab1aa8c}\\
+{\scriptsize\loc{code/v12/wall_certificate.py}} & \texttt{\tiny 3f6e849b3abc9e9a838511693944ba7cb74914730d6c658189b10ae9bec5609d}\\
+{\scriptsize\loc{code/v12/walls_driver.sh}} & \texttt{\tiny 29de260c64a06ea0d926f0f74904eb90f8ea2dd0f057ea2656ed5e09a7dd5c7b}\\
+{\scriptsize\loc{code/build_v12.py}} & \texttt{\tiny aaeddb313b8530955ccb27be7eb4d869a45969ff44cf19a5647bf2b42906fb4d}\\
+{\scriptsize\loc{code/artifacts_v12.py}} & \texttt{\tiny 1a14fb8922da23c875b74b57db326beae92a6200d466284ee1dfe3309ea5c134}\\
+\multicolumn{2}{@{}l}{\textit{v12 source fragments} (10 files)}\\
+{\scriptsize\loc{v12src/abstract.tex}} & \texttt{\tiny 35a9eaa1bee58b57325ddd2ced0a1766b71034a8fe7b65caad11b314961ccf3e}\\
+{\scriptsize\loc{v12src/bib_v12.tex}} & \texttt{\tiny b50296bc16b71c6f30c0e46371fd6e0b51342d3899c4e0447c18b92c3dcc1d01}\\
+{\scriptsize\loc{v12src/m10_table.tex}} & \texttt{\tiny b53cd6e0767926f7d17c0dcca0cfc4b675a78746c0c3af1467c57fd134f9940d}\\
+{\scriptsize\loc{v12src/opentable.tex}} & \texttt{\tiny d8c870ee5a528d43f1b9a8f38394b718246d8849396343bc70df294857eb164f}\\
+{\scriptsize\loc{v12src/release_items.tex}} & \texttt{\tiny 02a0ceb5cb2863352d4851f12f522f8904f9a8fb14345c566f25ee264c6fb3ad}\\
+{\scriptsize\loc{v12src/scope.tex}} & \texttt{\tiny 6cc18e30fd344499325571b3e2ef2cbbdc217c0d113747a5f7eff80c5dd16062}\\
+{\scriptsize\loc{v12src/sec_v12.tex}} & \texttt{\tiny b037e2e87c0f55ffb24335c0c7a4a8684e2ebfaa5c04f2699829b3b84cda8bf5}\\
+{\scriptsize\loc{v12src/subtitle.tex}} & \texttt{\tiny af9a7488e1b84118cab4b33c11275717ef6c147f75fa36e630cc95e24bfbb284}\\
+{\scriptsize\loc{v12src/walls_table.tex}} & \texttt{\tiny 69a47164e45e335d8fd835271391c8a0ab58dcd12ee4070d7999b25a70abcd21}\\
+{\scriptsize\loc{v12src/walls_text.tex}} & \texttt{\tiny 949dbad49645b19e8788aa09057247367a7915c3e402c371fb6c1aa5ae17c65b}\\
+\multicolumn{2}{@{}l}{\textit{Closed form and M10} (5 files)}\\
+{\scriptsize\loc{logs/v12/F_closed.json}} & \texttt{\tiny 52555dbfa415868a37e5d028282ddefd4bba54b887256c0f7a830dcf36ae31de}\\
+{\scriptsize\loc{logs/v12/structure_test.json}} & \texttt{\tiny 1d547e416e764d165eb735eccb5108acd4ce1ef290a677b61a53b9682ae94d6d}\\
+{\scriptsize\loc{logs/v12/m10_exact_dps40.json}} & \texttt{\tiny e3289ebaebf2f4489950862d17a57820aea4bfae3adaa77b9fb5fac0d42f2e27}\\
+{\scriptsize\loc{logs/v12/counterterm.json}} & \texttt{\tiny edcb0e4f321a645b8d66ae7570305a3322e27bcedb13959f15537572841b4af0}\\
+{\scriptsize\loc{logs/v12/m10_pslq.json}} & \texttt{\tiny 45975a515bc74bb28632ac648909dd8af68129880056a2c083790aa6e7f9f308}\\
+\multicolumn{2}{@{}l}{\textit{Wall certificates} (19 files)}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_1_2_CR.json}} & \texttt{\tiny 1bd0bc1bb1b437d1f76b90328b672f79a3bcda95843cf4fc9cda565e058b4e57}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_1_2_CR_vectors.json}} & \texttt{\tiny 801d520ac941843d8d728449035e904740c5b200dbd715898544a16af8a6ef14}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_1_2_F.json}} & \texttt{\tiny c64cf4905b4234b3d083c4b0b8a97509950d34ae49b87348fc2be9ff6dbb57a8}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_1_2_F_vectors.json}} & \texttt{\tiny 801d520ac941843d8d728449035e904740c5b200dbd715898544a16af8a6ef14}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_1_3_CR.json}} & \texttt{\tiny fc1ac350a8b2b6cff9bf59f6bc549a8df90c6683373b0627c518b051b10c62e3}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_1_3_CR_vectors.json}} & \texttt{\tiny 5a822527a80a1825993c7e1b506820040e94a73cdce924a3958281e35318f304}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_1_3_F.json}} & \texttt{\tiny a1936f1bfc569d6884c5d4924d7735c9f6e3eded4473f1f5cb602e8aa4a1412a}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_1_3_F_vectors.json}} & \texttt{\tiny 5a822527a80a1825993c7e1b506820040e94a73cdce924a3958281e35318f304}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_2_3_CR.json}} & \texttt{\tiny a8ef79e8533f9e701dbdce05c852bb55febdeb5b1793e3ffe7c44c1c7b2a87d4}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_2_3_CR_vectors.json}} & \texttt{\tiny 5a822527a80a1825993c7e1b506820040e94a73cdce924a3958281e35318f304}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_2_3_F.json}} & \texttt{\tiny 9c91707d46277ebc95d7cdd15f80361929ce522cd2e9ff73d7c68f0126e6f983}\\
+{\scriptsize\loc{logs/v12/walls/apex_cert_2_3_F_vectors.json}} & \texttt{\tiny 9a60468c4977ac366c0a0154237887c9ec10a5f03a5802dcbd1d1e6493cfb590}\\
+{\scriptsize\loc{logs/v12/walls/driver.log}} & \texttt{\tiny 5c91bc5fb3c4c9ab3cc8ceee39df4d1ff7bb892e5eb34ed8f809873d8f1dd969}\\
+{\scriptsize\loc{logs/v12/walls/run_1_2_CR.log}} & \texttt{\tiny 6743f05ef33f0e5533c6658d58c844bd0aa482e82945900266ebd70e9808ceb2}\\
+{\scriptsize\loc{logs/v12/walls/run_1_2_F.log}} & \texttt{\tiny e6ccb77c4ae29bb0bb3bafd306c0558b5945b8e76b45184cd7f71106f3b53cd4}\\
+{\scriptsize\loc{logs/v12/walls/run_1_3_CR.log}} & \texttt{\tiny eacceb0421c58b556a319afbb873531c2f58299023d02520cd98c5965c14ea0e}\\
+{\scriptsize\loc{logs/v12/walls/run_1_3_F.log}} & \texttt{\tiny 1a262adc22c9a96f7030764301f02860a7e2cbf88f46d1ef49cce04436035cdc}\\
+{\scriptsize\loc{logs/v12/walls/run_2_3_CR.log}} & \texttt{\tiny 62622c79c276713f0b69f8c498df5ef80592b7897678f2a311e1ec1a5e2ca1ea}\\
+{\scriptsize\loc{logs/v12/walls/run_2_3_F.log}} & \texttt{\tiny e0b50e18a7cde49e044e7e09403a2bf7e97e82aca92cd696ea1160befafee5cf}\\
+\multicolumn{2}{@{}l}{\textit{Registry} (1 files)}\\
+{\scriptsize\loc{logs/v12/registry_oct19b.sha}} & \texttt{\tiny 828d9afa530fa1dd0628ee751730b88bc2645a01f41adee08f0561e8d5e777e3}\\
+\multicolumn{2}{@{}l}{\textit{Integrity, environment} (6 files)}\\
+{\scriptsize\loc{logs/frozen_v12_before.sha}} & \texttt{\tiny cb9c2a11921e376aa078f2081cea58b7c0a8a0363a1fd6976bf7272df89e7b5b}\\
+{\scriptsize\loc{logs/v12/tree_hashes_v12.json}} & \texttt{\tiny ddf510d823e0af9de28430bdf7be42309eaab04b1d6b9a6c87b39b8e9735626d}\\
+{\scriptsize\loc{logs/v11_hashes_before_v12.sha}} & \texttt{\tiny b8d08e5c00ece0b8988b6df73a0294246700b6ee14241b2614e364e0af92fa9c}\\
+{\scriptsize\loc{logs/v12/earlier_versions_sha.json}} & \texttt{\tiny 93b6c79020f3ad890c9878cc20307aa56a913d0a456afd262b5b1beb67b22a0f}\\
+{\scriptsize\loc{logs/v12/env.json}} & \texttt{\tiny f3c3b679dd87e7e87a4a5670b7e7dede9a62e737459a7a2a21d8fc562df914fa}\\
+{\scriptsize\loc{CHECKPOINT_v12.md}} & \texttt{\tiny 64621e13a2f2765c05724debe7f5d481c93d51499e77ea3f5eff361aaeaf375a}\\
+\end{longtable}}
