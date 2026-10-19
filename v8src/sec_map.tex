@@ -1,0 +1,141 @@
+
+%======================================================================
+\section{v8: Ward combinations, the 34- and 18-dimensional maps, and \texorpdfstring{\(\phi\phi\)}{phi phi}}
+\label{sec:v8map}
+%======================================================================
+
+\subsection{Constant-profile support of the Ward combinations}
+
+Let \(K\) be the set of constant-profile coordinates, meaning jets
+with \(m=0\). Let \(\pi_K\) be the coordinate projection onto
+\(K\), and let \(\mathrm{Ann}_K\) be the annihilator of \(\pi_K Z\)
+inside the span of the \(K\)-supported functionals. In every exact
+run we found \(\abs K=12\), with HH~6, CB~2, CK~3 and PP~1. The
+ST functionals supported on \(K\) span a space of dimension
+\(6\). The \(m=0\) rows alone already span \(\mathrm{Ann}_K\).
+Further, \(\rank\pi_KZ=6\) and \(\rank\pi_KB=5\). Also
+\(\dim(Z\cap\ker\pi_K)=2\), except at \((7071/10^4,\Fr)\), where it
+is \(3\).
+The \(K\)-supported Ward combinations split by block support as
+\[
+ \underbrace{2}_{hh\text{ only}}+\underbrace{2}_{hh+\mathrm{CK}}
+ +\underbrace{2}_{\mathrm{CB}+\mathrm{CK}}=6.
+\]
+No combination is supported on CB, CK or PP alone.
+This decomposition is identical at every computed angle and
+branch.
+
+\subsection{The \texorpdfstring{\(hh\)}{hh} dictionary and the two exact Ward checks}
+
+The engine's constant-profile \(hh\) coordinates are related to
+the Wick-rotated longitudinal block by
+\[
+ x_{00}=-h_{\tau\tau},\quad x_{03}=\pm\ii\,h_{\tau z},\quad
+ x_{33}=h_{zz},\quad f=\tfrac12(h_{11}+h_{22}),\qquad
+ q_0=\pm\ii q_\tau,\ q_3=q_z.
+\]
+Both sign choices give a solvable linear system, and the two
+give the same map. With
+\(\Gamma_{\rm sym}=4\Gamma\), the six engine coordinates
+\(y\) are
+\[
+ y=\bigl(-b_1,\,-2b_3,\,-b_2,\,b_6,\,b_7,\,-\tfrac14 b_8\bigr)
+\]
+in units of \(\ka^2/\pi\), where \(b_j\) are the coefficients of the
+structures \eqref{eq:structures}
+(from \(E=MS\) with \(4b=M^{\mathsf T}y\), recorded in
+\loc{hh_map_*.json}).
+The two \(hh\)-only Ward combinations are
+\[
+ W_1=b_1+2b_3,\qquad W_2=b_2 .
+\]
+
+\begin{proposition}[Exact \(hh\) Ward checks; executed]
+\label{prop:v8hhward}
+In exact arithmetic, at \(\alpha=3/10\) and at
+\(\alpha=7071/10000\) and on both branches, the declared \(hh\) catalogue sum
+satisfies \(W_1=W_2=0\).
+The individual graphs do not. At \(\alpha=3/10\), for example,
+\[
+ (W_1,W_2)^{\rm D01}=\Bigl(-\tfrac{91}{5760},\ \tfrac{91}{2880}\Bigr)
+ =-(W_1,W_2)^{\rm D03},
+\]
+and D02, D11 and D12 give zero.
+\end{proposition}
+
+\noindent
+So the check is not trivially satisfied: it tests a cancellation
+between D01 and D03. Like every catalogue statement, it is
+conditional on Assumption~\ref{ass:reduction}.
+
+\subsection{The remaining Ward combinations}
+
+The two \(hh\)+CK and two CB+CK combinations contain the v7
+ST row and the projected ghost equation restricted to \(m=0\)
+(Theorems~\ref{thm:ghost} and \ref{thm:ST}). This identification
+is \CONDITIONAL, because v8 builds no CK/CB coordinate dictionary.
+The \(26-6=20\) combinations that involve \(m>0\) jets have not
+been evaluated. They are \OPEN, not zero.
+
+\subsection{The 18-dimensional engine map}
+
+The HH sector of the inventory has rank 18 on the 34-candidate
+branches, and rank 21 at \((7071/10^4,\Fr)\). The dictionary above
+fixes the six constant-profile coordinates exactly, on all four
+computed branches. The other twelve involve transverse
+derivatives or non-axisymmetric jets, and their convention map is
+\OPEN. The map is therefore \PARTIAL: 6 of 18 coordinates.
+
+\subsection{The six exact values}
+
+Write the non-PP part of a closed class as \(\sum_{i=1}^6e_iB_i\),
+using the exact basis of \(B\) stored in
+\loc{apex_cert_*_vectors.json}.
+The \(hh\) constant-profile data give
+\(\rank(\pi_{K\cap hh}B)=4\), and the resulting system is consistent:
+\begin{center}
+\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\((\alpha,\text{branch})\) & \(e_1\) & \(e_3\) & \(e_2+2e_5\) & \(e_4+e_5\)\\
+\midrule
+\((3/10,\CR)\) & \(7/40\) & \(0\) & \(7/120\) & \(-131/1920\)\\
+\((3/10,\Fr)\) & \(7/40\) & \(0\) & \(7/120\) & \(63/640\)\\
+\((7071/10^4,\CR)\) & \(2929/40000\) & \(0\) &
+\(-32842877/282840000\) & \(-78439319/4525440000\)\\
+%F7071ROW
+\bottomrule
+\end{tabular}
+\end{center}
+At both angles, \(e_1=(1-\alpha)/4\). This is observed at two
+points, not proved for general \(\alpha\).
+The CR/F difference appears only in \(e_4+e_5\), where it equals
+\(\nu/8\) exactly: \(-1/6\) at \(\alpha=3/10\) and \(2071/28284\) at
+\(\alpha=7071/10^4\), with \(\nu=4142/7071\).
+This matches the \(hh\)-sum difference
+\(b_8^{\CR}-b_8^{\Fr}=-\nu/4\), which is consistent with
+\eqref{eq:branchdifference}.
+The coefficients \(e_5\) and \(e_6\) are not determined. They need
+CK/CB constant data, which in turn need a dictionary, and
+\(m>0\) data, because \(\dim(Z\cap\ker\pi_K)=2\) (and \(3\) at
+\((7071/10^4,\Fr)\)).
+The status is \PARTIAL, and only in the stated basis.
+
+\subsection{The \texorpdfstring{\(\phi\phi\)}{phi phi} values}
+
+The first \(\phi\phi\) value is the catalogue PP coefficient
+\(-c_2\ka^2P^2/(4\pi)\) on each branch. Its branch difference is
+\(-\nu\ka^2P^2/(4\pi)\), and the engine coordinate is
+\(y_{PP}=\ka^2c_2/(4\pi)\).
+For the second value, the D05a part is \(0\) in the reduced model
+of Section~\ref{sec:missing}.
+The D04 part is still \OPEN, for the following reasons.
+\begin{itemize}
+\item At constant profile, the replay of D04 has a single key
+\((0,0)\). It has no hidden mixed pair and no evanescent
+coefficient, and its UNIT value is \(-\ka^2P^2/(4\pi)\).
+\item The quadratic-profile part needs the \(r^2\)-weighted
+mixed-channel trace. v8 proves only the ingredients for it
+(Lemma~\ref{lem:v8duhamel}); the mode sum and the \(r^2\)
+assembly were not done.
+\end{itemize}

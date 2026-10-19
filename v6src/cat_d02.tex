@@ -1,0 +1,58 @@
+\subsection{Tadpoles D02 and D12 and the \texorpdfstring{\((12)\)}{(12)} entries (new in v6)}
+
+\textsc{[exec]} v4 did not print D02 and D12 as components.
+The executed record gives them in full.
+Put
+\[
+W=\tfrac12(c_0+2c_1+c_2),\qquad
+W^\CR=\frac{(2\alpha-1)(4\alpha-1)}{6\alpha},\qquad
+W^\Fr=\frac{2(\alpha-1)(2\alpha-1)}{3\alpha}.
+\]
+The only nonzero D02 entries, together with their transposes, are
+\begin{align*}
+\widehat B_{\mathrm{D02}}\big/\bigl(\tfrac{\ka^2}{\pi}W\bigr):\quad
+&(01)(01),\ (02)(02):\ q_3^2;\qquad
+(13)(13),\ (23)(23):\ q_0^2;\\
+&(12)(12):\ P^2;\qquad (11)(22):\ -\tfrac12P^2;\\
+&(01)(13),\ (02)(23):\ -q_0q_3;\qquad
+(03)(11),\ (03)(22):\ q_0q_3;\\
+&(00)(11),\ (00)(22):\ -\tfrac12q_3^2;\qquad
+(11)(33),\ (22)(33):\ -\tfrac12q_0^2.
+\end{align*}
+This makes 23 nonzero entries.
+They agree with the v3 tadpole comparison recorded in
+\loc{CHECKPOINT_v4.md}.
+Moreover
+\[
+\widehat B_{\mathrm{D12}}=0
+\]
+identically on both branches.
+
+The table above omitted one key present in the executed record,
+the \((12)(12)\) entry:
+\[
+\widehat B_{\mathrm{D01}}^{(12)(12)}
+=\widehat B_{\mathrm{D03}}^{(12)(12)}
+=-8c_1P^2\,\frac{\ka^2}{16\pi}
+=-\frac{\ka^2(\alpha-1)(5\alpha-1)}{24\pi\alpha}P^2,
+\]
+on both branches.
+It vanishes at \(\alpha=1\) and is continuous at \(\alpha=1/2\), so
+Proposition~\ref{prop:polynomialchecks} extends to it.
+
+\paragraph{Mixed helicity.}
+\textsc{[exec]} The reduction attaches one coefficient \(c_S\) to a
+monomial only when both lines sit in the same channel.
+Mixed-channel monomials are logged and dropped.
+They occur only on \emph{vector-type} keys, those with a single
+transverse index on a leg:
+\begin{itemize}
+\item D01: \((01)(01)\), \((02)(02)\), \((13)(13)\), \((23)(23)\),
+\((01)(13)\), \((02)(23)\), and their transposes;
+\item D06: ghost \(11,22\);
+\item D13: \((01)c^1\), \((02)c^2\), \((13)c^1\), \((23)c^2\).
+\end{itemize}
+No lattice key \(\{00,03,33,11,22,12\}\) has one.
+The vector-type entries of D01, D06, and D13 are therefore
+\emph{excluded} from the record and \emph{not} zero.
+They need mixed-channel traces, which are \OPEN.

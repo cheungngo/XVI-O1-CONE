@@ -1,0 +1,122 @@
+
+%======================================================================
+\section{v8: mixed channels, hidden pairs, and a Duhamel lemma}
+\label{sec:v8mixed}
+%======================================================================
+
+\subsection{Feynman densities of channel pairs}
+
+For a bubble whose two lines carry channels \(s\) and \(t\), let
+\(x\) be the Schwinger fraction of the \(t\)-line. The identity
+\[
+ \frac1{l^2(l-p)^2}=\int_0^1\frac{\dd x}{\bigl((l-xp)^2+x(1-x)P^2\bigr)^2}
+\]
+turns the pole of the slice numerator into a polynomial density
+\(\rho_{(s,t)}(x)\). By construction,
+\(\int_0^1\rho_{(s,t)}\,\dd x\) equals the circle pole of that pair.
+This identity was checked exactly for every bubble pair of every
+graph (\loc{slice_D*.json}, field \loc{rho_integrates_to_circle}).
+The cone value of the pair is
+\[
+ \int_0^1\rho_{(s,t)}(x)\,C_{s,t}(x)\,\dd x,\qquad
+ C_{s,t}(x)=\ApTr\bigl[e^{-(1-x)A_s}e^{-xA_t}\bigr].
+\]
+For \(s=t\) this is the circle pole times \(\ApTr e^{-A_s}\).
+
+\begin{definition}[Hidden mixed pair]
+A pair with \(s\ne t\) is \emph{hidden} if its circle pole vanishes
+but \(\rho_{(s,t)}\not\equiv0\).
+\end{definition}
+
+A selection rule based on totals, \(\text{circle}\ne0\), never sees
+a hidden pair. The historical lattice records value each pair as
+its circle pole times one channel coefficient, so a hidden pair
+receives the value zero.
+
+\subsection{The complete list (executed)}
+
+The slice run \loc{logs/v8/slice/hidden_mixed.json} found hidden
+pairs in exactly two graphs.
+\begin{itemize}
+\item \textbf{D01, 13 keys.} Eight of them, \((1,1)\), \((1,6)\),
+\((2,2)\), \((2,8)\), \((6,1)\), \((6,6)\), \((8,2)\), \((8,8)\),
+were already quarantined; their pairs \((0,1)\) and \((1,0)\) have
+\(\rho\propto(2x-1)\).
+The other five are \textbf{new}: \((4,4)\), \((4,7)\), \((5,5)\),
+\((7,4)\), \((7,7)\). Their pairs \((0,2)\) and \((2,0)\) have
+\[
+ \rho^{(4,4)}_{(0,2)}=-\frac{\ii(q_0^2-q_3^2)(6x^2-10x+3)}{8\pi},\qquad
+ \rho^{(4,4)}_{(2,0)}=-\frac{\ii(q_0^2-q_3^2)(6x^2-2x-1)}{8\pi}.
+\]
+The \((5,5)\) densities are \(4\) times these, \((7,7)\) equals
+\((4,4)\), and \((4,7)\), \((7,4)\) carry the opposite sign.
+\item \textbf{D03, 8 keys.} These are the vector-type keys,
+already excluded.
+\end{itemize}
+D02, D04, D05a, D06, D11, D12 and D13 have no hidden pairs.
+
+\begin{proposition}[Status of the v6 branch difference; executed and proved]
+\label{prop:v8hidden}
+The new D01 keys enter the \(hh\) sum, because the indices 4, 5
+and 7 are the transverse components 11, 12 and 22.
+Since \(\rho_{(2,0)}(1-x)=\rho_{(0,2)}(x)\) and
+\(C_{2,0}(x)=C_{0,2}(1-x)\) by cyclicity, their total cone value is
+\[
+ 2\int_0^1\rho_{(0,2)}(x)\,C_{0,2}(x)\,\dd x
+ =-2\int_0^1R(x)\,C_{0,2}'(x)\,\dd x .
+\]
+Here \(R(x)=\int_0^x\rho_{(0,2)}\), which is proportional to
+\(x(x-1)(2x-3)\).
+This total is generically nonzero, and on the CR and F branches it
+is built from different channel spectra.
+Therefore the printed v6 value
+\(-\nu\ka^2P^2f_0f'_0/(4\pi)\) is unchanged as the lattice
+evaluation of the declared catalogue. As a statement about the
+cone graph, however, it is \CONDITIONAL{} on the vanishing, or the
+separate evaluation, of this mixed-channel term.
+\end{proposition}
+
+\begin{proof}
+The symmetry of the densities is read off the executed list. The
+cyclicity follows from the cyclicity of the regulated apex trace.
+Integration by parts uses \(R(0)=R(1)=0\), which holds because
+\(\int_0^1\rho_{(0,2)}=0\).
+\end{proof}
+
+\subsection{A per-mode Duhamel identity}
+
+\begin{lemma}[Duhamel identity for Bessel channels]
+\label{lem:v8duhamel}
+In one angular mode, let
+\(A_\mu=-\partial_r^2-r^{-1}\partial_r+\mu^2r^{-2}\) on its
+Friedrichs domain, with \(\mu,\nu>0\). With the bulk-subtracted
+mode trace,
+\[
+ (\mu^2-\nu^2)\int_0^1\Tr\bigl[e^{-xA_\nu}\,r^{-2}\,e^{-(1-x)A_\mu}\bigr]\dd x
+ =\frac{\mu-\nu}2 ,
+\]
+and \(C_{\mu,\nu}'(x)=(\mu^2-\nu^2)\Tr[e^{-(1-x)A_\mu}r^{-2}e^{-xA_\nu}]\).
+In particular \(C(0)=\Tr e^{-A_\mu}\) and \(C(1)=\Tr e^{-A_\nu}\)
+after the same subtraction.
+\end{lemma}
+
+\begin{proof}
+Differentiate \(x\mapsto e^{-(1-x)A_\mu}e^{-xA_\nu}\) and use
+\(A_\mu-A_\nu=(\mu^2-\nu^2)r^{-2}\). Integrate over \(x\in[0,1]\),
+and use the per-mode value \(-\mu/2\) (up to a \(\mu\)-independent
+constant) of the subtracted trace of \(e^{-A_\mu}\).
+\end{proof}
+
+\noindent\emph{Numerical corroboration.} We used Richardson
+extrapolation in the radial cutoff. For \(\mu-\nu=1\) the result
+was \(0.49993\) against \(0.5\), and for \(\mu-\nu=0.85\) it was
+\(0.84990\) against \(0.85\)
+(\loc{duhamel_mode_check2.json}). This is corroboration, not an
+enclosure.
+
+In the Cartesian frame, all channels share the angular phase set,
+and the Bessel orders are \(\abs{k/\alpha+S}\). The CR branch flips
+the \(k=-1\) mode of \(S=\pm2\). Lemma~\ref{lem:v8duhamel} reduces
+\(C_{0,2}'\) to a mode sum of \(r^{-2}\)-sandwiched traces.
+v8 does \emph{not} evaluate that mode sum, and does not do the
+\(r^2\)-weighted D04 assembly. Both remain \OPEN.

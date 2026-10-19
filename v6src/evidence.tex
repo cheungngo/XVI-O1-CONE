@@ -1,0 +1,84 @@
+This revision uses four evidence classes.
+v6 adds the last one.
+\begin{description}[style=nextline,leftmargin=0pt]
+\item[Locally proved.]
+The normalized scalar apex coefficient; the singular-channel heat
+shift; the new \(r^2\)-weighted coefficient and its shift; a
+conditional graph-reduction theorem; the longitudinal UV
+normalization; algebraic identities between the printed polynomials;
+and the stated access/flux distinctions.
+
+\item[Executed and artifact-verified in v6.]
+Statements carrying the tag \textsc{[exec]}.
+Each was produced by a program in \loc{code/} and logged in
+\loc{logs/v4/} or \loc{logs/v6/}, and was rerun or checked in this
+revision.
+Its full SHA-256 digest is listed in Appendix~\ref{app:artifacts}.
+The vertex inputs are read-only copies of the frozen XVI-P/Q
+files; their digests equal the originals.
+Exact statements are exact rational or symbolic identities in
+\(\alpha\) or \(\nu\).
+Numerical statements give their precision.
+An executed result is a reproducible computation, not an
+independent review.
+
+\item[Supplied computational record.]
+v4 reports that v6 did not rerun, together with the historical
+registry intake.
+These are kept as reports.
+
+\item[Conditional graph identification.]
+Equality of a printed polynomial with a particular frozen graph
+integral still needs the graph-specific hypotheses of
+Assumption~\ref{ass:reduction}.
+v6 discharges several of these for the constant-profile record;
+the ledger in Section~\ref{sec:ledger} lists them.
+No proof is reconstructed from a routine name.
+\end{description}
+
+\scopebox{Submission and proof boundary (v6)}{%
+v6 now archives the vertex arrays, routing, prefactors, and logs
+that v5 found missing.
+The constant-profile catalogue is therefore an executed result on
+the archived frozen inputs, and no longer just a supplied report.
+It is still not an independently refereed computation.
+The spectral reduction of each graph remains conditional on
+Assumption~\ref{ass:reduction}.
+Only (R1) and parts of (R3) are discharged here
+(Sections~\ref{sec:catalogue}, \ref{sec:HI}).
+(R2), (R4), and (R5) are still the stated hypotheses.}
+
+The coefficient values printed in v4 and v5 are unchanged.
+v6 adds entries but alters none.
+
+\subsection{What v6 adds}
+
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{\(hh\) Slavnov--Taylor row}
+(Section~\ref{sec:ST}).
+Derived conventions, an \emph{a priori} constant \(\lambda\), and
+exact closure on CR and F for the constant profile.
+The v4 failure is diagnosed, and UNIT closes.
+\item \emph{Higher apex coefficient}
+(Section~\ref{sec:weighted}).
+The \(r^2\)-weighted coefficient \(\mathcal D_b\), with checks.
+The quadratic-profile \(\phi\phi\) value is partial: the D05a part
+is \(0\) and the D04 part is open.
+\item \emph{\((\mathrm H_{I,\mathrm{D01}})\)}
+(Section~\ref{sec:HI}).
+The exact \(L^2\) obstruction, and an exact vanishing Mellin value.
+\item \emph{Evanescent coefficients}
+(Section~\ref{sec:missing}).
+A pole-level statement only; the coefficients themselves are open.
+\item \emph{\(hh\) map}
+(Section~\ref{sec:structures}).
+Six invariant structures, the complete D02/D12 arrays, and the
+coefficient vectors.
+The 18-dimensional engine map is open.
+\item \emph{\(\Span\) certificate}
+(Section~\ref{sec:missing}).
+Open, with the precise reason.
+\item \emph{Response table}
+(Section~\ref{sec:response}).
+Every v5 issue, answered point by point.
+\end{enumerate}

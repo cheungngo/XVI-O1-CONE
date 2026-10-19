@@ -1,0 +1,48 @@
+\subsection{Evanescent data and finite linear certificates}
+
+\paragraph{Evanescent coefficients (item (d)): partial.}
+Lemma~\ref{lem:UV} shows that an \(O(\eps)\) dependence of the
+angular continuation, or of the quasi-four-dimensional index
+algebra, leaves the simple-pole coefficient unchanged.
+So the four-dimensionally projected poles of
+Section~\ref{sec:catalogue} are stable at pole level.
+The spectral code follows the XVI-P DRED prescription, with
+quasi-\(d\) loop momenta and quasi-four-dimensional vertex indices.
+
+The evanescent \emph{coefficients} needed for finite parts and
+later identities require the \(\tilde g\)-leg (evanescent-index)
+vertex arrays.
+These are not part of the frozen XVI-P exports used here.
+They are \(\OPEN\).
+No evanescent coefficient is replaced by its four-dimensional value.
+
+\paragraph{Exact \(\Span\) certificate (item (f)): open.}
+The XVI-P engine computes the counterterm span natively modulo a
+prime.
+An exact certificate requires either a port of the rank computation
+to \(\mathbb Q(\ii)\) with fraction-free elimination, or a
+specified nonzero minor evaluated exactly.
+Neither an exact matrix export nor such a port was found in the
+frozen trees as inspected.
+Building one would mean modifying or extending the frozen engine,
+which this revision does not do.
+Memory is not the obstruction.
+A modular rank, even at several primes, is evidence and not an
+exact certificate, and it is not reported as one.
+
+\paragraph{Remaining items.}
+The following remain \(\OPEN\):
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the evanescent coefficients above;
+\item the convention map of the six structure coefficients of
+Section~\ref{sec:structures} into the 18-dimensional engine basis,
+and the components outside its image;
+\item the full 34-dimensional basis projection and the 26 Ward
+combinations;
+\item the exact \(\Span\) certificate;
+\item the vector-type keys excluded in Section~\ref{sec:catalogue}.
+\end{enumerate}
+A numerical rank or one chosen minor does not certify a whole
+unspecified contact family. The matrix, coefficient field,
+normalizations, and completeness of its columns must first be
+declared.

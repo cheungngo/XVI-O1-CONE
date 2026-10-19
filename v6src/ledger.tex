@@ -1,0 +1,165 @@
+\begingroup
+\small
+\begin{longtable}{@{}L{.50\linewidth}L{.44\linewidth}@{}}
+\toprule
+Item & Status in v6 (change from v5)\\
+\midrule
+\endfirsthead
+\toprule
+Item & Status in v6 (change from v5)\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+Normalized twisted Friedrichs apex constant &
+Proved: Theorem~\ref{thm:apex}.\\[3pt]
+
+One exceptional regular-to-singular Bessel heat shift &
+Proved: Theorem~\ref{thm:flip}.\\[3pt]
+
+\(r^2\)-weighted apex coefficient \(\mathcal D_b\) and its shift &
+\textbf{New}, proved: Theorem~\ref{thm:weighted} and
+Proposition~\ref{prop:weightedflip}, with orbifold checks.\\[3pt]
+
+Spectral reduction of a specified complete graph &
+Conditional on Assumption~\ref{ass:reduction}.
+(R1) discharged by archived arrays.\\[3pt]
+
+D01--D06, D11--D13 constant-profile expressions &
+\textbf{Upgraded}: executed and matching all v5 entries.
+\((5,5)\), D02, and D12 added.
+Graph identification still conditional on (R2)--(R5).\\[3pt]
+
+D01 exceptional derivative tower \((\mathrm H_{I,\mathrm{D01}})\) &
+\textbf{Upgraded}: exact \(L^2\) obstruction; Mellin value
+\(=0\) exactly.
+Prescription \CONDITIONAL.\\[3pt]
+
+F flat limit and CR=F at \(\alpha=1/2\) &
+Proved for the catalogue, including the new entries.\\[3pt]
+
+Ghost-equation row &
+Exact identity proved.
+\textbf{Upgraded}: transverse trace computed to be zero.\\[3pt]
+
+D02/D05a/D12 &
+\textbf{Upgraded}: D02 printed, D12 \(=0\), D05a factor read from
+Q02.\\[3pt]
+
+Mixed-helicity terms &
+\textbf{Upgraded}: absent on lattice keys; vector-type keys
+excluded.\\[3pt]
+
+\(hh\) Slavnov--Taylor row and UNIT &
+\textbf{Upgraded} from \UNVALIDATED\ to \emph{closed in scope}:
+CR and F with \(\lambda=-2\ii=\lambda_{\rm pred}\); UNIT trivially.\\[3pt]
+
+Complete \(hh\) branch difference &
+\textbf{New}: \(-\nu\ka^2P^2f_0f_0'/(4\pi)\), gauge invariant.\\[3pt]
+
+26 Ward combinations; 34-dimensional projection & Not obtained.\\[3pt]
+
+Six exact values & Not obtained.\\[3pt]
+
+Second scalar value &
+\textbf{Partial}: D05a part \(=0\); D04 part open.\\[3pt]
+
+Joint-apex condition \(\Jcond\) &
+Constant profile only, with the D01 composite now controlled.
+General profiles open.\\[3pt]
+
+\(\Hreg\) at \(1/2,2/3,4/5\) &
+Coefficients continuous; general statement open.\\[3pt]
+
+Evanescent coefficients &
+\OPEN\ (pole-level statement only).\\[3pt]
+
+Complete \(hh\) 18-dimensional map &
+\textbf{Partial}: six-structure decomposition; engine map
+open.\\[3pt]
+
+Exact \(\Span\) certificate & \OPEN.\\[3pt]
+
+Vector-type keys (one transverse index) &
+\OPEN: they need mixed-channel traces.\\[3pt]
+
+Registry intake & Rechecked; unchanged.\\[3pt]
+
+Companion and catalogue connections &
+Separations, not new premises or admission.\\[3pt]
+
+\textbf{O.1 on the cone} & \textbf{\NOTCLOSED}.\\[3pt]
+
+\loc{bulk_symmetry_restored} & \texttt{false}.\\
+\end{longtable}
+\endgroup
+
+\begin{theorem}[Exact release of v6]
+\label{thm:release}
+Under the printed definitions and hypotheses:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the normalized apex constants \(\Ccb_b\) and the weighted
+coefficients \(\mathcal D_b\) are established, together with their
+singular-channel shifts;
+\item a complete graph satisfying the spectral reduction contract
+has the longitudinal residue \eqref{eq:reduction};
+\item the executed constant-profile poles equal the coefficient
+catalogue of Section~\ref{sec:catalogue}, with the algebraic checks
+proved above;
+\item the projected ghost-equation row \eqref{eq:ghostrow} holds,
+and the transverse source trace vanishes on the executed matrix;
+\item the constant-profile \(hh/Kc\) Slavnov--Taylor row closes on
+CR and F with the a-priori constant \(\lambda=-2\ii\);
+\item the D01 composite has an exact \(L^2\) obstruction and zero
+Mellin value;
+\item the available data do not supply the full basis map, the six
+exact values, the D04 quadratic-profile part, the evanescent
+coefficients, the engine map, or an exact \(\Span\) certificate;
+\item neither the companion separations nor the finite-readout
+comparison changes the cone O.1 ending.
+\end{enumerate}
+No complete cone O.1 closure or bulk symmetry restoration is
+released.
+\end{theorem}
+
+\begin{proof}
+Theorems~\ref{thm:apex}, \ref{thm:flip}, and \ref{thm:weighted},
+with Proposition~\ref{prop:weightedflip}, give (i).
+Theorem~\ref{thm:reduction} gives (ii).
+Proposition~\ref{prop:polynomialchecks} and the executed catalogue
+check give (iii).
+Theorem~\ref{thm:ghost} and the executed D13 rows give (iv).
+Theorem~\ref{thm:STclosure} gives (v), and Theorem~\ref{thm:HI}
+gives (vi).
+Propositions~\ref{prop:noSTverdict} and \ref{prop:noninjective},
+Remark~\ref{rem:STscope}, and Section~\ref{sec:missing} give (vii).
+
+O.1 on the cone requires the full Ward/basis projection on the
+prescribed cone, the evanescent and \(\Span\) data, and (R2)--(R5)
+for every graph.
+These are listed as open, and none is supplied by (i)--(vi).
+The cone and CR branch remain inputs.
+This gives (viii) and the release boundary.
+\end{proof}
+
+\scopebox{Conclusion}{%
+v6 closes what the constant-profile record can close:
+\begin{itemize}
+\item the catalogue matches its executed source;
+\item the v4 Slavnov--Taylor failure was a convention error, and
+the derived row closes with an a-priori constant;
+\item the D01 obstruction is exact, and it is Mellin-null;
+\item a second apex moment is proved.
+\end{itemize}
+A closed row is not the complete Slavnov--Taylor identity.
+A constant profile is not the full counterterm basis.
+A Mellin value is not a prescription theorem.
+The cone and CR domain remain inputs.
+\[
+\boxed{
+\text{O.1 on the cone}=\NOTCLOSED,\qquad
+\texttt{bulk\_symmetry\_restored}=\texttt{false}.
+}
+\]
+}

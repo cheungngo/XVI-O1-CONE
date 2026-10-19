@@ -1,0 +1,90 @@
+\subsection{Corrections in v6}
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The \(K'_{(03)}\) coordinate weight in the \(hh\) ST row is
+\(-2\), not a positive weight (Section~\ref{sec:STdiag}).
+\item The ST constant is \(\lambda=-2\ii\) in the normalization
+\eqref{eq:STv6}.
+The early-v6 checkpoint value \(-4\ii\) belongs to the v4
+normalization, which has an extra factor 2 on the \(B\) term.
+Both are recorded in \loc{CHECKPOINT_v6.md}.
+\item The v4/v5 catalogue omitted the \((5,5)\) entries of D01 and
+D03.
+The executed record contains them, and they are added without
+changing any printed entry.
+\item ``Mixed-helicity cancellation'' is made precise: absent on
+lattice keys, and excluded (not cancelled) on vector-type keys.
+\item The early numerical \(\HI\) runs suffered catastrophic
+cancellation in \(I_{-\nu}-I_\nu\).
+They were replaced by the \(K_\nu\) form, analytic derivatives,
+and an explicit small-\(r\) head.
+Only the corrected run is reported.
+\end{enumerate}
+
+\subsection{Artifact inventory (v6)}
+
+The executed record now consists of the following
+(Appendix~\ref{app:artifacts}):
+\begin{itemize}
+\item the spectral reduction \loc{code/spectral_apex.py}, with the
+graph rules copied read-only from XVI-P
+\loc{amplitude_rules.py} and XVI-Q Q02;
+\item per-graph logs in \loc{logs/v4/} for CR, F, and UNIT;
+\item the v6 programs \loc{st_v6.py}, \loc{st_norm.py},
+\loc{st_v6_stats.py}, \loc{flat_pole.py}, \loc{flat_vs_p18.py},
+\loc{weighted_apex.py}, \loc{weighted_checks.py}, \loc{hi_d01.py},
+\loc{hi_d01_exact.py}, \loc{hh_structures.py}, and
+\loc{catalogue_check.py}, with their logs in \loc{logs/v6/};
+\item full SHA-256 tree digests of XVI-P/Q/R, taken before and after
+this revision.
+\end{itemize}
+The \loc{logs/v4/} spectral runs were executed on this machine
+during the v4 session.
+v6 re-reads and audits them, and reruns the derived checks.
+v6 does \emph{not} rerun the spectral contractions themselves;
+their per-graph timings are recorded in the JSON logs.
+This replay-versus-rebuild distinction is recorded deliberately.
+
+\subsection{Status of the computational-certificate obligations}
+
+\begingroup\small
+\begin{longtable}{@{}L{.44\linewidth}L{.50\linewidth}@{}}
+\toprule
+v5 obligation & v6 status\\
+\midrule
+\endfirsthead
+\toprule
+v5 obligation & v6 status\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1. Frozen source versions and complete hash manifests &
+Done: full tree digests and full input-file digests.\\
+2. Graph inventory, vertices, routing, phases, statistics, symmetry
+factors, normalizations &
+Done for D01--D06, D11--D13: archived in code, with values read
+from frozen sources.\\
+3. Helicity projectors and domain-changing operations &
+Projectors archived. Domain: D01 composite exact
+(Theorem~\ref{thm:HI}); other graphs per the v4 assessment.\\
+4. Exact contracted spectral functions before the spectral
+parameter is set to zero &
+\OPEN: the code reduces at zero transverse momentum.\\
+5. Regularized trace reductions and boundary defects &
+Partial: Theorems~\ref{thm:apex}, \ref{thm:flip},
+\ref{thm:weighted}, and \ref{thm:HI}.\\
+6. UV/IR separation and regulator dependence &
+Partial: Lemma~\ref{lem:UV}; (R4) open.\\
+7. Full D02/D12 arrays and source transverse-trace rows &
+Done (Section~\ref{sec:catalogue}).\\
+8. Complete ST functional, derived control, raw residuals &
+Done for one row within scope (Theorem~\ref{thm:STclosure}).
+Full functional open.\\
+9. Exact basis-projection and rank certificates & \OPEN.\\
+10. Commands, versions, logs, failures, replay vs.\ rebuild &
+Done (Appendix~\ref{app:artifacts}; corrections above).\\
+\end{longtable}
+\endgroup
+Polynomial agreement and hash agreement alone still do not supply
+items 4, 6, and 9.

@@ -1,0 +1,213 @@
+%======================================================================
+\section{An \texorpdfstring{\(r^2\)}{r\textasciicircum 2}-weighted apex coefficient (new in v6)}
+\label{sec:weighted}
+%======================================================================
+
+Constant transverse profiles see only \(\Ccb_b\).
+A quadratic transverse jet \(G=r^2g\) needs the next moment of the
+apex heat distribution.
+v5 recorded that no value of the higher coefficient \(\mathcal D_b\)
+had been supplied or derived.
+This section derives it with the same Abel subtraction used in
+Definition~\ref{def:apex}.
+
+\begin{definition}[Weighted Abel apex trace]
+\label{def:weighted}
+For \(u>0\) put
+\begin{align*}
+T^{(2)}_b(u)
+ &=\int_{C_\alpha}r^2
+ e^{-(\cosh u-1)r^2/(2s)}K_b^\Fr(s;x,x)\,\dd V_\perp,\\
+T^{(2)}_{\rm bulk}(u)
+ &=\int_{C_\alpha}r^2
+ e^{-(\cosh u-1)r^2/(2s)}\frac{\dd V_\perp}{4\pi s}
+ =\frac{\alpha s}{(\cosh u-1)^2}.
+\end{align*}
+When the limit exists, set
+\(\ApTr[r^2e^{-sA_b}]=\lim_{u\downarrow0}
+(T^{(2)}_b(u)-T^{(2)}_{\rm bulk}(u))\).
+\end{definition}
+
+\begin{theorem}[Weighted twisted Friedrichs apex coefficient]
+\label{thm:weighted}
+Let \(\alpha>0\), \(0\le b<1\), and \(s>0\).
+With Bernoulli polynomials \(B_2(b)=b^2-b+\tfrac16\) and
+\(B_4(b)=b^4-2b^3+b^2-\tfrac1{30}\),
+\begin{equation}
+\ApTr\bigl[r^2e^{-sA_b^\Fr}\bigr]=\mathcal D_b\,s,
+\qquad
+\mathcal D_b=-\frac{11\alpha}{180}
++\frac{B_2(b)}{3\alpha}-\frac{B_4(b)}{6\alpha^3}.
+\label{eq:Db}
+\end{equation}
+Equivalently,
+\begin{equation}
+\mathcal D_b=
+\frac{1+10\alpha^2-11\alpha^4-60\alpha^2b(1-b)-30b^2(1-b)^2}
+{180\alpha^3}.
+\label{eq:Dbexpanded}
+\end{equation}
+For a heat superposition \(f\) as in Theorem~\ref{thm:apex},
+\begin{equation}
+\ApTr\bigl[r^2f(A_b^\Fr)\bigr]=-\mathcal D_b\,f'(0).
+\label{eq:Dfunctional}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+With \(z=r^2/(2s)\), we have \(r^2=2sz\) and
+\(r\,\dd r=s\,\dd z\).
+The angular integral and the heat representation
+\eqref{eq:heatkernel} then give
+\[
+T^{(2)}_b(u)=s\sum_{n\in\ZZ}\int_0^\infty
+z\,e^{-z\cosh u}I_{\abs{n+b}/\alpha}(z)\,\dd z.
+\]
+Differentiate the Laplace transform from the proof of
+Theorem~\ref{thm:apex} with respect to \(u\):
+\[
+\int_0^\infty z\,e^{-z\cosh u}I_\rho(z)\,\dd z
+=-\frac1{\sinh u}\frac{\dd}{\dd u}
+\frac{e^{-\rho u}}{\sinh u},
+\qquad \rho>-1.
+\]
+Since all summands are nonnegative, the sum may be interchanged
+with the integral, giving
+\[
+\frac{T^{(2)}_b(u)}{s}=-\frac1{\sinh u}\frac{\dd}{\dd u}
+\left[\frac{\cosh((\tfrac12-b)u/\alpha)}
+{\sinh u\,\sinh(u/(2\alpha))}\right].
+\]
+Laurent expansion at \(u=0\) shows that the
+\(u^{-4},u^{-3},u^{-2},u^{-1}\) terms of
+\(T^{(2)}_b/s\) and \(T^{(2)}_{\rm bulk}/s=\alpha/(\cosh u-1)^2\)
+coincide.
+The difference of their constant terms is \eqref{eq:Db}.
+Expanding the Bernoulli polynomials gives \eqref{eq:Dbexpanded}.
+
+For a heat superposition \(f(\lambda)=\int w(s)e^{-s\lambda}\dd s\),
+dominated convergence on the compact proper-time support gives
+\(\ApTr[r^2f(A)]=\mathcal D_b\int s\,w(s)\,\dd s
+=-\mathcal D_bf'(0)\).
+\textsc{[exec]} The Laurent algebra is carried out in
+\loc{code/weighted_apex.py}: all four pole terms vanish identically,
+and the constant term equals \eqref{eq:Db}
+(\loc{logs/v6/weighted_checks.json}, key \texttt{D\_matches\_log}).
+\end{proof}
+
+\begin{proposition}[Weighted singular-channel shift]
+\label{prop:weightedflip}
+For \(0<\nu<1\), replacing one regular channel of order \(\nu\) by
+its singular realization changes the weighted apex coefficient by
+\[
+\Delta\mathcal D=\frac{2\nu(1-\nu^2)}{3}.
+\]
+For the CR weight-two channel, \(\nu=2-\alpha^{-1}\) and
+\[
+\mathcal D^\CR_{S=2}=\mathcal D_{2\alpha-1}+\Delta\mathcal D
+=\mathcal D_{b=2\alpha},
+\]
+the polynomial \eqref{eq:Dbexpanded} evaluated at \(b=2\alpha\).
+\end{proposition}
+
+\begin{proof}
+The weighted analogue of the proof of Theorem~\ref{thm:flip}
+replaces \(e^{-\nu u}\) by \(e^{+\nu u}\) in one channel.
+The difference is
+\(-(\sinh u)^{-1}\partial_u[2\sinh(\nu u)/\sinh u]\).
+Its limit as \(u\to0\) is
+\(-u^{-1}\partial_u[2\nu(1+(\nu^2-1)u^2/6)]
+\to2\nu(1-\nu^2)/3\).
+Near zero the singular kernel is \(O(z^{1-\nu})\), so the weighted
+diagonal difference is absolutely integrable.
+\textsc{[exec]} The identity
+\(\mathcal D_{2\alpha}-\mathcal D_{2\alpha-1}=\Delta\mathcal D\) is
+checked exactly as a rational function of \(\alpha\)
+(\loc{logs/v6/weighted_checks.json}).
+\end{proof}
+
+\begin{corollary}[Comparison-sector values]
+\label{cor:Dvalues}
+For \(1/2<\alpha<1\):
+\begin{align*}
+\mathcal D_0&=\frac{(1-\alpha^2)(1+11\alpha^2)}{180\alpha^3},\\
+\mathcal D_{S=1}&=\frac{(\alpha-1)(\alpha+1)(19\alpha^2-1)}{180\alpha^3},\\
+\mathcal D^\Fr_{S=2}&=-\frac{(\alpha-1)(251\alpha^3-829\alpha^2+601\alpha-119)}{180\alpha^3},\\
+\mathcal D^\CR_{S=2}&=-\frac{(\alpha-1)(251\alpha^3-109\alpha^2+\alpha+1)}{180\alpha^3}.
+\end{align*}
+All four vanish as \(\alpha\uparrow1\).
+In particular, the weighted CR coefficient has \emph{no} flat
+remnant, unlike \(c_2^\CR\to1\) (Remark~\ref{rem:flatCR}),
+because \(\Delta\mathcal D\to0\) as \(\nu\to1\).
+\end{corollary}
+
+\begin{proposition}[Orbifold checks]
+\label{prop:orbifold}
+For \(\alpha=1/N\) with \(N\in\{2,\dots,8\}\),
+\[
+\mathcal D_0(1/N)=\frac1{4N}\sum_{k=1}^{N-1}\csc^4\frac{\pi k}{N}
+=\frac{(N^2-1)(N^2+11)}{180N}.
+\]
+This gives \(1/8,\,8/27,\,9/16,\,24/25,\,329/216,\,16/7,\,105/32\).
+For the twisted orbifolds \((N,j)=(3,1),(4,1),(5,2)\), with
+\(b=j/N\), the image sums weighted by holonomy phases equal
+\(\mathcal D_b\), namely \(-4/27\), \(-1/16\), and \(-16/25\).
+\end{proposition}
+
+\begin{proof}
+On \(\RR^2/\ZZ_N\) the heat kernel is the image sum.
+The \(k\)-th image contributes
+\((4\pi s)^{-1}e^{-r^2\sin^2(\pi k/N)/s}\).
+Integrating \(r^2\) times it over the wedge of angle \(2\pi/N\) gives
+\(s/(4N\sin^4(\pi k/N))\).
+The identity element is the bulk term.
+\textsc{[exec]} Both sides are evaluated exactly for each \(N\),
+and to \(10^{-12}\) for the twisted cases.
+See the key \texttt{orbifold\_csc4} in
+\loc{logs/v6/weighted_checks.json}, and
+\loc{logs/v6/weighted_apex.json}.
+\end{proof}
+
+\begin{remark}[Literature comparison]
+The untwisted moment \(\mathcal D_0\) has the
+\(\csc^4\)-sum structure of the classical conical heat coefficients
+\cite{Fursaev1994}.
+The identification of \(2\pi\alpha\,\mathcal D_0\) with the
+\(C_4\)-type coefficient of that reference is made from memory of its
+normalization (\(\dagger\)). It is not used as an input: the
+orbifold identity above is self-contained.
+
+Two literature results are analogues of the CR one-sided remnant
+of \(c_2^\CR\): the non-uniform spin-dependent flat limits of
+\cite{FursaevMiele1997}, and the spin-one horizon contact term of
+\cite{Kabat}.
+Corollary~\ref{cor:Dvalues} shows that this remnant does
+\emph{not} propagate to the \(r^2\) moment.
+No numerical spin-2 coefficient is imported from either work.
+\end{remark}
+
+\subsection{Application: the second \texorpdfstring{\(\phi\phi\)}{phi-phi} combination (partial)}
+
+By \eqref{eq:Dfunctional}, a quadratic transverse jet contributes
+\(-\mathcal D_S\) times the derivative, at zero transverse spectral
+parameter, of the longitudinal integrand.
+Within Assumption~\ref{ass:reduction}:
+\begin{itemize}
+\item \textsc{[exec]} \emph{D05a.} After the weighted insertion,
+the single-line tadpole has longitudinal integrand proportional to
+\(p^2\mathcal D_S/l^4\).
+At \(D=2\) this is \(O(R^{-4})\) at large radius, so it has no
+logarithmic UV term (Lemma~\ref{lem:UV}).
+The D05a contribution to the quadratic-profile pole is therefore
+\emph{computed} to be \(0\).
+\item \emph{D04.} The bubble couples a graviton line and a scalar
+line in different channels.
+Its \(r^2\) insertion requires mixed-channel traces of the
+transverse position operators \(x_\pm\) between channels \(S\) and
+\(S\pm1\).
+These are not functions of a single \(A_S\), so they fall outside
+Theorem~\ref{thm:weighted} and outside (R2).
+The D04 part is \(\OPEN\).
+\end{itemize}
+The second scalar basis value is therefore \emph{partial}.
+It is not reported as equal to its D05a part.

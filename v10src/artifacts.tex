@@ -1,0 +1,153 @@
+
+%======================================================================
+\section{v10 artifacts, hashes and rerun commands}
+\label{app:v10artifacts}
+%======================================================================
+
+Paths are relative to \loc{/workspace/XVI-O1-CONE/}. Long jobs ran
+detached with \loc{setsid}, were logged, and were resumable through
+per-item JSON caches. Environment: Python~3.13.5, SymPy~1.14.0, mpmath~1.3.0.
+Frozen trees before \(=\) after: XVI-P: yes, XVI-Q: yes, XVI-R: yes.
+Digests: XVI-P \texttt{ec965c15ae25cd3b\ldots}, XVI-Q \texttt{0df9a0d10409d31a\ldots}, XVI-R \texttt{57187bc6825f5c6a\ldots}.
+The v9 source and PDF are unchanged: yes. The v1--v8 sources are unchanged: yes.
+The cached \(\varphi\) values (20 files) and the minor evaluations (106 files) are hashed in
+\loc{logs/v10/jet/phi/SHA256SUMS} and \loc{logs/v10/minor/SHA256SUMS}. The full manifest is
+\loc{logs/v10/artifact_manifest_v10.sha256}; the \TeX{} source and PDF are hashed in \loc{SHA256SUMS_v10}.
+The large-\(n\) \(\varphi\) runs were stopped before completion; they feed no printed value.
+
+\paragraph{Rerun commands.}
+\begin{verbatim}
+cd /workspace/XVI-O1-CONE
+python3 code/v10/cr_mode_closed.py
+python3 code/v10/f_mode_pslq.py
+python3 code/v10/dJ_closed_verify.py
+python3 code/v10/lambda_derive.py
+setsid nohup bash code/v10/minor_driver.sh \
+   > logs/v10/minor/driver.log 2>&1 &
+python3 code/v10/minor_entries.py
+python3 code/v10/cocycle9.py F_c4 7071/10000 7/10 3/4 \
+   4/5 5/6 7/8 9/10 19/20   # F_c3 likewise
+setsid nohup bash code/v10/jet_driver.sh > /dev/null 2>&1 &
+python3 code/v10/jet_analyse.py; python3 code/v10/r2_scheme.py
+python3 code/v10/t1_fp.py; python3 code/v10/t1_fp_check.py
+python3 code/v10/jet_density_D04.py
+setsid nohup bash code/v10/phi_driver.sh > /dev/null 2>&1 &
+setsid nohup bash code/v10/vector_driver.sh > /dev/null 2>&1 &
+python3 code/v10/vector_combine.py
+python3 code/artifacts_v10.py && python3 code/build_v10.py
+pdflatex -halt-on-error XVI-O1-CONE-v10.tex   # twice
+\end{verbatim}
+
+{\small
+\begin{longtable}{@{}p{.50\linewidth}p{.46\linewidth}@{}}
+\caption{SHA-256 of v10 artifacts.}\\
+\toprule
+File & SHA-256\\
+\midrule
+\endfirsthead
+\toprule
+File & SHA-256\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\textit{Base source (read-only)} (1 files)}\\
+{\scriptsize\loc{XVI-O1-CONE-v9.tex}} & \texttt{\tiny 3a8dd43489cf29b96d953a544e5a6758feac16c307449f738ea235ce41c6f1b0}\\
+\multicolumn{2}{@{}l}{\textit{v10 programs} (26 files)}\\
+{\scriptsize\loc{code/v10/cocycle9.py}} & \texttt{\tiny c6d73ccf092b90a9afda8ba3b65b26ca1a387d746ad57dafc44c8e650c7f7543}\\
+{\scriptsize\loc{code/v10/cr_mode_closed.py}} & \texttt{\tiny f9339e76d370390523fc7213f21430cb5b2d4a7ba10f96841069836650ca78df}\\
+{\scriptsize\loc{code/v10/dJ_closed_verify.py}} & \texttt{\tiny 26d96b59e31da187cc61c29919aab675fc4885b0364954a9e7a2c5bea51a0690}\\
+{\scriptsize\loc{code/v10/f_mode_pslq.py}} & \texttt{\tiny b99327b9686e07428c15037508931f3776acb4b50853eb17f6c0d3a39a8bfe77}\\
+{\scriptsize\loc{code/v10/jet_analyse.py}} & \texttt{\tiny f7618580da4559d7fa92e4aeecb5489dd910347cbf937248f538aa5a3528bfe7}\\
+{\scriptsize\loc{code/v10/jet_density_D04.py}} & \texttt{\tiny d25ea7a43495f6dfad1ce3b03542ee671d720ada7617ba472ffdcfbd40462bfd}\\
+{\scriptsize\loc{code/v10/jet_replay.py}} & \texttt{\tiny 9b93ab0600ed67a6296b8e3374cad4cebf7e9bcf9c328f9cb14664ed454fcfde}\\
+{\scriptsize\loc{code/v10/lambda_derive.py}} & \texttt{\tiny 94af1831e985bfdfc288cbed8e27e0d11c3e16b8be7e26e5ffb5e5b485908d98}\\
+{\scriptsize\loc{code/v10/minor_entries.py}} & \texttt{\tiny 85655f6a8fd58dd70aa5cfe3ee736e51a5d3932c25804be9612d1f6900ee6043}\\
+{\scriptsize\loc{code/v10/minor_poly.py}} & \texttt{\tiny 06456aa92632b8d75ab673850d83baccb856b38c994b632ecf1d49ef2fcbf640}\\
+{\scriptsize\loc{code/v10/mixed_r2.py}} & \texttt{\tiny a2776419626cc47100505424cccabd3dfa966c75d4174ac52a461bc699fcb60b}\\
+{\scriptsize\loc{code/v10/mixed_r2_check.py}} & \texttt{\tiny 67a2856a2c8e8f2830f558dc6325d99aba81e0c5f50c802fa39924d498fac97d}\\
+{\scriptsize\loc{code/v10/phi_fit.py}} & \texttt{\tiny 24ce224a5e9f4079f022f518e31af7061c5657eab361660fef100a80b835094f}\\
+{\scriptsize\loc{code/v10/phi_mixed.py}} & \texttt{\tiny b51174ecd2ae1216caf550b0d9e02a31e1c1d7cd634bdeca62227f8ab81f88ef}\\
+{\scriptsize\loc{code/v10/r2_scheme.py}} & \texttt{\tiny cd5360f41f048b3ad5c964f15d2fda9aca84e37ff8c2f08df1783a51b257a213}\\
+{\scriptsize\loc{code/v10/t1_fp.py}} & \texttt{\tiny 8db8da98a37588fc30854ccfe04a6ed3c59b663108e157b9432c4435f3648a06}\\
+{\scriptsize\loc{code/v10/t1_fp_check.py}} & \texttt{\tiny 4fcd4587a4d8a2447cedc2de8a88743232e852f591efed7485d8fd10419fed0d}\\
+{\scriptsize\loc{code/v10/vector_combine.py}} & \texttt{\tiny 7c52024edbc55c226720c62e362d4028065fae39035803aff8d9a6771168e280}\\
+{\scriptsize\loc{code/v10/vector_fp.py}} & \texttt{\tiny 1748e39a63b7376d0277a19d58717b7886046e7bf75dfe597ae50201f790cd08}\\
+{\scriptsize\loc{code/v10/jet_driver.sh}} & \texttt{\tiny 4711578a57f8540d893b633d86decc55f2106523d06fe466881149cba8cd6b88}\\
+{\scriptsize\loc{code/v10/minor_driver.sh}} & \texttt{\tiny 5489cf621510e8d23c22e9ae3a31ecc1b35f509f3e6db3664322a8bfdd1621e3}\\
+{\scriptsize\loc{code/v10/phi_driver.sh}} & \texttt{\tiny 685ef1dcd00c971fa85ccf04769995ed13d629c0ca5e941c1c68ad8efd0abfda}\\
+{\scriptsize\loc{code/v10/phi_driver2.sh}} & \texttt{\tiny d06e442cc222ef8c43cc8d750956c062e28d8d16140e805e3bcbda24e665b163}\\
+{\scriptsize\loc{code/v10/vector_driver.sh}} & \texttt{\tiny dee6090a4b399f9193563d35e942830728c95b992a42a22a8bfb2175c955ef86}\\
+{\scriptsize\loc{code/build_v10.py}} & \texttt{\tiny 75cb95c20748413a366029c40b9f0280cc90a425981fc304b80a7b7847e6c7f4}\\
+{\scriptsize\loc{code/artifacts_v10.py}} & \texttt{\tiny 8de0cad6e1d9ad59cee1ee0b640ffdca7dcc9385e0c0660f305a8dcf0429932b}\\
+\multicolumn{2}{@{}l}{\textit{v10 source fragments} (4 files)}\\
+{\scriptsize\loc{v10src/abstract.tex}} & \texttt{\tiny 6d4a42db29b130adfc18702497cf6eef0e8d654cc821c08d1549ea5cf7be0db3}\\
+{\scriptsize\loc{v10src/bib_v10.tex}} & \texttt{\tiny c648846e7462ed90a7a0907bc31bc748f7e95dd0358373e8342bf906372ebb7a}\\
+{\scriptsize\loc{v10src/opentable.tex}} & \texttt{\tiny 060a3ade76c775984acbf220242f76498caca62a66829780e87951d6b7c316a6}\\
+{\scriptsize\loc{v10src/sec_v10.tex}} & \texttt{\tiny 770e85953af1f47e47a387ffcf22156c4e2c737075530616b68a76555c63af4a}\\
+\multicolumn{2}{@{}l}{\textit{Delta J closed form} (11 files)}\\
+{\scriptsize\loc{logs/v10/cr_mode_closed.json}} & \texttt{\tiny 939528c5aaf52273d12f32a570dc6ceed917a0ceb21988848f59c3fc5e265ad8}\\
+{\scriptsize\loc{logs/v10/dJ_closed_verify.json}} & \texttt{\tiny 5159c9163551c83a17161d1814e7dff061d9d3448cd65a0f88e8712d036a6a59}\\
+{\scriptsize\loc{logs/v10/fmode/3_2.json}} & \texttt{\tiny 25daa838dce8ce663f92ab61cdc38b49b5f2b6f61355977416734d1647222181}\\
+{\scriptsize\loc{logs/v10/fmode/4_3.json}} & \texttt{\tiny aca72774baf4e99f3855d1e5c2ac85118b7c50c7274f5f9c16e3e13f7dad9017}\\
+{\scriptsize\loc{logs/v10/fmode/5_3.json}} & \texttt{\tiny 9dbd7ad598b5444481965b76ea81cf638c726376a074bc7ab57ea3a9ae2679cf}\\
+{\scriptsize\loc{logs/v10/fmode/5_4.json}} & \texttt{\tiny ab984d9a4a13b211ece98e64fc6be0b03b89cdefac36cd365ee9e0eb8ae540f6}\\
+{\scriptsize\loc{logs/v10/fmode/6_5.json}} & \texttt{\tiny ce0cc18323063200588745de47548e0aaa952dbee89ad04b0f1eb808475190f2}\\
+{\scriptsize\loc{logs/v10/fmode/7_4.json}} & \texttt{\tiny 37e213fb00f05380f2d11d1c28d9711f75249261cdf9b86c76cd2c7f6becd092}\\
+{\scriptsize\loc{logs/v10/fmode/7_5.json}} & \texttt{\tiny 445b722bd9d3f3729ccee37269bbe561386cff57c4be70da19217c3dae2d4945}\\
+{\scriptsize\loc{logs/v10/fmode/8_5.json}} & \texttt{\tiny 4b464ff79c117543f91134fab5b185d5700a1fed5f10e941fad5397689bd5360}\\
+{\scriptsize\loc{logs/v10/fmode/9_5.json}} & \texttt{\tiny cb11bbd8860cbf9a186a701d2d870900f7a706ed7eb0eb71e106d50788ba2aef}\\
+\multicolumn{2}{@{}l}{\textit{Ghost normalizations} (1 files)}\\
+{\scriptsize\loc{logs/v10/lambda_derive.json}} & \texttt{\tiny b15ccf4c87d1d0dc0a27fea25af189ee441684f0ad06030f46ce24a7832decaf}\\
+\multicolumn{2}{@{}l}{\textit{Chamber minors} (19 files)}\\
+{\scriptsize\loc{logs/v10/minor/CR_c1/pick.json}} & \texttt{\tiny ef8ed9fdf3a5b5bfb1d57321bf2e431b6d0a058c62046811fbc29c2f0e86dc13}\\
+{\scriptsize\loc{logs/v10/minor/CR_c2/pick.json}} & \texttt{\tiny d6b21d7a8209f9e3ce179b7dbe1fbc20a3d8c4f374c9ff951ae27ecad084596f}\\
+{\scriptsize\loc{logs/v10/minor/CR_c3/pick.json}} & \texttt{\tiny a9fbb9bb784a70b5818a6423122f18877cb6719c4c0f6427c6d18e6dd73c8448}\\
+{\scriptsize\loc{logs/v10/minor/CR_c4/pick.json}} & \texttt{\tiny ff43cbf02a89e2081ce558e7c2b2c9d3f403c6621383926827a4ca0ae51772c6}\\
+{\scriptsize\loc{logs/v10/minor/F_c1/pick.json}} & \texttt{\tiny bd008573b6d427d752ae6136c5ad44f721ccd35f6315c21e85b44c597c003f67}\\
+{\scriptsize\loc{logs/v10/minor/F_c2/pick.json}} & \texttt{\tiny ade2b067e5fe3da91fc1ececd3ede26d86c6857f47ca814eb41c74d8a894b162}\\
+{\scriptsize\loc{logs/v10/minor/F_c3/pick.json}} & \texttt{\tiny cb90901af66560cbdd497ceb8b0077ca7af89e4abd4e9cff54476d39e4851a2a}\\
+{\scriptsize\loc{logs/v10/minor/F_c4/pick.json}} & \texttt{\tiny a4af66a3b268f73ac168bb4613f584ba818ccf94087f448a015bcb4740d22c4b}\\
+{\scriptsize\loc{logs/v10/minor/CR_c1/entries_check.json}} & \texttt{\tiny 761c25903f00a6612b18e786ee39f7e674e68abfeea8ab9162fcef35211e7c8f}\\
+{\scriptsize\loc{logs/v10/minor/CR_c2/entries_check.json}} & \texttt{\tiny 348bc38ecc754a39a22dab2434f9dfa8f9508a4d967659b6e5e101fe4ae61385}\\
+{\scriptsize\loc{logs/v10/minor/CR_c3/entries_check.json}} & \texttt{\tiny 1c4cae65bd188f4015c057a43ee109481089a79173cc270743a9997275f1b516}\\
+{\scriptsize\loc{logs/v10/minor/CR_c4/entries_check.json}} & \texttt{\tiny df135b94bd6e67cff2391c7cc666d80e138925aee88341abd72edbe25f7e606b}\\
+{\scriptsize\loc{logs/v10/minor/F_c1/entries_check.json}} & \texttt{\tiny aa2e6d90dd5e394a2b71bdf02aa82b8aafb361c9de26dd9188f7d250b35c24eb}\\
+{\scriptsize\loc{logs/v10/minor/F_c2/entries_check.json}} & \texttt{\tiny 807c5572509ec6966b278ba622e105b56cc0777b7cbd912cb03badaaf227e9db}\\
+{\scriptsize\loc{logs/v10/minor/F_c3/entries_check.json}} & \texttt{\tiny f8fb788a64060d68b0a3c0b5123f5b26ea03cab8781715ed6ff6fbd3ff2d9f73}\\
+{\scriptsize\loc{logs/v10/minor/F_c4/entries_check.json}} & \texttt{\tiny a310782e9ef118d07c13f07d7dcc2b36142ab5e33726f2fed036fd51464dfeeb}\\
+{\scriptsize\loc{logs/v10/minor/F_c3/cocycle9.json}} & \texttt{\tiny 377c62498a429585ea9f1b6629697fb0d9c9114f3344c211758df947165644d9}\\
+{\scriptsize\loc{logs/v10/minor/F_c4/cocycle9.json}} & \texttt{\tiny fbf314449c9bc32240477f4427087165efbcc7df931c4f29f1da60f099750a8d}\\
+{\scriptsize\loc{logs/v10/minor/SHA256SUMS}} & \texttt{\tiny ed4653f9ecb3ac7c2443db90827bb1f73af34e6ed720b8e0caad22182311ef6d}\\
+\multicolumn{2}{@{}l}{\textit{Transverse jets} (17 files)}\\
+{\scriptsize\loc{logs/v10/jet/jet_D01.json}} & \texttt{\tiny ffed1138c1f2fb5b554c865593a5e48da10d19ee6900922f17d21538a21457df}\\
+{\scriptsize\loc{logs/v10/jet/jet_D02.json}} & \texttt{\tiny 35643ee8d7aa9459d629a8d19d8ab38318d6ce68a39ddc643ed8f9fdd874e11f}\\
+{\scriptsize\loc{logs/v10/jet/jet_D03.json}} & \texttt{\tiny 531ba4cfa9741a5d999c19da05c1b09c453f6c61c8d0f7cceb0c91ca88caff00}\\
+{\scriptsize\loc{logs/v10/jet/jet_D04.json}} & \texttt{\tiny 4c3d5a5460806bb341648bf9b9f367fa2faeb70837294238a80d8f38145a8d89}\\
+{\scriptsize\loc{logs/v10/jet/jet_D05a.json}} & \texttt{\tiny c695b8be7cdf20cb2d4d71ccfb524bffc5bf5a531056de7e959041736ab738bc}\\
+{\scriptsize\loc{logs/v10/jet/jet_D06.json}} & \texttt{\tiny 04cebbf0bdc3eb40a9e254a8ab430026ff3b3b88773bbec70efcd00224adda6a}\\
+{\scriptsize\loc{logs/v10/jet/jet_D11.json}} & \texttt{\tiny 7b68328a09b92eb169da152c5e9557be7e09f923798c05f50efd8ef9524ff7b6}\\
+{\scriptsize\loc{logs/v10/jet/jet_D12.json}} & \texttt{\tiny 934e721f7e9ff41029c74b299aeba4e83960d42e02097a29e1bfeb64881d44ef}\\
+{\scriptsize\loc{logs/v10/jet/jet_D13.json}} & \texttt{\tiny f856bcfff7707c4ca5eccbf26aac233c79e7597aead51b1acec8d7dc7249cc88}\\
+{\scriptsize\loc{logs/v10/jet/jet_analysis.json}} & \texttt{\tiny 5daf13a48ff23cf576f8f4b8f1d02d7524ea52163b14dc3d08615103bf0fad08}\\
+{\scriptsize\loc{logs/v10/jet/r2_scheme.json}} & \texttt{\tiny 7f6492a3ee94d407ddcaa10fffa39b6d52462aa699274decab531a24b4112131}\\
+{\scriptsize\loc{logs/v10/jet/t1_fp_check.json}} & \texttt{\tiny 5beac73b57965a11d7ebe68397bb32d1cbbeb84a5866955f53c24fb764b4d168}\\
+{\scriptsize\loc{logs/v10/jet/t1_fp_same.json}} & \texttt{\tiny 9b9385cdae53f49af5e845e24e1003cfa3d0e9e3e4c9f1655d6e0dcd4f6bed8b}\\
+{\scriptsize\loc{logs/v10/jet/mixed_r2.json}} & \texttt{\tiny b17bd5d3f8788e573c7c4e9cd5b8c283746a129fb18a4d200cbcc7844bd03675}\\
+{\scriptsize\loc{logs/v10/jet/mixed_r2_check.json}} & \texttt{\tiny 3416ad37869d05fcbc93748e3cb1b8037bc6f72356900dcdbd66b99288e4997b}\\
+{\scriptsize\loc{logs/v10/jet/density_D04.json}} & \texttt{\tiny f8e9f35864582aec6338493bd81b1c6e66308cac09d0f76a77f03f9e8b14336f}\\
+{\scriptsize\loc{logs/v10/jet/phi/SHA256SUMS}} & \texttt{\tiny a65d81990623d6593aa653c3e4d7219596865e45245fed47ccc2df874a7b8c41}\\
+\multicolumn{2}{@{}l}{\textit{Vector finite parts} (5 files)}\\
+{\scriptsize\loc{logs/v10/vector_fp/3_10.json}} & \texttt{\tiny 911f52f839f4be0cd2f80bb7b2c2df76b31810accf3727e3927f5087883ebcc4}\\
+{\scriptsize\loc{logs/v10/vector_fp/3_5.json}} & \texttt{\tiny c138cb911e3e051a2b1013eb4c5273f3af486875c28277f50538621fc6be60bb}\\
+{\scriptsize\loc{logs/v10/vector_fp/41_100.json}} & \texttt{\tiny 43619f5aa07f5362d8d9531b2c6405d16b25c7fc7887259a07711e13ed21ce17}\\
+{\scriptsize\loc{logs/v10/vector_fp/7071_10000.json}} & \texttt{\tiny 2fb16311db70b19ce6b1cba7646c9263ec444348340c256e4294e345de7c791f}\\
+{\scriptsize\loc{logs/v10/vector_fp/combined.json}} & \texttt{\tiny 920a24127826fda08054402b1255615c7f7bc31c0a63a7fba7c7f020fafc24c1}\\
+\multicolumn{2}{@{}l}{\textit{Integrity, environment} (6 files)}\\
+{\scriptsize\loc{logs/frozen_v10_before.sha}} & \texttt{\tiny cb9c2a11921e376aa078f2081cea58b7c0a8a0363a1fd6976bf7272df89e7b5b}\\
+{\scriptsize\loc{logs/v10/tree_hashes_v10.json}} & \texttt{\tiny ddf510d823e0af9de28430bdf7be42309eaab04b1d6b9a6c87b39b8e9735626d}\\
+{\scriptsize\loc{logs/v9_hashes_before_v10.sha}} & \texttt{\tiny 97840e3bd1107e61deb848ac53de97a8aa68275b16517f2b17579b465df2dc74}\\
+{\scriptsize\loc{logs/v10/earlier_versions_sha.json}} & \texttt{\tiny c9d46ce4bbae98a1c22a08a7f91ba24f3ac242f054ee673fbe6d0a7286bbc43c}\\
+{\scriptsize\loc{logs/v10/env.json}} & \texttt{\tiny f3c3b679dd87e7e87a4a5670b7e7dede9a62e737459a7a2a21d8fc562df914fa}\\
+{\scriptsize\loc{CHECKPOINT_v10.md}} & \texttt{\tiny 4c01e1e654d8f96797988e7208517f82e7259ce2d5bf774b07b863924c3ee04c}\\
+\end{longtable}}

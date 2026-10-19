@@ -1,0 +1,121 @@
+\section{Item (3): the contact tadpoles D12, D05a, D02}\label{sec:tad}
+\paragraph{Method.} This is the coincidence route of v2 \S5 with the corrected sign $\Gamma=-\text{prefactor}\cdot[\dots]$ ($\varsigma=-1$), implemented in \texttt{code/tadpole2.py} and, with term-wise extraction of the $\lambda^{-2}$ coefficient, in \texttt{code/tadpole2\_fast.py}. The fast version reproduces all 18 D12 coefficients of the slow one exactly. The external fields are the most general rotation-equivariant, reflection-even $n=0$ jets up to $m=2$, each times $e^{\pm i(p_0t+p_3z)}$:
+\begin{itemize}
+\item $h_{00}=a_0+a_1r^2$, $h_{03}=b_0+b_1r^2$, $h_{33}=c_0+c_1r^2$, $h_{0i}=d\,x_i$, $h_{3i}=e\,x_i$, $h_{ij}=\delta_{ij}(f_0+f_1r^2)+g(x_ix_j-\tfrac12\delta_{ij}r^2)$;
+\item $\phi=s_0+s_1r^2$.
+\end{itemize}
+We evaluate on two rays, $(1,0)$ and $(3/5,4/5)$. $\theta$-independence was checked in every case. The output is the coefficient of $(4-d)^{-1}$ per unit area of $W$, as an exact bilinear in the two external fields (subscripts $1,2$).
+\begin{theorem}[D12 on the cone]\label{thm:D12}
+D12 is the $hh\phi\phi$ vertex closed by a scalar loop, prefactor $-\ka^2/2$ (XVI-P). Its loop label is $b=0$, so it is the same on CR and F. Set
+\[ A_\alpha=\frac{\ka^2(\alpha^2-1)(4\alpha^2-1)}{1440\pi\alpha^3},\qquad C_\alpha=\frac{\ka^2(\alpha^2-1)(11\alpha^2+1)}{1440\pi\alpha^3}. \]
+Then, with $(1\leftrightarrow2)$ denoting the symmetrisation,
+\begin{align*}
+\mathrm{Pole}\,\Gamma_{D12}=\;&A_\alpha\Big[-2\langle h^{(0)}_1,h^{(1)}_2\rangle_\parallel+{\rm tr}_\parallel h^{(0)}_1\,{\rm tr}_\parallel h^{(1)}_2\Big]
+-C_\alpha\,g_1\,{\rm tr}_\parallel h^{(0)}_2+2C_\alpha\,f_{0,1}\,g_2\\
+&-2C_\alpha\,(d_1d_2-e_1e_2)\;+\;(1\leftrightarrow2).
+\end{align*}
+Here $h^{(0)},h^{(1)}$ are the $r^0$ and $r^2$ coefficients of the longitudinal block, $\langle h,h'\rangle_\parallel=\eta^{ac}\eta^{bd}h_{ab}h'_{cd}$ and ${\rm tr}_\parallel h=\eta^{ab}h_{ab}=-h_{00}+h_{33}$. In raw coefficients: $a_0a_1'$, $a_0c_1'$, $c_0a_1'$, $c_0c_1'$ all carry $-A_\alpha$; $b_0b_1'$ carries $+4A_\alpha$; $a_0g'$ carries $+C_\alpha$ and $c_0g'$ carries $-C_\alpha$; $f_0g'$ carries $+2C_\alpha$; $dd'$ carries $-4C_\alpha$ and $ee'$ carries $+4C_\alpha$ (\texttt{logs/v3/tad2\_D12\_CR.json}).
+The result is symmetric under $1\leftrightarrow2$ and longitudinally $O(1,1)$-covariant (checked coefficient by coefficient). It is momentum-independent, so it lies entirely in the two-transverse-derivative ($r^2$-jet) apex directions. Every coefficient carries $(\alpha^2-1)$ and vanishes at $\alpha=1$, as it must for a $b=0$ loop. $f_1$ does not appear.
+\end{theorem}
+\begin{theorem}[D05a on the cone]\label{thm:D05a}
+D05a is the $hh\phi\phi$ vertex closed by a graviton loop, with external $\phi\phi$. Its prefactor is $-\ka^2/2$ by analogy with D02/D12, because D05a is not in the XVI-P amplitude rules. \emph{This normalisation is flagged.} Then
+\[ \mathrm{Pole}\,\Gamma_{D05a}^{\rm CR}=-\frac{\ka^2(2\alpha-1)}{4\pi}\,s_{0,1}s_{0,2}\,(p_0^2-p_3^2),\qquad
+\mathrm{Pole}\,\Gamma_{D05a}^{\rm F}=-\frac{\ka^2(\alpha-1)(2\alpha-1)}{4\pi\alpha}\,s_{0,1}s_{0,2}\,(p_0^2-p_3^2). \]
+Since $p_0^2-p_3^2=-\eta^{ab}p_ap_b$, the result lies on the first $H^0_{(2)}$ direction $\delta_W\phi\,\partial_\parallel^2\phi$. The second direction, $\delta_W\phi\,\partial_r^2\phi|_{m=2}$, receives $0$ from this graph (no $s_0s_1$ term). F vanishes at $\alpha=1$. CR has the flat-limit remnant $-\ka^2/(4\pi)$, which parallels the CR remnant of the $E=1$ row (v2), and both branches vanish at $\alpha=1/2$, where they coincide.
+\end{theorem}
+\paragraph{D02.} D02 is the quartic graviton vertex $V_{4,\rm grav}$ closed by a graviton loop, prefactor $-\ka^2/2$ (XVI-P). It involves 19\,384 vertex-monomial terms and was computed on both branches (\texttt{logs/v3/tad2fast\_D02\_CR.json}, \texttt{\_F.json}, 158\,s and 156\,s). The pole has 48 nonzero bilinear coefficients on each branch, all exact rational functions of $\alpha$ times $\ka^2/\pi$, listed in Table~\ref{tab:D02}. Internal checks, all passed exactly:
+\begin{itemize}
+\item $\theta$-independence;
+\item $1\leftrightarrow2$ symmetry (with $p\to-p$);
+\item longitudinal $O(1,1)$ structure, e.g.\ $-K_\alpha f_{0,1}f_{0,2}(p_0^2-p_3^2)$ and $-K_\alpha f_0\,(a_0p_3^2-2b_0p_0p_3+c_0p_0^2)$, with $K_\alpha=\ka^2(2\alpha-1)(4\alpha-1)/(6\pi\alpha)$;
+\item F vanishes identically at $\alpha=1$;
+\item CR $=$ F at $\alpha=1/2$.
+\end{itemize}
+CR has a nonzero $\alpha\to1$ remnant (e.g.\ $a_0^{(1)}a_1^{(2)}\to-\ka^2/4\pi$), like D14 and D05a.
+{\small\begin{longtable}{lll}\caption{D02 apex pole: coefficient of each monomial (CR and F).}\label{tab:D02}\\\toprule
+monomial & CR & F\\\midrule\endfirsthead
+\toprule monomial & CR & F\\\midrule\endhead
+$f_0^{(1)} f_0^{(2)} p_3^{2}$ & $\frac{\kappa^{2} \left(2 \alpha - 1\right) \left(4 \alpha - 1\right)}{6 \pi \alpha}$ & $\frac{2 \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$a_0^{(1)} f_0^{(2)} p_3^{2}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(4 \alpha - 1\right)}{6 \pi \alpha}$ & $- \frac{2 \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$f_0^{(1)} a_0^{(2)} p_3^{2}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(4 \alpha - 1\right)}{6 \pi \alpha}$ & $- \frac{2 \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$b_0^{(1)} f_0^{(2)} p_0 p_3$ & $\frac{\kappa^{2} \left(2 \alpha - 1\right) \left(4 \alpha - 1\right)}{3 \pi \alpha}$ & $\frac{4 \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$f_0^{(1)} b_0^{(2)} p_0 p_3$ & $\frac{\kappa^{2} \left(2 \alpha - 1\right) \left(4 \alpha - 1\right)}{3 \pi \alpha}$ & $\frac{4 \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$e^{(1)} f_0^{(2)} p_3$ & $\frac{i \kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{2} - 43 \alpha + 12\right)}{12 \pi \alpha^{2}}$\\
+$f_0^{(1)} e^{(2)} p_3$ & $- \frac{i \kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{2} - 43 \alpha + 12\right)}{12 \pi \alpha^{2}}$\\
+$a_0^{(1)} e^{(2)} p_3$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$b_0^{(1)} d^{(2)} p_3$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$d^{(1)} b_0^{(2)} p_3$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$e^{(1)} a_0^{(2)} p_3$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$f_0^{(1)} f_0^{(2)} p_0^{2}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(4 \alpha - 1\right)}{6 \pi \alpha}$ & $- \frac{2 \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$c_0^{(1)} f_0^{(2)} p_0^{2}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(4 \alpha - 1\right)}{6 \pi \alpha}$ & $- \frac{2 \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$f_0^{(1)} c_0^{(2)} p_0^{2}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(4 \alpha - 1\right)}{6 \pi \alpha}$ & $- \frac{2 \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$d^{(1)} f_0^{(2)} p_0$ & $- \frac{i \kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{2} - 43 \alpha + 12\right)}{12 \pi \alpha^{2}}$\\
+$b_0^{(1)} e^{(2)} p_0$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$f_0^{(1)} d^{(2)} p_0$ & $\frac{i \kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{2} - 43 \alpha + 12\right)}{12 \pi \alpha^{2}}$\\
+$c_0^{(1)} d^{(2)} p_0$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$d^{(1)} c_0^{(2)} p_0$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $- \frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$e^{(1)} b_0^{(2)} p_0$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $\frac{i \kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$\\
+$f_0^{(1)} g^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(11 \alpha^{2} + 1\right)}{360 \pi \alpha^{3}}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(11 \alpha^{2} + 1\right)}{360 \pi \alpha^{3}}$\\
+$c_0^{(1)} g^{(2)}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(7 \alpha - 1\right) \left(7 \alpha + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(7 \alpha - 1\right) \left(7 \alpha + 1\right)}{720 \pi \alpha^{3}}$\\
+$a_0^{(1)} g^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(7 \alpha - 1\right) \left(7 \alpha + 1\right)}{720 \pi \alpha^{3}}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(7 \alpha - 1\right) \left(7 \alpha + 1\right)}{720 \pi \alpha^{3}}$\\
+$f_0^{(1)} f_1^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(259 \alpha^{3} - 101 \alpha^{2} - \alpha - 1\right)}{180 \pi \alpha^{3}}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(259 \alpha^{3} - 821 \alpha^{2} + 599 \alpha - 121\right)}{180 \pi \alpha^{3}}$\\
+$c_0^{(1)} f_1^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right)}{12 \pi \alpha}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right)}{12 \pi \alpha}$\\
+$a_0^{(1)} f_1^{(2)}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right)}{12 \pi \alpha}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right)}{12 \pi \alpha}$\\
+$g^{(1)} f_0^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(11 \alpha^{2} + 1\right)}{360 \pi \alpha^{3}}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(11 \alpha^{2} + 1\right)}{360 \pi \alpha^{3}}$\\
+$f_1^{(1)} f_0^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(259 \alpha^{3} - 101 \alpha^{2} - \alpha - 1\right)}{180 \pi \alpha^{3}}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(259 \alpha^{3} - 821 \alpha^{2} + 599 \alpha - 121\right)}{180 \pi \alpha^{3}}$\\
+$c_1^{(1)} f_0^{(2)}$ & $- \frac{\kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{2} - 43 \alpha + 12\right)}{12 \pi \alpha^{2}}$\\
+$a_1^{(1)} f_0^{(2)}$ & $\frac{\kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{2} - 43 \alpha + 12\right)}{12 \pi \alpha^{2}}$\\
+$e^{(1)} e^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right) \left(\alpha^{2} - 3 \alpha + 1\right)}{3 \pi \alpha^{3}}$\\
+$d^{(1)} d^{(2)}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right)}{3 \pi \alpha}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right) \left(\alpha^{2} - 3 \alpha + 1\right)}{3 \pi \alpha^{3}}$\\
+$f_0^{(1)} c_1^{(2)}$ & $- \frac{\kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{2} - 43 \alpha + 12\right)}{12 \pi \alpha^{2}}$\\
+$c_0^{(1)} c_1^{(2)}$ & $- \frac{\kappa^{2} \left(874 \alpha^{4} - 900 \alpha^{3} + 205 \alpha^{2} + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(874 \alpha^{3} - 386 \alpha^{2} - 121 \alpha + 59\right)}{720 \pi \alpha^{3}}$\\
+$a_0^{(1)} c_1^{(2)}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(178 \alpha^{3} - \alpha^{2} + 2 \alpha + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right) \left(178 \alpha^{2} - 3 \alpha - 61\right)}{720 \pi \alpha^{3}}$\\
+$g^{(1)} c_0^{(2)}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(7 \alpha - 1\right) \left(7 \alpha + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(7 \alpha - 1\right) \left(7 \alpha + 1\right)}{720 \pi \alpha^{3}}$\\
+$f_1^{(1)} c_0^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right)}{12 \pi \alpha}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right)}{12 \pi \alpha}$\\
+$c_1^{(1)} c_0^{(2)}$ & $- \frac{\kappa^{2} \left(874 \alpha^{4} - 900 \alpha^{3} + 205 \alpha^{2} + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(874 \alpha^{3} - 386 \alpha^{2} - 121 \alpha + 59\right)}{720 \pi \alpha^{3}}$\\
+$a_1^{(1)} c_0^{(2)}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(178 \alpha^{3} - \alpha^{2} + 2 \alpha + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right) \left(178 \alpha^{2} - 3 \alpha - 61\right)}{720 \pi \alpha^{3}}$\\
+$b_0^{(1)} b_1^{(2)}$ & $\frac{\kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{3} - 19 \alpha^{2} - 8 \alpha + 4\right)}{12 \pi \alpha^{3}}$\\
+$b_1^{(1)} b_0^{(2)}$ & $\frac{\kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{3} - 19 \alpha^{2} - 8 \alpha + 4\right)}{12 \pi \alpha^{3}}$\\
+$f_0^{(1)} a_1^{(2)}$ & $\frac{\kappa^{2} \left(41 \alpha^{2} - 36 \alpha + 7\right)}{12 \pi \alpha}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(41 \alpha^{2} - 43 \alpha + 12\right)}{12 \pi \alpha^{2}}$\\
+$c_0^{(1)} a_1^{(2)}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(178 \alpha^{3} - \alpha^{2} + 2 \alpha + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right) \left(178 \alpha^{2} - 3 \alpha - 61\right)}{720 \pi \alpha^{3}}$\\
+$a_0^{(1)} a_1^{(2)}$ & $- \frac{\kappa^{2} \left(874 \alpha^{4} - 900 \alpha^{3} + 205 \alpha^{2} + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(874 \alpha^{3} - 386 \alpha^{2} - 121 \alpha + 59\right)}{720 \pi \alpha^{3}}$\\
+$g^{(1)} a_0^{(2)}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(7 \alpha - 1\right) \left(7 \alpha + 1\right)}{720 \pi \alpha^{3}}$ & $\frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right) \left(7 \alpha - 1\right) \left(7 \alpha + 1\right)}{720 \pi \alpha^{3}}$\\
+$f_1^{(1)} a_0^{(2)}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right)}{12 \pi \alpha}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(\alpha + 1\right)}{12 \pi \alpha}$\\
+$c_1^{(1)} a_0^{(2)}$ & $- \frac{\kappa^{2} \left(2 \alpha - 1\right) \left(178 \alpha^{3} - \alpha^{2} + 2 \alpha + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(2 \alpha - 1\right) \left(178 \alpha^{2} - 3 \alpha - 61\right)}{720 \pi \alpha^{3}}$\\
+$a_1^{(1)} a_0^{(2)}$ & $- \frac{\kappa^{2} \left(874 \alpha^{4} - 900 \alpha^{3} + 205 \alpha^{2} + 1\right)}{720 \pi \alpha^{3}}$ & $- \frac{\kappa^{2} \left(\alpha - 1\right) \left(874 \alpha^{3} - 386 \alpha^{2} - 121 \alpha + 59\right)}{720 \pi \alpha^{3}}$\\
+\bottomrule\end{longtable}}
+\paragraph{What this gives for the eight closed directions.} The $\phi\phi$ apex poles are D05a$+$D04. D05a is computed (above, normalisation flagged), and D04 is an open bubble (\S\ref{sec:bubbles}), so the two physical $\phi\phi$ values are \emph{not} determined. The $hh$ contact graphs D12 and D02 are computed in the explicit jet basis above. The bubbles D01, D03, D06, D11 and D13 are open. We did not map the explicit-basis bilinears to the engine's 18-dimensional $hh$ coordinates. The two bases differ by total derivatives on $W$ and by the $n=0$, $m\le2$ truncation of the test fields, and this map is not implemented. So no explicit-basis cross-check of ``$hh=18$'' is claimed.
+\textbf{Item (3) outcome}: D12 computed (exact; branch-independent); D05a computed (exact, both branches; prefactor flagged); D02 computed (exact, both branches).
+
+\section{Item (4): evanescent apex coefficients}
+DRED with quasi-4 indices and $(d-2)$-dimensional longitudinal momenta gives an evanescent twin ($\hat p^2$ for $p_\parallel^2$) for every $k=2$ class (v2 \S6: three in $hh$, one in $\bar cc$, one in $\phi\phi$). Their one-loop coefficients are finite, pole$\times(d-4)$, and need the full $d$-dependence of each graph's apex part. For the tadpoles that would require redoing the coincidence route with the $d$-dimensional trace kept symbolic, which is not done. For the bubbles it needs the open residues. \textbf{Item (4) outcome: open} (no coefficient computed).
+
+\section{Item (5): three-field cohomology at the resonant \texorpdfstring{$\alpha$}{alpha}}\label{sec:tri}
+The v2 three-field engine used $n=0$ jets only, which is valid off the resonant set. \texttt{code/tri\_count\_all.py} and \texttt{code/tri\_run\_all.py} use \emph{all} lattice jets ($|n|\le4$) with $\sum n_i=0$ and integer derivative budget. All other ingredients are unchanged: the minimal BV complex, the maps $\sigma_0$ of v2 \S4, and the $\sigma_0^2=0$ check. As a control, at generic $\alpha=7071/10000$ the all-jet raw counts equal the $n=0$ counts ($hhh$ 780, $hhc$ 856, $Kcc$ 114, $\phi\phi c$ 24, $hcc$ 784), as Theorem~v2-A3(iii) predicts.
+\begin{center}\resizebox{\textwidth}{!}{\begin{tabular}{lccccc}\toprule
+$\alpha$ (CR) & raw $hhh/hhc$ & gh0 dims $hhh,\phi\phi h,Kch,c^*cc,\phi^*\phi c$ & gh1 dims $hhc,\phi\phi c,Kcc$ (total) & closed/exact & $H^1_{(3)}$\\\midrule
+generic (v2; $p_3$ v3) & 780/856 & 51, 12, 31, 4, 3 & 161, 10, 23 (194) & 83/83 & 0\\
+$1/3$ & 792/876 & 53, 12, 31, 4, 3 & 166, 10, 23 (199) & 85/85 & 0\\
+$1/2$ & 1134/1266 & 81, 13, 41, 4, 3 & 254, 11, 29 (294) & 120/120 & 0\\
+$2/3$ & 918/996 & 66, 12, 34, 4, 3 & 198, 10, 24 (232) & 99/99 & 0\\
+$4/5$ (inner-resonant) & 780/856 & 51, 12, 31, 4, 3 & 161, 10, 23 (194) & 83/83 & 0\\\bottomrule
+\end{tabular}}\end{center}
+Each row was run at $p_1$ and $p_2$ with identical results, and in each the images lie in the span and $\sigma_0^2=0$ holds (\texttt{logs/v3/tri\_all\_*.json}). At $4/5$ the all-jet counts equal the generic ones, so $4/5$ is not resonant for three-field candidates even though it is inner-resonant for the bubbles. \textbf{Item (5) outcome: computed}: $H^1_{(3)}=0$ on CR at $1/3$, $1/2$, $2/3$ (and $4/5$), in the sense of \S\ref{sec:rank}. Four or more fields and the full nonlinear descent were not run.
+
+\section{Item (6): what the modular ranks prove}\label{sec:rank}
+All matrices are evaluations of candidate functionals, or of their $\sigma_0$-images, at random jet configurations reduced modulo $p$. Their entries are images of elements of $\mathbb Z[\tfrac1D][i]$ under $\mathbb Z[i]\to\mathbb F_p$ with $i\mapsto\sqrt{-1}\bmod p$ ($p\equiv1\bmod4$; $D$ collects the denominators of $\alpha$ and of the coefficients $(m\pm a)/2$, coprime to $p$). Let $V$ be the true candidate span over $\mathbb Q(i)$, $V_p\subseteq V$ the span of the pivot candidates found mod $p$, $Z=\ker(\text{WZ})\subseteq V$, and $B=\sigma_0(V^{(0)})$.
+\begin{lemma}[one-sided rank bounds]\label{lem:onesided}
+Rank mod $p$ of any such sampled matrix is at most its rank over $\mathbb Q(i)$, which in turn is at most the true rank of the functionals. Hence, rigorously:
+\begin{enumerate}
+\item the pivot candidates are linearly independent over $\mathbb Q(i)$, so $\dim V\ge\dim V_p=r_p$;
+\item $\dim B\ge\operatorname{rank}_p(\text{images})$;
+\item $\dim(Z\cap V_p)\le\operatorname{nullity}_p(\text{WZ rows on }V_p)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Reduction modulo a prime ideal cannot create a nonzero minor. For (3), the kernel over $\mathbb Q(i)$ restricted to $V_p$ has a saturated $\mathbb Z[\frac1D][i]$-lattice basis whose reduction stays independent and lies in the mod-$p$ kernel.
+\end{proof}
+\begin{corollary}[rigorous form of every ``$H^1=0$'' in v1--v3]
+Assume (Span): $V=V_p$, i.e.\ the dependencies found among raw candidates mod $p$ are genuine. Then $B\subseteq Z$, which holds exactly because $\sigma_0^2=0$ algebraically and the enumeration is complete. Together with Lemma~\ref{lem:onesided} this gives $\operatorname{rank}_p({\rm images})\le\dim B\le\dim Z\le\operatorname{nullity}_p$. Every run has $\operatorname{nullity}_p=\operatorname{rank}_p$ (e.g.\ 26/26, 83/83, 120/120), so $H^1=0$ \emph{exactly}. Likewise $H^1\le2$ holds exactly in the F diagnostics (31/29).
+\end{corollary}
+\paragraph{The remaining probabilistic step.} Only (Span) is probabilistic. A false dependency requires a nonzero $r\times r$ minor of the sampled matrix to vanish. Each entry has degree $\le2$ (two-point) or $\le3$ (three-point) in the configuration variables and $\le7$ in the momenta, so the minor has degree $\le10r$. With $r\le294$, Schwartz--Zippel bounds the probability per prime by $10r/p\le3\times10^{-6}$. All runs were repeated at $p_1$ and $p_2$, and the two-point runs and the generic three-field run also at $p_3=10^9+21$, with identical outcomes. We did \emph{not} produce a fraction-free elimination over $\mathbb Q(i)$, nor a determinant-minor certificate with an a-priori height bound. Either would remove (Span). \textbf{Item (6) outcome: partially upgraded}: rigorous one-sided bounds plus an isolated hypothesis, three primes; not exact.

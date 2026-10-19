@@ -1,0 +1,96 @@
+\contentsline {section}{\numberline {1}Question, evidence, and revision contract}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}The scoped question}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Evidence classes}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}What v7 changes}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}What v8 changes}{5}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Programme non-transfer}{5}{subsection.1.5}%
+\contentsline {section}{\numberline {2}The prescribed I-B host and the typed domain ledger}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Geometry}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Standing host and domain ledger}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Self-adjointness is not destructive access}{7}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Twisted scalar channels and the normalized apex trace}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Channels and subtraction}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}An image contribution is not a diffracted-front report}{9}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Exceptional Bessel realizations and CR/F coefficients}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}A one-channel replacement}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Geometric helicities}{10}{subsection.4.2}%
+\contentsline {section}{\numberline {5}The weighted apex moment}{11}{section.5}%
+\contentsline {section}{\numberline {6}The D01 derivative obstruction and its Mellin value}{13}{section.6}%
+\contentsline {subsection}{\numberline {6.1}The actual obstruction}{13}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}A closed Mellin formula}{14}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}What is and is not unique}{15}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Conditional reduction of a complete graph}{15}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Constant profiles are local jets}{15}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Longitudinal UV normalization}{16}{subsection.7.2}%
+\contentsline {section}{\numberline {8}The declared constant-profile catalogue}{17}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Coordinate and normalization conventions}{17}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Scalar sector}{17}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Tensor bubbles}{18}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}The D02 and D12 tadpoles}{18}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Ghost and source--ghost arrays}{18}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Vector-type keys are excluded, not zero}{19}{subsection.8.6}%
+\contentsline {subsection}{\numberline {8.7}Endpoint checks}{19}{subsection.8.7}%
+\contentsline {section}{\numberline {9}Reflection-even invariant structure of the \(hh\) array}{19}{section.9}%
+\contentsline {subsection}{\numberline {9.1}The symmetry class}{19}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Coefficients}{20}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Ghost equation and the constant-profile ST row}{21}{section.10}%
+\contentsline {subsection}{\numberline {10.1}The ghost equation}{21}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Independent-coordinate weights}{22}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}An explicit algebraic closure theorem}{22}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}The three identity classes}{23}{subsection.10.4}%
+\contentsline {section}{\numberline {11}Heat moments, one-point fields, and missing two-point data}{24}{section.11}%
+\contentsline {subsection}{\numberline {11.1}The object ledger}{24}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Constant-profile restriction is not injective}{24}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}The second scalar value is partial}{24}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Evanescent data and the engine map}{24}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}What an exact span certificate requires}{25}{subsection.11.5}%
+\contentsline {section}{\numberline {12}The continuum--preparation--instrument boundary}{25}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Three objects and three targets}{25}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}The complete destructive instrument}{26}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}I-C A and D: a classical report is not code recovery}{26}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}I-C B and F: logs are records, not a Page history}{27}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}I-C C: spectral heat is not thermodynamic heat}{27}{subsection.12.5}%
+\contentsline {subsection}{\numberline {12.6}I-C E: a destructive prefix selects no apex domain}{27}{subsection.12.6}%
+\contentsline {section}{\numberline {13}Static debugging and artifact integrity}{28}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Corrections identified from the supplied listings}{28}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}v8 execution of the v7 program and response to its corrections}{29}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}The coarse channel marker needs its own check}{30}{subsection.13.3}%
+\contentsline {subsection}{\numberline {13.4}The XVI-O1-ST sign witness}{30}{subsection.13.4}%
+\contentsline {subsection}{\numberline {13.5}Historical hashes and new manifests}{30}{subsection.13.5}%
+\contentsline {subsection}{\numberline {13.6}v8: recomputed frozen-tree digests}{31}{subsection.13.6}%
+\contentsline {subsection}{\numberline {13.7}Computational scope of the embedded program}{31}{subsection.13.7}%
+\contentsline {section}{\numberline {14}v8: an exact complete span certificate}{31}{section.14}%
+\contentsline {subsection}{\numberline {14.1}What is certified}{31}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}The count 34 is angle and branch dependent}{32}{subsection.14.2}%
+\contentsline {subsection}{\numberline {14.3}Scope of the certificate}{32}{subsection.14.3}%
+\contentsline {section}{\numberline {15}v8: Ward combinations, the 34- and 18-dimensional maps, and \(\phi \phi \)}{32}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Constant-profile support of the Ward combinations}{32}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}The \(hh\) dictionary and the two exact Ward checks}{33}{subsection.15.2}%
+\contentsline {subsection}{\numberline {15.3}The remaining Ward combinations}{33}{subsection.15.3}%
+\contentsline {subsection}{\numberline {15.4}The 18-dimensional engine map}{33}{subsection.15.4}%
+\contentsline {subsection}{\numberline {15.5}The six exact values}{34}{subsection.15.5}%
+\contentsline {subsection}{\numberline {15.6}The \(\phi \phi \) values}{34}{subsection.15.6}%
+\contentsline {section}{\numberline {16}v8: mixed channels, hidden pairs, and a Duhamel lemma}{34}{section.16}%
+\contentsline {subsection}{\numberline {16.1}Feynman densities of channel pairs}{34}{subsection.16.1}%
+\contentsline {subsection}{\numberline {16.2}The complete list (executed)}{35}{subsection.16.2}%
+\contentsline {subsection}{\numberline {16.3}A per-mode Duhamel identity}{35}{subsection.16.3}%
+\contentsline {section}{\numberline {17}v8: evanescent coefficients under a declared prescription}{36}{section.17}%
+\contentsline {section}{\numberline {18}Open obligations and the exact release}{36}{section.18}%
+\contentsline {section}{\numberline {A}Embedded verification and replay program}{38}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Use and acceptance conditions}{38}{subsection.A.1}%
+\contentsline {paragraph}{What \nolinkurl {selftest} means.}{39}{section*.2}%
+\contentsline {paragraph}{What \nolinkurl {logs} means.}{39}{section*.3}%
+\contentsline {paragraph}{What \nolinkurl {replay} means.}{39}{section*.4}%
+\contentsline {paragraph}{What is not embedded.}{39}{section*.5}%
+\contentsline {subsection}{\numberline {A.2}Reproducibility obligations not replaced by this listing}{51}{subsection.A.2}%
+\contentsline {section}{\numberline {B}v8 artifacts, hashes and rerun commands}{51}{appendix.B}%
+\contentsline {paragraph}{Rerun commands.}{51}{section*.6}%
+\contentsline {section}{\numberline {C}Source, version, and compilation declarations}{54}{appendix.C}%
+\contentsline {paragraph}{Supplied material.}{54}{section*.7}%
+\contentsline {paragraph}{Companion source scope.}{54}{section*.8}%
+\contentsline {paragraph}{Primary analytical sources.}{54}{section*.9}%
+\contentsline {paragraph}{Code status.}{54}{section*.10}%
+\contentsline {paragraph}{Typesetting.}{54}{section*.11}%
+\contentsline {paragraph}{Authorship and approval.}{54}{section*.12}%
+\contentsline {paragraph}{Standing non-claims.}{54}{section*.13}%
+\contentsline {section}{References}{54}{section*.14}%

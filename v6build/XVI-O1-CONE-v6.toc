@@ -1,0 +1,77 @@
+\contentsline {section}{\numberline {1}Question, scope, and evidence classes}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}The scoped question}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}What is proved, retained, or conditional}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}What v6 adds}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Programme non-transfer}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Prescribed cone, fields, and branch domains}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Geometry and signatures}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Scalar and helicity realizations}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}CR selection is not a physical core limit}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Constant transverse profile is a jet restriction}{6}{subsection.2.4}%
+\contentsline {section}{\numberline {3}A normalized apex heat coefficient}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Why an ordinary trace is unavailable}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Apex coefficients are not only diffracted-wave coefficients}{8}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Singular Bessel channels and the CR heat shift}{9}{section.4}%
+\contentsline {section}{\numberline {5}An \(r^2\)-weighted apex coefficient (new in v6)}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Application: the second \(\phi \phi \) combination (partial)}{12}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Conditional spectral reduction of a two-point graph}{13}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Helicity classes and one closed transverse trace}{13}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}The missing hypotheses}{13}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Intertwining is a domain statement}{14}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}The D01 obstruction made exact (new in v6)}{15}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Longitudinal UV normalization}{16}{subsection.6.5}%
+\contentsline {section}{\numberline {7}The retained constant-profile pole catalogue}{16}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Status and notation}{16}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Scalar two-point sector}{17}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Tensor two-point sector}{17}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Tadpoles D02 and D12 and the \((12)\) entries (new in v6)}{18}{subsection.7.4}%
+\contentsline {paragraph}{Mixed helicity.}{18}{section*.2}%
+\contentsline {subsection}{\numberline {7.5}Ghost and source-ghost sector}{19}{subsection.7.5}%
+\contentsline {section}{\numberline {8}Exact checks available from the printed catalogue}{19}{section.8}%
+\contentsline {subsection}{\numberline {8.1}A restricted branch-transversality check}{20}{subsection.8.1}%
+\contentsline {section}{\numberline {9}The ghost-equation row and its exact scope}{21}{section.9}%
+\contentsline {subsection}{\numberline {9.1}An explicit longitudinal contraction}{21}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}The Maxwell--Friedrichs comparison}{22}{subsection.9.2}%
+\contentsline {section}{\numberline {10}The \(hh\) Slavnov--Taylor row: v4 diagnostic, diagnosis, and constant-profile closure}{22}{section.10}%
+\contentsline {subsection}{\numberline {10.1}The supplied attempted row (v4, historical)}{22}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Why UNIT requires its own analytic control theorem}{22}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Diagnosis of the v4 failure (new in v6)}{23}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}An \emph {a priori} normalization}{23}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Constant-profile closure on CR and F}{24}{subsection.10.5}%
+\contentsline {section}{\numberline {11}Invariant decomposition of the constant-profile \(hh\) poles (new in v6)}{25}{section.11}%
+\contentsline {section}{\numberline {12}What constant-profile data cannot determine}{26}{section.12}%
+\contentsline {subsection}{\numberline {12.1}The full basis projection}{26}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Joint-apex condition \((\mathrm J)\)}{26}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Regularity at special cone openings}{26}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Evanescent data and finite linear certificates}{27}{subsection.12.4}%
+\contentsline {paragraph}{Evanescent coefficients (item (d)): partial.}{27}{section*.3}%
+\contentsline {paragraph}{Exact \((\mathrm {Span})\) certificate (item (f)): open.}{27}{section*.4}%
+\contentsline {paragraph}{Remaining items.}{27}{section*.5}%
+\contentsline {section}{\numberline {13}Companion comparisons and finite-report boundaries}{27}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Smooth cores, one-point data, and infrared control}{27}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Continuum kernels and echo reports}{28}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Finite Enter instruments and their ledgers}{28}{subsection.13.3}%
+\contentsline {section}{\numberline {14}Historical corrections and reproducibility obligations}{29}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Corrections retained from v4}{29}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}Proof-level corrections made in v5 (retained)}{29}{subsection.14.2}%
+\contentsline {subsection}{\numberline {14.3}Corrections in v6}{29}{subsection.14.3}%
+\contentsline {subsection}{\numberline {14.4}Artifact inventory (v6)}{29}{subsection.14.4}%
+\contentsline {subsection}{\numberline {14.5}Status of the computational-certificate obligations}{30}{subsection.14.5}%
+\contentsline {section}{\numberline {15}Point-by-point response to the v5 audit (new in v6)}{30}{section.15}%
+\contentsline {section}{\numberline {16}Ledger and release}{32}{section.16}%
+\contentsline {section}{\numberline {A}Self-adjoint apex dynamics and the readout analogy}{34}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Boundary form and flux}{34}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}What a loss channel would additionally require}{34}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}The precise I-C comparison}{35}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}Why the analogy supplies no O.1 premise}{36}{subsection.A.4}%
+\contentsline {section}{\numberline {B}Source and status declarations}{36}{appendix.B}%
+\contentsline {paragraph}{Analytical inputs.}{36}{section*.6}%
+\contentsline {paragraph}{Companion source scope.}{36}{section*.7}%
+\contentsline {paragraph}{Primary literature.}{36}{section*.8}%
+\contentsline {paragraph}{Execution records (v6).}{36}{section*.9}%
+\contentsline {paragraph}{Compilation and review.}{36}{section*.10}%
+\contentsline {paragraph}{Submission obligation.}{36}{section*.11}%
+\contentsline {paragraph}{Unchanged non-claims.}{37}{section*.12}%
+\contentsline {section}{\numberline {C}Artifact manifest and rerun commands (new in v6)}{37}{appendix.C}%
+\contentsline {paragraph}{Rerun commands.}{40}{section*.13}%
+\contentsline {section}{References}{40}{section*.14}%

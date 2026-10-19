@@ -1,0 +1,74 @@
+\begin{abstract}
+This is Version~8 of the scoped O.1 cone audit; it revises
+XVI-O1-CONE-v7. The cone \(C_\alpha\times\RR^2\), its deficit and
+holonomy, and the curvature-regular (CR) and componentwise
+Friedrichs (F) realizations remain prescribed inputs.
+The v7 analytical content is retained. What is new is executed
+and is stated with its scope.
+
+\emph{(1) The v7 program was run.} The embedded \loc{cone_v7.py}
+was extracted unchanged and executed. Its self-test passed, all
+27 replay runs returned 0, and the coverage-aware comparison with
+the historical logs passed for all \(18\) graph--branch pairs.
+Of the fifteen static corrections listed in v7, eight are real:
+seven code defects and one methodological limitation. None of them changes a number printed in v6.
+
+\emph{(2) The count of 26 is now exact, and so is a complete span
+certificate.} We evaluated the apex functionals on every
+relevant unit atom over a complete \(6\times6\) momentum grid,
+in exact \(\mathbb Q(\ii)\) arithmetic. At
+\(\alpha=3/10\) (CR and F) and at \(\alpha=7071/10000\) (CR), the
+inventory is \(34=18+8+6+2\). The Slavnov--Taylor row rank is
+\(26\), with a nonzero minor and a kernel verified on all rows.
+The closed space is \(Z\) with \(\dim Z=8\). The exact directions
+\(B\) satisfy \(\dim B=6\) and \(B\subset Z\), and
+\(\dim H^0=2\). At \(\alpha=7071/10000\) the F branch is different:
+both the historical modular record and the v8 exact run give
+\(38=21+8+7+2\), with ST rank \(29\), \(\dim Z=9\) and
+\(\dim H^0=3\).
+The number 34 is therefore a branch- and angle-qualified count,
+not a universal one.
+
+\emph{(3) Projections.} Six of the 26 Ward combinations are
+supported on the twelve constant-profile coordinates.
+Two of them lie in the \(hh\) block: \(b_1+2b_3=0\) and \(b_2=0\).
+Both hold exactly on the \(hh\) catalogue sum. They hold through
+a cancellation between D01 and D03; neither graph satisfies them
+alone. The other four involve the CK/CB sectors, and we identify
+them with the v7 rows only conditionally. The remaining 20 are
+open.
+Of the 18 engine \(hh\) coordinates, the six constant-profile
+ones receive an explicit exact dictionary; the other twelve stay
+open.
+Of the six exact values, four combinations are fixed, including
+\(e_1=(1-\alpha)/4\) and \(e_3=0\). The CR/F difference sits only
+in \(e_4+e_5\), where it equals \(\nu/8\) exactly at both
+computed angles. The remaining two
+combinations are open.
+
+\emph{(4) New mixed-channel finding.} The engine slice exposes
+hidden mixed pairs. These are pairs whose circle pole vanishes
+while their Feynman density does not. In D01, the lattice keys
+\((4,4),(4,7),(5,5),(7,4),(7,7)\) carry a mixed
+\((0,2)\) density proportional to \(P^2(6x^2-10x+3)\).
+The printed v6 \(hh\) branch difference is therefore unchanged in
+value. Its status becomes conditional on the corresponding
+mixed-channel trace. A per-mode Duhamel identity and a reduction
+formula are proved, but the D04 part of the second \(\phi\phi\)
+value stays open.
+
+\emph{(5) Evanescent coefficients.} Under an explicitly declared
+slice-DRED prescription with formal \(\tilde g\) components, the
+number of evanescent pole coefficients is 86 on each physical
+branch and 113 on the UNIT lattice. They are prescription
+conditional.
+
+No missing value is set to zero.
+The exact rank statement has status
+\texttt{CLOSED\_PENDING\_}\allowbreak\texttt{INDEPENDENT\_REVIEW}
+only on its precisely stated finite scope. Overall:
+\[
+ \text{O.1 on the cone}=\NOTCLOSED,\qquad
+ \texttt{bulk\_symmetry\_restored}=\texttt{false}.
+\]
+\end{abstract}

@@ -1,0 +1,3722 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable,tabularx}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=blue!45!black,
+  urlcolor=blue!45!black,
+  pdftitle={Scoped O.1 on the Cone, v6:
+  Executed Apex Records, a Closed Constant-Profile Slavnov-Taylor Row,
+  and Ward-Identity Boundaries},
+  pdfauthor={Ngo Cheung}
+]{hyperref}
+
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\ka}{\kappa}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Reg}{M_{\mathrm{reg}}}
+\newcommand{\WW}{\mathcal W}
+\newcommand{\Fr}{\mathrm F}
+\newcommand{\CR}{\mathrm{CR}}
+\newcommand{\Ccb}{\mathcal C}
+\newcommand{\Hreg}{(\mathrm H_{\rm reg})}
+\newcommand{\HI}{(\mathrm H_I)}
+\newcommand{\Span}{(\mathrm{Span})}
+\newcommand{\Jcond}{(\mathrm J)}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\pair}[2]{\langle #1,#2\rangle}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\proj}[1]{\lvert #1\rangle\langle #1\rvert}
+\newcommand{\loc}[1]{\nolinkurl{#1}}
+\newcommand{\NOTCLOSED}{\texttt{NOT\_CLOSED}}
+\newcommand{\OPEN}{\textsf{OPEN}}
+\newcommand{\SUPPLIED}{\textsf{SUPPLIED}}
+\newcommand{\CONDITIONAL}{\textsf{CONDITIONAL}}
+\newcommand{\UNVALIDATED}{\textsf{UNVALIDATED}}
+\newtheorem*{evidence}{Evidence}
+
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\ResUV}{Res_{\!UV}}
+\newcommand{\ApTr}{\operatorname{Tr}_{\rm ap}}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{inputstatement}[theorem]{Supplied input}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+\setlist{itemsep=3pt,topsep=5pt}
+\setcounter{tocdepth}{2}
+\emergencystretch=2em
+\allowdisplaybreaks
+
+\newcommand{\scopebox}[2]{%
+\par\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+\textbf{#1}\par\smallskip #2}}
+\par\medskip
+}
+
+\newcommand{\separation}{%
+\par\smallskip\noindent
+\emph{Separation boundary.}
+The cone, extension, regulator, and external-field class are prescribed.
+A free inverse, operator limit, one-point finite part, finite instrument,
+or documentary comparison is not an interacting two-point Ward theorem.
+No Einstein dynamics, physical tensor Hessian, spacetime emergence,
+or inherited quantum admission follows.
+}
+
+\title{\textbf{Scoped O.1 on the Cone}\\[5pt]
+\Large Executed Apex Records, a Closed Constant-Profile
+Slavnov--Taylor Row, Weighted Apex Coefficients,
+and Ward-Identity Boundaries\\[6pt]
+\large An artifact-verified revision of the v5 proof-level audit}
+\author{Ngo Cheung}
+\date{18 October 2026\\
+\small Version 6; revision of \loc{XVI-O1-CONE-v5.tex}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Version~6 is an artifact-verified revision of the v5 audit of the
+constant-transverse-profile calculation for the scoped O.1 problem
+on \(C_\alpha\times\RR^2\).
+It keeps v5's structure, its evidence classes, and its conditional
+theorems. What it changes is that the executable record behind v4
+is now archived, rerun, and audited, and it adds the following.
+
+\smallskip\noindent\textbf{New in v6.}
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=1.6em]
+\item \emph{Catalogue re-derived.}
+Every entry of the v5 coefficient catalogue agrees exactly with the
+executed spectral reductions of the frozen XVI-P vertex arrays.
+The executed record also contains three things v4 never printed:
+the \((12)(12)\) entries
+\(\widehat B_{\mathrm{D01}}=\widehat B_{\mathrm{D03}}
+=-8c_1P^2\,\ka^2/(16\pi)\); the complete D02 tadpole array
+\(\tfrac{\ka^2}{2\pi}(c_0+2c_1+c_2)\) times a fixed tensor;
+and \(\widehat B_{\mathrm{D12}}=0\).
+Mixed-helicity monomials occur only on vector-type keys, which are
+excluded from the record, not set to zero.
+The D13 transverse source trace is computed to be zero.
+
+\item \emph{The \(hh\) Slavnov--Taylor failure is diagnosed.}
+The v4 failure comes from the coordinate weight of the antifield
+\(K'_{(03)}\). The correct weight is \(-2\); v4 scanned only
+positive weights.
+With conventions derived from the frozen vertex, the
+constant-profile \(hh/Kc\) row closes on CR and on F.
+The closure is exact as a rational identity in \(\alpha\), with
+\(\lambda=-2\ii\). This value is fixed in advance by the tree-level
+data, not fitted. UNIT closes trivially.
+
+\item \emph{A second apex coefficient.}
+We prove the \(r^2\)-weighted apex coefficient
+\[
+\mathcal D_b=-\frac{11\alpha}{180}+\frac{B_2(b)}{3\alpha}
+-\frac{B_4(b)}{6\alpha^3},
+\qquad
+\ApTr\bigl[r^2f(A_b)\bigr]=-\mathcal D_bf'(0).
+\]
+Its singular-channel shift is \(2\nu(1-\nu^2)/3\).
+It passes exact orbifold and twisted-orbifold checks, and it has no
+flat CR remnant.
+
+\item \emph{An exact obstruction for \(\HI\) in D01, and its
+resolution.}
+The \(S=2\to3\) composite trace has the non-integrable diagonal
+\(r^{-2\nu-2}\), so \(\HI\) fails as an \(L^2\) statement.
+Its unique homogeneous (Mellin) continuation, however, vanishes
+identically in \(\nu\). This is shown in closed form and confirmed
+independently by quadrature.
+
+\item \emph{Invariant structure of the \(hh\) poles.}
+The constant-profile \(hh\) poles decompose into six
+\(SO(1,1)\)-invariant structures.
+In the complete \(hh\) sum the purely longitudinal structures
+cancel, and the gauge variance enters only through
+\(b_6+b_7=-\ka^2V/(4\pi)\).
+The CR--F difference is gauge invariant:
+\(-\nu\ka^2P^2f_0f_0'/(4\pi)\).
+\end{enumerate}
+A point-by-point table answers every issue v5 raised against v4.
+An appendix lists full SHA-256 digests and rerun commands.
+
+\smallskip\noindent\textbf{Still open.}
+The 26 Ward combinations and the 34-dimensional projection;
+the six exact values;
+the D04 quadratic-profile part of the second \(\phi\phi\) value;
+the evanescent coefficients;
+the 18-dimensional engine map;
+an exact \(\Span\) certificate;
+and the vector-type keys.
+None of these is reported as zero.
+The scope remains one loop at \(O(\ka^2)\), the massless two-point
+sector, frozen de Donder gauge, and the XVI-P prescription.
+The cone and the CR branch remain inputs, and the
+destructive-readout analogy supplies no premise.
+\(\texttt{bulk\_symmetry\_restored}=\texttt{false}\), and
+O.1 on the cone remains \(\NOTCLOSED\).
+\end{abstract}
+
+
+\tableofcontents
+
+%======================================================================
+\section{Question, scope, and evidence classes}
+\label{sec:introduction}
+%======================================================================
+
+\subsection{The scoped question}
+
+The supplied v4 sheet studies transport of the separately scoped
+XVI-Q record Q11 to a prescribed conical product, with:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item one-loop order and coupling order \(O(\ka^2)\);
+\item a two-point sector and vanishing declared scalar mass;
+\item frozen de Donder gauge;
+\item dimensional reduction with quasi-\(d\) loop momenta and
+quasi-four-dimensional vertex indices;
+\item the frozen XVI-P prescription and the p22 contract;
+\item curvature-regular (CR) and componentwise Friedrichs (F)
+apex realizations compared without selecting either by readout.
+\end{enumerate}
+XVI-P, XVI-Q, and XVI-R are frozen comparison records
+\cite{CheungP,CheungQ,CheungR}.
+The later supplied p23 excerpt is not silently substituted for the
+p22 contract.
+
+The principal issue is not whether a conical heat coefficient exists.
+It is whether the complete differentiated graph, on its declared domain
+and in its declared prescription, reduces to that coefficient and obeys
+the required interacting identities.
+
+\subsection{What is proved, retained, or conditional}
+
+This revision uses four evidence classes.
+v6 adds the last one.
+\begin{description}[style=nextline,leftmargin=0pt]
+\item[Locally proved.]
+The normalized scalar apex coefficient; the singular-channel heat
+shift; the new \(r^2\)-weighted coefficient and its shift; a
+conditional graph-reduction theorem; the longitudinal UV
+normalization; algebraic identities between the printed polynomials;
+and the stated access/flux distinctions.
+
+\item[Executed and artifact-verified in v6.]
+Statements carrying the tag \textsf{[exec]}.
+Each was produced by a program in \loc{code/} and logged in
+\loc{logs/v4/} or \loc{logs/v6/}, and was rerun or checked in this
+revision.
+Its full SHA-256 digest is listed in Appendix~\ref{app:artifacts}.
+The vertex inputs are read-only copies of the frozen XVI-P/Q
+files; their digests equal the originals.
+Exact statements are exact rational or symbolic identities in
+\(\alpha\) or \(\nu\).
+Numerical statements give their precision.
+An executed result is a reproducible computation, not an
+independent review.
+
+\item[Supplied computational record.]
+v4 reports that v6 did not rerun, together with the historical
+registry intake.
+These are kept as reports.
+
+\item[Conditional graph identification.]
+Equality of a printed polynomial with a particular frozen graph
+integral still needs the graph-specific hypotheses of
+Assumption~\ref{ass:reduction}.
+v6 discharges several of these for the constant-profile record;
+the ledger in Section~\ref{sec:ledger} lists them.
+No proof is reconstructed from a routine name.
+\end{description}
+
+\scopebox{Submission and proof boundary (v6)}{%
+v6 now archives the vertex arrays, routing, prefactors, and logs
+that v5 found missing.
+The constant-profile catalogue is therefore an executed result on
+the archived frozen inputs, and no longer just a supplied report.
+It is still not an independently refereed computation.
+The spectral reduction of each graph remains conditional on
+Assumption~\ref{ass:reduction}.
+Only (R1) and parts of (R3) are discharged here
+(Sections~\ref{sec:catalogue}, \ref{sec:HI}).
+(R2), (R4), and (R5) are still the stated hypotheses.}
+
+The coefficient values printed in v4 and v5 are unchanged.
+v6 adds entries but alters none.
+
+\subsection{What v6 adds}
+
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{\(hh\) Slavnov--Taylor row}
+(Section~\ref{sec:ST}).
+Derived conventions, an \emph{a priori} constant \(\lambda\), and
+exact closure on CR and F for the constant profile.
+The v4 failure is diagnosed, and UNIT closes.
+\item \emph{Higher apex coefficient}
+(Section~\ref{sec:weighted}).
+The \(r^2\)-weighted coefficient \(\mathcal D_b\), with checks.
+The quadratic-profile \(\phi\phi\) value is partial: the D05a part
+is \(0\) and the D04 part is open.
+\item \emph{\((\mathrm H_{I,\mathrm{D01}})\)}
+(Section~\ref{sec:HI}).
+The exact \(L^2\) obstruction, and an exact vanishing Mellin value.
+\item \emph{Evanescent coefficients}
+(Section~\ref{sec:missing}).
+A pole-level statement only; the coefficients themselves are open.
+\item \emph{\(hh\) map}
+(Section~\ref{sec:structures}).
+Six invariant structures, the complete D02/D12 arrays, and the
+coefficient vectors.
+The 18-dimensional engine map is open.
+\item \emph{\(\Span\) certificate}
+(Section~\ref{sec:missing}).
+Open, with the precise reason.
+\item \emph{Response table}
+(Section~\ref{sec:response}).
+Every v5 issue, answered point by point.
+\end{enumerate}
+
+\subsection{Programme non-transfer}
+
+Connections to I-B, I-B-G, I-B-G-S, I-B-G-S-B, I-B-VP, and I-C are
+separations, not additional analytical premises or a declared path.
+They do not discharge O.1, open the downstream XV-B admission exit,
+or resolve the unrelated H2/I3/J2 characteristic-product obligations.
+
+The historical H2 ending in XIV-H is retained version-specifically;
+the narrower I2 internal-amplitude construction in XIV-I is not
+withdrawn. The complete joint maps at I3/J2 and their subsequent
+admission chain remain separate
+\cite{CheungCharacteristic,CheungXVB}.
+Missing values are never set to zero.
+
+%======================================================================
+\section{Prescribed cone, fields, and branch domains}
+\label{sec:conventions}
+%======================================================================
+
+\subsection{Geometry and signatures}
+
+For the Euclidean spectral analysis use
+\begin{equation}
+X_\alpha=C_\alpha\times\RR^2,\qquad
+\dd s_E^2=\dd r^2+\alpha^2r^2\dd\varphi^2
+ +\dd y_0^2+\dd y_3^2,
+\quad
+0\le\varphi<2\pi,
+\quad 0<\alpha\le1.
+\label{eq:geometry}
+\end{equation}
+The singular stratum is the codimension-two set
+\[
+\WW=\{r=0\}\times\RR^2.
+\]
+Its transverse measure is
+\[
+\dd V_\perp=\alpha r\,\dd r\,\dd\varphi.
+\]
+
+For the Lorentzian polynomial catalogue the tangent signature is
+\(\eta=\diag(1,-1,-1,-1)\), and
+\begin{equation}
+P^2=q_0^2-q_3^2.
+\label{eq:P2}
+\end{equation}
+The symbols \(q_0,q_3\) first denote the two polynomial variables
+printed in v4. Their conversion to covariant or contravariant
+momentum components must be fixed when a Ward contraction is made;
+Section~\ref{sec:ghost} does so explicitly.
+
+The apex is a prescribed conical worldsheet, not an event horizon.
+No state-dependent metric update is present
+\cite{CheungIB,CheungIBG}.
+
+\subsection{Scalar and helicity realizations}
+
+A scalar channel with fractional twist \(b\in[0,1)\) has radial
+Bessel orders
+\[
+\nu_n=\frac{\abs{n+b}}{\alpha},\qquad n\in\ZZ.
+\]
+The Friedrichs realization chooses the regular branch
+\(r^{\nu_n}\), with the no-logarithm branch at \(\nu_n=0\).
+
+For a geometric helicity \(S\), the fractional label is
+\begin{equation}
+b_\Fr(S)=\{S\alpha\},
+\label{eq:fractionallabel}
+\end{equation}
+with fractional part in \([0,1)\).
+In the interval \(1/2<\alpha<1\), the distinct labels for
+\(S=0,\pm1,\pm2\) are
+\[
+0,\quad \alpha,\quad 1-\alpha,\quad
+2\alpha-1,\quad 2-2\alpha.
+\]
+
+For the CR comparison, the v4 labels are
+\begin{equation}
+b_\CR(S)=
+\begin{cases}
+S\alpha,&S\ge0,\\
+1+S\alpha,&S<0.
+\end{cases}
+\label{eq:CRlabels}
+\end{equation}
+For \(S=\pm2\) and \(1/2<\alpha<1\), these labels lie outside
+the fractional interval. They are not ordinary Aharonov--Bohm
+holonomies modulo one. They encode an additional endpoint choice.
+
+Put
+\begin{equation}
+\nu=2-\alpha^{-1}\in(0,1).
+\label{eq:nu}
+\end{equation}
+In each exceptional weight-2 channel, CR replaces the regular
+Bessel realization of order \(\nu\) by the scale-invariant singular
+realization with generalized eigenfunction \(J_{-\nu}\).
+Both are nonnegative self-adjoint Bessel realizations in this range
+\cite{DerezinskiRichard}.
+Their difference, not a periodic relabeling alone, produces the
+heat shift proved in Section~\ref{sec:flip}.
+
+\begin{remark}[Parameter range of the printed polynomials]
+\label{rem:range}
+The common rational forms used below describe the sector
+\(1/2<\alpha<1\), with their continuous values at \(\alpha=1/2\).
+The F expressions also have their ordinary flat value at \(\alpha=1\).
+
+For \(0<\alpha<1/2\), the appropriate Friedrichs weight-2 label is
+\(2\alpha\), not \(2\alpha-1\).
+Thus the displayed F polynomials must not be advertised as one
+unchanged formula on every \(0<\alpha\le1\).
+The scalar heat theorem itself holds for every positive \(\alpha\).
+\end{remark}
+
+\subsection{CR selection is not a physical core limit}
+
+The supplied I-B-G-S excerpts describe CR as a mathematical domain
+selection restoring the stated source-test de Donder compatibility
+and packet curvature regularity in the exceptional sector
+\cite[{\loc{def:geo}, \loc{thm:selection},
+\loc{thm:spin2}}]{CheungIBGS}.
+That selection is not a physical smooth-core theorem.
+
+The supplied I-B-G-S-B description reports that its declared
+nonnegative tensor connection-Laplacian and Lichnerowicz-form
+families, with the metric spin connection, select a different
+positive-core limit. In its neutral exceptional spin-2 channels
+for \(\alpha>1/2\), the description excludes the idealized CR
+branch in the Mosco/strong-resolvent setting and retains the
+corresponding source-test defect
+\cite[{\loc{cor:exclude}, \loc{thm:contrast},
+\loc{prop:warddefect}}]{CheungTensor}.
+This is a source-qualified comparison; a complete independent
+tensor proof is not asserted here.
+
+Consequently, CR remains an input to this computation.
+Analytical angular-tail, complex-kernel, and Cauchy estimates
+are also distinct from an executed, certified full-kernel run
+\cite[{\loc{lem:modetail}, \loc{lem:complexbound},
+\loc{thm:Cauchy}}]{CheungTensor}.
+\separation
+
+\subsection{Constant transverse profile is a jet restriction}
+
+A constant-profile external field is understood as a local jet:
+it is constant in the transverse variables near the apex, with
+longitudinal Fourier dependence. It need not be a globally
+square-integrable constant section of an infinite cone.
+
+Only helicity-zero constant profiles are invariant under the
+transverse identification. For a symmetric tensor, the permitted
+transverse scalar is the trace combination
+\[
+h_{11}=h_{22}=f_0.
+\]
+The individual coordinates \(h_{11}\) and \(h_{22}\) are not
+separately helicity-zero eigencomponents.
+
+For comparison with v4, the component keys are
+\[
+0\leftrightarrow00,\quad
+3\leftrightarrow03,\quad
+9\leftrightarrow33,\quad
+4\leftrightarrow11,\quad
+7\leftrightarrow22.
+\]
+The supplied component array may retain entries in these coordinates;
+a genuine constant-profile scalar test uses the transverse trace
+combination. In particular, if \(B_{44}=B_{77}\),
+\begin{equation}
+B_{f_0f_0}=B_{44}+2B_{47}+B_{77}
+          =2(B_{44}+B_{47}).
+\label{eq:tracecombination}
+\end{equation}
+No omitted non-lattice component is inferred to vanish.
+
+%======================================================================
+\section{A normalized apex heat coefficient}
+\label{sec:heat}
+%======================================================================
+
+\subsection{Why an ordinary trace is unavailable}
+
+The heat operator on the infinite cone has infinite ordinary trace.
+Its bulk volume term must be subtracted before an apex coefficient
+is stated. We use an explicit radial Abel subtraction.
+
+Let \(A_b^\Fr\) be the nonnegative twisted Friedrichs transverse
+Laplacian. Its diagonal heat kernel is
+\begin{equation}
+K_b^\Fr(s;r,\varphi;r,\varphi)
+ =
+\frac{e^{-z}}{4\pi\alpha s}
+ \sum_{n\in\ZZ} I_{\abs{n+b}/\alpha}(z),
+\qquad
+z=\frac{r^2}{2s},
+\quad s>0.
+\label{eq:heatkernel}
+\end{equation}
+This is the Bessel heat representation, with normalization relative
+to \(\dd V_\perp\).
+The required Bessel integral formulas are standard
+\cite{DLMF,DerezinskiRichard}; the subtraction and constant are
+computed below.
+
+\begin{definition}[Abel apex trace]
+\label{def:apex}
+For \(u>0\), define
+\begin{align}
+T_b(u)
+ &=\int_{C_\alpha}
+ e^{-(\cosh u-1)r^2/(2s)}
+ K_b^\Fr(s;x,x)\,\dd V_\perp,\nonumber\\
+T_{\rm bulk}(u)
+ &=\int_{C_\alpha}
+ e^{-(\cosh u-1)r^2/(2s)}
+ \frac{\dd V_\perp}{4\pi s}
+ =\frac{\alpha}{2(\cosh u-1)}.
+\label{eq:Abeltrace}
+\end{align}
+When the limit exists, put
+\[
+\ApTr e^{-sA_b^\Fr}
+ =\lim_{u\downarrow0}\bigl(T_b(u)-T_{\rm bulk}(u)\bigr).
+\]
+This definition specifies a bulk-subtracted scale-invariant
+coefficient, not an ordinary trace on \(L^2(C_\alpha)\).
+\end{definition}
+
+\begin{theorem}[Twisted Friedrichs apex constant]
+\label{thm:apex}
+For every \(\alpha>0\), \(0\le b<1\), and \(s>0\),
+\begin{equation}
+\ApTr e^{-sA_b^\Fr}
+ =\Ccb_b^\Fr
+ :=\frac1{12}\left(\frac1\alpha-\alpha\right)
+   -\frac{b(1-b)}{2\alpha}.
+\label{eq:Cb}
+\end{equation}
+The result is independent of the proper time \(s\).
+For
+\[
+f(\lambda)=\int_a^b w(s)e^{-s\lambda}\,\dd s,
+\qquad 0<a<b<\infty,\quad w\in L^1([a,b]),
+\]
+the corresponding heat-superposition apex functional satisfies
+\begin{equation}
+\ApTr f(A_b^\Fr)=\Ccb_b^\Fr f(0).
+\label{eq:functional}
+\end{equation}
+The subscript \(b\) on the operator denotes the twist;
+the integration endpoints in this statement are merely positive
+proper-time bounds.
+\end{theorem}
+
+\begin{proof}
+Integrating \eqref{eq:heatkernel} in the angular and radial variables
+gives
+\[
+T_b(u)=\frac12\sum_{n\in\ZZ}
+ \int_0^\infty e^{-z\cosh u}
+ I_{\abs{n+b}/\alpha}(z)\,\dd z.
+\]
+For \(u>0\) and \(\rho>-1\),
+\[
+\int_0^\infty e^{-z\cosh u}I_\rho(z)\,\dd z
+ =\frac{e^{-\rho u}}{\sinh u}.
+\]
+The nonnegative summands justify the interchange.
+The geometric series gives
+\[
+\sum_{n\in\ZZ}e^{-\abs{n+b}u/\alpha}
+ =
+\frac{\cosh((1/2-b)u/\alpha)}{\sinh(u/(2\alpha))}.
+\]
+Hence
+\begin{equation}
+T_b(u)=
+\frac{\cosh((1/2-b)u/\alpha)}
+ {2\sinh u\,\sinh(u/(2\alpha))}.
+\label{eq:closedAbel}
+\end{equation}
+
+With \(B_2(b)=b^2-b+1/6\), expansion at zero yields
+\[
+T_b(u)
+ =\frac{\alpha}{u^2}
+  +\frac{B_2(b)}{2\alpha}-\frac{\alpha}{6}
+  +O(u^2),
+\]
+whereas
+\[
+T_{\rm bulk}(u)
+ =\frac{\alpha}{u^2}-\frac{\alpha}{12}+O(u^2).
+\]
+Subtracting proves
+\[
+\Ccb_b^\Fr
+ =\frac{B_2(b)}{2\alpha}-\frac{\alpha}{12},
+\]
+which is \eqref{eq:Cb}.
+
+The radial change of variable removed \(s\), proving exact
+proper-time independence. For a compact proper-time interval,
+the closed expressions and their subtracted limits are uniformly
+bounded. Dominated convergence and linearity then give
+\[
+\ApTr f(A_b^\Fr)
+ =\Ccb_b^\Fr\int_a^b w(s)\,\dd s
+ =\Ccb_b^\Fr f(0).
+\]
+\end{proof}
+
+The untwisted coefficient and conical heat-trace methodology are
+classical \cite{Fursaev1994,FursaevMiele1997,Vassilevich}.
+The proof fixes the normalization rather than attributing a
+numerical re-derivation to unavailable software.
+
+\begin{remark}[Function class]
+Theorem~\ref{thm:apex} does not assert an unrestricted ordinary-trace
+identity for every Schwartz function.
+Extending \eqref{eq:functional} to resolvent products,
+differentiated kernels, or meromorphic graph families requires
+the corresponding functional-calculus and interchange hypotheses.
+Those hypotheses are stated in Section~\ref{sec:reduction}.
+\end{remark}
+
+\subsection{Apex coefficients are not only diffracted-wave coefficients}
+
+The scalar Sommerfeld--Carslaw representation, extension-dependent
+Green identities, and supported transfer in I-B-G concern continuum
+operators on their stated domains
+\cite[{\loc{thm:green}, \loc{eq:Carslaw},
+\loc{thm:transfer}}]{CheungIBG}.
+They do not identify a loop residue with a finite detector output.
+
+One further distinction is necessary: the apex heat constant can
+receive contributions from geometric images even when a chosen
+diffracted wave term vanishes.
+
+\begin{example}[A nonzero apex constant in a pure-image case]
+\label{ex:image}
+For the neutral cone \(\alpha=1/2\),
+\[
+\Ccb_0^\Fr=\frac18.
+\]
+The cone is a two-fold rotation quotient. The nontrivial image has
+plane heat kernel
+\[
+\frac1{4\pi s}\exp(-r^2/s)
+\]
+on the diagonal after a half-turn.
+Integrating over the wedge of angle \(\pi\) gives
+\[
+\frac{\pi}{4\pi s}
+ \int_0^\infty r e^{-r^2/s}\,\dd r=\frac18.
+\]
+Thus this apex coefficient is present without needing a separately
+nonzero diffracted-front term.
+\end{example}
+
+The finite-window echo ratios of I-B-ECHO and I-C concern a
+different functional. Their additive front expansion and their
+zero-deficit witness on \(1/2<\alpha\le1\) do not turn
+\(\Ccb_b\) into that ratio
+\cite{CheungEcho,CheungIC}.
+\separation
+
+%======================================================================
+\section{Singular Bessel channels and the CR heat shift}
+\label{sec:flip}
+%======================================================================
+
+For \(0<\nu<1\), let \(A_\nu^+\) and \(A_\nu^-\) denote the
+scale-invariant regular and singular nonnegative self-adjoint radial
+realizations in \(L^2((0,\infty),r\,\dd r)\).
+Their radial heat kernels are
+\[
+k_\nu^\pm(s;r,r')
+ =\frac1{2s}
+  e^{-(r^2+r'^2)/(4s)}
+  I_{\pm\nu}\!\left(\frac{rr'}{2s}\right).
+\]
+These choices are endpoint realizations, not ordinary potentials
+added to the regular cone.
+
+\begin{theorem}[One-channel flip]
+\label{thm:flip}
+For \(0<\nu<1\),
+\begin{equation}
+\Tr_{\rm rad}
+ \bigl(e^{-sA_\nu^-}-e^{-sA_\nu^+}\bigr)=\nu,
+\qquad s>0.
+\label{eq:flip}
+\end{equation}
+The diagonal relative integral is convergent.
+Consequently, replacing one such regular angular channel by its
+singular realization increases its apex heat constant by \(\nu\).
+\end{theorem}
+
+\begin{proof}
+The radial trace difference is
+\[
+\frac12\int_0^\infty
+ e^{-z}\bigl(I_{-\nu}(z)-I_\nu(z)\bigr)\,\dd z.
+\]
+Near zero, the worst term is \(z^{-\nu}\), which is integrable
+because \(\nu<1\).
+At infinity use
+\[
+I_{-\nu}(z)-I_\nu(z)
+ =\frac{2\sin(\pi\nu)}{\pi}K_\nu(z).
+\]
+The resulting integrand decays exponentially
+\cite{DLMF}.
+
+Insert the Abel factor and use the Laplace transform from the
+preceding proof. The integral becomes
+\[
+\frac{e^{\nu u}-e^{-\nu u}}{2\sinh u}
+ =\frac{\sinh(\nu u)}{\sinh u}.
+\]
+Dominated convergence gives the limit \(\nu\).
+Scale invariance makes it independent of \(s\).
+\end{proof}
+
+\begin{corollary}[Three apex coefficients in the comparison sector]
+\label{cor:threeC}
+For \(1/2<\alpha<1\), define
+\begin{align}
+c_0&=\frac{1-\alpha^2}{12\alpha},\nonumber\\
+c_1&=\frac{5\alpha^2-6\alpha+1}{12\alpha},\nonumber\\
+c_2^\Fr&=\frac{23\alpha^2-36\alpha+13}{12\alpha},\nonumber\\
+c_2^\CR&=\frac{23\alpha^2-12\alpha+1}{12\alpha}.
+\label{eq:cvalues}
+\end{align}
+These are the per-helicity apex coefficients for weight zero,
+weight one, and the two respective weight-two realizations.
+They satisfy
+\begin{align}
+c_1-c_0&=\frac{\alpha-1}{2},\label{eq:c1diff}\\
+c_2^\CR-c_0&=2\alpha-1,\label{eq:c2CRdiff}\\
+c_2^\Fr-c_0&=
+ \frac{(\alpha-1)(2\alpha-1)}{\alpha},\label{eq:c2Fdiff}\\
+c_2^\CR-c_2^\Fr&=
+ 2-\frac1\alpha=\nu.
+\label{eq:branchdiff}
+\end{align}
+At \(\alpha=1/2\), continuous evaluation gives
+\[
+c_0=c_2^\Fr=c_2^\CR=\frac18,\qquad c_1=-\frac18.
+\]
+\end{corollary}
+
+\begin{proof}
+Apply \eqref{eq:Cb} at \(b=0,\alpha,2\alpha-1\).
+For the exceptional CR channel add \(\nu\) from
+Theorem~\ref{thm:flip}. Expansion gives \eqref{eq:cvalues};
+subtraction gives the remaining identities.
+The mirror labels have the same coefficients because
+\(b(1-b)=(1-b)b\).
+\end{proof}
+
+The polynomial expression obtained by inserting \(b=2\alpha\)
+into \eqref{eq:Cb} reproduces \(c_2^\CR\).
+This is now justified by a specified channel flip.
+It is not a general license to use arbitrary real \(b\) as a
+fractional twist.
+
+\begin{remark}[The CR flat-limit remnant]
+\label{rem:flatCR}
+As \(\alpha\uparrow1\),
+\[
+c_0\to0,\qquad c_1\to0,\qquad
+c_2^\Fr\to0,\qquad c_2^\CR\to1.
+\]
+The last statement is a one-sided limit of the singular-channel
+family. At \(\alpha=1\), its formal order is \(\nu=1\), and
+\[
+\int_0^\epsilon r\,\abs{r^{-1}}^2\,\dd r=\infty.
+\]
+The deficient singular \(L^2\) branch used above no longer exists
+in the same form. Therefore a nonzero limiting CR polynomial is
+not, without an additional theorem, the heat trace of a CR
+realization at the exactly smooth endpoint.
+Nonuniform spin-dependent flat limits are also discussed in the
+established conical heat-kernel literature
+\cite{FursaevMiele1997}.
+\end{remark}
+
+%======================================================================
+\section{An \texorpdfstring{\(r^2\)}{r\textasciicircum 2}-weighted apex coefficient (new in v6)}
+\label{sec:weighted}
+%======================================================================
+
+Constant transverse profiles see only \(\Ccb_b\).
+A quadratic transverse jet \(G=r^2g\) needs the next moment of the
+apex heat distribution.
+v5 recorded that no value of the higher coefficient \(\mathcal D_b\)
+had been supplied or derived.
+This section derives it with the same Abel subtraction used in
+Definition~\ref{def:apex}.
+
+\begin{definition}[Weighted Abel apex trace]
+\label{def:weighted}
+For \(u>0\) put
+\begin{align*}
+T^{(2)}_b(u)
+ &=\int_{C_\alpha}r^2
+ e^{-(\cosh u-1)r^2/(2s)}K_b^\Fr(s;x,x)\,\dd V_\perp,\\
+T^{(2)}_{\rm bulk}(u)
+ &=\int_{C_\alpha}r^2
+ e^{-(\cosh u-1)r^2/(2s)}\frac{\dd V_\perp}{4\pi s}
+ =\frac{\alpha s}{(\cosh u-1)^2}.
+\end{align*}
+When the limit exists, set
+\(\ApTr[r^2e^{-sA_b}]=\lim_{u\downarrow0}
+(T^{(2)}_b(u)-T^{(2)}_{\rm bulk}(u))\).
+\end{definition}
+
+\begin{theorem}[Weighted twisted Friedrichs apex coefficient]
+\label{thm:weighted}
+Let \(\alpha>0\), \(0\le b<1\), and \(s>0\).
+With Bernoulli polynomials \(B_2(b)=b^2-b+\tfrac16\) and
+\(B_4(b)=b^4-2b^3+b^2-\tfrac1{30}\),
+\begin{equation}
+\ApTr\bigl[r^2e^{-sA_b^\Fr}\bigr]=\mathcal D_b\,s,
+\qquad
+\mathcal D_b=-\frac{11\alpha}{180}
++\frac{B_2(b)}{3\alpha}-\frac{B_4(b)}{6\alpha^3}.
+\label{eq:Db}
+\end{equation}
+Equivalently,
+\begin{equation}
+\mathcal D_b=
+\frac{1+10\alpha^2-11\alpha^4-60\alpha^2b(1-b)-30b^2(1-b)^2}
+{180\alpha^3}.
+\label{eq:Dbexpanded}
+\end{equation}
+For a heat superposition \(f\) as in Theorem~\ref{thm:apex},
+\begin{equation}
+\ApTr\bigl[r^2f(A_b^\Fr)\bigr]=-\mathcal D_b\,f'(0).
+\label{eq:Dfunctional}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+With \(z=r^2/(2s)\), we have \(r^2=2sz\) and
+\(r\,\dd r=s\,\dd z\).
+The angular integral and the heat representation
+\eqref{eq:heatkernel} then give
+\[
+T^{(2)}_b(u)=s\sum_{n\in\ZZ}\int_0^\infty
+z\,e^{-z\cosh u}I_{\abs{n+b}/\alpha}(z)\,\dd z.
+\]
+Differentiate the Laplace transform from the proof of
+Theorem~\ref{thm:apex} with respect to \(u\):
+\[
+\int_0^\infty z\,e^{-z\cosh u}I_\rho(z)\,\dd z
+=-\frac1{\sinh u}\frac{\dd}{\dd u}
+\frac{e^{-\rho u}}{\sinh u},
+\qquad \rho>-1.
+\]
+Since all summands are nonnegative, the sum may be interchanged
+with the integral, giving
+\[
+\frac{T^{(2)}_b(u)}{s}=-\frac1{\sinh u}\frac{\dd}{\dd u}
+\left[\frac{\cosh((\tfrac12-b)u/\alpha)}
+{\sinh u\,\sinh(u/(2\alpha))}\right].
+\]
+Laurent expansion at \(u=0\) shows that the
+\(u^{-4},u^{-3},u^{-2},u^{-1}\) terms of
+\(T^{(2)}_b/s\) and \(T^{(2)}_{\rm bulk}/s=\alpha/(\cosh u-1)^2\)
+coincide.
+The difference of their constant terms is \eqref{eq:Db}.
+Expanding the Bernoulli polynomials gives \eqref{eq:Dbexpanded}.
+
+For a heat superposition \(f(\lambda)=\int w(s)e^{-s\lambda}\dd s\),
+dominated convergence on the compact proper-time support gives
+\(\ApTr[r^2f(A)]=\mathcal D_b\int s\,w(s)\,\dd s
+=-\mathcal D_bf'(0)\).
+\textsf{[exec]} The Laurent algebra is carried out in
+\loc{code/weighted_apex.py}: all four pole terms vanish identically,
+and the constant term equals \eqref{eq:Db}
+(\loc{logs/v6/weighted_checks.json}, key \texttt{D\_matches\_log}).
+\end{proof}
+
+\begin{proposition}[Weighted singular-channel shift]
+\label{prop:weightedflip}
+For \(0<\nu<1\), replacing one regular channel of order \(\nu\) by
+its singular realization changes the weighted apex coefficient by
+\[
+\Delta\mathcal D=\frac{2\nu(1-\nu^2)}{3}.
+\]
+For the CR weight-two channel, \(\nu=2-\alpha^{-1}\) and
+\[
+\mathcal D^\CR_{S=2}=\mathcal D_{2\alpha-1}+\Delta\mathcal D
+=\mathcal D_{b=2\alpha},
+\]
+the polynomial \eqref{eq:Dbexpanded} evaluated at \(b=2\alpha\).
+\end{proposition}
+
+\begin{proof}
+The weighted analogue of the proof of Theorem~\ref{thm:flip}
+replaces \(e^{-\nu u}\) by \(e^{+\nu u}\) in one channel.
+The difference is
+\(-(\sinh u)^{-1}\partial_u[2\sinh(\nu u)/\sinh u]\).
+Its limit as \(u\to0\) is
+\(-u^{-1}\partial_u[2\nu(1+(\nu^2-1)u^2/6)]
+\to2\nu(1-\nu^2)/3\).
+Near zero the singular kernel is \(O(z^{1-\nu})\), so the weighted
+diagonal difference is absolutely integrable.
+\textsf{[exec]} The identity
+\(\mathcal D_{2\alpha}-\mathcal D_{2\alpha-1}=\Delta\mathcal D\) is
+checked exactly as a rational function of \(\alpha\)
+(\loc{logs/v6/weighted_checks.json}).
+\end{proof}
+
+\begin{corollary}[Comparison-sector values]
+\label{cor:Dvalues}
+For \(1/2<\alpha<1\):
+\begin{align*}
+\mathcal D_0&=\frac{(1-\alpha^2)(1+11\alpha^2)}{180\alpha^3},\\
+\mathcal D_{S=1}&=\frac{(\alpha-1)(\alpha+1)(19\alpha^2-1)}{180\alpha^3},\\
+\mathcal D^\Fr_{S=2}&=-\frac{(\alpha-1)(251\alpha^3-829\alpha^2+601\alpha-119)}{180\alpha^3},\\
+\mathcal D^\CR_{S=2}&=-\frac{(\alpha-1)(251\alpha^3-109\alpha^2+\alpha+1)}{180\alpha^3}.
+\end{align*}
+All four vanish as \(\alpha\uparrow1\).
+In particular, the weighted CR coefficient has \emph{no} flat
+remnant, unlike \(c_2^\CR\to1\) (Remark~\ref{rem:flatCR}),
+because \(\Delta\mathcal D\to0\) as \(\nu\to1\).
+\end{corollary}
+
+\begin{proposition}[Orbifold checks]
+\label{prop:orbifold}
+For \(\alpha=1/N\) with \(N\in\{2,\dots,8\}\),
+\[
+\mathcal D_0(1/N)=\frac1{4N}\sum_{k=1}^{N-1}\csc^4\frac{\pi k}{N}
+=\frac{(N^2-1)(N^2+11)}{180N}.
+\]
+This gives \(1/8,\,8/27,\,9/16,\,24/25,\,329/216,\,16/7,\,105/32\).
+For the twisted orbifolds \((N,j)=(3,1),(4,1),(5,2)\), with
+\(b=j/N\), the image sums weighted by holonomy phases equal
+\(\mathcal D_b\), namely \(-4/27\), \(-1/16\), and \(-16/25\).
+\end{proposition}
+
+\begin{proof}
+On \(\RR^2/\ZZ_N\) the heat kernel is the image sum.
+The \(k\)-th image contributes
+\((4\pi s)^{-1}e^{-r^2\sin^2(\pi k/N)/s}\).
+Integrating \(r^2\) times it over the wedge of angle \(2\pi/N\) gives
+\(s/(4N\sin^4(\pi k/N))\).
+The identity element is the bulk term.
+\textsf{[exec]} Both sides are evaluated exactly for each \(N\),
+and to \(10^{-12}\) for the twisted cases.
+See the key \texttt{orbifold\_csc4} in
+\loc{logs/v6/weighted_checks.json}, and
+\loc{logs/v6/weighted_apex.json}.
+\end{proof}
+
+\begin{remark}[Literature comparison]
+The untwisted moment \(\mathcal D_0\) has the
+\(\csc^4\)-sum structure of the classical conical heat coefficients
+\cite{Fursaev1994}.
+The identification of \(2\pi\alpha\,\mathcal D_0\) with the
+\(C_4\)-type coefficient of that reference is made from memory of its
+normalization (\(\dagger\)). It is not used as an input: the
+orbifold identity above is self-contained.
+
+Two literature results are analogues of the CR one-sided remnant
+of \(c_2^\CR\): the non-uniform spin-dependent flat limits of
+\cite{FursaevMiele1997}, and the spin-one horizon contact term of
+\cite{Kabat}.
+Corollary~\ref{cor:Dvalues} shows that this remnant does
+\emph{not} propagate to the \(r^2\) moment.
+No numerical spin-2 coefficient is imported from either work.
+\end{remark}
+
+\subsection{Application: the second \texorpdfstring{\(\phi\phi\)}{phi-phi} combination (partial)}
+
+By \eqref{eq:Dfunctional}, a quadratic transverse jet contributes
+\(-\mathcal D_S\) times the derivative, at zero transverse spectral
+parameter, of the longitudinal integrand.
+Within Assumption~\ref{ass:reduction}:
+\begin{itemize}
+\item \textsf{[exec]} \emph{D05a.} After the weighted insertion,
+the single-line tadpole has longitudinal integrand proportional to
+\(p^2\mathcal D_S/l^4\).
+At \(D=2\) this is \(O(R^{-4})\) at large radius, so it has no
+logarithmic UV term (Lemma~\ref{lem:UV}).
+The D05a contribution to the quadratic-profile pole is therefore
+\emph{computed} to be \(0\).
+\item \emph{D04.} The bubble couples a graviton line and a scalar
+line in different channels.
+Its \(r^2\) insertion requires mixed-channel traces of the
+transverse position operators \(x_\pm\) between channels \(S\) and
+\(S\pm1\).
+These are not functions of a single \(A_S\), so they fall outside
+Theorem~\ref{thm:weighted} and outside (R2).
+The D04 part is \(\OPEN\).
+\end{itemize}
+The second scalar basis value is therefore \emph{partial}.
+It is not reported as equal to its D05a part.
+
+%======================================================================
+\section{Conditional spectral reduction of a two-point graph}
+\label{sec:reduction}
+%======================================================================
+
+\subsection{Helicity classes and one closed transverse trace}
+
+Under longitudinal/transverse splitting, a symmetric four-dimensional
+tensor has:
+\begin{itemize}
+\item four weight-zero components: the symmetric longitudinal block
+and the transverse trace;
+\item four weight-one components: the longitudinal--transverse block;
+\item two weight-two components: the transverse traceless block.
+\end{itemize}
+A vector has two weight-zero and two weight-one components.
+A scalar has weight zero.
+
+These are geometric helicities. The older labels \(L,M,T\) do not,
+without their definitions, determine the correct apex weight.
+
+A reduced closed loop has one transverse spectral trace.
+Accordingly, a contribution normalized to one common spectral
+channel receives one coefficient \(c_S\).
+It does not receive the product of one apex coefficient for every
+propagator in that trace.
+
+\subsection{The missing hypotheses}
+
+\begin{assumption}[Graph-specific spectral reduction contract]
+\label{ass:reduction}
+For a specified graph \(G\), external constant helicity-zero jet,
+and fixed routing, require:
+\begin{enumerate}[label=\textup{(R\arabic*)}]
+\item \textbf{Complete vertex data.}
+The tensor vertices, propagator numerators, source insertions,
+statistics signs, symmetry factors, and independent-component
+normalizations are specified.
+
+\item \textbf{Operator reduction.}
+After the complete vertex contraction, each contributing transverse
+operator expression is reduced to a finite sum
+\[
+f_{G,S}(A_S;l,p),
+\]
+on one identified channel domain, plus a remainder proved not
+to contribute to the apex UV residue.
+
+\item \textbf{Domain and trace legitimacy.}
+Every differentiated intertwiner, integration by parts, and trace
+rearrangement is valid on that domain.
+Any apex boundary term or finite-part trace defect is included,
+or proved to vanish after the full permitted sum.
+
+\item \textbf{UV/IR separation.}
+An auxiliary infrared prescription, such as a positive mass in
+the Schwinger representation, distinguishes the UV residue
+from massless infrared poles.
+A scaleless integral is not assigned its UV pole merely by
+ignoring its infrared part.
+
+\item \textbf{Meromorphic interchange.}
+The heat-superposition apex identity extends to these regulated
+spectral functions. The transverse subtraction, longitudinal
+integration, removal of auxiliary cutoffs, and Laurent-residue
+operation commute in the stated meromorphic prescription.
+\end{enumerate}
+A graph is called \emph{spectrally certified in this sector}
+only after these conditions have been established for that graph.
+\end{assumption}
+
+\begin{theorem}[Conditional spectral apex reduction]
+\label{thm:reduction}
+Under Assumption~\ref{ass:reduction}, the apex UV residue of \(G\)
+is
+\begin{equation}
+\ResUV G_{\rm ap}(p)
+ =
+\sum_S c_S\,
+ \ResUV\!
+ \left[
+ \mu^{4-d}
+ \int\frac{\dd^{\,d-2}l_\parallel}{(2\pi)^{d-2}}
+ f_{G,S}(0;l_\parallel,p)
+ \right].
+\label{eq:reduction}
+\end{equation}
+Multiplicity, statistics, coupling, and vertex phases are included
+in the corresponding \(f_{G,S}\).
+For a flat-integrand representation this is the
+\(l_\perp=0\) expression only when the operator reduction
+\textup{(R2)--(R3)} has actually established that identification.
+\end{theorem}
+
+\begin{proof}
+First retain the auxiliary proper-time and infrared cutoffs.
+By (R2), the complete graph is a finite sum of functions of the
+identified \(A_S\), up to the residue-free remainder.
+Apply \eqref{eq:functional} and Theorem~\ref{thm:flip} to each
+regularized heat-superposition term. This replaces its transverse
+apex trace by \(c_S f_{G,S}(0;l,p)\).
+
+Condition (R3) ensures that the transformations used to reach
+these terms have not omitted a boundary or trace defect.
+Condition (R5) then allows longitudinal integration, cutoff removal,
+and residue extraction in that order or the stated equivalent
+order. The remainder contributes zero by (R2).
+This gives \eqref{eq:reduction}.
+\end{proof}
+
+\begin{remark}[What the heat theorem does not prove]
+A bubble containing two different channel realizations, a
+domain-changing differential operator, or an unaccounted boundary
+term is not automatically a function of one \(A_S\).
+The phrase ``the external transverse momentum is zero'' does not
+establish (R2) or (R3).
+Theorem~\ref{thm:reduction} therefore cannot be replaced by the
+unqualified statement that every differentiated two-point graph
+equals its flat integrand at \(l_\perp=0\).
+\end{remark}
+
+\subsection{Intertwining is a domain statement}
+
+The formal Bessel recurrences give differential identities between
+solutions. Equality of self-adjoint resolvents additionally requires
+the differentiated solution to lie in the target domain
+\cite{DLMF,DerezinskiRichard}.
+
+For example, if a singular leading term behaves as \(r^{-\nu}\),
+one transverse derivative can produce \(r^{-\nu-1}\).
+For \(\nu>0\),
+\[
+\int_0^\epsilon
+ r\,\abs{r^{-\nu-1}}^2\,\dd r
+ =\int_0^\epsilon r^{-2\nu-1}\,\dd r=\infty.
+\]
+Thus a formal recurrence is not an unrestricted \(L^2\) intertwiner
+through the next helicity.
+
+The supplied v4 record reports:
+\begin{itemize}
+\item D03, D04, and D11 as clean in its constant-profile reduction;
+\item D06 and D13 as clean on CR;
+\item D01 as conditional on \(\HI\), because its derivative
+tower can reach the \(S=2\to3\) sector.
+\end{itemize}
+These are retained as graph-assessment reports, not replaced by
+an unavailable local derivation.
+
+For D01, the unrestricted tower version of \(\HI\) is not an
+available hypothesis: the same record states its failure.
+A nonvacuous successor must prove that the \emph{actual contracted
+graph} avoids the forbidden terms, includes their boundary
+contributions, or cancels them in the complete sum.
+We denote that graph-local requirement by
+\[
+(\mathrm H_{I,\mathrm{D01}}).
+\]
+Merely assuming the already excluded unrestricted tower would not
+certify D01.
+
+\subsection{The D01 obstruction made exact (new in v6)}
+\label{sec:HI}
+
+Let \(\nu=2-\alpha^{-1}\in(0,1)\).
+In the flipped weight-two channel, the CR--F difference of radial
+heat kernels is
+\[
+\Delta k(s;r,r')=k^-_\nu-k^+_\nu
+=\frac{1}{2s}e^{-(r^2+r'^2)/(4s)}\,
+\frac{2\sin\pi\nu}{\pi}\,K_\nu\!\left(\frac{rr'}{2s}\right).
+\]
+The D01 derivative tower carries this channel into \(S=3\) through
+the raising operator
+\[
+X=\partial_r-\frac{\nu}{r},
+\]
+the radial part of the helicity-raising derivative on the
+\(J_{-\nu}\) branch.
+The term that \((\mathrm H_{I,\mathrm{D01}})\) must control is the
+composite diagonal
+\[
+\mathcal R(s;r)=\bigl[X_rX_{r'}\Delta k(s;r,r')\bigr]_{r'=r}.
+\]
+
+\begin{theorem}[Exact obstruction and Mellin value for D01]
+\label{thm:HI}
+\leavevmode
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Obstruction.}
+As \(r\to0\), \(\mathcal R(s;r)=c_*\,r^{-2\nu-2}+O(r^{-2\nu})\),
+with \(c_*\neq0\) for every \(0<\nu<1\).
+Hence \(\int_0^\epsilon r\,\mathcal R\,\dd r\) diverges.
+No \(L^2\) intertwiner and no trace-class statement holds for the
+composite. The unrestricted \(\HI\) fails, exactly as the v4 record
+states.
+
+\item \emph{Mellin value.}
+The Mellin transform
+\(M(z)=\int_0^\infty r^{1+z}\mathcal R(s;r)\,\dd r\)
+converges for \(\Re z>2\nu\).
+It continues meromorphically, with poles contained in
+\((2\nu-2\NN_0)\cup(-2\nu-2\NN_0)\).
+So it is regular at \(z=0\) for \(0<\nu<1\), and
+\[
+M(0)=0\qquad\text{identically in }\nu\in(0,1).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Put \(s=1/2\), so that \(x=r^2\); by scale invariance
+\(M(0)\) scales as \(s^{-1}\).
+Then
+\[
+\mathcal R=A\,e^{-x}\Bigl[xK-2xK'+K'+xK''
+-2\nu(K'-K)+\nu^2x^{-1}K\Bigr],
+\qquad K=K_\nu(x),
+\]
+where \(A=\sin(\pi\nu)/(\pi s)\).
+Use \(K'=-\tfrac12(K_{\nu-1}+K_{\nu+1})\) and
+\(K''=\tfrac14(K_{\nu-2}+2K_\nu+K_{\nu+2})\).
+Each term then has the form
+\(\int_0^\infty x^{\mu-1}e^{-x}K_m(x)\,\dd x\) with
+\[
+\int_0^\infty x^{\mu-1}e^{-x}K_m(x)\,\dd x
+=\frac{\sqrt\pi\,\Gamma(\mu+m)\Gamma(\mu-m)}
+{2^\mu\,\Gamma(\mu+\tfrac12)},
+\qquad \Re\mu>\abs{\Re m}.
+\]
+This is the \(a\to1\) limit of DLMF~10.43.22 \cite{DLMF}.
+\textsf{[exec]} It is checked by quadrature in its strip to
+\(10^{-16}\) (\loc{logs/v6/hi_d01_exact.json}).
+The right side is meromorphic in \(\mu\), which gives the stated
+continuation and poles.
+Leading-order expansion of \(K_\nu\) gives (i).
+
+At \(z=0\) the bracket is a sum of ten gamma ratios with
+\(\mu\in\{0,1,2\}\) and \(m\in\{\nu,\nu\pm1,\nu\pm2\}\).
+\textsf{[exec]} Applying \(\Gamma(w+1)=w\Gamma(w)\) reduces it
+to \(0\) as a symbolic function of \(\nu\)
+(\loc{code/hi_d01_exact.py}).
+The sum at \(z=10^{-30}\) is \(O(10^{-30})\) for seven values of
+\(\nu\).
+
+An independent route uses direct quadrature with the
+\(r^{-2\nu-2}\) and \(r^{-2\nu}\) heads subtracted and continued
+analytically (\loc{code/hi_d01.py}, 60 digits).
+It gives \(s\,M(0)\in[-1.8\times10^{-21},\,3.7\times10^{-32}]\)
+at \(\alpha=0.6,0.7,0.75,0.8,0.9\), and the value is independent
+of \(s\).
+The residual grows like \(\epsilon^{4-2\nu}\) for the cutoff
+\(\epsilon=10^{-9}\), consistent with zero.
+\end{proof}
+
+\begin{corollary}[Status of \((\mathrm H_{I,\mathrm{D01}})\)]
+\label{cor:HI}
+Interpret the apex coefficient of the forbidden D01 composite by
+homogeneous (Mellin) continuation.
+This is the unique scale-covariant extension of the
+non-integrable diagonal here, since there is no resonance for
+\(0<\nu<1\).
+With that reading the composite contributes \(0\), and the D01
+constant-profile entries of Table~\ref{tab:hhC} need no correction
+from it.
+
+The hypothesis is therefore \emph{upgraded} in two respects: its
+failure as an \(L^2\) statement is now exact, and the Mellin value
+is exactly zero.
+One thing is not shown: that the XVI-P prescription requires
+homogeneous continuation of this composite, as opposed to some
+other extension of the divergent apex integral.
+That is a prescription statement, part of (R3)--(R5), and it is
+recorded as \CONDITIONAL.
+\end{corollary}
+
+\subsection{Longitudinal UV normalization}
+
+Set
+\[
+\eps=4-d,\qquad D=d-2=2-\eps.
+\]
+This \(\eps\) is twice the common convention
+\(\eps_{\rm DR}=(4-d)/2\).
+
+\begin{lemma}[Angular extraction of the logarithmic UV residue]
+\label{lem:UV}
+Suppose an infrared-regular Euclidean longitudinal integrand has
+large-radius expansion
+\[
+I(R\omega;p)=R^{-2}g(\theta;p)+O(R^{-2-\delta}),
+\qquad \delta>0,
+\]
+uniformly in angle, with no other UV-logarithmic term.
+If its dimensional continuation is regular in angle at \(D=2\),
+the coefficient of \(1/\eps\) is
+\begin{equation}
+\frac1{(2\pi)^2}
+ \int_0^{2\pi}g(\theta;p)\,\dd\theta.
+\label{eq:UVangle}
+\end{equation}
+An overall Wick phase \(+\ii\), when prescribed by the amplitude
+convention, multiplies this coefficient by \(\ii\).
+\end{lemma}
+
+\begin{proof}
+Choose a fixed large radius \(R_0\) and separate the bounded
+infrared region. The leading UV radial integral is
+\[
+\int_{R_0}^\infty R^{D-1}R^{-2}\,\dd R
+ =\int_{R_0}^\infty R^{-1-\eps}\,\dd R
+ =\frac{R_0^{-\eps}}{\eps}.
+\]
+The remainder is UV integrable near \(\eps=0\).
+The measure at \(D=2\) contributes \((2\pi)^{-2}\dd\theta\).
+An \(O(\eps)\) correction to the angular continuation affects
+the finite part of a simple pole, not this leading coefficient.
+\end{proof}
+
+The factor in \eqref{eq:UVangle} agrees with the v4 expression
+\(\ii(4\pi^2)^{-1}\int g\) when its \(+\ii\) Wick convention is
+applicable. Graph-specific additional phases are not fixed by
+this radial argument.
+
+Dimensional reduction requires a consistent distinction between
+momentum and vertex-index spaces; it does not automatically establish
+a Ward identity for the present boundary problem
+\cite{Stockinger}.
+
+%======================================================================
+\section{The retained constant-profile pole catalogue}
+\label{sec:catalogue}
+%======================================================================
+
+\subsection{Status and notation}
+
+Write \(\widehat B_G\) for the candidate coefficient of
+\(1/(4-d)\) printed in v4.
+The hat distinguishes a supplied graph record from an independently
+derived loop amplitude.
+
+All formulas below are exact algebraic expressions.
+\textsf{[exec]} In v6 every entry is checked against the executed
+spectral logs of the frozen vertex arrays
+(\loc{code/catalogue_check.py}, \loc{logs/v6/catalogue_check.json}).
+Every graph, branch, and key agrees exactly, the entries absent from
+the logs are computed zeros, and the new entries are marked.
+Their interpretation as complete graph residues remains subject to
+Assumption~\ref{ass:reduction}.
+
+For either branch, put
+\begin{equation}
+c_2=
+\begin{cases}
+c_2^\Fr,&\text{F},\\
+c_2^\CR,&\text{CR},
+\end{cases}
+\quad
+A=c_0+2c_1+4c_2,
+\quad
+B=-c_0+2c_1.
+\label{eq:AB}
+\end{equation}
+The \(c\)'s are the per-channel quantities
+\eqref{eq:cvalues}; any multiplicity is already included in the
+coefficients of the following tables.
+
+\subsection{Scalar two-point sector}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}L{.20\linewidth}Y@{}}
+\toprule
+Graph & Retained candidate residue\\
+\midrule
+D04 &
+\(\displaystyle -\frac{\ka^2}{4\pi}c_0P^2\)\\[6pt]
+D05a &
+\(\displaystyle -\frac{\ka^2}{4\pi}(c_2-c_0)P^2\)\\[6pt]
+D04+D05a &
+\(\displaystyle -\frac{\ka^2}{4\pi}c_2P^2\)\\
+\bottomrule
+\end{tabularx}
+\caption{Equivalent coefficient form of the v4
+constant-profile \(\phi\phi\) catalogue.}
+\label{tab:phiC}
+\end{table}
+
+Expansion gives exactly
+\begin{align}
+\widehat B_{\mathrm{D04}}
+ &=\frac{\ka^2(\alpha^2-1)}{48\pi\alpha}P^2,\nonumber\\
+\widehat B_{\mathrm{D05a}}^\CR
+ &=-\frac{\ka^2(2\alpha-1)}{4\pi}P^2,\nonumber\\
+\widehat B_{\mathrm{D05a}}^\Fr
+ &=-\frac{\ka^2(\alpha-1)(2\alpha-1)}
+ {4\pi\alpha}P^2,\nonumber\\
+\widehat B_{\mathrm{D04+D05a}}^\CR
+ &=\frac{\ka^2(-23\alpha^2+12\alpha-1)}
+ {48\pi\alpha}P^2,\nonumber\\
+\widehat B_{\mathrm{D04+D05a}}^\Fr
+ &=\frac{\ka^2(\alpha-1)(13-23\alpha)}
+ {48\pi\alpha}P^2.
+\label{eq:phiExpanded}
+\end{align}
+
+The one-sided CR limit of the sum as \(\alpha\uparrow1\) is
+\(-\ka^2P^2/(4\pi)\).
+It is the polynomial remnant discussed in
+Remark~\ref{rem:flatCR}, not a claimed flat-endpoint operator value.
+
+\textsf{[exec]} The D05a symmetry factor \(S_f=1/2\) is read directly
+from the regenerated Q02 graph record
+\loc{xviq_regen/Q02_bulk_graphs.json} \cite{CheungQ}.
+The same record gives \(1/2\) for D12 and \(1\) for D04.
+With the XVI-P one-propagator tadpole rule, the engine prefactor is
+\(-\ka^2/2\), and the displayed D05a values follow without a fitted
+constant.
+
+\subsection{Tensor two-point sector}
+
+For the next table, factor out \(\ka^2/(16\pi)\).
+Indices denote the independent-coordinate entries listed in
+Section~\ref{sec:conventions}.
+
+\begin{longtable}{@{}L{.27\linewidth}L{.64\linewidth}@{}}
+\caption{The \(hh\) bubble entries of v4, in equivalent
+apex-coefficient form, with the \((5,5)\) entries added from the
+executed record (v6).
+Every displayed entry is multiplied by \(\ka^2/(16\pi)\).
+D01 retains the graph-local intertwining qualification.}
+\label{tab:hhC}\\
+\toprule
+Graph and key & Coefficient after removing \(\ka^2/(16\pi)\)\\
+\midrule
+\endfirsthead
+\toprule
+Graph and key & Coefficient after removing \(\ka^2/(16\pi)\)\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+D11:
+\((4,4),(4,7),(7,7)\)
+&
+\(\displaystyle \frac12 c_0P^2\)\\[5pt]
+
+D03:
+\((0,0),(0,9),(9,9)\)
+&
+\(\displaystyle -c_0P^2\)\\[5pt]
+
+D03:
+\((3,3)\)
+&
+\(\displaystyle 4c_0P^2\)\\[5pt]
+
+D03:
+\((0,4)\)
+&
+\(\displaystyle c_0(q_0^2-3q_3^2)\)\\[5pt]
+
+D03:
+\((3,4)\)
+&
+\(\displaystyle 4c_0q_0q_3\)\\[5pt]
+
+D03:
+\((4,9)\)
+&
+\(\displaystyle -c_0(3q_0^2-q_3^2)\)\\[5pt]
+
+D03:
+\((4,4)\)
+&
+\(\displaystyle -(c_0+4c_1)P^2\)\\[5pt]
+
+D03:
+\((4,7)\)
+&
+\(\displaystyle -c_0P^2\)\\[5pt]
+
+D03:
+\((5,5)\) \emph{(new in v6)}
+&
+\(\displaystyle -8c_1P^2\)\\[5pt]
+
+D01:
+\((0,0),(0,9),(9,9)\)
+&
+\(\displaystyle c_0P^2\)\\[5pt]
+
+D01:
+\((3,3)\)
+&
+\(\displaystyle -4c_0P^2\)\\[5pt]
+
+D01:
+\((4,4)\)
+&
+\(\displaystyle (c_0-4c_1+c_2)P^2\)\\[5pt]
+
+D01:
+\((4,7)\)
+&
+\(\displaystyle (c_0+c_2)P^2\)\\[5pt]
+
+D01:
+\((3,4)\)
+&
+\(\displaystyle -4(c_0+2c_2)q_0q_3\)\\[5pt]
+
+D01:
+\((4,9)\)
+&
+\(\displaystyle A q_0^2-Bq_3^2\)\\[5pt]
+
+D01:
+\((0,4)\)
+&
+\(\displaystyle -Bq_0^2+Aq_3^2\)\\[5pt]
+
+D01:
+\((5,5)\) \emph{(new in v6)}
+&
+\(\displaystyle -8c_1P^2\)\\
+
+\end{longtable}
+
+The entries related by \(1\leftrightarrow2\) are identified in the
+executed record:
+\(B_{44}=B_{77}\), \(B_{04}=B_{07}\),
+\(B_{34}=B_{37}\), and \(B_{49}=B_{79}\).
+This does not make \(B_{44}\) equal to \(B_{47}\) in D01 or D03.
+
+\subsection{Tadpoles D02 and D12 and the \texorpdfstring{\((12)\)}{(12)} entries (new in v6)}
+
+\textsf{[exec]} v4 did not print D02 and D12 as components.
+The executed record gives them in full.
+Put
+\[
+W=\tfrac12(c_0+2c_1+c_2),\qquad
+W^\CR=\frac{(2\alpha-1)(4\alpha-1)}{6\alpha},\qquad
+W^\Fr=\frac{2(\alpha-1)(2\alpha-1)}{3\alpha}.
+\]
+The only nonzero D02 entries, together with their transposes, are
+\begin{align*}
+\widehat B_{\mathrm{D02}}\big/\bigl(\tfrac{\ka^2}{\pi}W\bigr):\quad
+&(01)(01),\ (02)(02):\ q_3^2;\qquad
+(13)(13),\ (23)(23):\ q_0^2;\\
+&(12)(12):\ P^2;\qquad (11)(22):\ -\tfrac12P^2;\\
+&(01)(13),\ (02)(23):\ -q_0q_3;\qquad
+(03)(11),\ (03)(22):\ q_0q_3;\\
+&(00)(11),\ (00)(22):\ -\tfrac12q_3^2;\qquad
+(11)(33),\ (22)(33):\ -\tfrac12q_0^2.
+\end{align*}
+This makes 23 nonzero entries.
+They agree with the v3 tadpole comparison recorded in
+\loc{CHECKPOINT_v4.md}.
+Moreover
+\[
+\widehat B_{\mathrm{D12}}=0
+\]
+identically on both branches.
+
+The table above omitted one key present in the executed record,
+the \((12)(12)\) entry:
+\[
+\widehat B_{\mathrm{D01}}^{(12)(12)}
+=\widehat B_{\mathrm{D03}}^{(12)(12)}
+=-8c_1P^2\,\frac{\ka^2}{16\pi}
+=-\frac{\ka^2(\alpha-1)(5\alpha-1)}{24\pi\alpha}P^2,
+\]
+on both branches.
+It vanishes at \(\alpha=1\) and is continuous at \(\alpha=1/2\), so
+Proposition~\ref{prop:polynomialchecks} extends to it.
+
+\paragraph{Mixed helicity.}
+\textsf{[exec]} The reduction attaches one coefficient \(c_S\) to a
+monomial only when both lines sit in the same channel.
+Mixed-channel monomials are logged and dropped.
+They occur only on \emph{vector-type} keys, those with a single
+transverse index on a leg:
+\begin{itemize}
+\item D01: \((01)(01)\), \((02)(02)\), \((13)(13)\), \((23)(23)\),
+\((01)(13)\), \((02)(23)\), and their transposes;
+\item D06: ghost \(11,22\);
+\item D13: \((01)c^1\), \((02)c^2\), \((13)c^1\), \((23)c^2\).
+\end{itemize}
+No lattice key \(\{00,03,33,11,22,12\}\) has one.
+The vector-type entries of D01, D06, and D13 are therefore
+\emph{excluded} from the record and \emph{not} zero.
+They need mixed-channel traces, which are \OPEN.
+
+\subsection{Ghost and source-ghost sector}
+
+Define
+\begin{equation}
+R=3c_0+4c_1,\qquad
+T=4c_0+3c_1,\qquad
+V=c_1-c_0.
+\label{eq:RTV}
+\end{equation}
+Then the v4 ghost self-energy is
+\begin{equation}
+\widehat B_{\mathrm{D06}}
+ =\frac{\ii\ka^2}{8\pi}R P^2
+ \begin{pmatrix}1&0\\0&1\end{pmatrix},
+\label{eq:D06compact}
+\end{equation}
+where row and column labels are \(0,3\).
+
+The source-ghost entries are
+\begin{equation}
+\widehat B_{\mathrm{D13}}
+ =\frac{\ii\ka^2}{16\pi}
+ \begin{pmatrix}
+ -2Tq_0 & 2Vq_3\\
+ -Rq_3 & Rq_0\\
+ -2Vq_0 & 2Tq_3
+ \end{pmatrix},
+\label{eq:D13compact}
+\end{equation}
+with tensor-source row labels \(0,3,9\) and ghost column labels
+\(0,3\).
+
+For explicit comparison,
+\begin{align}
+R&=\frac{(\alpha-1)(17\alpha-7)}{12\alpha},\nonumber\\
+T&=\frac{(\alpha-1)(11\alpha-7)}{12\alpha},\qquad
+V=\frac{\alpha-1}{2}.
+\label{eq:RTVexpanded}
+\end{align}
+Equations~\eqref{eq:D06compact}--\eqref{eq:RTVexpanded} reproduce
+all entries of the v4 ghost table without changing any factor
+of \(\ii\), \(\pi\), or two.
+
+The polynomials are branch independent because \(c_2\) does not
+occur. This is an algebraic fact about the printed catalogue.
+It does not prove that every domain manipulation of the corresponding
+F and CR graphs is identical.
+
+%======================================================================
+\section{Exact checks available from the printed catalogue}
+\label{sec:checks}
+%======================================================================
+
+\begin{proposition}[Algebraic preservation and endpoint checks]
+\label{prop:polynomialchecks}
+The coefficient tables above are equivalent to the displayed
+rational expressions of the supplied v4 source.
+Within their stated sector:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item every printed F entry vanishes at \(\alpha=1\);
+\item every printed CR entry equals its F partner at
+\(\alpha=1/2\);
+\item all printed entries are continuous at
+\(\alpha=1/2,2/3,4/5\);
+\item D04+D05a has the sum \eqref{eq:phiExpanded};
+\item the printed D06/D13 entries are independent of the
+weight-two branch choice.
+\end{enumerate}
+These checks do not certify absent vertex arrays.
+\end{proposition}
+
+\begin{proof}
+The endpoint claims follow because
+\(c_0=c_1=c_2^\Fr=0\) at \(\alpha=1\), whereas
+\(c_2^\Fr=c_2^\CR\) at \(\alpha=1/2\).
+All formulas are rational with no denominator zero in the stated
+sector.
+
+For equivalence, substitute \eqref{eq:cvalues} into
+Tables~\ref{tab:phiC} and \ref{tab:hhC}.
+For instance,
+\begin{align*}
+c_0-4c_1+c_2^\CR
+ &=\frac{2(\alpha^2+6\alpha-1)}{12\alpha},\\
+c_0-4c_1+c_2^\Fr
+ &=\frac{2(\alpha-1)(\alpha-5)}{12\alpha},\\
+c_0+c_2^\CR
+ &=\frac{2(11\alpha^2-6\alpha+1)}{12\alpha},\\
+c_0+c_2^\Fr
+ &=\frac{2(\alpha-1)(11\alpha-7)}{12\alpha},\\
+A^\CR
+ &=\frac{101\alpha^2-60\alpha+7}{12\alpha},\\
+A^\Fr
+ &=\frac{(\alpha-1)(101\alpha-55)}{12\alpha},\\
+B&=\frac{11\alpha^2-12\alpha+1}{12\alpha}.
+\end{align*}
+The common factor \(\ka^2/(16\pi)\) gives the v4
+D01 denominators and numerators.
+
+Similarly,
+\[
+c_0+4c_1
+ =\frac{(\alpha-1)(19\alpha-5)}{12\alpha},
+\]
+which checks the nontrivial D03 entry.
+The scalar sum is immediate from Table~\ref{tab:phiC}.
+Finally \eqref{eq:RTVexpanded} proves the ghost-table equivalence
+and its branch independence.
+\end{proof}
+
+\subsection{A restricted branch-transversality check}
+
+The following statement concerns the printed independent-coordinate
+array, not an unproved identification with a geometric Hessian.
+
+\begin{proposition}[Gauge annihilation of the printed D01 branch difference]
+\label{prop:branchtransverse}
+Order the coordinates as
+\[
+x=(h_{00},h_{03},h_{33},h_{11},h_{22}),
+\qquad x_T=h_{11}+h_{22},
+\]
+and let
+\[
+u=(4q_3^2,-8q_0q_3,4q_0^2).
+\]
+With \(\nu=2-\alpha^{-1}\), the CR-minus-F difference in
+Table~\ref{tab:hhC} is the bilinear form
+\begin{equation}
+\begin{split}
+\Delta\widehat B_{\mathrm{D01}}(x,z)
+ =\frac{\ka^2\nu}{16\pi}
+ \bigl[
+ &(u\cdot x_L)z_T+x_T(u\cdot z_L)\\
+ &+P^2x_Tz_T
+ \bigr],
+\end{split}
+\label{eq:branchbilinear}
+\end{equation}
+where \(x_L=(h_{00},h_{03},h_{33})\).
+It annihilates the declared longitudinal gauge vector
+\begin{equation}
+k(c)=
+(2q_0c_0,\ q_0c_3+q_3c_0,\ 2q_3c_3,\ 0,\ 0)
+\label{eq:gaugevector}
+\end{equation}
+in either slot.
+\end{proposition}
+
+\begin{proof}
+Only \(c_2\) changes, by \(\nu\).
+Reading its coefficients from Table~\ref{tab:hhC} gives
+\eqref{eq:branchbilinear}.
+Since \(k_T=0\),
+\[
+u\cdot k_L
+ =8q_0q_3^2c_0
+ -8q_0q_3(q_0c_3+q_3c_0)
+ +8q_0^2q_3c_3=0.
+\]
+Both slot contractions vanish.
+\end{proof}
+
+Independent-component weights matter here.
+One must not apply an additional off-diagonal multiplicity to an
+array already differentiated with respect to independent
+\(h_{03}\) coordinates.
+v6 adds the D02/D12 contribution in
+Corollary~\ref{cor:hhcontent}.
+In the complete \(hh\) sum the \(S_6,S_7\) parts of this difference
+cancel against D02, which leaves the gauge-invariant term
+\(-\nu\ka^2P^2f_0f_0'/(4\pi)\).
+
+The mixed-helicity statement of v4 is now an executed check; its
+precise form is given in Section~\ref{sec:catalogue}.
+
+%======================================================================
+\section{The ghost-equation row and its exact scope}
+\label{sec:ghost}
+%======================================================================
+
+\subsection{An explicit longitudinal contraction}
+
+For this algebraic check choose the covector
+\[
+p_\mu=(q_0,0,0,q_3),\qquad
+p^\mu=(q_0,0,0,-q_3).
+\]
+This fixes the spatial momentum sign rather than leaving the
+word ``upper'' ambiguous.
+
+For the three displayed source rows of a symmetric tensor \(Y\),
+define
+\begin{align}
+(\mathsf F_LY)_0
+ &=\frac{q_0}{2}(Y_{00}+Y_{33})-q_3Y_{03},\nonumber\\
+(\mathsf F_LY)_3
+ &=q_0Y_{03}-\frac{q_3}{2}(Y_{00}+Y_{33}).
+\label{eq:FL}
+\end{align}
+These are the de Donder contractions when the transverse trace
+of \(Y\) vanishes.
+
+For a general tensor, the full contraction
+\[
+(\mathsf FY)_\rho
+ =p^\mu Y_{\mu\rho}
+  -\frac12p_\rho\eta^{\mu\nu}Y_{\mu\nu}
+\]
+instead has the additional terms
+\begin{equation}
+(\mathsf FY)_0=(\mathsf F_LY)_0
+ +\frac{q_0}{2}(Y_{11}+Y_{22}),\qquad
+(\mathsf FY)_3=(\mathsf F_LY)_3
+ +\frac{q_3}{2}(Y_{11}+Y_{22}).
+\label{eq:fullF}
+\end{equation}
+The omitted transverse source trace is therefore a real
+identification obligation, not a value that may be silently
+set to zero.
+
+\begin{theorem}[Exact projected ghost-equation identity]
+\label{thm:ghost}
+For the printed matrices \eqref{eq:D06compact} and
+\eqref{eq:D13compact},
+\begin{equation}
+\widehat B_{\mathrm{D06}}
+ =-2\eta_\parallel\,
+ \mathsf F_L\widehat B_{\mathrm{D13}},
+\qquad
+\eta_\parallel=\diag(1,-1).
+\label{eq:ghostrow}
+\end{equation}
+The equality is an exact polynomial identity for every
+\(0<\alpha\le1\) for which \(c_0,c_1\) are given by
+\eqref{eq:cvalues}. It is independent of \(c_2\).
+
+To identify \eqref{eq:ghostrow} with the full graph
+antighost equation additionally requires the complete source
+normalization, the matched Fourier convention, and either a
+zero transverse D13 trace or its explicitly included contribution
+in \eqref{eq:fullF}.
+\end{theorem}
+
+\begin{proof}
+The identity
+\[
+T+V=R
+\]
+follows from \eqref{eq:RTV}.
+Applying \(\mathsf F_L\) to \eqref{eq:D13compact} gives
+\[
+\mathsf F_L\widehat B_{\mathrm{D13}}
+ =\frac{\ii\ka^2}{16\pi}RP^2
+ \begin{pmatrix}-1&0\\0&1\end{pmatrix}.
+\]
+Multiplication by \(-2\eta_\parallel\) yields
+\eqref{eq:D06compact}. Formula~\eqref{eq:fullF} states
+exactly the additional transverse term needed for the full
+identification.
+\end{proof}
+
+This proves the two ratios reported in v4 on the printed
+longitudinal projection:
+\(-1/2\) in the \(00\) contraction and \(+1/2\) in the
+\(33\) contraction, with zero off-diagonal entries.
+It is not a proof that all source components or all 26
+Ward-constrained combinations have been tested.
+
+\begin{remark}[Transverse source trace (upgraded in v6)]
+\label{rem:transtrace}
+\textsf{[exec]} The executed D13 reduction covers all \(10\times4\)
+source--ghost keys.
+The rows \((11)\) and \((22)\) vanish for the ghost components
+\(c^0,c^3\) on both branches.
+On the executed matrix \(\mathsf F=\mathsf F_L\), so the additional
+term in \eqref{eq:fullF} is computed to be zero, not assumed zero.
+The ghost row therefore holds for the full de Donder contraction,
+components \(\rho\in\{0,3\}\), on constant profiles.
+The source normalization and the Fourier convention are those of
+the archived code. Their identification with the XVI-P antighost
+equation follows (C1)--(C3) of Section~\ref{sec:STdiag}.
+\end{remark}
+
+\subsection{The Maxwell--Friedrichs comparison}
+
+The free photon inverse compatible with the scalar Friedrichs
+ghost is the Maxwell--Friedrichs construction described in the
+supplied I-B-G-S excerpt:
+\[
+C_1G^\pm_{(1)}=G^\pm_{(0)}C_1.
+\]
+With Friedrichs realizations in the vector and scalar ghost channels,
+the supplied statement gives the Lorenz condition for conserved
+compact sources and locally square-integrable packet field strength
+\cite[{\loc{thm:spin1}}]{CheungIBGS}.
+
+Residual gauge parameters there are scalar Friedrichs solutions,
+in a stated solution or spectral-packet domain, with gradients
+in the vector domain. They are not restricted to nonzero
+spacetime-compact homogeneous solutions.
+
+This is a free Maxwell comparison, not the interacting
+diffeomorphism-ghost identity of D06/D13.
+Its availability supplies neither the missing transverse source
+rows nor a loop-level Slavnov--Taylor theorem.
+\separation
+
+%======================================================================
+\section{The \texorpdfstring{\(hh\)}{hh} Slavnov--Taylor row: v4 diagnostic, diagnosis, and constant-profile closure}
+\label{sec:ST}
+%======================================================================
+
+\subsection{The supplied attempted row (v4, historical)}
+
+The v4 computation reports a test of
+\begin{equation}
+2B_{hh}(K_2c,h)
+ +\lambda\,\Gamma_{Kc}(Eh,c)=0,
+\label{eq:attemptedST}
+\end{equation}
+using
+\[
+B_{hh}=\mathrm{D01+D02+D03+D11+D12},
+\]
+a linearized Einstein operator \(E\), and a convention constant
+\(\lambda\).
+
+According to that record:
+\begin{itemize}
+\item no nonzero \(\alpha\)-independent convention choice gave
+the desired CR/F closure;
+\item the UNIT replacement \(c_S=1\) gave
+\(B_{hh}(K_2c,h)=0\) but a nonzero source term;
+\item 72 scanned conventions did not repair the test.
+\end{itemize}
+In v5 the code, arrays, and scan log were unavailable.
+v6 archives them (\loc{code/st_test_const.py}, \loc{code/st_scan.py},
+\loc{logs/v4/st_*.json}) and diagnoses the failure in
+Section~\ref{sec:STdiag}.
+
+\subsection{Why UNIT requires its own analytic control theorem}
+
+The original inference that UNIT \emph{must} close merely because
+it resembles the \(l_\perp=0\) flat integrand is too strong.
+Restriction to a momentum slice need not preserve an identity
+that holds only after integration in all momentum components.
+
+\begin{example}[A full-space total derivative need not vanish on a slice]
+\label{ex:slice}
+Let \(F(l,k)\) be smooth and rapidly decreasing in all variables.
+Then
+\[
+\int \dd l\,\dd^2k\,
+ \partial_{k_1}\bigl(k_1F(l,k)\bigr)=0.
+\]
+But at \(k=0\),
+\[
+\left.
+\partial_{k_1}\bigl(k_1F(l,k)\bigr)\right|_{k=0}
+ =F(l,0),
+\]
+whose longitudinal integral need not vanish.
+Thus full-momentum integration and transverse restriction do not
+commute with this cancellation.
+\end{example}
+
+A valid UNIT control must therefore derive the intended row for
+the actual reduced theory, source insertions, independent-component
+normalization, regulator, and momentum-routing operations.
+Longitudinal shift invariance alone does not establish that theorem.
+Dimensional-reduction consistency is likewise not automatic
+preservation of every proposed identity \cite{Stockinger}.
+
+\begin{proposition}[No regularity verdict follows from the v4 test]
+\label{prop:noSTverdict}
+The supplied failure of \eqref{eq:attemptedST}, including its UNIT
+diagnostic, proves neither failure nor validity of \(\Hreg\).
+It does not test the complete set of 26 Ward-constrained combinations.
+\end{proposition}
+
+\begin{proof}
+The complete row, its source and auxiliary-field terms, its
+normalization, and a validated reduced control are not established
+in the supplied test.
+Several distinct missing choices can change its residual:
+invariant versus gauge-fixed \(E\), auxiliary and antighost
+contributions, source momentum routing, transverse source traces,
+and independent-component multiplicities.
+
+An unexplained residual of that unvalidated map cannot be identified
+with the residual of the required full identity.
+Conversely, failure of one candidate test does not establish
+the required identity either.
+\end{proof}
+
+The ending of v5 for the \emph{v4 row} remains correct: that row
+was \UNVALIDATED.
+It was not ``cone anomaly found,'' and it was not ``BRST restored.''
+v6 replaces it with a derived row, analysed below.
+
+\subsection{Diagnosis of the v4 failure (new in v6)}
+\label{sec:STdiag}
+
+The frozen XVI-P antifield vertex has the closed form
+\(K'_{(mn)}\,a\,(\partial_mc_n+\partial_nc_m)\), summed over the
+independent coordinates \((mn)\), \(m\le n\) \cite{CheungP}.
+Writing the BRST source term in the same independent coordinates
+fixes three conventions that v4 left free:
+\begin{enumerate}[label=\textup{(C\arabic*)}]
+\item the ghost enters the vertex with an upper index, and
+\(c_n=\eta_{nn}c^n\) appears in
+\(\delta_ch_{(mn)}=p_mc_n+p_nc_m\);
+\item the equation-of-motion factor is the derivative with respect
+to the independent coordinate,
+\[
+\frac{\partial S}{\partial h_{(mn)}}=(2-\delta_{mn})E^{mn}(h),
+\]
+with \(E\) the linearized Einstein operator and indices raised by
+\(\eta=\diag(1,-1,-1,-1)\);
+\item consequently the \(K'_{(03)}\) coordinate carries weight
+\(2E^{03}=-2E_{03}\).
+In lower-index components this is weight \(w=-2\).
+\end{enumerate}
+\textsf{[exec]} The v4 convention scan (\loc{code/st_scan.py},
+\loc{logs/v4/st_scan.json}) used only
+positive weights \(w\in\{\tfrac12,1,2\}\).
+It never contained \(w=-2\) on \((03)\) together with (C1).
+This is why none of its 72 conventions closed.
+The UNIT ``nonzero source term'' in v4 is produced by the same
+weight error.
+
+\subsection{An \emph{a priori} normalization}
+
+v5 rightly warned that a fitted \(\lambda\) proves nothing.
+In v6, \(\lambda\) is fixed before the loop data are used.
+The XVI-P tree data give the antighost--ghost normalization
+\(A_{\rm GH}=\tfrac12\).
+They also give the quadratic-action normalization \(N=1\) of
+\(E^{\rm up}\) on de Donder configurations.
+\textsf{[exec]} \loc{code/st_norm.py} solves the de Donder
+constraint for \((h_{00},h_{03})\), with \(h_{11}=h_{22}\) tied, and
+returns
+\[
+\lambda_{\rm pred}=\frac{N}{\ii A_{\rm GH}}=-2\ii
+\]
+(\loc{logs/v6/st_norm.json}).
+
+\subsection{Constant-profile closure on CR and F}
+
+Let the axisymmetric lattice coordinates be
+\(x=(h_{00},h_{03},h_{33},f_0)\), with
+\(h_{11}=h_{22}=f_0\), and the ghost \(c=(c^0,c^3)\).
+Put \(p_\mu=(q_0,0,0,q_3)\).
+Define
+\begin{equation}
+\mathcal S_\lambda(c,h)=
+\sum_{a,b}\widehat B^{hh}_{ab}\,(\delta_ch)_a\,h_b
++\lambda\sum_{(mn),\rho}
+\widehat\Gamma^{\mathrm{D13}}_{(mn),\rho}\,c^\rho\,
+(2-\delta_{mn})E^{mn}(h),
+\label{eq:STv6}
+\end{equation}
+where
+\(\widehat B^{hh}=\mathrm{D01+D02+D03+D11+D12}\)
+denotes the executed constant-profile poles restricted to lattice
+keys.
+
+\begin{theorem}[Constant-profile \(hh/Kc\) Slavnov--Taylor row]
+\label{thm:STclosure}
+\textsf{[exec]}
+For both CR and F and every \(1/2<\alpha<1\), the polynomial
+\(\mathcal S_\lambda\) in
+\((h,f_0,c,q_0,q_3)\) vanishes identically if and only if
+\(\lambda=-2\ii=\lambda_{\rm pred}\).
+More precisely:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Sixteen monomials receive a nonzero graph contribution.
+On twelve of them, the D01 and D03 contributions cancel among the
+\(hh\) graphs.
+D02, D11, and D12 contribute nothing to the row.
+\item The remaining four monomials are
+\(f_0c^0q_0^3,\ f_0c^0q_0q_3^2,\ f_0c^3q_0^2q_3,\ f_0c^3q_3^3\).
+On them, the \(hh\) gauge variation has coefficients
+\(\mp\ka^2(\alpha-1)/(4\pi)=\mp\ka^2V/(2\pi)\), and the antifield
+term has coefficients
+\(\pm\ii\ka^2(\alpha-1)/(8\pi)\).
+Hence a single \(\alpha\)-independent \(\lambda=-2\ii\) cancels
+all four.
+\item The matter sub-row \(\mathrm{D11}+\mathrm{D12}\) is
+transverse by itself.
+\item The UNIT replacement \(c_S\equiv1\) makes both terms vanish
+identically, a trivial closure.
+So does the flat four-dimensional benchmark on the lattice
+(\loc{code/flat_pole.py}).
+Neither of these can determine \(\lambda\), which is why
+\(\lambda\) is fixed \emph{a priori}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Evidence]
+\loc{code/st_v6.py} forms \eqref{eq:STv6} symbolically from the
+logged poles and extracts every monomial coefficient as an exact
+rational function of \(\alpha\).
+It solves for \(\lambda\) on the first equation and checks
+\(\partial_\alpha\lambda=0\) and every residual \(=0\)
+(\loc{logs/v6/st_v6_\{CR,F,UNIT,FLAT\}.json}).
+The per-graph table is in \loc{logs/v6/st_v6\_stats.json}.
+
+Section~\ref{sec:structures} gives the structural reason.
+On the lattice, the gauge variation of the \(hh\) sum is
+\(2(b_6+b_7)P^2f_0\,(p\cdot c)\), so
+\(\mathcal S_\lambda\propto V\) on both branches.
+The branch-dependent structure \(b_8\) is gauge invariant.
+
+The validity of the flat tensor-averaging routine is checked
+separately. The flat D11 covariant ratios \([6,1,-6,-1,8]\)
+reproduce the frozen \texttt{P18\_D11} record
+(\loc{logs/v6/flat\_vs\_p18.json}).
+\end{proof}
+
+\begin{remark}[Scope of the closure]
+\label{rem:STscope}
+Theorem~\ref{thm:STclosure} answers v5's slice objection
+(Example~\ref{ex:slice}) for this row by direct computation, not
+by appeal to shift invariance.
+It is \emph{one} row, under these restrictions:
+\begin{itemize}
+\item the constant profile;
+\item the axisymmetric lattice \(h_{11}=h_{22}\), without the
+\((12)\) entry;
+\item excluding the vector-type keys on which mixed-helicity
+monomials were dropped (Section~\ref{sec:catalogue});
+\item without the auxiliary-field terms that vanish on this
+restriction;
+\item and with the spectral reduction itself conditional on
+Assumption~\ref{ass:reduction}.
+\end{itemize}
+It is not the 26 Ward-constrained combinations, and it is not a
+full Slavnov--Taylor theorem on the cone.
+Within that scope the honest status changes from \UNVALIDATED\
+to \emph{closed}.
+No anomaly is found, and no BRST restoration is claimed.
+\end{remark}
+
+%======================================================================
+\section{Invariant decomposition of the constant-profile \texorpdfstring{\(hh\)}{hh} poles (new in v6)}
+\label{sec:structures}
+%======================================================================
+
+On the axisymmetric lattice, write \(h\) for the longitudinal
+\(2\times2\) block, \(\operatorname{tr}h=\eta^{ab}h_{ab}\),
+\(h\cdot h'=h^{ab}h'_{ab}\), and
+\(php=p^ap^bh_{ab}\) for \(a,b\in\{0,3\}\).
+For two-dimensional symmetric matrices the Cayley--Hamilton
+identity removes \(p\,hh'\,p\).
+A symmetric \(SO(1,1)\)-invariant bilinear that is quadratic in
+\(p\) is therefore a combination of six structures:
+\begin{align*}
+S_1&=P^2\operatorname{tr}h\operatorname{tr}h', &
+S_2&=P^2\,h\cdot h', &
+S_3&=(php)\operatorname{tr}h'+\operatorname{tr}h\,(ph'p),\\
+S_6&=P^2(f_0\operatorname{tr}h'+\operatorname{tr}h\,f_0'), &
+S_7&=(php)f_0'+f_0(ph'p), &
+S_8&=P^2f_0f_0'.
+\end{align*}
+
+\begin{proposition}[Structure coefficients]
+\label{prop:structures}
+\textsf{[exec]}
+Every executed constant-profile \(hh\) pole decomposes uniquely as
+\(\sum_ib_iS_i\).
+In units of \(\ka^2/\pi\), the coefficients are the following
+branch-uniform linear forms in \((c_0,c_1,c_2)\):
+\begin{center}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Graph & \(b_1\) & \(b_2\) & \(b_3\) & \(b_6\) & \(b_7\) & \(b_8\)\\
+\midrule
+D01 & \(-\tfrac1{16}c_0\) & \(\tfrac18c_0\) & \(0\) &
+\(-\tfrac18c_0-\tfrac14c_1-\tfrac12c_2\) &
+\(\tfrac14c_0+\tfrac12c_2\) &
+\(\tfrac14c_0-\tfrac12c_1+\tfrac14c_2\)\\
+D02 & \(0\) & \(0\) & \(0\) & \(W\) & \(-W\) & \(-W\)\\
+D03 & \(\tfrac1{16}c_0\) & \(-\tfrac18c_0\) & \(0\) &
+\(\tfrac38c_0\) & \(-\tfrac14c_0\) &
+\(-\tfrac14c_0-\tfrac12c_1\)\\
+D11 & \(0\) & \(0\) & \(0\) & \(0\) & \(0\) & \(\tfrac18c_0\)\\
+D12 & \(0\) & \(0\) & \(0\) & \(0\) & \(0\) & \(0\)\\
+\midrule
+Sum & \(0\) & \(0\) & \(0\) &
+\(\tfrac34(c_0+c_1)\) & \(-\tfrac12c_0-c_1\) &
+\(-\tfrac38c_0-2c_1-\tfrac14c_2\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here \(W=\tfrac12(c_0+2c_1+c_2)\).
+The CR fit determines the forms uniquely.
+On F, where \(c_2^\Fr=7c_0+6c_1\) makes the three coefficients
+linearly dependent, the same forms reproduce every entry
+(\loc{logs/v6/hh\_structures.json}).
+UNIT (\(c\equiv1\)) gives the sum
+\((0,0,0,\tfrac32,-\tfrac32,-\tfrac{21}8)\).
+\end{proposition}
+
+\begin{corollary}[Gauge and branch content of the complete \(hh\) sum]
+\label{cor:hhcontent}
+\leavevmode
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The purely longitudinal structures cancel:
+\(b_1=b_2=b_3=0\).
+This cancellation is between D01 and D03.
+\item The only gauge-variant combination on the lattice is
+\[
+b_6+b_7=\tfrac14(c_0-c_1)\frac{\ka^2}{\pi}
+=-\frac{\ka^2V}{4\pi}
+=-\frac{\ka^2(\alpha-1)}{8\pi},
+\]
+which is branch independent.
+This is exactly the term balanced by the antifield row in
+Theorem~\ref{thm:STclosure}.
+\item The CR--F difference of the complete \(hh\) sum is
+\[
+\Delta\widehat B^{hh}=-\frac{\nu\ka^2}{4\pi}P^2f_0f_0'.
+\]
+It is annihilated by the longitudinal gauge vector
+\eqref{eq:gaugevector}, since \(k_T=0\).
+The D01 difference of Proposition~\ref{prop:branchtransverse} has
+\(S_6,S_7\) parts. They cancel against the D02 difference
+\(\tfrac{\nu}{2}(S_6-S_7-S_8)\ka^2/\pi\).
+This settles the v5 obligation that D02/D12 must be included in
+the branch-transversality check.
+\end{enumerate}
+\end{corollary}
+
+\begin{remark}[Relation to the 18-dimensional engine map]
+Axisymmetric constant-profile data land in the six-dimensional
+space above.
+The programme's complete \(hh\) map is 18-dimensional
+\cite{CheungConeV4,CheungConeV5}; it is computed by the
+XVI-P engine in its own basis.
+That basis also includes transverse-derivative and non-axisymmetric
+structures, which constant profiles cannot see
+(Proposition~\ref{prop:noninjective}).
+The convention map that sends the six coefficients above to their
+images in the engine's 18 coordinates is \(\OPEN\).
+So, therefore, are the components of the 18-dimensional vector
+outside the image.
+They are not set to zero.
+\end{remark}
+
+%======================================================================
+\section{What constant-profile data cannot determine}
+\label{sec:missing}
+%======================================================================
+
+\subsection{The full basis projection}
+
+The supplied programme counts a 34-dimensional apex basis, including
+26 Ward-constrained combinations and six exact plus two
+\(\phi\phi\) directions. Those counts are retained as supplied
+basis metadata; the basis itself is not constructed from the
+printed component table.
+
+\begin{proposition}[Constant-profile restriction is not injective]
+\label{prop:noninjective}
+On any smooth external-jet class containing constant transverse
+jets and quadratic transverse jets, restriction of apex-local
+bilinear functionals to constant profiles need not be injective.
+Consequently, constant-profile values alone do not determine
+coefficients multiplying all transverse-derivative operators.
+\end{proposition}
+
+\begin{proof}
+Consider the symmetric bilinear functional
+\[
+L(F,G)=
+\int_{\WW}
+\left(F\Delta_\perp G+G\Delta_\perp F\right)\,\dd^2y.
+\]
+It vanishes when both fields are transversely constant near the apex.
+Choose \(F\) with constant transverse profile near zero and
+\(G=r^2g(y)\) there, with a smooth outer cutoff.
+Since \(\Delta_\perp r^2=4\) on the two-dimensional cone away
+from the apex and the radial jet has that limit,
+\(L(F,G)\) is nonzero for suitable longitudinal tests.
+Thus the restriction has a nontrivial kernel.
+\end{proof}
+
+This elementary example does not declare the allowed physical
+counterterm basis. It proves why the missing basis cannot be
+recovered solely by evaluating the displayed restriction.
+
+The single computed scalar combination is the longitudinal
+\(\delta_{\WW}\phi\,\partial_\parallel^2\phi\)-type value in
+\eqref{eq:phiExpanded}, in the supplied convention.
+In v6 the second scalar combination, which belongs to a quadratic
+transverse profile, is \emph{partial}.
+Its D05a part is computed to be \(0\), and its D04 part is open
+(Section~\ref{sec:weighted}).
+
+The higher coefficient \(\mathcal D_b\) that v4 quoted without
+derivation is now derived in Theorem~\ref{thm:weighted}.
+The trace-cyclicity argument of v4 is not used: \(\mathcal D_b\)
+comes from its own normalized weighted heat trace, and its domain
+audit is the flip estimate of Proposition~\ref{prop:weightedflip}.
+
+\subsection{Joint-apex condition \(\Jcond\)}
+
+If Assumption~\ref{ass:reduction} holds, the constant-profile apex UV
+pole is the longitudinal logarithm in
+Theorem~\ref{thm:reduction}. This is the precise conditional
+version of the spectral joint-apex assertion.
+
+It is not an unconditional proof of \(\Jcond\) for all graphs
+or all external jets.
+General profiles require the corresponding weighted spectral
+coefficients, derivative-domain control, and graph contractions.
+For D01 the additional requirement
+\((\mathrm H_{I,\mathrm{D01}})\) is now resolved in the Mellin
+sense, and its prescription status is recorded in
+Corollary~\ref{cor:HI}.
+
+\subsection{Regularity at special cone openings}
+
+The printed rational functions are continuous at
+\[
+\alpha\in\left\{\frac12,\frac23,\frac45\right\}.
+\]
+This is proved in Proposition~\ref{prop:polynomialchecks}.
+Continuity of finitely many coefficients is not a uniform estimate
+for the operator domains or nonconstant jets required by \(\Hreg\).
+
+The v3 claim about
+\(H^1_{(3)}=0\) modulo \(\Span\) is retained only as a
+version-qualified supplied assertion.
+The exact complex, span matrix, and proof are not present in v4,
+so it is not used to infer the absence of a local obstruction.
+
+\subsection{Evanescent data and finite linear certificates}
+
+\paragraph{Evanescent coefficients (item (d)): partial.}
+Lemma~\ref{lem:UV} shows that an \(O(\eps)\) dependence of the
+angular continuation, or of the quasi-four-dimensional index
+algebra, leaves the simple-pole coefficient unchanged.
+So the four-dimensionally projected poles of
+Section~\ref{sec:catalogue} are stable at pole level.
+The spectral code follows the XVI-P DRED prescription, with
+quasi-\(d\) loop momenta and quasi-four-dimensional vertex indices.
+
+The evanescent \emph{coefficients} needed for finite parts and
+later identities require the \(\tilde g\)-leg (evanescent-index)
+vertex arrays.
+These are not part of the frozen XVI-P exports used here.
+They are \(\OPEN\).
+No evanescent coefficient is replaced by its four-dimensional value.
+
+\paragraph{Exact \(\Span\) certificate (item (f)): open.}
+The XVI-P engine computes the counterterm span natively modulo a
+prime.
+An exact certificate requires either a port of the rank computation
+to \(\mathbb Q(\ii)\) with fraction-free elimination, or a
+specified nonzero minor evaluated exactly.
+Neither an exact matrix export nor such a port was found in the
+frozen trees as inspected.
+Building one would mean modifying or extending the frozen engine,
+which this revision does not do.
+Memory is not the obstruction.
+A modular rank, even at several primes, is evidence and not an
+exact certificate, and it is not reported as one.
+
+\paragraph{Remaining items.}
+The following remain \(\OPEN\):
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the evanescent coefficients above;
+\item the convention map of the six structure coefficients of
+Section~\ref{sec:structures} into the 18-dimensional engine basis,
+and the components outside its image;
+\item the full 34-dimensional basis projection and the 26 Ward
+combinations;
+\item the exact \(\Span\) certificate;
+\item the vector-type keys excluded in Section~\ref{sec:catalogue}.
+\end{enumerate}
+A numerical rank or one chosen minor does not certify a whole
+unspecified contact family. The matrix, coefficient field,
+normalizations, and completeness of its columns must first be
+declared.
+
+%======================================================================
+\section{Companion comparisons and finite-report boundaries}
+\label{sec:comparisons}
+%======================================================================
+
+\subsection{Smooth cores, one-point data, and infrared control}
+
+The v4 intake reports two newly found registry identifiers:
+\loc{I-B-VP-5-Ex1-B} and \loc{I-B-VP-5-Ex2-B}.
+The historical count is relative to that reported intake snapshot,
+not a claim about the present registry.
+
+The supplied Ex1-B material concerns non-universality of complete
+smooth-core finite parts and heat-normalization audits
+\cite{CheungEx1B}. The supplied Ex2/Ex2-B material concerns
+twisted scalar Friedrichs selection, a Dirac critical-window
+selection, and operator-limit qualifications
+\cite{CheungEx2,CheungEx2B}.
+Neither supplies an interacting spin-2 CR graph calculation.
+
+The supplied I-B-VP material separately reports compact-test
+infrared control for the massless Friedrichs spectral covariance
+and regular-host one-point formulas
+\cite[{\loc{lem:infrared}, \loc{thm:friedrichs}}]{CheungVP}.
+That infrared statement is not a proof that the present massless
+loop integrals have no infrared poles.
+
+The Ward-compatible extension freedom for one-point stress and
+current distributions in I-B-VP-1 is another extension problem
+\cite{CheungVP1}.
+It does not replace the Maxwell--Friedrichs photon domain, choose
+the spin-2 CR/F realization, or fix a two-point graph prescription.
+Strong-resolvent convergence alone also does not imply convergence
+of singular covariances or renormalized one-point observables.
+
+\subsection{Continuum kernels and echo reports}
+
+The free Green identities in I-B-G are tied to their spectral
+test domain. They are not automatically an exact sequence on the
+ordinary compact-spacetime test space
+\cite[{\loc{thm:green}, \loc{rem:compact-exact}}]{CheungIBG}.
+
+I-B-ECHO compares image-isolated windows, diffracted fronts,
+short-window deficit sensitivity, and finite-precision neutral-core
+reports \cite{CheungEcho}.
+Those results do not identify the window functional with the apex
+residue. Example~\ref{ex:image} already separates the heat constant
+from a purely diffracted-front diagnostic.
+
+If one later requests a finite report of a residue, three new
+objects must be specified:
+\[
+\text{defined continuum coefficient}
+\quad\longrightarrow\quad
+\text{acquisition or supplied preparation}
+\quad\longrightarrow\quad
+\text{complete finite instrument}.
+\]
+Only the first is the target of the present loop calculation.
+A finite code cannot create the missing coefficient or its Ward
+identity.
+
+\subsection{Finite Enter instruments and their ledgers}
+
+For comparison, the finite destructive instrument has form
+\[
+\mathcal M(X)=
+\sum_j\proj j_R\otimes D_jXD_j^\dagger,\qquad
+D_j=\bra{\tau_j}_Q\otimes I_A,
+\]
+with
+\[
+\sum_jD_j^\dagger D_j=I,\qquad
+\Tr_R\mathcal M(X)=\Tr_QX.
+\]
+These identities follow by matrix-unit expansion and remain true
+with untouched finite references
+\cite{CheungIB,CheungEn09}.
+They consume a finite name and return a classical code with its
+declared residual; they do not select the continuum domain.
+
+For a supplied real signal \(s\), X-J-ST uses laws of the form
+\[
+P_s(F)=r,\qquad
+P_s(\pm)=\frac{1-r}{2}
+ \left(1\pm\tanh(\gamma s/\sigma)\right).
+\]
+For two supplied values,
+\[
+\TV(P_{s_1},P_{s_2})
+ =\frac{1-r}{2}
+ \abs{\tanh(\gamma s_1/\sigma)-\tanh(\gamma s_2/\sigma)}.
+\]
+Complete implementation allowances \(e_1,e_2\) reduce a guaranteed
+ideal separation by at most \(e_1+e_2\), by the triangle inequality
+\cite{CheungXJ,CheungEcho}.
+
+Finite clock composition and resource fitting require the full
+history, failures, controls, locations, and storage ledgers
+\cite{CheungXK}. These facts price an already declared finite
+interface. They neither acquire a continuum pole nor validate
+a failed ST test.
+Heat belongs to a separate physical implementation ledger
+\cite{CheungIC,ReebWolf}.
+\separation
+
+%======================================================================
+\section{Historical corrections and reproducibility obligations}
+\label{sec:repro}
+%======================================================================
+
+\subsection{Corrections retained from v4}
+
+The following v4 corrections to v3 remain:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item D06 is the \(\bar c c\) ghost self-energy, not
+``the D01+D03 channel.''
+
+\item The source reports confirmation of the D05a symmetry factor
+\(1/2\) from Q02. Its displayed value is unchanged.
+
+\item The closed constant-profile polynomials replace the earlier
+unevaluated Mellin-residue status only in that restricted
+reported computation. They do not supply nonconstant jets.
+
+\item The registry log distinguishes the oct18c report of zero
+new identifiers from the later oct18d report of two.
+v6 rechecked it: 251 identifiers, unchanged.
+\end{enumerate}
+
+\subsection{Proof-level corrections made in v5 (retained)}
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The apex functional is explicitly bulk-subtracted.
+
+\item Nonperiodic CR labels are justified through a singular
+Bessel-channel replacement.
+
+\item The flat CR remnant is identified as a one-sided limit.
+
+\item The heat-trace formula and complete graph reduction have
+separate hypotheses.
+
+\item The projected ghost row has explicit momentum and
+transverse-trace conventions.
+
+\item The UNIT benchmark is not assumed valid merely from
+longitudinal shift invariance.
+
+\item The full \(hh\) tadpole arrays and higher-profile values are
+not reconstructed from ``as v3'' (v6: now executed and printed).
+
+\item Self-adjoint Schr\"odinger evolution, positive wave evolution,
+and open-system access loss are distinguished in
+Appendix~\ref{app:readout}.
+\end{enumerate}
+
+\subsection{Corrections in v6}
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The \(K'_{(03)}\) coordinate weight in the \(hh\) ST row is
+\(-2\), not a positive weight (Section~\ref{sec:STdiag}).
+\item The ST constant is \(\lambda=-2\ii\) in the normalization
+\eqref{eq:STv6}.
+The early-v6 checkpoint value \(-4\ii\) belongs to the v4
+normalization, which has an extra factor 2 on the \(B\) term.
+Both are recorded in \loc{CHECKPOINT_v6.md}.
+\item The v4/v5 catalogue omitted the \((5,5)\) entries of D01 and
+D03.
+The executed record contains them, and they are added without
+changing any printed entry.
+\item ``Mixed-helicity cancellation'' is made precise: absent on
+lattice keys, and excluded (not cancelled) on vector-type keys.
+\item The early numerical \(\HI\) runs suffered catastrophic
+cancellation in \(I_{-\nu}-I_\nu\).
+They were replaced by the \(K_\nu\) form, analytic derivatives,
+and an explicit small-\(r\) head.
+Only the corrected run is reported.
+\end{enumerate}
+
+\subsection{Artifact inventory (v6)}
+
+The executed record now consists of the following
+(Appendix~\ref{app:artifacts}):
+\begin{itemize}
+\item the spectral reduction \loc{code/spectral_apex.py}, with the
+graph rules copied read-only from XVI-P
+\loc{amplitude_rules.py} and XVI-Q Q02;
+\item per-graph logs in \loc{logs/v4/} for CR, F, and UNIT;
+\item the v6 programs \loc{st_v6.py}, \loc{st_norm.py},
+\loc{st_v6_stats.py}, \loc{flat_pole.py}, \loc{flat_vs_p18.py},
+\loc{weighted_apex.py}, \loc{weighted_checks.py}, \loc{hi_d01.py},
+\loc{hi_d01_exact.py}, \loc{hh_structures.py}, and
+\loc{catalogue_check.py}, with their logs in \loc{logs/v6/};
+\item full SHA-256 tree digests of XVI-P/Q/R, taken before and after
+this revision.
+\end{itemize}
+The \loc{logs/v4/} spectral runs were executed on this machine
+during the v4 session.
+v6 re-reads and audits them, and reruns the derived checks.
+v6 does \emph{not} rerun the spectral contractions themselves;
+their per-graph timings are recorded in the JSON logs.
+This replay-versus-rebuild distinction is recorded deliberately.
+
+\subsection{Status of the computational-certificate obligations}
+
+\begingroup\small
+\begin{longtable}{@{}L{.44\linewidth}L{.50\linewidth}@{}}
+\toprule
+v5 obligation & v6 status\\
+\midrule
+\endfirsthead
+\toprule
+v5 obligation & v6 status\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1. Frozen source versions and complete hash manifests &
+Done: full tree digests and full input-file digests.\\
+2. Graph inventory, vertices, routing, phases, statistics, symmetry
+factors, normalizations &
+Done for D01--D06, D11--D13: archived in code, with values read
+from frozen sources.\\
+3. Helicity projectors and domain-changing operations &
+Projectors archived. Domain: D01 composite exact
+(Theorem~\ref{thm:HI}); other graphs per the v4 assessment.\\
+4. Exact contracted spectral functions before the spectral
+parameter is set to zero &
+\OPEN: the code reduces at zero transverse momentum.\\
+5. Regularized trace reductions and boundary defects &
+Partial: Theorems~\ref{thm:apex}, \ref{thm:flip},
+\ref{thm:weighted}, and \ref{thm:HI}.\\
+6. UV/IR separation and regulator dependence &
+Partial: Lemma~\ref{lem:UV}; (R4) open.\\
+7. Full D02/D12 arrays and source transverse-trace rows &
+Done (Section~\ref{sec:catalogue}).\\
+8. Complete ST functional, derived control, raw residuals &
+Done for one row within scope (Theorem~\ref{thm:STclosure}).
+Full functional open.\\
+9. Exact basis-projection and rank certificates & \OPEN.\\
+10. Commands, versions, logs, failures, replay vs.\ rebuild &
+Done (Appendix~\ref{app:artifacts}; corrections above).\\
+\end{longtable}
+\endgroup
+Polynomial agreement and hash agreement alone still do not supply
+items 4, 6, and 9.
+
+%======================================================================
+\section{Point-by-point response to the v5 audit (new in v6)}
+\label{sec:response}
+%======================================================================
+
+The table answers every issue v5 raised against v4, in v5's order.
+``Retained'' means v5's correction stands unchanged.
+\textsf{[exec]} marks an executed v6 answer
+(Appendix~\ref{app:artifacts}).
+
+\begingroup
+\small
+\begin{longtable}{@{}L{.035\linewidth}L{.36\linewidth}L{.54\linewidth}@{}}
+\toprule
+\# & v5 issue against v4 & v6 answer\\
+\midrule
+\endfirsthead
+\toprule
+\# & v5 issue against v4 & v6 answer\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1 & Apex functional must be bulk-subtracted. &
+Retained. Extended to the \(r^2\)-weighted trace
+(Definition~\ref{def:weighted}, Theorem~\ref{thm:weighted}).\\
+2 & Nonperiodic CR labels need a singular-channel justification. &
+Retained (Theorem~\ref{thm:flip}). Weighted analogue added
+(Proposition~\ref{prop:weightedflip}).\\
+3 & Flat CR remnant is only a one-sided limit. &
+Retained. New: the remnant is absent from the \(r^2\) moment
+(Corollary~\ref{cor:Dvalues}).\\
+4 & Heat trace and graph reduction need separate hypotheses. &
+Retained (Assumption~\ref{ass:reduction}).
+(R1) is discharged by the archived arrays.
+(R3) is discharged for the D01 composite in the Mellin sense
+(Theorem~\ref{thm:HI}).
+(R2), (R4), and (R5) remain hypotheses.\\
+5 & Catalogue identification conditional; vertex arrays and
+execution artifacts not supplied. &
+\textsf{[exec]} Arrays, routing, and prefactors are archived
+(\loc{code/spectral_apex.py}).
+All v5 entries match the logs exactly (\loc{code/catalogue_check.py}).
+New entries: D01/D03 \((5,5)\), the full D02 array, and D12 \(=0\)
+(Section~\ref{sec:catalogue}).\\
+6 & Mixed-helicity cancellation is only a supplied report. &
+\textsf{[exec]} No mixed-helicity monomial occurs on any lattice
+key.
+Such monomials occur only on vector-type keys, those with one
+transverse index on a leg, in D01, D06, and D13 (listed in
+Section~\ref{sec:catalogue}).
+Those keys are excluded, not set to zero.\\
+7 & D05a symmetry factor rests on a supplied Q02 comparison. &
+\textsf{[exec]} Read directly from the regenerated
+\loc{xviq_regen/Q02_bulk_graphs.json}: D05a \(1/2\), D12 \(1/2\),
+D04 \(1\).
+The engine prefactor is \(-\ka^2/2\), and the D05a value is
+unchanged.\\
+8 & Ghost row needs explicit momentum conventions and the
+transverse source trace. &
+Conventions retained (Theorem~\ref{thm:ghost}).
+\textsf{[exec]} The D13 rows \((11),(22)\) are computed to be zero
+for both ghost components. So \(\mathsf F=\mathsf F_L\) on the
+executed matrix, and the transverse-trace obligation is discharged
+for constant profiles.\\
+9 & UNIT is not valid merely by longitudinal shift invariance
+(slice example). &
+Answered by direct computation instead of by that argument.
+UNIT closes trivially, and \(\lambda\) is fixed a priori
+(Theorem~\ref{thm:STclosure}).\\
+10 & \(hh\) ST test is \UNVALIDATED; no verdict. &
+Diagnosed: the \(K'_{(03)}\) weight should be \(-2\)
+(Section~\ref{sec:STdiag}).
+The derived row closes on CR and F with
+\(\lambda=-2\ii=\lambda_{\rm pred}\), within the scope of
+Remark~\ref{rem:STscope}.\\
+11 & Full \(hh\) tadpole arrays not reconstructed from
+``as v3''. &
+\textsf{[exec]} D02 is printed in full and D12 \(=0\).
+Both agree with the 24-coefficient v3 tadpole comparison recorded in
+\loc{CHECKPOINT_v4.md}.\\
+12 & D01 branch-transversality check omits D02/D12. &
+Done: the complete \(hh\) branch difference is
+\(-\nu\ka^2P^2f_0f_0'/(4\pi)\), which is gauge invariant
+(Corollary~\ref{cor:hhcontent}).\\
+13 & Independent-component weights must not be double counted. &
+Confirmed and used. The \((2-\delta_{mn})\) weight is
+\emph{derived}.
+The flat D11 comparison with \texttt{P18\_D11} fixes off-diagonal
+weight 2 in the covariant basis.\\
+14 & 26 Ward combinations; 34-dimensional projection. &
+\OPEN. One row is tested and closes.
+The basis itself is still not constructed.\\
+15 & Six exact plus two scalar basis values. &
+One scalar value is retained.
+The second is partial: D05a part \(=0\), D04 part \OPEN.
+The six exact values are \OPEN.\\
+16 & \(\mathcal D_b\) was quoted without derivation or value. &
+Derived and checked (Section~\ref{sec:weighted}).\\
+17 & \(\Jcond\) only conditional; \((\mathrm H_{I,\mathrm{D01}})\)
+open. &
+\((\mathrm H_{I,\mathrm{D01}})\): exact \(L^2\) obstruction and an
+exactly zero Mellin value. The prescription choice is
+\CONDITIONAL\ (Corollary~\ref{cor:HI}).
+\(\Jcond\) for general profiles remains open.\\
+18 & \(\Hreg\) at \(\alpha=1/2,2/3,4/5\). &
+Coefficients remain continuous, and so do \(\mathcal D_b\) and
+\(M(z)\) (no resonance for \(0<\nu<1\)).
+The general statement is still open.\\
+19 & \(H^1_{(3)}=0\) mod \(\Span\) only version-qualified. &
+Unchanged; not used.\\
+20 & Evanescent coefficients. &
+Pole-level statement only (Section~\ref{sec:missing}).
+The coefficients are \OPEN.\\
+21 & Complete \(hh\) 18-dimensional map. &
+Partial: the six-structure decomposition is complete.
+The engine map is \OPEN.\\
+22 & Exact \(\Span\) certificate. &
+\OPEN, with reason (Section~\ref{sec:missing}).\\
+23 & Truncated hashes cannot authenticate trees. &
+Full tree digests before and after, and full file digests,
+are in Appendix~\ref{app:artifacts}.\\
+24 & Registry intake only historical. &
+Quick recheck: 251 identifiers, identical in set and content to
+oct18c\(\cup\)oct18d.
+No change, so no \loc{new_oct18e/} directory was created.\\
+25 & Ten-item reproducibility obligation list. &
+Status per item in Section~\ref{sec:repro}.\\
+26 & Compilation not asserted. &
+Two pdfLaTeX passes with no unresolved references
+(Appendix~\ref{app:declarations}).\\
+27 & Readout analogy supplies no premise. &
+Retained unchanged (Appendix~\ref{app:readout}).\\
+\end{longtable}
+\endgroup
+
+%======================================================================
+\section{Ledger and release}
+\label{sec:ledger}
+%======================================================================
+
+\begingroup
+\small
+\begin{longtable}{@{}L{.50\linewidth}L{.44\linewidth}@{}}
+\toprule
+Item & Status in v6 (change from v5)\\
+\midrule
+\endfirsthead
+\toprule
+Item & Status in v6 (change from v5)\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+Normalized twisted Friedrichs apex constant &
+Proved: Theorem~\ref{thm:apex}.\\[3pt]
+
+One exceptional regular-to-singular Bessel heat shift &
+Proved: Theorem~\ref{thm:flip}.\\[3pt]
+
+\(r^2\)-weighted apex coefficient \(\mathcal D_b\) and its shift &
+\textbf{New}, proved: Theorem~\ref{thm:weighted} and
+Proposition~\ref{prop:weightedflip}, with orbifold checks.\\[3pt]
+
+Spectral reduction of a specified complete graph &
+Conditional on Assumption~\ref{ass:reduction}.
+(R1) discharged by archived arrays.\\[3pt]
+
+D01--D06, D11--D13 constant-profile expressions &
+\textbf{Upgraded}: executed and matching all v5 entries.
+\((5,5)\), D02, and D12 added.
+Graph identification still conditional on (R2)--(R5).\\[3pt]
+
+D01 exceptional derivative tower \((\mathrm H_{I,\mathrm{D01}})\) &
+\textbf{Upgraded}: exact \(L^2\) obstruction; Mellin value
+\(=0\) exactly.
+Prescription \CONDITIONAL.\\[3pt]
+
+F flat limit and CR=F at \(\alpha=1/2\) &
+Proved for the catalogue, including the new entries.\\[3pt]
+
+Ghost-equation row &
+Exact identity proved.
+\textbf{Upgraded}: transverse trace computed to be zero.\\[3pt]
+
+D02/D05a/D12 &
+\textbf{Upgraded}: D02 printed, D12 \(=0\), D05a factor read from
+Q02.\\[3pt]
+
+Mixed-helicity terms &
+\textbf{Upgraded}: absent on lattice keys; vector-type keys
+excluded.\\[3pt]
+
+\(hh\) Slavnov--Taylor row and UNIT &
+\textbf{Upgraded} from \UNVALIDATED\ to \emph{closed in scope}:
+CR and F with \(\lambda=-2\ii=\lambda_{\rm pred}\); UNIT trivially.\\[3pt]
+
+Complete \(hh\) branch difference &
+\textbf{New}: \(-\nu\ka^2P^2f_0f_0'/(4\pi)\), gauge invariant.\\[3pt]
+
+26 Ward combinations; 34-dimensional projection & Not obtained.\\[3pt]
+
+Six exact values & Not obtained.\\[3pt]
+
+Second scalar value &
+\textbf{Partial}: D05a part \(=0\); D04 part open.\\[3pt]
+
+Joint-apex condition \(\Jcond\) &
+Constant profile only, with the D01 composite now controlled.
+General profiles open.\\[3pt]
+
+\(\Hreg\) at \(1/2,2/3,4/5\) &
+Coefficients continuous; general statement open.\\[3pt]
+
+Evanescent coefficients &
+\OPEN\ (pole-level statement only).\\[3pt]
+
+Complete \(hh\) 18-dimensional map &
+\textbf{Partial}: six-structure decomposition; engine map
+open.\\[3pt]
+
+Exact \(\Span\) certificate & \OPEN.\\[3pt]
+
+Vector-type keys (one transverse index) &
+\OPEN: they need mixed-channel traces.\\[3pt]
+
+Registry intake & Rechecked; unchanged.\\[3pt]
+
+Companion and catalogue connections &
+Separations, not new premises or admission.\\[3pt]
+
+\textbf{O.1 on the cone} & \textbf{\NOTCLOSED}.\\[3pt]
+
+\loc{bulk_symmetry_restored} & \texttt{false}.\\
+\end{longtable}
+\endgroup
+
+\begin{theorem}[Exact release of v6]
+\label{thm:release}
+Under the printed definitions and hypotheses:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the normalized apex constants \(\Ccb_b\) and the weighted
+coefficients \(\mathcal D_b\) are established, together with their
+singular-channel shifts;
+\item a complete graph satisfying the spectral reduction contract
+has the longitudinal residue \eqref{eq:reduction};
+\item the executed constant-profile poles equal the coefficient
+catalogue of Section~\ref{sec:catalogue}, with the algebraic checks
+proved above;
+\item the projected ghost-equation row \eqref{eq:ghostrow} holds,
+and the transverse source trace vanishes on the executed matrix;
+\item the constant-profile \(hh/Kc\) Slavnov--Taylor row closes on
+CR and F with the a-priori constant \(\lambda=-2\ii\);
+\item the D01 composite has an exact \(L^2\) obstruction and zero
+Mellin value;
+\item the available data do not supply the full basis map, the six
+exact values, the D04 quadratic-profile part, the evanescent
+coefficients, the engine map, or an exact \(\Span\) certificate;
+\item neither the companion separations nor the finite-readout
+comparison changes the cone O.1 ending.
+\end{enumerate}
+No complete cone O.1 closure or bulk symmetry restoration is
+released.
+\end{theorem}
+
+\begin{proof}
+Theorems~\ref{thm:apex}, \ref{thm:flip}, and \ref{thm:weighted},
+with Proposition~\ref{prop:weightedflip}, give (i).
+Theorem~\ref{thm:reduction} gives (ii).
+Proposition~\ref{prop:polynomialchecks} and the executed catalogue
+check give (iii).
+Theorem~\ref{thm:ghost} and the executed D13 rows give (iv).
+Theorem~\ref{thm:STclosure} gives (v), and Theorem~\ref{thm:HI}
+gives (vi).
+Propositions~\ref{prop:noSTverdict} and \ref{prop:noninjective},
+Remark~\ref{rem:STscope}, and Section~\ref{sec:missing} give (vii).
+
+O.1 on the cone requires the full Ward/basis projection on the
+prescribed cone, the evanescent and \(\Span\) data, and (R2)--(R5)
+for every graph.
+These are listed as open, and none is supplied by (i)--(vi).
+The cone and CR branch remain inputs.
+This gives (viii) and the release boundary.
+\end{proof}
+
+\scopebox{Conclusion}{%
+v6 closes what the constant-profile record can close:
+\begin{itemize}
+\item the catalogue matches its executed source;
+\item the v4 Slavnov--Taylor failure was a convention error, and
+the derived row closes with an a-priori constant;
+\item the D01 obstruction is exact, and it is Mellin-null;
+\item a second apex moment is proved.
+\end{itemize}
+A closed row is not the complete Slavnov--Taylor identity.
+A constant profile is not the full counterterm basis.
+A Mellin value is not a prescription theorem.
+The cone and CR domain remain inputs.
+\[
+\boxed{
+\text{O.1 on the cone}=\NOTCLOSED,\qquad
+\texttt{bulk\_symmetry\_restored}=\texttt{false}.
+}
+\]
+}
+
+%======================================================================
+\appendix
+\section{Self-adjoint apex dynamics and the readout analogy}
+\label{app:readout}
+%======================================================================
+
+\subsection{Boundary form and flux}
+
+For a real radial Bessel expression
+\[
+L_\nu=-\partial_r^2-r^{-1}\partial_r+\nu^2r^{-2}
+\]
+in \(L^2(r\,\dd r)\), integration by parts gives the endpoint
+boundary pairing, up to the chosen outward orientation,
+\begin{equation}
+\mathfrak b(u,v)=
+\lim_{r\downarrow0}
+ r\left(\overline u\,v'
+       -\overline{u'}\,v\right).
+\label{eq:boundaryform}
+\end{equation}
+A self-adjoint domain makes this pairing vanish on every pair
+of domain vectors, with the appropriate sum if channels are
+coupled.
+
+\begin{proposition}[No absorbing apex in the declared closed realization]
+\label{prop:flux}
+Let \(A\) be a self-adjoint realization with the declared closed
+system boundary conditions.
+Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \(e^{-\ii tA}\) is unitary and preserves Hilbert norm;
+\item the integrated endpoint probability flux of sufficiently
+regular domain states vanishes;
+\item a normalizable bound state is a state of that realization,
+not an absorbing output channel.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The spectral theorem gives a unitary group \(e^{-\ii tA}\).
+Equivalently, for differentiable domain solutions,
+\[
+\frac{\dd}{\dd t}\norm{u(t)}^2
+ =2\operatorname{Re}\pair{u(t)}{-\ii Au(t)}=0.
+\]
+The integrated radial current is proportional to
+\(\operatorname{Im}(r\overline u\,u')\).
+The vanishing of \(\mathfrak b(u,u)\) gives zero net boundary
+flux. A bound eigenvector evolves by a phase
+\(e^{-\ii t\lambda}\); its norm is not lost.
+\end{proof}
+
+This is standard self-adjoint-extension theory
+\cite{KayStuder,DerezinskiRichard}.
+For a channel-coupled boundary law, the proposition concerns the
+total flux, not necessarily each component separately.
+
+\begin{remark}[A negative bound state and wave stability]
+Self-adjointness alone does not imply that
+\(\partial_t^2u+Au=0\) is a stable positive-energy wave theory.
+If \(Au=-\sigma^2u\), its wave component solves
+\[
+\ddot a-\sigma^2a=0.
+\]
+The sine quotient becomes \(\sinh(\sigma t)/\sigma\).
+One must not call this positive-frequency evolution
+\(e^{-\ii t\sqrt A}\) without a nonnegative operator.
+
+The F and stated scale-invariant CR Bessel realizations above
+are nonnegative in their declared range.
+A different non-Friedrichs extension with a negative bound state
+retains self-adjoint Schr\"odinger evolution but requires this
+separate wave-stability qualification.
+\end{remark}
+
+Ghost and gauge-fixed tensor fields also do not automatically
+carry a positive probability interpretation on physical
+cohomology. No such identification is inferred from the radial
+boundary calculation.
+
+\subsection{What a loss channel would additionally require}
+
+For the same complete single-particle realization, an absorbing
+endpoint would require a different, dissipative boundary model
+rather than the self-adjoint one just analyzed.
+If the time evolution is written as \(e^{-tG}\), its contraction
+generator is expressed by the appropriate maximal-accretive
+condition on \(G\); the sign convention should not be transferred
+uncritically to a Hamiltonian written in another convention.
+
+There is another possibility: couple the cone to additional quantum
+degrees of freedom and then restrict access to a subsystem.
+The complete enlarged dynamics may remain self-adjoint and unitary,
+while its accessible reduced channel is lossy.
+Thus the unrestricted statement
+``every form of loss requires a non-self-adjoint Hamiltonian''
+would be false.
+
+Neither an absorbing boundary condition nor an apex reservoir
+coupling is constructed by this paper.
+Both would change its declared model and require a new
+gauge/BRST analysis.
+
+\subsection{The precise I-C comparison}
+
+I-C distinguishes destructive finite readout from coherent return
+and from thermodynamic implementation \cite{CheungIC}.
+Its six statements are relevant only as the following separations.
+
+\begin{description}[style=nextline,leftmargin=0pt]
+\item[A: recovery metric.]
+If the complete accessible output of an unknown \(d\)-dimensional
+code is classical, with no additional message-bearing quantum
+resource available to the decoder, every deterministic decoder
+\(\mathcal D\) obeys
+\[
+F_e(\mathcal D\mathcal C)\le\frac1d,\qquad
+\frac12\norm{\mathcal D\mathcal C-\id}_\diamond
+ \ge1-\frac1d.
+\]
+The distinct Haar-average pure-state infidelity is at least
+\((d-1)/(d+1)\), using
+\(F_{\rm av}=(dF_e+1)/(d+1)\)
+\cite{HSR,NielsenAverage}.
+
+\item[B: append-only entropy.]
+For one unconditioned retained history,
+\[
+H(X_1,\ldots,X_{n+1})
+ =H(X_1,\ldots,X_n)
+  +H(X_{n+1}\mid X_1,\ldots,X_n).
+\]
+This monotonicity is not a Page curve for unmeasured quantum
+radiation.
+
+\item[C: conditional thermal accounting.]
+For an initially independent Gibbs bath and a complete unitary
+step,
+\[
+\beta_{\rm th}Q_B
+ =S_{\rm n}(\rho_M)-S_{\rm n}(\omega_M)
+  +I_{\rm n}(M:B)_\omega
+  +D_{\rm n}(\omega_B\Vert\tau_B).
+\]
+A strictly positive complete non-bath entropy decrease implies
+positive heat. The equality itself does not require that decrease,
+and a readout channel does not fix the heat bill
+\cite{ReebWolf}.
+
+\item[D: complete classical exterior.]
+Jointly classical heat labels and finite postprocessing do not
+evade the classical-cut recovery obstruction. Quantum access to
+the bath is a different interface.
+
+\item[E: endpoint.]
+A finite destructive prefix does not select physical evaporation,
+a remnant, or a last-moment change to a quantum output.
+
+\item[F: classical persistence.]
+Persistent observables commute when the retained accessible
+output is declared classical-only. Returned quantum residuals
+and prior transfers cannot be omitted from the complete account.
+\end{description}
+
+For completeness, the recovery obstruction follows from the
+measure-and-prepare form
+\[
+\mathcal D\mathcal C(\rho)
+ =\sum_x\Tr(E_x\rho)\sigma_x.
+\]
+Its referenced output is separable.
+For the maximally entangled state \(\Phi_d\), every product state
+has overlap at most \(1/d\), since
+\[
+\Tr[\Phi_d(a\otimes b)]
+ =\frac1d\Tr(a^{\mathsf T}b)\le\frac1d.
+\]
+Convexity and testing the Bell projector give the two displayed
+bounds. This argument concerns a finite accessible channel,
+not an apex extension.
+
+\subsection{Why the analogy supplies no O.1 premise}
+
+No entanglement-breaking map, classical-only radiation algebra,
+bath-reset process, or finite acquisition instrument is part of
+the cone residue calculation.
+Conversely, the self-adjoint apex realizations do not choose such
+an interface.
+
+The correct conclusion is therefore:
+\[
+\boxed{
+\begin{gathered}
+\text{I-C supplies no usable analytical input for cone O.1;}\\
+\text{self-adjoint endpoint data are not destructive readout;}\\
+\text{no Ward identity or apex pole follows from the analogy.}
+\end{gathered}}
+\]
+This is a separation, not a premise of any graph calculation
+and not a claim that reduced access loss is impossible in a
+different enlarged model.
+
+%======================================================================
+\section{Source and status declarations}
+\label{app:declarations}
+%======================================================================
+
+\paragraph{Analytical inputs.}
+The Bessel heat representation, standard Bessel transform identities,
+self-adjoint functional calculus, and conventional dimensional
+regularization background are identified analytical inputs.
+The apex normalization, channel-shift integral, conditional reduction
+argument, and polynomial identities are proved explicitly.
+
+\paragraph{Companion source scope.}
+The supplied v4 source, supplied I-C sources, version-qualified
+excerpts, and programme descriptions are distinguished from
+complete independently inspected manuscripts.
+Companion manuscripts were not re-read for v6; their citations
+carry the mark \(\dagger\).
+No inaccessible source is claimed to have been read in full.
+
+\paragraph{Primary literature.}
+The bibliography identifies primary analytical and quantum-channel
+sources for attribution and normalization.
+The original shorthand citations ``FM97'' and ``S11'' are not used
+as substitutes for precise hypotheses.
+The normalized apex constant is proved here independently of those
+abbreviations.
+
+\paragraph{Execution records (v6).}
+Statements tagged \textsf{[exec]} were executed on the shared
+working machine and are logged.
+Software: Python~3.13.5, SymPy~1.14.0, mpmath~1.3.0, and
+pdfTeX~3.141592653-2.6-1.40.26 (TeX Live 2025).
+The XVI-P/Q/R trees were hashed before and after this revision with
+the command of Appendix~\ref{app:artifacts}; the digests are
+identical.
+No file in those trees was edited.
+Nothing was pushed or written to any site.
+The registry recheck read the public listing only.
+The v4-era statements that v6 did not rerun stay attributed to
+the supplied record.
+
+\paragraph{Compilation and review.}
+This source was compiled with two pdfLaTeX passes. It has an
+internal bibliography, no external figure, data, or bibliography
+file, and no unresolved references.
+No proof-assistant check, independent referee review, physical
+implementation, or journal acceptance is asserted.
+In particular, \textsf{[exec]} is not independent review.
+
+\paragraph{Submission obligation.}
+A submission making the full loop-coefficient claim must attach or
+archive the missing graph certificate and obtain the author's
+approval of the mathematical scope and source versions.
+The present conditional theorem must not be relabeled an
+independently reproduced complete computation; \textsf{[exec]} means
+reproducible on archived inputs, not independently reviewed.
+
+\paragraph{Unchanged non-claims.}
+The cone and CR extension are prescribed inputs.
+Companion connections and OpenAI-attributed catalogue records
+are documentary separations only.
+No catalogue proof is adopted or independently verified.
+O.1 on the cone stays \(\NOTCLOSED\);
+\loc{bulk_symmetry_restored} stays \texttt{false}.
+XVI-N is not discharged, the downstream XV-B admission exit is
+not opened, and the H2/I3/J2 analytical chain is not completed.
+No Einstein dynamics, physical tensor-core identification,
+spacetime emergence, or inherited characteristic quantum
+coefficient is constructed.
+
+%======================================================================
+\section{Artifact manifest and rerun commands (new in v6)}
+\label{app:artifacts}
+%======================================================================
+
+Paths are relative to \loc{/workspace/XVI-O1-CONE/}.
+\texttt{RO:} denotes the read-only copies under
+\loc{/tmp/o1cone_ro/}; their digests equal those of the originals in
+the frozen trees.
+The frozen-tree digest is
+\begin{center}\footnotesize
+\verb!cd /workspace/XVI-$t && find . -type f -not -path './.pytest_cache/*'!\\
+\verb!  -not -name '*.pyc' | sort | xargs sha256sum | sha256sum!
+\end{center}
+
+\begingroup\small
+\begin{longtable}{@{}L{.10\linewidth}L{.52\linewidth}L{.25\linewidth}@{}}
+\toprule
+Tree & SHA-256 (before and after v6) & before vs.\ after\\
+\midrule
+\endfirsthead
+\bottomrule
+\endfoot
+XVI-P & \texttt{\scriptsize ec965c15ae25cd3bb9cc2b3a134e966b}\newline\texttt{\scriptsize 19a1803c78d1fe5bf7554da2a8b3aaa6} & identical\\
+XVI-Q & \texttt{\scriptsize 0df9a0d10409d31ac0c2d0a47197e3f6}\newline\texttt{\scriptsize e03c7ae258ec5fb775137f66cb0493c4} & identical\\
+XVI-R & \texttt{\scriptsize 57187bc6825f5c6ae88633b7279c6c0b}\newline\texttt{\scriptsize e57f7c4918fdbc525da4aaf958331edb} & identical\\
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\begin{longtable}{@{}L{.50\linewidth}L{.44\linewidth}@{}}
+\toprule
+File & SHA-256\\
+\midrule
+\endfirsthead
+\toprule
+File & SHA-256\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\textit{Base source (read-only copy)}}\\
+{\footnotesize\loc{XVI-O1-CONE-v5.tex}} & \texttt{\scriptsize e00e49f548bdc3dd1da94411e7438f73}\newline\texttt{\scriptsize c873aa3e2b3d24bae3d74f2bd3a6985b}\\
+\multicolumn{2}{@{}l}{\textit{Programs}}\\
+{\footnotesize\loc{code/spectral_apex.py}} & \texttt{\scriptsize cb22811e721c932766a576cb15626015}\newline\texttt{\scriptsize 584f9cbc3cc3696f793e664c43debde2}\\
+{\footnotesize\loc{code/st_test_const.py}} & \texttt{\scriptsize dd87dfd55dbf1a730ad31d728fced6d9}\newline\texttt{\scriptsize aa1f35c59afc0b5ab0f8072f9b81f0ee}\\
+{\footnotesize\loc{code/st_scan.py}} & \texttt{\scriptsize 4a03c966a77b60a028e57163aef7f264}\newline\texttt{\scriptsize 5118c797ec3d55fc5c44ac8ee63cf759}\\
+{\footnotesize\loc{code/catalogue_check.py}} & \texttt{\scriptsize 851f295b79cf2a483e6f9de4558d0f84}\newline\texttt{\scriptsize 2082bd7eff46efd1866d2ad93c3180df}\\
+{\footnotesize\loc{code/st_v6.py}} & \texttt{\scriptsize 5dba49edc69ff70ca01cb0a428aef450}\newline\texttt{\scriptsize 262c117f19a6d86074acf4dc89cb6155}\\
+{\footnotesize\loc{code/st_norm.py}} & \texttt{\scriptsize da1c19a9f75926f26490d44129fc21fa}\newline\texttt{\scriptsize 952b97384d4784a7c79219e5f1ff0f31}\\
+{\footnotesize\loc{code/st_v6_stats.py}} & \texttt{\scriptsize 36ec924f70166b004720d547c1bf6cac}\newline\texttt{\scriptsize 4ae2283aec8321ea7db2234639241c31}\\
+{\footnotesize\loc{code/flat_pole.py}} & \texttt{\scriptsize 7d77f198d4cd6874c6a88f8bff554835}\newline\texttt{\scriptsize 97b22ed74be4dc66bc7a2bbfd9423dc2}\\
+{\footnotesize\loc{code/flat_vs_p18.py}} & \texttt{\scriptsize 4bee961081e64fa4ca7de67baa92bd51}\newline\texttt{\scriptsize 5bbd3307acaf317390c9fa5c68912561}\\
+{\footnotesize\loc{code/weighted_apex.py}} & \texttt{\scriptsize a8a3ffd0742a5fdc5d176d8b259d4701}\newline\texttt{\scriptsize 1051513ff48191fcc22231e94cb2eada}\\
+{\footnotesize\loc{code/weighted_checks.py}} & \texttt{\scriptsize a14d14e9112ab3603c4d77bbaed10cf1}\newline\texttt{\scriptsize dc70e67357ac4678d116de89eb317834}\\
+{\footnotesize\loc{code/hi_d01.py}} & \texttt{\scriptsize f3e7ee7f82bde0c6aa85d4fc57e2807a}\newline\texttt{\scriptsize 47fe95a53b9af5348d31b206a0e524d5}\\
+{\footnotesize\loc{code/hi_d01_exact.py}} & \texttt{\scriptsize c4e7d0271a0890d604e0ae1e8b300bb5}\newline\texttt{\scriptsize 3bdaa64402e1188faf72247133d0f118}\\
+{\footnotesize\loc{code/hh_structures.py}} & \texttt{\scriptsize adc0bdbe0482e92d59bd26de05b90c41}\newline\texttt{\scriptsize e5d90e7dcb390c6ef6440f9d3c3f3f23}\\
+{\footnotesize\loc{code/build_v6.py}} & \texttt{\scriptsize 40cd45f3b622260020cfb6f52a91904f}\newline\texttt{\scriptsize c2894a457be599fb12faec260b09663e}\\
+{\footnotesize\loc{code/artifacts_v6.py}} & \texttt{\scriptsize d602a6ab9b12105f02baa274c2c212c3}\newline\texttt{\scriptsize 624c1c30d96c490cc8bb95e5e9020d00}\\
+\multicolumn{2}{@{}l}{\textit{Spectral logs (v4 session, audited in v6)}}\\
+{\footnotesize\loc{logs/v4/spec_D01_CR.json}} & \texttt{\scriptsize ee0c4766a8282d4969366eb44070617f}\newline\texttt{\scriptsize 715b535fc72c3760eb47e80130419a3e}\\
+{\footnotesize\loc{logs/v4/spec_D01_F.json}} & \texttt{\scriptsize 7ea9fe6077c7b28d1bbad1f25fa7325a}\newline\texttt{\scriptsize a88e377227f87683d3a3ee570b9da819}\\
+{\footnotesize\loc{logs/v4/spec_D01_UNIT.json}} & \texttt{\scriptsize 0923e4c51b68021f6fa77d734cdf25ec}\newline\texttt{\scriptsize fe758385a542b26207f1c97819b686a6}\\
+{\footnotesize\loc{logs/v4/spec_D02_CR.json}} & \texttt{\scriptsize 679ac21d06a9b8de0657f15fbcb116cd}\newline\texttt{\scriptsize 6fbfcf5af7a5e2e56abd99cf2bde6398}\\
+{\footnotesize\loc{logs/v4/spec_D02_F.json}} & \texttt{\scriptsize 827cc09f0945b69a9d0cba1bacf523df}\newline\texttt{\scriptsize 9e08424743220728034182a364de5d65}\\
+{\footnotesize\loc{logs/v4/spec_D02_UNIT.json}} & \texttt{\scriptsize 2f12785331b61aa9534515191e916f46}\newline\texttt{\scriptsize cbba7d418c965b1e221140ab2bb36ee3}\\
+{\footnotesize\loc{logs/v4/spec_D03_CR.json}} & \texttt{\scriptsize 6cae7e5ce69623b004ca177af9c4971b}\newline\texttt{\scriptsize 469976b704638810f978e68911a5e78f}\\
+{\footnotesize\loc{logs/v4/spec_D03_F.json}} & \texttt{\scriptsize 7545563c038b73d232990a7b636055c1}\newline\texttt{\scriptsize 4687293c67e3cad76ba9fdd703261ef9}\\
+{\footnotesize\loc{logs/v4/spec_D03_UNIT.json}} & \texttt{\scriptsize 8aee1bbdc1f7e6c31a378ae418054220}\newline\texttt{\scriptsize e605fd04314b9fc26e81b09ea34fa415}\\
+{\footnotesize\loc{logs/v4/spec_D04_CR.json}} & \texttt{\scriptsize af01b84ec1891fff4c95d0ff43fa0854}\newline\texttt{\scriptsize 17ceaff7e876395026f3a506b84cbd72}\\
+{\footnotesize\loc{logs/v4/spec_D04_F.json}} & \texttt{\scriptsize 7a209c8c669ca21a8119e168cfb40e62}\newline\texttt{\scriptsize e0b9642939dd9ef27a7307b07e6f4a2b}\\
+{\footnotesize\loc{logs/v4/spec_D05a_CR.json}} & \texttt{\scriptsize c23d25b994b17fde9aa78a63bf520927}\newline\texttt{\scriptsize 33d452568a10ab7af77f828e4ddcbe03}\\
+{\footnotesize\loc{logs/v4/spec_D05a_F.json}} & \texttt{\scriptsize c56f0489caae6064ba22ee9de188a66e}\newline\texttt{\scriptsize 4b173b11648e1a051c62fb387a5f3d9e}\\
+{\footnotesize\loc{logs/v4/spec_D06_CR.json}} & \texttt{\scriptsize d759c4b910babacbc60b2aa2746da136}\newline\texttt{\scriptsize 669b2d40bbc3952e48c15bdd10f2dbcd}\\
+{\footnotesize\loc{logs/v4/spec_D06_F.json}} & \texttt{\scriptsize 2fead6732f276e532fedc4d0aaf8bd27}\newline\texttt{\scriptsize 19b584ff7e5f23fa82701cef29c45652}\\
+{\footnotesize\loc{logs/v4/spec_D06_UNIT.json}} & \texttt{\scriptsize a75b8ab0791896a4d64c06d14724c7f1}\newline\texttt{\scriptsize dccb5e0eed5358a6c40633b2190f360c}\\
+{\footnotesize\loc{logs/v4/spec_D11_CR.json}} & \texttt{\scriptsize 6afa59f62437354f5dff58693c421e4b}\newline\texttt{\scriptsize 53867224bdd11b4b5ea47303f79be971}\\
+{\footnotesize\loc{logs/v4/spec_D11_F.json}} & \texttt{\scriptsize b30291938bc5878556b69e6a2f8f4b88}\newline\texttt{\scriptsize 5ca803e5f3da1c0a60bb79727f1f55bb}\\
+{\footnotesize\loc{logs/v4/spec_D11_UNIT.json}} & \texttt{\scriptsize f099bb41ff2ccbcfeb0bd568f3daf002}\newline\texttt{\scriptsize ec164a91d63ccf216b6aaf9347306508}\\
+{\footnotesize\loc{logs/v4/spec_D12_CR.json}} & \texttt{\scriptsize d5f4ef51fd1adcf1e163422b76dc3421}\newline\texttt{\scriptsize 2a34a0c285cae006cfdda5fa1c2cc948}\\
+{\footnotesize\loc{logs/v4/spec_D12_F.json}} & \texttt{\scriptsize 59937795d9674227954d36157ffb2d28}\newline\texttt{\scriptsize 08d38244e9346c55f416103b01c4abcc}\\
+{\footnotesize\loc{logs/v4/spec_D12_UNIT.json}} & \texttt{\scriptsize b92e6a75b387400af13d4357cd5039dc}\newline\texttt{\scriptsize 5ce58b98f3a7e0c531048d78f39be508}\\
+{\footnotesize\loc{logs/v4/spec_D13_CR.json}} & \texttt{\scriptsize 322b2653b807c47465cf9972da6acf5e}\newline\texttt{\scriptsize a0ef566b69374dfecb86ff402c497552}\\
+{\footnotesize\loc{logs/v4/spec_D13_F.json}} & \texttt{\scriptsize ef4ef5e3cef8f2e9339a82e4f9f9d823}\newline\texttt{\scriptsize 844a13c2ebb10256bed893c6fb4b8f15}\\
+{\footnotesize\loc{logs/v4/spec_D13_UNIT.json}} & \texttt{\scriptsize 9670e118cdd948d839d714242ba142af}\newline\texttt{\scriptsize e30cc1bf994c985d41ab2e8b583935a8}\\
+{\footnotesize\loc{logs/v4/st_const_CR.json}} & \texttt{\scriptsize 23897227e71dea9022e56edf2441ac42}\newline\texttt{\scriptsize 56cbd97149036b3e46dccd3521ed64ff}\\
+{\footnotesize\loc{logs/v4/st_const_F.json}} & \texttt{\scriptsize 56ca503cb7b1dd02db11bbc18658a373}\newline\texttt{\scriptsize dabeaaa579e7b39baf3b8ebb9e4e680d}\\
+{\footnotesize\loc{logs/v4/st_scan.json}} & \texttt{\scriptsize e86875743f6e5c99852456e3d4b49293}\newline\texttt{\scriptsize 0727f4e0724a4f7dd1111e2ae41628db}\\
+\multicolumn{2}{@{}l}{\textit{v6 logs}}\\
+{\footnotesize\loc{logs/v6/catalogue_check.json}} & \texttt{\scriptsize 1a436314aaf0c5a7ca7f8cc7a7a09be0}\newline\texttt{\scriptsize a30394d80a1bbe2023fae6cca35f3e53}\\
+{\footnotesize\loc{logs/v6/flat_D01.json}} & \texttt{\scriptsize 29293d0cf86d9a9091df2b6c5c613ea9}\newline\texttt{\scriptsize df2b501563164eca1ad4bd0db62dc86d}\\
+{\footnotesize\loc{logs/v6/flat_D02.json}} & \texttt{\scriptsize 80804ff73c1b02d05f0b720df14b957d}\newline\texttt{\scriptsize fb73a38e0a9adeaa717e532bc1fcdf84}\\
+{\footnotesize\loc{logs/v6/flat_D03.json}} & \texttt{\scriptsize ff09567fc9a68e73aa0b5c963359b111}\newline\texttt{\scriptsize 8445d807a9707e37c8b087b4dd0c31a9}\\
+{\footnotesize\loc{logs/v6/flat_D06.json}} & \texttt{\scriptsize 346f4bf0cb4072a5f8cd38e2c725c069}\newline\texttt{\scriptsize 63bce2f8714ca50d7d92b7bae81d7332}\\
+{\footnotesize\loc{logs/v6/flat_D11.json}} & \texttt{\scriptsize 9137e362feca3054545742d7cea4e439}\newline\texttt{\scriptsize 9fecddd117bdce0093bb79cb3705dbec}\\
+{\footnotesize\loc{logs/v6/flat_D12.json}} & \texttt{\scriptsize 80804ff73c1b02d05f0b720df14b957d}\newline\texttt{\scriptsize fb73a38e0a9adeaa717e532bc1fcdf84}\\
+{\footnotesize\loc{logs/v6/flat_D13.json}} & \texttt{\scriptsize a8008a4a8ac47c9fac9c39efa5729dd7}\newline\texttt{\scriptsize 4fa9d7e70aae824e78407def473578d1}\\
+{\footnotesize\loc{logs/v6/flat_vs_p18.json}} & \texttt{\scriptsize 891bf4a356e9427dea75d403874ec422}\newline\texttt{\scriptsize 0d4fa5ba74de59b86ee8152bb010c42c}\\
+{\footnotesize\loc{logs/v6/hh_structures.json}} & \texttt{\scriptsize 78fb8461a611975d88dc600ea2f6e937}\newline\texttt{\scriptsize b52a31e62b6ed0483fbf721458b5086a}\\
+{\footnotesize\loc{logs/v6/hi_d01.json}} & \texttt{\scriptsize 1ee5a24338961e2fb35006fb00ebee02}\newline\texttt{\scriptsize 0ad93ab20bd78c8f5c0dbe2b7d3dbbb1}\\
+{\footnotesize\loc{logs/v6/hi_d01_exact.json}} & \texttt{\scriptsize 850e69e35f7d33cf0933886869cc65f5}\newline\texttt{\scriptsize cd1fdfff1970d8fe1e2bba8ea7979305}\\
+{\footnotesize\loc{logs/v6/st_norm.json}} & \texttt{\scriptsize 5b30e5af54e2a46f48f45356d2dee543}\newline\texttt{\scriptsize 4bc378fd19c3a1b4ee5e98fb5f197253}\\
+{\footnotesize\loc{logs/v6/st_v6_CR.json}} & \texttt{\scriptsize 9f1065ca1c9ae07f4eb640061540e50e}\newline\texttt{\scriptsize cad8faa0ebc75afd097d5fd943cf8dda}\\
+{\footnotesize\loc{logs/v6/st_v6_F.json}} & \texttt{\scriptsize eb09490b5b839a503d9a053fd5d5180a}\newline\texttt{\scriptsize 3473c4507896ef01dd79a7322b23be22}\\
+{\footnotesize\loc{logs/v6/st_v6_FLAT.json}} & \texttt{\scriptsize 46b533ea296208474c3893d989fd6c45}\newline\texttt{\scriptsize b3a874acd4e15a92b49e29fc4896bacb}\\
+{\footnotesize\loc{logs/v6/st_v6_UNIT.json}} & \texttt{\scriptsize 20a9d7d327e92d8f182e54954aa7bd1d}\newline\texttt{\scriptsize 29cc8995bc35a9803ac239401001be07}\\
+{\footnotesize\loc{logs/v6/st_v6_stats.json}} & \texttt{\scriptsize bde0de688cc0e7317f3d42a2cf049758}\newline\texttt{\scriptsize 59d747c16e00c0cfe66cc4bda2ca7711}\\
+{\footnotesize\loc{logs/v6/weighted_apex.json}} & \texttt{\scriptsize b23bf74962e3174c689db732c5a4603c}\newline\texttt{\scriptsize 2d380e2be75c58a324dd6a337ead0c2d}\\
+{\footnotesize\loc{logs/v6/weighted_checks.json}} & \texttt{\scriptsize bc1b45f39bc41eadb640478f406b2655}\newline\texttt{\scriptsize 51d63dea14a53017d5350d8a582fced5}\\
+\multicolumn{2}{@{}l}{\textit{Read-only frozen inputs}}\\
+{\footnotesize\loc{RO:XVI-P/code/p5_entry/amplitude_rules.py}} & \texttt{\scriptsize 0daf63a3c8803d54514cb2aac29bea12}\newline\texttt{\scriptsize 7c379e025f32c5b0219d365de5bdde4a}\\
+{\footnotesize\loc{RO:XVI-P/code/p5_entry/feynman.py}} & \texttt{\scriptsize 4fab8b0d4a1cc0b4cd0be19ec30ace80}\newline\texttt{\scriptsize 559b92fa9808f1fc25c858599a389344}\\
+{\footnotesize\loc{RO:XVI-P/code/p5_entry/dred.py}} & \texttt{\scriptsize 24112d9a6584613474e96f538840a9ff}\newline\texttt{\scriptsize 6aecbf9ebd588cd890fd38d2e295de5a}\\
+{\footnotesize\loc{RO:XVI-Q/provenance/XVI-P/certificates/P18_D11.json}} & \texttt{\scriptsize af696a2ad7ec85fbba966e5403079c65}\newline\texttt{\scriptsize f5635d704ec4814f7755ff256d2031e1}\\
+{\footnotesize\loc{xviq_regen/Q02_bulk_graphs.json}} & \texttt{\scriptsize 4ac6dc39f6e1763f1a90bceb45296fab}\newline\texttt{\scriptsize d539e086c160d3ea60427350cf118505}\\
+\end{longtable}
+\endgroup
+
+\paragraph{Rerun commands.}
+All commands run from \loc{/workspace/XVI-O1-CONE}.
+The spectral runs were launched as detached jobs with logs because
+the machine has about 7\,GB of memory.
+\begin{center}\footnotesize
+\begin{tabular}{@{}l@{}}
+\verb!for g in D01 D02 D03 D04 D05a D06 D11 D12 D13; do for b in CR F; do!\\
+\verb!  setsid python3 code/spectral_apex.py $g $b > logs/v4/spec_${g}_${b}.log 2>&1; done; done!\\
+\verb!for g in D01 D02 D03 D06 D11 D12 D13; do setsid python3 code/spectral_apex.py $g UNIT \!\\
+\verb!  > logs/v4/spec_${g}_UNIT.log 2>&1; done!\\
+\verb!python3 code/catalogue_check.py          # -> logs/v6/catalogue_check.json!\\
+\verb!python3 code/st_norm.py                  # -> logs/v6/st_norm.json!\\
+\verb!for b in CR F UNIT; do python3 code/st_v6.py "logs/v4/spec_{g}_$b.json" $b; done!\\
+\verb!for g in D01 D02 D03 D06 D11 D12 D13; do python3 code/flat_pole.py $g; done!\\
+\verb!python3 code/st_v6.py "logs/v6/flat_{g}.json" FLAT!\\
+\verb!python3 code/st_v6_stats.py; python3 code/flat_vs_p18.py!\\
+\verb!python3 code/weighted_apex.py; python3 code/weighted_checks.py!\\
+\verb!python3 code/hi_d01.py; python3 code/hi_d01_exact.py!\\
+\verb!python3 code/hh_structures.py!\\
+\verb!python3 code/build_v6.py && python3 code/artifacts_v6.py!\\
+\verb!cd v6build && pdflatex XVI-O1-CONE-v6.tex && pdflatex XVI-O1-CONE-v6.tex!
+\end{tabular}
+\end{center}
+The spectral runs (first four lines) were executed during the v4 session
+and were not repeated for v6; every other command was run for v6.
+
+%======================================================================
+\noindent\emph{Marks:} \(^{*}\) read in full for this revision
+(for programme records: the specific files named);
+\(^{\ddagger}\) bibliographic details confirmed online;
+\(^{\dagger}\) cited from memory or from earlier supplied records,
+not re-read here.
+\medskip
+\begin{thebibliography}{99}
+\addcontentsline{toc}{section}{References}
+%======================================================================
+
+\bibitem{CheungConeV4}
+\(^{*}\)\ N.~Cheung,
+\emph{Scoped O.1 on the Cone, v4:
+Spectral Apex Reduction, Exact Constant-Profile Apex Poles of All
+Two-Point Graphs, the Ghost-Equation Row, and an Unvalidated
+\(hh\) Slavnov--Taylor Test},
+18 October 2026.
+Supplied complete source \loc{XVI-O1-CONE-v4.tex}.
+Read in full. Its code and logs are now archived and audited
+(Appendix~\ref{app:artifacts}).
+
+\bibitem{CheungConeV5}
+\(^{*}\)\ N.~Cheung,
+\emph{Scoped O.1 on the Cone, v5: Spectral Apex Reduction,
+Constant-Profile Pole Records, and Ward-Identity Boundaries},
+18 October 2026. Source \loc{XVI-O1-CONE-v5.tex}
+(SHA-256 \loc{e00e49f5...a6985b}, full digest in
+Appendix~\ref{app:artifacts}), read in full; the base of this revision.
+
+\bibitem{CheungP}
+\(^{*}\)\ N.~Cheung,
+\emph{XVI-P},
+frozen p22 contract as described in the supplied cone source;
+separately supplied p23 excerpt retaining the p21 absolute-D11
+normalization and scope discussion.
+Enter Calculus Companion, unpublished manuscript records.
+The later excerpt is a comparison, not a silent contract update.
+Files read in full for v6 (read-only copies, digests equal to the
+originals): \loc{code/p5_entry/amplitude_rules.py},
+\loc{feynman.py}, \loc{dred.py}.
+Relevant scope locators include
+\loc{rem:o1}, \loc{rem:p5}, and \loc{rem:qds}.
+
+\bibitem{CheungQ}
+\(^{*}\)\ N.~Cheung,
+\emph{XVI-Q},
+supplied Q02 normalization description and separately scoped
+Q11 release record.
+Enter Calculus Companion, unpublished source records.
+v6 reads the regenerated Q02 graph record
+\loc{xviq_regen/Q02_bulk_graphs.json} in full and the
+read-only certificate \loc{provenance/XVI-P/certificates/P18_D11.json};
+the Q11 scope is retained as supplied.
+
+\bibitem{CheungR}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{XVI-R},
+frozen read-only comparison record identified in
+\loc{XVI-O1-CONE-v4.tex}.
+Not read for v6; only its full tree digest is recorded
+(unchanged before/after).
+
+\bibitem{CheungIB}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B: A Finite Enter Spacetime:
+Calibrated Destructive Time Readout on a Prescribed Conical Product},
+version 1.
+Supplied version-qualified excerpts, Enter Calculus Companion.
+Relevant comparisons:
+\loc{def:experiment}, \loc{thm:instrument},
+\loc{prop:interfaces}, and \loc{prop:not-source}.
+\url{https://enter.grok.me/browse/I-B}.
+
+\bibitem{CheungEn09}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{En09-A: Realization of Relational Time by Destructive Enter
+on a Clock Register},
+version 1.
+Supplied excerpts, Enter Calculus Companion.
+Complete finite record--residual comparison only.
+\url{https://enter.grok.me/browse/En09-A}.
+
+\bibitem{CheungIBG}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-G: Intrinsic and holonomy-twisted Green operators on a
+prescribed conical spacetime:
+Self-adjoint extensions, diffraction, finite propagation,
+and supported transfer from flat-completion laboratories},
+version 2.
+Supplied source descriptions and Green-domain excerpts.
+Comparisons include \loc{thm:green}, \loc{eq:Carslaw},
+\loc{thm:transfer}, and \loc{rem:compact-exact}.
+\url{https://enter.grok.me/browse/I-B-G}.
+
+\bibitem{CheungIBGS}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-G-S: Intrinsic spin-1 and spin-2 Green operators on the
+prescribed conical spacetime},
+version 2.
+Supplied unpublished excerpts and version-qualified descriptions,
+including \loc{thm:spin1}, \loc{thm:spin2},
+\loc{def:geo}, and \loc{thm:selection}.
+Free source-test compatibility is not interacting loop closure.
+
+\bibitem{CheungTensor}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-G-S-B}.
+Supplied programme description of positive tensor-core selection,
+exceptional source-test defects, matching, and analytical kernel
+enclosures.
+Comparison locators:
+\loc{prop:warddefect}, \loc{cor:exclude},
+\loc{thm:contrast}, \loc{lem:modetail},
+\loc{lem:complexbound}, and \loc{thm:Cauchy}.
+A complete version-qualified proof source was not supplied for
+independent audit.
+
+\bibitem{CheungEcho}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-ECHO-v2: Diffracted echoes and finite supplied-report
+instruments},
+version 2, October 2026.
+Supplied full-source record and source-qualified comparisons.
+Relevant locators:
+\loc{lem:front}, \loc{thm:gtd}, \loc{thm:readout},
+\loc{thm:TV}, \loc{thm:core},
+and \loc{cor:nonreconstruction}.
+No continuum acquisition or loop-residue theorem is imported.
+
+\bibitem{CheungVP}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-VP: Vacuum polarization of the Friedrichs ground state
+on a prescribed conical spacetime},
+version 3 and supplied version-qualified predecessor passages.
+Enter Calculus Companion.
+Comparisons include \loc{lem:infrared} and
+\loc{thm:friedrichs}.
+One-point state control is not the present loop UV/IR analysis.
+
+\bibitem{CheungVP1}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-VP-1: Prescribed apex finite parts on a conical Enter
+spacetime: Wick square, stress tensor, and charged current:
+strong extension, Ward identities, and classified contact freedom},
+version 3, October 2026.
+Supplied excerpts and source descriptions.
+One-point distributional extension freedom is not a replacement
+for a spin-2 operator-domain selection.
+
+\bibitem{CheungEx1B}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-VP-5-Ex1-B},
+version 1, 18 October 2026.
+Supplied normalization, finite-part non-universality, and
+verification-scope excerpts.
+Relevant locators include
+\loc{thm:running}, \loc{thm:continuity},
+\loc{thm:equalradius}, and \loc{thm:trace}.
+The historical v4 intake is not independently re-executed here.
+
+\bibitem{CheungEx2}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-VP-5-Ex2:
+Smooth flux-core selection on a prescribed cone:
+Scalar Friedrichs universality, Dirac-window selection,
+and quantitative exterior matching},
+version 1, 18 October 2026.
+Supplied source excerpts and bibliography.
+Operator selection and Dirac-square comparisons only.
+
+\bibitem{CheungEx2B}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-B-VP-5-Ex2-B},
+version 1, 18 October 2026.
+Supplied excerpts concerning scalar Mosco selection,
+exhausted-annulus arguments, endpoint continuity,
+and finite-core qualifications.
+No spin-2 CR selection or loop Ward theorem is imported.
+
+\bibitem{CheungXJ}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{X-J-ST},
+version 1.
+Supplied unpublished signal and clock instrument excerpts,
+including \loc{thm:signal}, \loc{thm:clock},
+and \loc{thm:TV}.
+Supplied-value reporting and complete failures are retained.
+
+\bibitem{CheungXK}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{X-K-ST},
+version 1.
+Supplied unpublished clock-composition and resource-fit excerpts,
+including \loc{def:grade} and \loc{thm:release}.
+A finite typed tree is not automatically a realized laboratory
+or a continuum acquisition process.
+
+\bibitem{CheungIC}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{I-C-v2: The Shredder Interface:
+Destructive Readout, Black-Hole Analogues, and Quantum Computers},
+October 2026.
+Supplied source in the revision material.
+Theorems A--F distinguish referenced recovery, append-only
+entropy, conditional thermal balance, classical exterior access,
+endpoint underdetermination, and accessible classical persistence.
+Documentary separation, not an O.1 premise.
+
+\bibitem{CheungCharacteristic}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{XIV-H}, version 1;
+\emph{XIV-I}, version 1; and
+\emph{XIV-J}, version 1.
+Supplied excerpts.
+Historical H2 ending, constructed I2 internal amplitude,
+unresolved I3/J2 full characteristic map, and no inherited
+quantum admission.
+A partial off-characteristic reference is not the complete map.
+
+\bibitem{CheungXVB}
+\(^{\dagger}\)\ N.~Cheung,
+\emph{XV-B},
+version 2.
+Supplied technical-interface excerpts:
+reconstruction descent, relative lifting, normal-jet null tests,
+and conditional extension.
+The technical manuscript is distinguished from the unopened
+downstream quantum-admission exit.
+
+\bibitem{Fursaev1994}
+\(^{\ddagger}\)\ D.~V.~Fursaev,
+``The heat kernel expansion on a cone and quantum fields near
+cosmic strings,''
+\emph{Classical and Quantum Gravity}
+\textbf{11} (1994), 1431--1443.
+arXiv:\nolinkurl{hep-th/9309050}.
+Apex-local heat coefficients and product-cone context.
+
+\bibitem{FursaevMiele1997}
+\(^{\ddagger}\)\ D.~V.~Fursaev and G.~Miele,
+``Cones, spins and heat kernels,''
+\emph{Nuclear Physics B}
+\textbf{484} (1997), 697--723.
+DOI: \nolinkurl{10.1016/S0550-3213(96)00631-1}.
+arXiv:\nolinkurl{hep-th/9605153}.
+Spin-dependent conical heat coefficients and nonuniform smooth limits;
+not a substitute for the present graph-specific domain contract.
+
+\bibitem{Vassilevich}
+\(^{\ddagger}\)\ D.~V.~Vassilevich,
+``Heat kernel expansion: user's manual,''
+\emph{Physics Reports}
+\textbf{388} (2003), 279--360.
+DOI: \nolinkurl{10.1016/j.physrep.2003.09.002}.
+arXiv:\nolinkurl{hep-th/0306138}.
+Heat-kernel normalization and Laplace-type coefficient background.
+
+\bibitem{DLMF}
+\(^{\ddagger}\)\ F.~W.~J.~Olver et al., editors,
+\emph{NIST Digital Library of Mathematical Functions},
+Chapter 10, especially Sections 10.29, 10.32, and 10.43
+(10.43.22 confirmed online for v6).
+Bessel recurrences, modified-Bessel relations, and integral transforms.
+\url{https://dlmf.nist.gov/10}.
+
+\bibitem{DerezinskiRichard}
+\(^{\ddagger}\)\ J.~Derezi\'nski and S.~Richard,
+``On Schr\"odinger operators with inverse square potentials
+on the half-line,''
+\emph{Annales Henri Poincar\'e}
+\textbf{18} (2017), 869--928.
+DOI: \nolinkurl{10.1007/s00023-016-0520-7}.
+arXiv:\nolinkurl{1604.03340}.
+Homogeneous Bessel realizations, spectral structure,
+and self-adjoint endpoint domains.
+
+\bibitem{KayStuder}
+\(^{\dagger}\)\ B.~S.~Kay and U.~M.~Studer,
+``Boundary conditions for quantum mechanics on cones and fields
+around cosmic strings,''
+\emph{Communications in Mathematical Physics}
+\textbf{139} (1991), 103--139.
+DOI: \nolinkurl{10.1007/BF02102731}.
+
+\bibitem{Stockinger}
+\(^{\ddagger}\)\ D.~St\"ockinger,
+``Regularization by dimensional reduction:
+Consistency, quantum action principle, and supersymmetry,''
+\emph{Journal of High Energy Physics}
+\textbf{2005}(03) (2005), 076.
+DOI: \nolinkurl{10.1088/1126-6708/2005/03/076}.
+arXiv:\nolinkurl{hep-ph/0503129}.
+Regulator consistency is distinguished from automatic preservation
+of a particular identity.
+
+\bibitem{HSR}
+\(^{\ddagger}\)\ M.~Horodecki, P.~W.~Shor, and M.~B.~Ruskai,
+``Entanglement breaking channels,''
+\emph{Reviews in Mathematical Physics}
+\textbf{15} (2003), 629--641.
+DOI: \nolinkurl{10.1142/S0129055X03001709}.
+Preprint title:
+``General Entanglement Breaking Channels,''
+arXiv:\nolinkurl{quant-ph/0302031}.
+
+\bibitem{NielsenAverage}
+\(^{\ddagger}\)\ M.~A.~Nielsen,
+``A simple formula for the average gate fidelity of a quantum
+dynamical operation,''
+\emph{Physics Letters A}
+\textbf{303} (2002), 249--252.
+DOI: \nolinkurl{10.1016/S0375-9601(02)01272-0}.
+arXiv:\nolinkurl{quant-ph/0205035}.
+The average-fidelity/entanglement-fidelity relation is attributed
+there to earlier Horodecki work.
+
+\bibitem{ReebWolf}
+\(^{\ddagger}\)\ D.~Reeb and M.~M.~Wolf,
+``An improved Landauer principle with finite-size corrections,''
+\emph{New Journal of Physics}
+\textbf{16} (2014), 103011.
+DOI: \nolinkurl{10.1088/1367-2630/16/10/103011}.
+arXiv:\nolinkurl{1306.4352}.
+Conditional finite-reservoir entropy balance, not a heat cost
+deduced from the abstract readout channel.
+
+\bibitem{Kabat}
+\(^{\ddagger}\)\ D.~Kabat,
+``Black hole entropy and entropy of entanglement,''
+\emph{Nuclear Physics B} \textbf{453} (1995), 281--299.
+DOI: \nolinkurl{10.1016/0550-3213(95)00443-V}.
+arXiv:\nolinkurl{hep-th/9503016}.
+Spin-one horizon contact term; structural analogue only.
+
+\end{thebibliography}
+
+\end{document}

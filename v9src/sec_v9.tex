@@ -1,0 +1,513 @@
+
+%======================================================================
+\section{v9: what is new, and the response to the priority list}
+\label{sec:whatv9}
+%======================================================================
+
+v9 is built mechanically from the read-only v8 source
+(\loc{code/build_v9.py}). Every v8 statement is kept unless this
+section or Table~\ref{tab:open} says it has changed. v9 has new
+evidence class marks: \emph{Executed in v9} means a script under
+\loc{code/v9/}, a log under \loc{logs/v9/}, and a SHA-256 in
+Appendix~\ref{app:v9artifacts}. The frozen trees XVI-P, XVI-Q and
+XVI-R were hashed before and after the v9 runs. Both digests equal
+the v8 values (Section~\ref{sec:v9hash}). Files v1--v8 were not
+edited.
+
+\begingroup\small
+\begin{longtable}{@{}L{.05\linewidth}L{.27\linewidth}L{.20\linewidth}L{.40\linewidth}@{}}
+\caption{v9 verdicts on the nine priority items.}\label{tab:v9verdict}\\
+\toprule
+\# & Item & Verdict & Evidence / obstruction\\
+\midrule
+\endfirsthead
+\toprule
+\# & Item & Verdict & Evidence\\
+\midrule
+\endhead
+1 & Hidden mixed D01 terms & computed; v6 \emph{restored} &
+Proposition~\ref{prop:v9TT}: pure TT, vanishes on the lattice.
+\(\Delta J(\alpha)\) at 14 angles (Table~\ref{tab:v9dJ}).
+IR log: Proposition~\ref{prop:v9log}.\\
+2 & \(r^2\)-weighted mixed sum, D04 part of 2nd \(\phi\phi\) &
+\OPEN, precise obstruction & Section~\ref{sec:v9D04}: the jet densities
+are not exported, and same-\(k\) pairing is not IR-summable. No
+closed form is claimed.\\
+3 & CK/CB dictionary; \(e_5,e_6\); closed forms &
+dictionary computed; \(e_5,e_6\) \emph{excluded with proof} at constant profile &
+Theorem~\ref{thm:v9ghost}: all 6 constant-profile Ward functionals
+hold; \(\ker\pi_KB\) is one-dimensional.\\
+4 & 20 jet-level Ward combinations, full projection &
+\OPEN, precise obstruction & Section~\ref{sec:v9jet}.\\
+5 & 18-dim engine map beyond 6 & \OPEN, precise obstruction &
+Section~\ref{sec:v9jet}.\\
+6 & Evanescent vs frozen \(\tilde g\) & \emph{excluded}, precise obstruction &
+Proposition~\ref{prop:v9evan}.\\
+7 & Vector-type keys & log parts computed; finite parts \OPEN &
+Proposition~\ref{prop:v9vector}.\\
+8 & Generic-\(\alpha\) rank certificate &
+computed on chambers; exceptional set \PARTIAL &
+Theorem~\ref{thm:v9generic}.\\
+9 & New sheets & read; one newer sheet & Section~\ref{sec:v9sheets};
+\loc{new_oct18g/} written.\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\paragraph{Changes to v8 results.}
+(a) The v8 status ``\CONDITIONAL{} on the hidden D01 term'' for the v6
+\(hh\) branch difference is lifted. The value is unchanged and is
+now proved on the lattice (Proposition~\ref{prop:v9TT}).
+(b) The four CK/CB-supported Ward combinations, which v8
+identified only conditionally, are now checked exactly on the
+catalogue. This uses two fitted, \(\alpha\)-independent ghost
+normalizations (Theorem~\ref{thm:v9ghost}).
+(c) The v8 open item ``\(e_5\) and \(e_6\)'' is resolved negatively:
+the constant-profile data determine only \(e_6-e_2\) and
+\(e_5+e_6/2\) beyond the v8 combinations.
+(d) The incomplete-beta reduction used in an internal v8/v9 draft
+module for the F-branch \(k=-1\) mode (\loc{I_F}) contained an
+exponent error (\(x^{1-\mu}\) for \(x^{\mu-1}\)). It was not used
+in any printed v8 number. It was removed, and every v9 value uses
+the closed-form quadrature \loc{I_gen}.
+No other v8 number changes.
+
+%======================================================================
+\section{v9: the hidden D01 pairs}
+\label{sec:v9hidden}
+%======================================================================
+
+\subsection{Closed form of the mixed trace}
+
+Let \(A_\mu\) be the radial Bessel operator of order \(\mu\ge0\) on
+the cone channel, and let
+\[
+ g(x;\mu,\nu)=\Tr\bigl[e^{-(1-x)A_\mu}\,r^{-2}\,e^{-xA_\nu}\bigr],
+ \qquad 0<x<1,
+\]
+with \(d=\mu-\nu\) and \(h=(\mu+\nu)/2\).
+
+\begin{proposition}[Mixed trace; derived and executed]
+\label{prop:v9g}
+\[
+ g(x;\mu,\nu)=\frac{\Gamma(h)\Gamma(h+1)}{4\,\Gamma(\mu+1)\Gamma(\nu+1)}\;
+ {}_2F_1\!\bigl(\tfrac d2+1,\tfrac d2;\mu+1;x\bigr)\;
+ {}_2F_1\!\bigl(1-\tfrac d2,-\tfrac d2;\nu+1;1-x\bigr).
+\]
+In particular \(g(x;\mu,\mu)=1/(4\mu)\), and
+\(\int_0^1g\,\dd x=1/(2(\mu+\nu))\).
+\end{proposition}
+
+\begin{proof}[Derivation]
+Expand both Bessel kernels in their power series and integrate the
+radial variables term by term. This gives
+\(x^\mu(1-x)^\nu\) times
+\(F_4(h,h+1;\mu+1,\nu+1;x^2,(1-x)^2)\). Since
+\(h+(h+1)-(\mu+1)+1=\nu+1\), Bailey's reduction
+\(F_4(a,b;c,a+b-c+1;X(1-Y),Y(1-X))={}_2F_1(a,b;c;X)\,{}_2F_1(a,b;a+b-c+1;Y)\)
+applies with \(X=x\) and \(Y=1-x\). Euler's transformation of each
+factor removes the prefactor \(x^\mu(1-x)^\nu\) and gives the
+stated parameters. The integral identity is an independent check
+of the v8 Duhamel lemma, Lemma~\ref{lem:v8duhamel}.
+\loc{code/v9/g_formula_check.py} confirms both the closed form and
+the integral against direct quadrature of the kernels. The
+residual, \(4.7\times10^{-3}\), is the truncation tail of the
+quadrature at \(R=60\), not a discrepancy.
+\end{proof}
+
+\subsection{The hidden pairs are pure TT}
+
+With \(\hat\rho=6x^2-10x+3\) and
+\(\hat R=x(1-x)(3-2x)\), we have \(\hat R'=\hat\rho\). For a mode
+pair \((\mu,\nu)\), integration by parts gives
+\[
+ I(\mu,\nu)=\int_0^1\hat\rho\,f
+ =-(\mu^2-\nu^2)\int_0^1\hat R\,g .
+\]
+\loc{code/v9/modefun.py} evaluates this in two independent ways
+for \(\nu=\mu\pm2\): an exact Gamma series summed by
+Euler--Maclaurin, and direct quadrature of
+Proposition~\ref{prop:v9g}. The two agree to 30 digits.
+
+\begin{proposition}[TT structure; proved]
+\label{prop:v9TT}
+On the D01 keys \((4,4),(4,7),(7,4),(7,7),(5,5)\), the hidden
+\((0,2)\)/\((2,0)\) pairs contribute
+\[
+ -\frac{\kappa^2P^2J}{8\pi}\Bigl[(h_{11}-h_{22})(h'_{11}-h'_{22})
+ +4h_{12}h'_{12}\Bigr],
+\]
+with \(J=\sum_{\rm modes}I\) in the stated mode list. On the v6 lattice
+(\(h_{11}=h_{22}=f\), no \(h_{12}\)) the bracket is identically zero.
+Hence the v6 \(hh\) branch difference
+\(-\nu\kappa^2P^2f_0f_0'/(4\pi)\) holds without the v8 condition.
+\end{proposition}
+
+\begin{proof}
+The key-by-key coefficients come from
+\loc{logs/v8/slice/hidden_mixed.json} and the catalogue
+normalization
+\((P^2\kappa^2/16\pi)/(\ii(q_0^2-q_3^2)/8\pi)\). Key \((4,4)\)
+receives \(-\kappa^2P^2J/(8\pi)\); keys \((4,7)\) and \((7,4)\) carry
+the opposite sign, and key \((5,5)\) carries four times key
+\((4,4)\). Collecting terms gives the bracket. The lattice
+projection of \loc{invariant_data} uses
+\(\{0{:}0,3{:}1,9{:}2,4{:}3,7{:}3\}\). It sets \(h_{11}=h_{22}\)
+and drops index~5, so it maps the bracket to zero for every value
+of \(J\).
+\end{proof}
+
+\subsection{Infrared structure and the finite branch difference}
+
+\begin{proposition}[IR logarithm; executed asymptotics]
+\label{prop:v9log}
+As \(\mu\to\infty\),
+\(I(\mu,\mu+2)=\tfrac13+\tfrac1{30\mu}-\tfrac1{10\mu^2}+\cdots\) and
+\(I(\mu,\mu-2)=-\tfrac13+\tfrac1{30\mu}+\tfrac1{10\mu^2}+\cdots\)
+(coefficients up to \(\mu^{-8}\) are in \loc{logs/v9/asym02.json}).
+Under same-\(k\) pairing, the constant terms cancel between \(k\)
+and \(-k\), but the \(1/\mu\) terms add to \(\alpha/(15k)\).
+Therefore \(J\) diverges like \((\alpha/15)\log\Lambda\). In
+general, a pair \((s,t)\) contributes
+\(\tfrac{\alpha}{2}(s-t)^2\,x(x-1)\log\Lambda\) to \(C_{s,t}(x)\).
+This is the frame/flux mismatch of a long-range \(r^{-2}L\)
+perturbation.
+\end{proposition}
+
+So the absolute TT values are not pure apex coefficients. Their
+finite part depends on the scheme (for example \(k\)-\(\zeta\)).
+The CR and F branches differ only in the \(S=2\), \(k=-1\) mode,
+whose order is \(-\nu_0\) (CR) or \(+\nu_0\) (F), with
+\(\nu_0=2-1/\alpha\). The difference
+\[
+ \Delta J(\alpha)=I(1/\alpha,\,1/\alpha-2)-I(1/\alpha,\,2-1/\alpha)
+\]
+is therefore finite and does not depend on the regularization.
+The corresponding catalogue difference is
+\(-\kappa^2P^2\Delta J/(8\pi)\) times the TT bracket, and it is
+invisible on the lattice.
+
+\begin{center}
+\scriptsize
+\begin{longtable}{@{}lllll@{}}
+\caption{The finite TT branch difference (executed, \loc{code/v9/hidden02_run.py}; CR mode by series and by quadrature, agreement \(<10^{-30}\)).}\label{tab:v9dJ}\\
+\toprule
+\(\alpha\) & \(\nu_0\) & \(I_{\rm CR}\) (\(k=-1\)) & \(I_{\rm F}\) (\(k=-1\)) & \(\Delta J\)\\
+\midrule
+@@DJTABLE@@
+\bottomrule
+\end{longtable}
+\end{center}
+At \(\alpha=1/2\), \(\nu_0=0\) and \(\Delta J=0\) exactly. The sign
+of \(\Delta J\) is the sign of \(-\nu_0\) at every computed angle.
+As \(\alpha\to1\), the CR mode degenerates (\(\mu+\nu\to0\)); the
+values decrease toward zero (\(\Delta J(99/100)\approx-4.9\times10^{-3}\)).
+PSLQ was not attempted. We claim no elementary
+closed form, since each value is an integral of a product of two
+\({}_2F_1\) factors.
+
+%======================================================================
+\section{v9: the CB/CK dictionary and the six constant-profile Ward functionals}
+\label{sec:v9ghost}
+%======================================================================
+
+\subsection{Dictionaries}
+
+We use the same method as the \(hh\) map (Section~\ref{sec:v8map}).
+Unit \(m=0\) atoms \(L=(1,0),(0,1)\) for \(c,\bar c\), and
+\(LL\)/\(PM\) atoms for \(K\), are evaluated by \loc{eval_sym}
+(reflection only, so \(\Gamma_{\rm sym}=2\Gamma\)) on the complete
+\(6\times6\) momentum grid. A dictionary is accepted only if the
+catalogue bilinear (D06 for \(\langle\bar c\,c\rangle\), D13 for
+\(\langle K c\rangle\)) lies \emph{exactly} in the span of the
+evaluated \(K\)-candidates on all columns
+(\loc{code/v9/cbck_map.py}, \loc{code/v9/ck_free.py}).
+
+\begin{proposition}[CB and CK dictionaries; executed, exact]
+\label{prop:v9dict}
+With \(q_0=\pm\ii q_\tau\), \(q_3=q_z\):
+\begin{enumerate}[label=(\roman*)]
+\item CB: exactly the four sign choices with opposite \(\ii\)-signs
+for \(\bar c_0\) and \(c_0\) are accepted. All four give
+\(y_{\rm CB}=\ii(-R/8,\,0)\,\kappa^2/\pi\), with \(R=3z_0+4z_1\).
+\item CK: with the \(K\) components left free, the solution is
+unique: \(K^{00}=-LL_{\tau\tau}\), \(K^{03}=\mp2\ii LL_{\tau z}\), and
+\(y_{\rm CK}=\ii\bigl((1-\alpha)/16,\,R/8,\,0\bigr)\kappa^2/\pi\).
+The \(PM\) scale is undetermined because the catalogue's PM keys
+are computed zeros.
+\end{enumerate}
+Both hold at \((3/10,\CR)\), \((3/10,\Fr)\), \((7071/10^4,\CR)\) and
+\((7071/10^4,\Fr)\). Here
+\(R=(17\alpha-7)(\alpha-1)/(12\alpha)\).
+\end{proposition}
+
+\subsection{The six functionals}
+
+The annihilator of \(\pi_KZ\) is printed in
+\loc{apex_cert_*_vectors.json} and is identical at all four
+points. In the order
+\(K=(0,1,2,5,6,12,18,19,26,27,29,32)\) it consists of
+\(W_1=y_0+y_1\), \(W_2=y_2\), \(W_3=-2y_0+y_{19}\),
+\(W_4=-2\ii y_0+4\ii y_5+4\ii y_6+y_{26}\),
+\(W_5=-2\ii y_{18}+y_{27}\), and \(W_6=2\ii y_0+y_{29}\). (v8
+quoted only the real parts of these vectors.)
+
+\begin{theorem}[Ghost-sector Ward check; executed, exact]
+\label{thm:v9ghost}
+Put \(\lambda_{\rm CB}=-4\ii\) and \(\lambda_{\rm CK}=-8\), fixed
+once and independent of \(\alpha\) and of the branch. Rescale the
+CB and CK coordinates by these factors. Then all six \(W_i\)
+vanish on the catalogue at all four certified points. Solving
+\(\sum_ie_i\pi_KB_i=y_K\) on all twelve coordinates gives
+\[
+ e_3=0,\quad e_1=\tfrac{1-\alpha}4,\quad
+ e_6-e_2=-\tfrac R2,\quad
+ e_5+\tfrac{e_6}2=\frac{\alpha^2-1}{48\alpha},
+\]
+\[
+ e_4-\tfrac{e_6}2=\frac{119\alpha^2-120\alpha+25}{192\alpha}\ (\CR),\qquad
+ e_4-\tfrac{e_6}2=\frac{7(17\alpha-7)(\alpha-1)}{192\alpha}=\tfrac{7R}{16}\ (\Fr).
+\]
+The kernel of \(\pi_KB\) is exactly
+\(\Span\{(0,1,0,\tfrac12,-\tfrac12,1)\}\). Therefore \(e_5\) and
+\(e_6\) are not determined separately by constant-profile data.
+\end{theorem}
+
+\begin{proof}
+\loc{code/v9/e_solve.py} carries out the linear algebra exactly; its output is
+\loc{logs/v9/e_solve.json}. The checks have different strengths.
+\(W_3\) and \(W_6\) hold because both of their entries vanish.
+\(W_5\) defines \(\lambda_{\rm CB}\), since both of its terms are
+proportional to \(R\).
+\(W_4\) is a genuine check. Its \(hh\) part is
+\(4\ii(b_6+b_7)=\ii(c_0-c_1)=\ii(1-\alpha)/2\), coming from
+D01--D03 and D11--D12. Its CK part is
+\(\lambda_{\rm CK}\,\ii(1-\alpha)/16\), coming from D13. The two
+have the same \(\alpha\)-shape, so one constant
+\(\lambda_{\rm CK}=-8\) works at every \(\alpha\) and on both
+branches. The \(e\)-values follow from the twelve equations. The
+closed forms are the rational identities displayed above,
+checked at the four points.
+\end{proof}
+
+\noindent\emph{Scope.} The normalizations \(\lambda\) are fitted,
+not derived from the catalogue's BRST conventions. The closed
+forms hold on the certified points. For general generic \(\alpha\)
+they follow from the closed forms of \(z_0,z_1,z_2\) together with
+the observed \(\alpha\)-independence of \(\pi_KB\) and of the
+annihilator, which was verified at four points but not proved.
+Status: \PARTIAL{} for general \(\alpha\), exact on the four points.
+The v8 identity \(e_1=(1-\alpha)/4\) is now obtained twice, from
+the \(hh\) block and from the CK coordinate~26.
+
+%======================================================================
+\section{v9: chambers and a generic-\texorpdfstring{\(\alpha\)}{alpha} rank certificate}
+\label{sec:v9chamber}
+%======================================================================
+
+The structural key of a jet \((C,n,m)\) is
+\((C,n,\epsilon,j,\operatorname{sgn}(n/\alpha+s))\), where
+\(m=\epsilon\nu+2j\). Two angles lie in the same \emph{chamber} when
+every gh0 (\(T=4\)) and gh\(-1\) (\(T=3\)) sector has the same set
+of structural candidates. In a chamber, every ST row entry is a
+fixed rational function of \(\alpha\).
+
+\begin{proposition}[Walls; executed and proved]
+\label{prop:v9walls}
+In \((1/4,1)\) the walls are exactly \(\{1/3,1/2,2/3\}\), on both
+branches. CR has the same structural signature on all four
+chambers. F has one signature on \((1/4,1/3)\cup(1/3,1/2)\) and a
+different one, with \(N=38\) at the certified points, on
+\((1/2,2/3)\cup(2/3,1)\).
+\end{proposition}
+
+\begin{proof}
+A non-generic candidate requires \(\pm2n/\alpha\in\mathbb Z\) for
+some admissible pair \((n,-n)\), or a sign or \(\epsilon\) change.
+The jet budget gives \(\nu\le6\) and \(n\le4\). So a wall has the
+form \(\alpha=2n/M\) with \(M\le12\), or \(\alpha=n/|s|\). Every
+such rational has denominator at most 12.
+\loc{code/v9/chamber_scan.py} evaluates the structural signature
+at every rational with denominator at most 40 in \((1/4,1)\),
+which is exhaustive by this bound. It finds only the three walls
+listed (\loc{logs/v9/chamber_cache2.json}).
+\end{proof}
+
+\begin{theorem}[Generic rank over \(\mathbb Q(\alpha)\)]
+\label{thm:v9generic}
+On every CR chamber in \((1/4,1)\), and on the F chambers in
+\((1/4,1/2)\), the ST rank over \(\mathbb Q(\alpha)\) is exactly
+\(26\), with \(\dim Z=8\) generically. On the F chambers in
+\((1/2,1)\), the generic rank \(r\) satisfies \(29\le r\le30\).
+\end{theorem}
+
+\begin{proof}
+\emph{Lower bound.} The rank is lower semicontinuous under
+specialization within a chamber. So it suffices to have one point
+per chamber with a nonzero minor of the required size. Exact
+\(\mathbb Q(\ii)\) minors exist at \(3/10\) and \(7071/10^4\)
+(Theorem~\ref{thm:v8cert}). A nonzero minor mod \(p\) also implies
+a nonzero rational minor, and the modular runs at \(41/100\),
+\(309/500\), \(4/5\), \(8501/10^4\) and at the scan points of
+Table~\ref{tab:v9scan} provide such minors.
+\emph{Upper bound.} The identity \(\sigma_0\sigma_{-1}=0\) holds
+identically, so \(B\subset Z\). We have \(s\phi=0\), so \(PP\subset Z\).
+\(B\) has no PP components, and \(\dim B\ge6\) generically, by lower
+semicontinuity from the certified points. Hence \(\dim Z\ge8\),
+which gives \(r\le N-8\): \(26\) for \(N=34\) and \(30\) for
+\(N=38\). The ninth cocycle seen at the F points with \(N=38\) is
+not shown to persist generically, so \(29\le r\le30\) there.
+\end{proof}
+
+\begin{center}
+\scriptsize
+\begin{longtable}{@{}lll@{}}
+\caption{Modular scan (\loc{code/v9/apex_scan.py}, an unchanged copy of the historical driver with a new output directory; prime \(10^9+9\), randomized complete-rank sampling). Every rational \(p/q\in(1/4,1)\) with \(q\le20\).}\label{tab:v9scan}\\
+\toprule
+branch & result & angles\\
+\midrule
+@@SCANTABLE@@
+\bottomrule
+\end{longtable}
+\end{center}
+
+\noindent\emph{Exceptional set.} Inside a chamber, the rank drops
+exactly on the common zero set of the maximal minors. That set is
+finite, but the minor polynomial was not computed: it would need a
+symbolic-\(\alpha\) elimination of unknown degree. So the
+exceptional set is \(E=\{1/3,1/2,2/3\}\cup E_{\rm minor}\). The
+scan shows that \(E_{\rm minor}\) contains no rational with
+denominator at most 20, but \(E_{\rm minor}\) itself is \OPEN.
+
+%======================================================================
+\section{v9: precise obstructions}
+\label{sec:v9obs}
+%======================================================================
+
+\subsection{The D04 part of the second \texorpdfstring{\(\phi\phi\)}{phi phi} value}
+\label{sec:v9D04}
+
+The D04 internal lines are a graviton, with channel weights
+\(\mathrm{pw}\), and \(\phi\) (\(S=0\)). At constant profile only
+\(z_0\) contributes, and the same-channel part is the
+\(x\)-independent \(D\)-moment
+\(\Tr[r^2e^{-A}]\). The second \(\phi\phi\) value needs the
+\(r^2\)-weighted mixed traces
+\(\Tr[e^{-(1-x)A_\mu}r^2e^{-xA_\nu}]\) with transverse-momentum
+numerators and the \(H_I\) intertwining. There are two
+obstructions:
+\begin{enumerate}[label=(\alph*)]
+\item the zero-transverse-momentum slice does not export these
+jet-level densities, so the integrand is not available as data;
+\item the frame/flux mismatch of Proposition~\ref{prop:v9log} carries
+over with an extra \(r^2\). Same-\(k\) pairing is then not
+IR-summable. The mismatch gives the log of the \(r^{-2}\) case
+there, and power counting gives a power divergence with the
+\(r^2\) weight (\emph{argued, not executed}).
+\end{enumerate}
+So a rational reconstruction in \(\alpha\) has nothing
+well-defined to reconstruct until a scheme for the mixed
+same-\(k\) sum is declared. Status: \OPEN; no closed form is
+claimed, and no checks at \(\alpha=1\) or \(1/2\) are claimed.
+
+\subsection{Jet-level Ward combinations and the engine map}
+\label{sec:v9jet}
+
+Twenty of the 26 Ward combinations, and twelve of the eighteen
+\(hh\) engine coordinates, involve \(m>0\) jets (\(r^2\) profiles)
+or transverse \(P\)/\(M\) components. The dictionary method of
+Sections~\ref{sec:v8map} and \ref{sec:v9ghost} would need the
+catalogue's values on \(m=2\) and weight-\(\pm1\) atoms. The
+declared catalogue has no such values: it is the zero-transverse,
+constant-profile slice. They would come from the
+\(r^2\)/\(D_b\)-weighted traces, which are obstructed as in (b)
+above. The full 34-dimensional projection is therefore available
+only on the twelve \(K\) coordinates, where all six functionals now
+hold (Theorem~\ref{thm:v9ghost}). That projection has rank 6, and
+its angle and branch dependence enters only through \(z_0,z_1,z_2\).
+Status: \OPEN.
+
+\subsection{Evanescent coefficients versus the frozen \texorpdfstring{\(\tilde g\)}{g-tilde} rule}
+
+\begin{proposition}[Excluded, with obstruction; executed]
+\label{prop:v9evan}
+The frozen engine (\loc{XVI-P/code/p5_entry/dred.py},
+\loc{eta_trace_Gt}, read-only) admits exactly one evanescent
+pattern, \(c\sum_r\eta^{rr}\tilde G_{rr}\to c(4-d)\), and declares
+every other pattern open. Of the 285 v8 slice-DRED keys
+(\loc{logs/v8/slice/evanescent_combined.json}), 164 contain
+\(\tilde G\) monomials of degree 2 or 3. All of them contain only
+the longitudinal \(\tilde G_{00},\tilde G_{03},\tilde G_{33}\), and
+only 31 have a linear part of partial-trace form
+\(c(\tilde G_{00}-\tilde G_{33})\)
+(\loc{code/v9/evan_match.py}). The v8 coefficients therefore lie
+outside the class the frozen rule can evaluate. A match would need
+the transverse \(\tilde G_{11},\tilde G_{22}\) components, which
+the slice does not export, and a rule for non-trace monomials.
+\end{proposition}
+
+\subsection{Vector-type keys}
+
+\begin{proposition}[IR logs of the hidden keys; executed]
+\label{prop:v9vector}
+Let \(L_{\rm key}=\sum_{(s,t)}(s-t)^2\int_0^1\rho_{(s,t)}x(x-1)\)
+over D01 and D03 (\loc{code/v9/vector_logs.py}), and put
+\(c=\ii P^2/(30\pi)\). Then the vector keys \((1,6),(2,8),(6,1),(8,2)\)
+have \(L=0\). The keys \((1,1)\) and \((2,2)\) have \(L=+c\), and
+\((6,6)\) and \((8,8)\) have \(L=-c\). The TT keys give
+\(-c,+c,+c,-c,-4c\) on \((4,4),(4,7),(7,4),(7,7),(5,5)\).
+\end{proposition}
+
+The vector-key log is
+\(c\,P^2\sum_{a=1,2}\eta^{\mu\nu}h_{\mu a}h'_{\nu a}\) up to key
+normalization. It does not cancel within D01\(+\)D03, so the
+vector keys inherit the scheme dependence of
+Proposition~\ref{prop:v9log}. Whether profile-dependent Ward
+partners remove it cannot be decided from the slice. The finite
+parts of the vector keys stay \OPEN{} and are excluded, not zero.
+
+%======================================================================
+\section{v9: frozen-tree digests and the new registry sheets}
+\label{sec:v9hash}
+\label{sec:v9sheets}
+%======================================================================
+
+The tree digests of XVI-P, XVI-Q and XVI-R, in the shell
+serialization of Section~\ref{sec:v8hash}, were recomputed before
+the first v9 run and after the last one:
+@@HASHROWS@@
+They are equal to the v8 values. The v8 source and PDF were
+hashed before and after as well
+(\loc{logs/v9/v8_hashes_before.sha}, \loc{logs/v9/v8_hashes_after.sha}).
+
+\paragraph{Registry.} The registry was fetched again on 18 October
+2026. It lists 258 identifiers, one more than the 257 in
+\loc{new_oct18f/}: the new identifier is \loc{I-C-Ex2}. It was
+stored under \loc{new_oct18g/} with SHA-256 sums. The six sheets
+of \loc{new_oct18f/} and \loc{I-C-Ex2} were read as cited inputs
+(abstracts and all theorem statements; \loc{logs/v9/sheets_extract.txt}):
+\begin{itemize}
+\item \emph{I-B-G-S-B} \cite{CheungIBGSBv9} is the only sheet that
+bears on a v9 input. For a declared class of nonnegative tensor
+connection forms, it proves Mosco and strong-resolvent selection of
+the componentwise Friedrichs realization, and states that for
+neutral spin~2 and \(\alpha>1/2\) the limit excludes the
+curvature-regular branch. This bears on the CR/F branch input: it
+favours F \emph{within that declared core class}. It does not
+derive the graviton operator, and the sheet itself stresses that a
+smooth metric and its holonomy do not fix the perturbation
+operator. So both branches remain inputs here, and the CR results
+are kept as conditional on CR.
+\item \emph{I-B-ECHO-v2} \cite{CheungEchoV2} gives the scalar
+apex-diffracted Green operator and finite report instruments. It
+is not an apex-residue input; compare Example~\ref{ex:image}.
+\item \emph{X-J-ST-2} \cite{CheungXJST2} gives the free photon
+reference (Maxwell--Friedrichs with a Friedrichs scalar ghost) and
+charged scalar coefficients. It is a free, source-test reference
+and imports no interacting graviton Ward identity.
+\item \emph{Hawk05-ST, I-C-v2, I-C-Ex-v2, I-C-Ex2}
+\cite{CheungHawk05ST,CheungICv2,CheungICExv2,CheungICEx2} are
+finite access and recovery bounds (\(1-1/d\), \(1-k/d\)). They
+belong to the instrument side of the boundary of
+Section~\ref{sec:readout} and are not used for O.1.
+\end{itemize}

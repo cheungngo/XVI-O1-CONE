@@ -1,0 +1,81 @@
+\begin{abstract}
+Version~6 is an artifact-verified revision of the v5 audit of the
+constant-transverse-profile calculation for the scoped O.1 problem
+on \(C_\alpha\times\RR^2\).
+It keeps v5's structure, its evidence classes, and its conditional
+theorems. What it changes is that the executable record behind v4
+is now archived, rerun, and audited, and it adds the following.
+
+\smallskip\noindent\textbf{New in v6.}
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=1.6em]
+\item \emph{Catalogue re-derived.}
+Every entry of the v5 coefficient catalogue agrees exactly with the
+executed spectral reductions of the frozen XVI-P vertex arrays.
+The executed record also contains three things v4 never printed:
+the \((12)(12)\) entries
+\(\widehat B_{\mathrm{D01}}=\widehat B_{\mathrm{D03}}
+=-8c_1P^2\,\ka^2/(16\pi)\); the complete D02 tadpole array
+\(\tfrac{\ka^2}{2\pi}(c_0+2c_1+c_2)\) times a fixed tensor;
+and \(\widehat B_{\mathrm{D12}}=0\).
+Mixed-helicity monomials occur only on vector-type keys, which are
+excluded from the record, not set to zero.
+The D13 transverse source trace is computed to be zero.
+
+\item \emph{The \(hh\) Slavnov--Taylor failure is diagnosed.}
+The v4 failure comes from the coordinate weight of the antifield
+\(K'_{(03)}\). The correct weight is \(-2\); v4 scanned only
+positive weights.
+With conventions derived from the frozen vertex, the
+constant-profile \(hh/Kc\) row closes on CR and on F.
+The closure is exact as a rational identity in \(\alpha\), with
+\(\lambda=-2\ii\). This value is fixed in advance by the tree-level
+data, not fitted. UNIT closes trivially.
+
+\item \emph{A second apex coefficient.}
+We prove the \(r^2\)-weighted apex coefficient
+\[
+\mathcal D_b=-\frac{11\alpha}{180}+\frac{B_2(b)}{3\alpha}
+-\frac{B_4(b)}{6\alpha^3},
+\qquad
+\ApTr\bigl[r^2f(A_b)\bigr]=-\mathcal D_bf'(0).
+\]
+Its singular-channel shift is \(2\nu(1-\nu^2)/3\).
+It passes exact orbifold and twisted-orbifold checks, and it has no
+flat CR remnant.
+
+\item \emph{An exact obstruction for \(\HI\) in D01, and its
+resolution.}
+The \(S=2\to3\) composite trace has the non-integrable diagonal
+\(r^{-2\nu-2}\), so \(\HI\) fails as an \(L^2\) statement.
+Its unique homogeneous (Mellin) continuation, however, vanishes
+identically in \(\nu\). This is shown in closed form and confirmed
+independently by quadrature.
+
+\item \emph{Invariant structure of the \(hh\) poles.}
+The constant-profile \(hh\) poles decompose into six
+\(SO(1,1)\)-invariant structures.
+In the complete \(hh\) sum the purely longitudinal structures
+cancel, and the gauge variance enters only through
+\(b_6+b_7=-\ka^2V/(4\pi)\).
+The CR--F difference is gauge invariant:
+\(-\nu\ka^2P^2f_0f_0'/(4\pi)\).
+\end{enumerate}
+A point-by-point table answers every issue v5 raised against v4.
+An appendix lists full SHA-256 digests and rerun commands.
+
+\smallskip\noindent\textbf{Still open.}
+The 26 Ward combinations and the 34-dimensional projection;
+the six exact values;
+the D04 quadratic-profile part of the second \(\phi\phi\) value;
+the evanescent coefficients;
+the 18-dimensional engine map;
+an exact \(\Span\) certificate;
+and the vector-type keys.
+None of these is reported as zero.
+The scope remains one loop at \(O(\ka^2)\), the massless two-point
+sector, frozen de Donder gauge, and the XVI-P prescription.
+The cone and the CR branch remain inputs, and the
+destructive-readout analogy supplies no premise.
+\(\texttt{bulk\_symmetry\_restored}=\texttt{false}\), and
+O.1 on the cone remains \(\NOTCLOSED\).
+\end{abstract}

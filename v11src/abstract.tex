@@ -1,0 +1,40 @@
+\begin{abstract}
+This is Version~11 of the scoped O.1 cone audit; it revises
+XVI-O1-CONE-v10. The cone \(C_\alpha\times\RR^2\) and the CR and F
+realizations remain prescribed inputs. New in v11
+(Section~\ref{sec:whatv11}; hashes in Appendix~\ref{app:v11artifacts}):
+
+\emph{(1) A correction.} The v10 evaluator of the mixed \(r^2\) trace
+used a Cauchy radius too large near the endpoints and for large
+\(h\). All v10 values of \(\varphi\) are withdrawn; for example,
+\(\varphi(3/2)=2.32745055013616983\), not \(2.327852\dots\). The
+corrected evaluator reproduces the diagonal identity to
+\(10^{-24}\).
+
+\emph{(2) The F mode is derived.} For \(0<\mu<2\), both
+hypergeometric factors are incomplete Beta functions. This gives
+\(\Delta J=-(\mu-1)\Gamma(\mu)^{-1}\Gamma(2-\mu)^{-1}\int_0^1(3-2x)W^2/w\).
+An integration by parts and the v10 Gamma sums then give
+\(I_{\rm F}\), which equals the v10 PSLQ form identically.
+
+\emph{(3) The degree bound (D) is machine-checked} by symbolic degree
+tracking on all 8 chambers, with 0 mismatches against the exact
+engine on 3744 coefficients. The chamber ranks (26 on the six
+\(N=34\) chambers; 29 on F above \(\tfrac12\)) become unconditional.
+In that precise scope they are
+\CPIR, as the v8 four-point certificate remains.
+
+\emph{(4) The D04 mode sum \(M_{10}\) is executed} at
+\(\alpha\in\{\tfrac3{10},\tfrac{7071}{10000},\tfrac12,1\}\), in two
+declared pairings (same-\(k\), and the unit-shift frame intertwiner)
+and two regulators. The exact head is combined with a Hurwitz-zeta
+tail. The \(\alpha=1\) check returns \(11/180\) (\(h\)-regulator,
+equal to scheme Z) and \(-19/180\) (\(k\)-regulator). D04 is
+therefore regulator dependent and stays \PARTIAL.
+
+Still \OPEN: the weight \(\pm1,\pm2\) and remaining mixed jet
+traces, the jet-key dictionary, the 20 jet-level Ward combinations,
+the full 34-/18-dimensional projections, \(e_5,e_6\), and the
+transverse loop momentum. O.1 on the cone remains \NOTCLOSED;
+\texttt{bulk\_symmetry\_restored} remains false.
+\end{abstract}

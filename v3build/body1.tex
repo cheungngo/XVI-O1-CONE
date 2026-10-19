@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable,graphicx,hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\ka}{\kappa}
+\newcommand{\Reg}{M_{\mathrm{reg}}}
+\newcommand{\Hreg}{(\mathrm H_{\rm reg})}
+\title{Scoped O.1 on the Cone, v3:\\ Regularisation Invariance at Generic Opening Angle, the Inner-Resonance Obstruction,\\ the Contact Tadpoles D05a and D12, Resonant Trilinear Cohomology,\\ and One-Sided Rigorous Rank Bounds}
+\author{Ngo Cheung}
+\date{18 October 2026 (v3; supersedes XVI-O1-CONE v2 of the same date, which stays unchanged)}
+\begin{document}
+\sloppy
+\maketitle
+\begin{abstract}
+We continue the transport of the scoped closure O.1 of the Enter companion programme (XVI-Q record Q11: one loop, order $\ka^2$, bulk two-point sector, $m=0$, frozen de Donder gauge, XVI-P prescription) to the flat cone $C_\alpha\times\mathbb R^2$ on the curvature-regular (CR) branch. This version is self-contained and supersedes v2; all v2 results are kept (two corrections, \S\ref{sec:corr}). New in v3:
+(1) a proof sketch of the regularisation hypothesis $\Hreg$ for the bubble graphs at every \emph{inner-non-resonant} $\alpha$, resting on a computed classification of the one-point (inner) apex degrees of the bubble integrands, together with the precise obstruction at the \emph{inner-resonant} set, which is exactly $\{1/2,2/3,4/5\}$ on CR and $\{1/2\}$ on F (a new resonance, $4/5$, absent from the two-point inventory);
+(2) for the bubbles D01, D03, D04, D06, D11, D13: a reduction of the apex pole to a single Mellin residue, with D04 and D11 shown inner-clean at every $\alpha$; the residues themselves are \emph{not} evaluated, so the 6 exact and 2 $\phi\phi$ values remain open;
+(3) the contact tadpoles D05a ($\phi\phi$, both branches) and D12 ($hh$ from the $hh\phi\phi$ vertex, scalar loop, branch-independent) in closed form in $\alpha$, and D02 ($hh$ from the quartic vertex, both branches, 48 exact coefficients);
+(4) evanescent apex coefficients: still open (they need the bubbles);
+(5) the three-field ghost-number-one apex cohomology at the resonant $\alpha\in\{1/3,1/2,2/3\}$ with \emph{all} lattice jets: $H^1_{(3)}=0$ at each, two primes;
+(6) the modular rank certificates are upgraded to \emph{rigorous one-sided} bounds, which already make every ``$H^1=0$'' a rigorous upper-bound statement once a single spanning hypothesis holds; a third prime agrees everywhere. Fully exact (fraction-free) certificates were not produced.
+The enter-companion registry was re-fetched: 249 sheets, all sha256-identical to the previous intake, so no new input was available. \textbf{O.1 on the cone remains NOT\_CLOSED.}
+\end{abstract}
+
+\section{Background, scope and conventions}
+\paragraph{Enter background.} The Enter companion programme (repository \texttt{cheungngo/enter-companion}) is a sequence of machine-checked landmarks about perturbative gravity coupled to a scalar on fixed backgrounds. XVI-P fixes the prescription (DRED with quasi-$d$-dimensional loop momenta and quasi-4-dimensional vertex indices, $\overline{\rm MS}$, the p22 evanescent-counterterm contract). XVI-Q certifies the scoped closure O.1 (Q03/Q11), and XVI-R imports Q11. All three trees are read-only inputs; we used copies in \texttt{/tmp/o1cone\_ro}, and the tree hashes of the originals agree before and after this work (\S\ref{sec:repro}). The cone and its CR extension (the I-B-G-S v2 spin-2 Green operators) are \emph{inputs}, not consequences. A separation is not a bridge; cited sheets are not promoted to theorems.
+\paragraph{Scope.} \emph{O.1 on the cone} is the Q11 statement with Minkowski space replaced by $M_\alpha=\{-dt^2+dr^2+\alpha^2r^2d\varphi^2+dz^2\}$, $t:=1/\alpha>1$, apex $W=\{r=0\}$. Sector, order, prescription and gauge are unchanged; spin-2 fields obey CR; Friedrichs (F) is used only for comparison. $\texttt{bulk\_symmetry\_restored}=\texttt{false}$.
+\paragraph{Kernels and lattice (from v1/v2).} The helicity-$S$ kernels are $G_b=S_b(u,\psi)/(8\pi^2\alpha\,rr'\sinh\eta)$ with $S_b=f_b(u-i\psi)+f_{1-b}(u+i\psi)$, $f_b(\zeta)=e^{-b\zeta}/(1-e^{-\zeta})$, labels $b(S)=S\alpha$ ($S\ge0$), $1+S\alpha$ ($S<0$) on CR and ${\rm frac}(S\alpha)$ on F; Synge data $A,B,C$ are exact (Bernoulli form). Jets near $W$ are $(C,n,m)$ with rotation charge $n$ and radial power $m$: $\nu=|nt+\sigma|$, $m=\nu+2j$, except in the CR-flipped channels $(\sigma,n)=(\pm2,\mp1)$ for $t<2$, where $m=-\nu+2j=t-2+2j$.
+
+\section{Step 0: registry re-intake}\label{sec:intake}
+The registry (\texttt{/browse} and \texttt{/api/manuscript/<id>}) was re-fetched read-only into \texttt{/workspace/XVI-R-companion-intake/new\_oct18c/}: 249 ids, the same id set as the previous intake \texttt{new\_oct18b}, all 249 fetched with return code 0. Every sheet is sha256-identical to \texttt{new\_oct18b/all}: \textbf{0 new, 0 changed} (\texttt{index.json}, \texttt{SHA256SUMS}, \texttt{SHA256SUMS\_all}). The GitHub API for the repository returns 404, so the site is the only source. Consequently nothing new could help. The only relevant existing inputs remain I-B-VP-1 (v3: existence/profile-independence of the extension $U_L$ of $r^{-2}$, simultaneous Ward-compatible extension, complete ambiguity by $\delta_W$ contact terms), I-B-VP-1-Ex1 (existence-and-residue lemma) and I-B-VP-6 (extension ledger). These concern \emph{scalar one-point} apex extensions. We use them only as cited motivation for the one-point (inner) extension step in \S\ref{sec:hreg}; the step itself is proved there from Hörmander's theorem, not from the sheets. They say nothing about two-point bubble products, so they do not supply the values in item (2).
+
+\section{Corrections to v2}\label{sec:corr}
+\begin{enumerate}
+\item \emph{F-channel wording in the structure theorem.} v2 Thm.~3.2(i) said ``under F the same channels with $t<2$ carry $A=-1$''. Wrong as written: under F these channels have $m=\nu=2-t(+2j)$, i.e.\ the coefficient of $t$ is $-1$ (not $|n|=+1$), and the constant is $+2$. The decomposition $m=|n|t+A$ with integer $A$ holds on CR only; on F the flipped-sign channels have $m=-|n|t+2+2j$. No count or conclusion of v2 depended on the misstatement (the F rows were diagnostic, and the resonance scan in \texttt{code/resonances.py} used the correct $\nu$).
+\item \emph{Resonances are sector-dependent.} v2 called $\{1/3,1/2,2/3\}$ ``the resonant set''. That is correct for two-point apex \emph{candidates} ($T\le5$). It is not the set relevant for the bubble integrands: the one-point (inner) degrees of the bubbles have integer non-integrable values on CR exactly at $\{1/2,2/3,4/5\}$ (Theorem~\ref{thm:inner}). $\alpha=4/5$ is new and $1/3$ is not inner-resonant. The v2 claim that the counts in the two-point inventory are $\alpha$-independent off $\{1/3,1/2,2/3\}$ stands.
+\item \emph{Ranks.} v2 described the modular ranks as Schwartz--Zippel certificates with a false-drop probability. v3 (\S\ref{sec:rank}) shows that half of every such statement is in fact rigorous (one-sided), and isolates the one probabilistic hypothesis.
+\end{enumerate}
+
+\section{Results carried over from v1/v2 (re-verified where re-run)}
+\begin{itemize}
+\item Regular-region locality (v1): on $C_c^\infty(\Reg^2)$ the one-loop pole equals the flat XVI-Q one (21 directions, flat coefficients), both branches.
+\item FM/Kabat coefficient matches (v1), exact.
+\item Structure theorem and two-point inventory (v2; corrected wording above): on CR, $hh/\bar cc/Kc/\phi\phi=18/8/6/2$, $N=34$, $\dim Z=8$, $\dim B=6$, $H^0_{(2)}=2$, gh1 closed$=$exact$=26$, $H^1_{(2)}=0$ off $\{1/3,1/2,2/3\}$; $(35,8,6,2;27/27)$ at $1/3$ and $2/3$, $(42,9,7,2;33/33)$ at $1/2$. All re-run in v3 at a third prime, $p_3=10^9+21$ ($\equiv1\bmod4$), identical (\texttt{logs/v2apex/apex\_*\_p2.json}).
+\item $E=1$ row (v2 Thm.~5.1): D14a,b,c apex poles; scalar loop $=\frac{\ka}{16\pi^2}a_2^\Sigma$ (Fursaev), graviton$+$ghost closed on CR, not closed on F; $\varsigma=-1$ applied.
+\item Generic three-field cohomology (v2): $H^1_{(3)}=0$, 83/83 of 194; re-run at $p_3$, identical (\texttt{logs/v2\_tri\_7071\_10000\_p2.json}).
+\end{itemize}

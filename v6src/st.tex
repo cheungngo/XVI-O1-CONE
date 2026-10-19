@@ -1,0 +1,148 @@
+The ending of v5 for the \emph{v4 row} remains correct: that row
+was \UNVALIDATED.
+It was not ``cone anomaly found,'' and it was not ``BRST restored.''
+v6 replaces it with a derived row, analysed below.
+
+\subsection{Diagnosis of the v4 failure (new in v6)}
+\label{sec:STdiag}
+
+The frozen XVI-P antifield vertex has the closed form
+\(K'_{(mn)}\,a\,(\partial_mc_n+\partial_nc_m)\), summed over the
+independent coordinates \((mn)\), \(m\le n\) \cite{CheungP}.
+Writing the BRST source term in the same independent coordinates
+fixes three conventions that v4 left free:
+\begin{enumerate}[label=\textup{(C\arabic*)}]
+\item the ghost enters the vertex with an upper index, and
+\(c_n=\eta_{nn}c^n\) appears in
+\(\delta_ch_{(mn)}=p_mc_n+p_nc_m\);
+\item the equation-of-motion factor is the derivative with respect
+to the independent coordinate,
+\[
+\frac{\partial S}{\partial h_{(mn)}}=(2-\delta_{mn})E^{mn}(h),
+\]
+with \(E\) the linearized Einstein operator and indices raised by
+\(\eta=\diag(1,-1,-1,-1)\);
+\item consequently the \(K'_{(03)}\) coordinate carries weight
+\(2E^{03}=-2E_{03}\).
+In lower-index components this is weight \(w=-2\).
+\end{enumerate}
+\textsc{[exec]} The v4 convention scan (\loc{code/st_scan.py},
+\loc{logs/v4/st_scan.json}) used only
+positive weights \(w\in\{\tfrac12,1,2\}\).
+It never contained \(w=-2\) on \((03)\) together with (C1).
+This is why none of its 72 conventions closed.
+The UNIT ``nonzero source term'' in v4 is produced by the same
+weight error.
+
+\subsection{An \emph{a priori} normalization}
+
+v5 rightly warned that a fitted \(\lambda\) proves nothing.
+In v6, \(\lambda\) is fixed before the loop data are used.
+The XVI-P tree data give the antighost--ghost normalization
+\(A_{\rm GH}=\tfrac12\).
+They also give the quadratic-action normalization \(N=1\) of
+\(E^{\rm up}\) on de Donder configurations.
+\textsc{[exec]} \loc{code/st_norm.py} solves the de Donder
+constraint for \((h_{00},h_{03})\), with \(h_{11}=h_{22}\) tied, and
+returns
+\[
+\lambda_{\rm pred}=\frac{N}{\ii A_{\rm GH}}=-2\ii
+\]
+(\loc{logs/v6/st_norm.json}).
+
+\subsection{Constant-profile closure on CR and F}
+
+Let the axisymmetric lattice coordinates be
+\(x=(h_{00},h_{03},h_{33},f_0)\), with
+\(h_{11}=h_{22}=f_0\), and the ghost \(c=(c^0,c^3)\).
+Put \(p_\mu=(q_0,0,0,q_3)\).
+Define
+\begin{equation}
+\mathcal S_\lambda(c,h)=
+\sum_{a,b}\widehat B^{hh}_{ab}\,(\delta_ch)_a\,h_b
++\lambda\sum_{(mn),\rho}
+\widehat\Gamma^{\mathrm{D13}}_{(mn),\rho}\,c^\rho\,
+(2-\delta_{mn})E^{mn}(h),
+\label{eq:STv6}
+\end{equation}
+where
+\(\widehat B^{hh}=\mathrm{D01+D02+D03+D11+D12}\)
+denotes the executed constant-profile poles restricted to lattice
+keys.
+
+\begin{theorem}[Constant-profile \(hh/Kc\) Slavnov--Taylor row]
+\label{thm:STclosure}
+\textsc{[exec]}
+For both CR and F and every \(1/2<\alpha<1\), the polynomial
+\(\mathcal S_\lambda\) in
+\((h,f_0,c,q_0,q_3)\) vanishes identically if and only if
+\(\lambda=-2\ii=\lambda_{\rm pred}\).
+More precisely:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Sixteen monomials receive a nonzero graph contribution.
+On twelve of them, the D01 and D03 contributions cancel among the
+\(hh\) graphs.
+D02, D11, and D12 contribute nothing to the row.
+\item The remaining four monomials are
+\(f_0c^0q_0^3,\ f_0c^0q_0q_3^2,\ f_0c^3q_0^2q_3,\ f_0c^3q_3^3\).
+On them, the \(hh\) gauge variation has coefficients
+\(\mp\ka^2(\alpha-1)/(4\pi)=\mp\ka^2V/(2\pi)\), and the antifield
+term has coefficients
+\(\pm\ii\ka^2(\alpha-1)/(8\pi)\).
+Hence a single \(\alpha\)-independent \(\lambda=-2\ii\) cancels
+all four.
+\item The matter sub-row \(\mathrm{D11}+\mathrm{D12}\) is
+transverse by itself.
+\item The UNIT replacement \(c_S\equiv1\) makes both terms vanish
+identically, a trivial closure.
+So does the flat four-dimensional benchmark on the lattice
+(\loc{code/flat_pole.py}).
+Neither of these can determine \(\lambda\), which is why
+\(\lambda\) is fixed \emph{a priori}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Evidence]
+\loc{code/st_v6.py} forms \eqref{eq:STv6} symbolically from the
+logged poles and extracts every monomial coefficient as an exact
+rational function of \(\alpha\).
+It solves for \(\lambda\) on the first equation and checks
+\(\partial_\alpha\lambda=0\) and every residual \(=0\)
+(\loc{logs/v6/st_v6_\{CR,F,UNIT,FLAT\}.json}).
+The per-graph table is in \loc{logs/v6/st_v6\_stats.json}.
+
+Section~\ref{sec:structures} gives the structural reason.
+On the lattice, the gauge variation of the \(hh\) sum is
+\(2(b_6+b_7)P^2f_0\,(p\cdot c)\), so
+\(\mathcal S_\lambda\propto V\) on both branches.
+The branch-dependent structure \(b_8\) is gauge invariant.
+
+The validity of the flat tensor-averaging routine is checked
+separately. The flat D11 covariant ratios \([6,1,-6,-1,8]\)
+reproduce the frozen \texttt{P18\_D11} record
+(\loc{logs/v6/flat\_vs\_p18.json}).
+\end{proof}
+
+\begin{remark}[Scope of the closure]
+\label{rem:STscope}
+Theorem~\ref{thm:STclosure} answers v5's slice objection
+(Example~\ref{ex:slice}) for this row by direct computation, not
+by appeal to shift invariance.
+It is \emph{one} row, under these restrictions:
+\begin{itemize}
+\item the constant profile;
+\item the axisymmetric lattice \(h_{11}=h_{22}\), without the
+\((12)\) entry;
+\item excluding the vector-type keys on which mixed-helicity
+monomials were dropped (Section~\ref{sec:catalogue});
+\item without the auxiliary-field terms that vanish on this
+restriction;
+\item and with the spectral reduction itself conditional on
+Assumption~\ref{ass:reduction}.
+\end{itemize}
+It is not the 26 Ward-constrained combinations, and it is not a
+full Slavnov--Taylor theorem on the cone.
+Within that scope the honest status changes from \UNVALIDATED\
+to \emph{closed}.
+No anomaly is found, and no BRST restoration is claimed.
+\end{remark}

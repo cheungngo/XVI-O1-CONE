@@ -1,0 +1,165 @@
+
+%======================================================================
+\section{v8 artifacts, hashes and rerun commands}
+\label{app:v8artifacts}
+%======================================================================
+
+Paths are relative to \loc{/workspace/XVI-O1-CONE/} on the audit box.
+Long jobs were run detached with \loc{setsid} and logged. The
+environment is Python~3.13.5, SymPy~1.14.0, with \loc{LC_ALL=C.UTF-8}.
+The frozen trees were hashed before the first v8 run and after the last
+one; the before/after values are identical: XVI-P: yes, XVI-Q: yes, XVI-R: yes.
+A full manifest is \loc{logs/v8/artifact_manifest_v8.sha256}; the
+\TeX{} source and PDF are hashed in \loc{SHA256SUMS_v8}, outside this
+document.
+
+\paragraph{Rerun commands.}
+\begin{verbatim}
+cd /workspace/XVI-O1-CONE
+python3 code/v8/cone_v7.py selftest
+python3 code/v8/cone_v7.py logs logs/v4 --legacy
+bash code/v8/run_replay.sh   # 27 runs
+python3 code/v8/cone_v7.py logs logs/v8/replay
+python3 code/v8/ward_scan_radial.py 0.85
+python3 code/v8/apex_exact_run.py 7071/10000 CR
+python3 code/v8/apex_certificate.py 3/10 CR      # also 3/10 F, 7071/10000 CR|F
+python3 code/v8/k_support.py 3_10_CR             # per tag
+python3 code/v8/hh_map.py 3/10 CR                # per (alpha, branch)
+python3 code/v8/exact_values.py 3_10_CR 3_10_F 7071_10000_CR 7071_10000_F
+bash code/v8/run_slice.sh && bash code/v8/run_slice2.sh
+python3 code/v8/evanescent_combine.py
+python3 code/v8/duhamel_mode_check2.py
+python3 code/artifacts_v8.py && python3 code/build_v8.py
+pdflatex -halt-on-error XVI-O1-CONE-v8.tex   # twice
+\end{verbatim}
+The certificate runs take 5--10 minutes each and stay below 2~GB of
+memory. The box limit is about 7~GB, so they were run at most three
+at a time.
+
+{\small
+\begin{longtable}{@{}p{.50\linewidth}p{.46\linewidth}@{}}
+\caption{SHA-256 of v8 artifacts.}\\
+\toprule
+File & SHA-256\\
+\midrule
+\endfirsthead
+\toprule
+File & SHA-256\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\textit{Base source (read-only)} (1 files)}\\
+{\scriptsize\loc{XVI-O1-CONE-v7.tex}} & \texttt{\tiny d0ba7b9cdbf535d1296a74146011c1cb1269ff53148d3a96add64574873d5132}\\
+\multicolumn{2}{@{}l}{\textit{v8 programs} (23 files)}\\
+{\scriptsize\loc{code/v8/apex_certificate.py}} & \texttt{\tiny 14a49b42dcb7c1fb53a69825a75a9a6dcfa36ad4f88f7f8ca80e95f47818b1ca}\\
+{\scriptsize\loc{code/v8/apex_certificate_la.py}} & \texttt{\tiny 803c363e5aa3fd32824286bf5f4da891067c2a6e91c80705acf14178787cfb21}\\
+{\scriptsize\loc{code/v8/apex_exact.py}} & \texttt{\tiny ba6b0946e84e9f2fb3a60a24d38a3e4343e3887ae6c79c385b88e5c0db4ec46b}\\
+{\scriptsize\loc{code/v8/apex_exact_run.py}} & \texttt{\tiny db8f950dd31e012044776bddc3bd594aa2ededead73794459b71301321e23d48}\\
+{\scriptsize\loc{code/v8/cone_v7.py}} & \texttt{\tiny 55b197552eb4c400c526cd39e4964a4cc8ec1fb89cf45dd41b1336dd42ba9b07}\\
+{\scriptsize\loc{code/v8/duhamel_mode_check.py}} & \texttt{\tiny b7a1183a11c4f0219b700a7d6ca0056f63aa8fc9efd3012d89a156d8310794f5}\\
+{\scriptsize\loc{code/v8/duhamel_mode_check2.py}} & \texttt{\tiny b010c66de54a5b7fde6bfc8efd42a4d618533f65390337ee0cdb8d250b698aaa}\\
+{\scriptsize\loc{code/v8/evanescent_combine.py}} & \texttt{\tiny e967018847f31c26448a832381c558fb01dde75dfb36bf60402e8873c8e58a0c}\\
+{\scriptsize\loc{code/v8/exact_values.py}} & \texttt{\tiny 4b4ad1682afb5629f24df91b97a9a905a980ba1fa034fa060c087dfe9f7bfae3}\\
+{\scriptsize\loc{code/v8/gq.py}} & \texttt{\tiny a48693860dde5d3d0b244ca0b13c00cea1988849a45a3b16fe39d1cc7e1eae3b}\\
+{\scriptsize\loc{code/v8/hh_map.py}} & \texttt{\tiny 372b3f01f084e1bb8091c933d3d979a445b445febc6610694048a7253c850cee}\\
+{\scriptsize\loc{code/v8/k_support.py}} & \texttt{\tiny 471f02fa05515d76d4fd94b57b38811bdcafac450d0cd900e9466dfa076aa94f}\\
+{\scriptsize\loc{code/v8/make_apex_exact.py}} & \texttt{\tiny 2f4e74c6c3ce1c0d92470f7babbb27f0b9d53515cd390270d352303cdc6da6fa}\\
+{\scriptsize\loc{code/v8/make_apex_exact_run.py}} & \texttt{\tiny c8e9abbb5402d35f1c97dafce62215c94d0bfae44e3ba6b266bedc23902fcb18}\\
+{\scriptsize\loc{code/v8/slice_engine.py}} & \texttt{\tiny 296bfb8541ded14d27f1050cf8602693fb1a6f4c7c99cdd378b57eaed40069ed}\\
+{\scriptsize\loc{code/v8/slice_run.py}} & \texttt{\tiny 2b46ef8d8c6dc8c9085725eccdf0d89aad609098ea913e57ba55f9a92b2e0688}\\
+{\scriptsize\loc{code/v8/test_slice.py}} & \texttt{\tiny 75acc5a9c6deea06be6623038e745ddbff481bb12ae7b2a1dc23d65f4279cf70}\\
+{\scriptsize\loc{code/v8/ward_scan_radial.py}} & \texttt{\tiny 453a8f3dfd959465b5722a710485fea655b4265af5cca914e7d09499049fafca}\\
+{\scriptsize\loc{code/v8/run_replay.sh}} & \texttt{\tiny c459fd5759b7cdec921d12fdd27ad3241a118c5c12361541e23b3916e07ef968}\\
+{\scriptsize\loc{code/v8/run_slice.sh}} & \texttt{\tiny 2ff93bab2df9006a0054b71f39b4f055f475eb2c230fc9d740bec708b64e8d7b}\\
+{\scriptsize\loc{code/v8/run_slice2.sh}} & \texttt{\tiny bd47fcb81bdfa021554c3d667088249b3973ac8dde448239d696955778e90251}\\
+{\scriptsize\loc{code/build_v8.py}} & \texttt{\tiny c83d29a050937ab65347255ece236c47fc3ef8f78063f50710391532f2bf1263}\\
+{\scriptsize\loc{code/artifacts_v8.py}} & \texttt{\tiny adb9abcb3d879cdb7eb32e1956c16ae21ada684b5bb3aabcb0b4c8ab0f7f7766}\\
+\multicolumn{2}{@{}l}{\textit{v8 source fragments} (9 files)}\\
+{\scriptsize\loc{v8src/abstract.tex}} & \texttt{\tiny f5d9e2b3fd61a71d616d41562c68ba2d1bec5537f5c069b29dcaa0abb5c7d130}\\
+{\scriptsize\loc{v8src/boundary.tex}} & \texttt{\tiny 33dd134192a6b257f9065161aba3ebf2df4238cb834ebb9dd066465c57e40fa3}\\
+{\scriptsize\loc{v8src/opentable.tex}} & \texttt{\tiny 03a4908ff49b8f49d0ad402839aafcd70ad891e57a8a20f01b54322758fbe4bb}\\
+{\scriptsize\loc{v8src/response.tex}} & \texttt{\tiny 7dd77765cbdc314c760cebc8eaa66839f0a4c329cb706075098a0399802d9336}\\
+{\scriptsize\loc{v8src/sec_evan.tex}} & \texttt{\tiny 47e4623fa8bc6200026cf430642b705674154a95d40e472bc37ad95a17673422}\\
+{\scriptsize\loc{v8src/sec_map.tex}} & \texttt{\tiny 83e8eb0f2e6b6b24ee812bd5924a0da5344c98bd34a7d091fdafed4ef2d0d1f8}\\
+{\scriptsize\loc{v8src/sec_mixed.tex}} & \texttt{\tiny 23807ea310beb231d885e08bed37aebbe69014c601b91becbc7d08b0f57fb1ed}\\
+{\scriptsize\loc{v8src/whatv8.tex}} & \texttt{\tiny 7d654d0008959917d3dee81e41930b6e68ad7bc058f9897b3fa6c621becc021b}\\
+{\scriptsize\loc{v8src/bibmarks.json}} & \texttt{\tiny 12e6130eabfd85e6fc1841c039149ad8688cd32a66f934b606825675f3cc4cd3}\\
+\multicolumn{2}{@{}l}{\textit{v7-program runs} (4 files)}\\
+{\scriptsize\loc{logs/v8/v7_logs_legacy.json}} & \texttt{\tiny 0674a32ac36a26c0a485c5591fb006bc4739e4159c6019912fb2860c37b1ca4f}\\
+{\scriptsize\loc{logs/v8/v7_logs_replay.json}} & \texttt{\tiny 856162e1d1ba8365213ee7af80e1a661a02535b0512d011d99aa5a353d8871de}\\
+{\scriptsize\loc{logs/v8/v7_selftest.json}} & \texttt{\tiny 5d0668fc426d17a17cb0b058f78ce919532f7003c0d8d548f0440a4bb10277ef}\\
+{\scriptsize\loc{logs/v8/v7_tree.json}} & \texttt{\tiny acf9699d11beaca179da32ffab88ee57366f1cbe1da8ea48aa8e7876538d5391}\\
+\multicolumn{2}{@{}l}{\textit{Replay} (27 files)}\\
+{\scriptsize\loc{logs/v8/replay/spec_D01_CR.json}} & \texttt{\tiny acce791a88e9204de5691ef10b411cc9809625ea5fa1cfe2afb0eb21c54b6003}\\
+{\scriptsize\loc{logs/v8/replay/spec_D01_F.json}} & \texttt{\tiny 79a84353204e8e9e50fc91d924b4c4da91bab831d5a10e98ffe74dc118f13f03}\\
+{\scriptsize\loc{logs/v8/replay/spec_D01_UNIT.json}} & \texttt{\tiny 5649acd95b4f21ca4a564945e3eb35cc968a051c0b6e5f29934e5384b5cbea8c}\\
+{\scriptsize\loc{logs/v8/replay/spec_D02_CR.json}} & \texttt{\tiny 7f4a1d36f5f1723abe33324b654b07cb5e51bde054f82c7e9235c3abe5decd50}\\
+{\scriptsize\loc{logs/v8/replay/spec_D02_F.json}} & \texttt{\tiny 99bb7ba60647bc744d2da60077179727729109379e857bbf3f9f8ff466035062}\\
+{\scriptsize\loc{logs/v8/replay/spec_D02_UNIT.json}} & \texttt{\tiny fd11e5c3f5272aa46177f9adcd2cf56fd30b31b1f28ff2f6118f6afdc5959dbb}\\
+{\scriptsize\loc{logs/v8/replay/spec_D03_CR.json}} & \texttt{\tiny 2bec5983c7c649fe57e29452e4819847e581d9a4ff059c7df4f50127034f14c6}\\
+{\scriptsize\loc{logs/v8/replay/spec_D03_F.json}} & \texttt{\tiny d3f142193c21fb2bcb45bb44692cba7cd09a59131cfc2557ee084cbf7aa23abb}\\
+{\scriptsize\loc{logs/v8/replay/spec_D03_UNIT.json}} & \texttt{\tiny 3e1e4792fb8ec91035b5ef3c9bb6343255c46d1f099c28750a56ef3044e6f24c}\\
+{\scriptsize\loc{logs/v8/replay/spec_D04_CR.json}} & \texttt{\tiny a2151dc64d8159bd2183dd4fb84b9fa69b2500ccb8e959282279fae9ba2d3d71}\\
+{\scriptsize\loc{logs/v8/replay/spec_D04_F.json}} & \texttt{\tiny 542b00df420c2d5bb8cc884b8103cc9fa705d3e60a06458bcbd0ef8f5da2ae19}\\
+{\scriptsize\loc{logs/v8/replay/spec_D04_UNIT.json}} & \texttt{\tiny 512cdf20a2a5df3a0ef7df19acd867b5c70e65a53ca3c57b34adf14b36cb7446}\\
+{\scriptsize\loc{logs/v8/replay/spec_D05a_CR.json}} & \texttt{\tiny 179e86ad7825cfebf3a48ab4e670b639518fbab389513f9fd220bc458e734317}\\
+{\scriptsize\loc{logs/v8/replay/spec_D05a_F.json}} & \texttt{\tiny 4f5cbe0ae2b9a9965780a290bc3652e960c356383716794b659f2549f94e12ea}\\
+{\scriptsize\loc{logs/v8/replay/spec_D05a_UNIT.json}} & \texttt{\tiny ca56b30462aa4fca5a73bac77870b9f55e377f43fe9cd7afe17d1ce0ecdd105f}\\
+{\scriptsize\loc{logs/v8/replay/spec_D06_CR.json}} & \texttt{\tiny 62ef7ca5c49060ff207c284497ff1eaf60e7214227e0164e5e8fb13a6fb0d1f0}\\
+{\scriptsize\loc{logs/v8/replay/spec_D06_F.json}} & \texttt{\tiny 43575824758f99a429e9980f88bb9441687a209a0e7f6f4b0172a039e554ed2b}\\
+{\scriptsize\loc{logs/v8/replay/spec_D06_UNIT.json}} & \texttt{\tiny e0967ee852a1f35946ea020ca4afc39b83f961bcae556b0ff6f890493dd97916}\\
+{\scriptsize\loc{logs/v8/replay/spec_D11_CR.json}} & \texttt{\tiny 05f947251f8a3d1cee8c721e998a5e431c71fe87d75abb76881aac32d99698d5}\\
+{\scriptsize\loc{logs/v8/replay/spec_D11_F.json}} & \texttt{\tiny a350cacd428979ff494fdc2b7d0069a12a895520420344259fee3252bac0b0a5}\\
+{\scriptsize\loc{logs/v8/replay/spec_D11_UNIT.json}} & \texttt{\tiny b9c70d687aee15bd7c9f53697fb04264da32cba89e4824c0eb5d1fe1400fe30a}\\
+{\scriptsize\loc{logs/v8/replay/spec_D12_CR.json}} & \texttt{\tiny 6675f26bf142c5e549d2d4e4ed78640f30de99bbc2c8c3d57c6b5de4a19059fa}\\
+{\scriptsize\loc{logs/v8/replay/spec_D12_F.json}} & \texttt{\tiny 356db7ea109fe8dfce4e29c5c67bf7c3a6c525bcb0fb7cb4c3e5f66b12674ee6}\\
+{\scriptsize\loc{logs/v8/replay/spec_D12_UNIT.json}} & \texttt{\tiny 8c3d2c8aa6018bac44281d5d21aeb77cd35c53cb3663fabe1ea920da5196f6c0}\\
+{\scriptsize\loc{logs/v8/replay/spec_D13_CR.json}} & \texttt{\tiny 794463632e6f4f6303047f8c94b12172874b60f1dce1c5d35bdfec781c6eb249}\\
+{\scriptsize\loc{logs/v8/replay/spec_D13_F.json}} & \texttt{\tiny ff97041eff19ac02e6009fd36f30748715f8856eaaa5dc6fef165d82ba78342f}\\
+{\scriptsize\loc{logs/v8/replay/spec_D13_UNIT.json}} & \texttt{\tiny d4041679d0a9c8b27237d1746a9c72dc661bba20b8c76591f8ab7a37570b7d9b}\\
+\multicolumn{2}{@{}l}{\textit{Ward scan} (2 files)}\\
+{\scriptsize\loc{logs/v8/ward/wardscan_radial_0.85_fried.json}} & \texttt{\tiny c802124092dc962b8fa7ccac419650eeae2a906b78b5ab5efbdd32bfa6675258}\\
+{\scriptsize\loc{logs/v8/ward/wardscan_radial_0.85_geom.json}} & \texttt{\tiny 007709fdd124593107898379c9c318e188c6a926d67905ff2c3908d496ef57a3}\\
+\multicolumn{2}{@{}l}{\textit{Exact certificates and maps} (17 files)}\\
+{\scriptsize\loc{logs/v8/cert/apex_cert_3_10_CR.json}} & \texttt{\tiny 001aa482da32b879365eaad7cd97e584b587895074354840f14b0ad94df53a96}\\
+{\scriptsize\loc{logs/v8/cert/apex_cert_3_10_CR_vectors.json}} & \texttt{\tiny a719330531cb070bea918f2f8a0b755e48e0100974756bc2aa932e779cff9319}\\
+{\scriptsize\loc{logs/v8/cert/apex_cert_3_10_F.json}} & \texttt{\tiny fc76e1a9d2fb95eb2256c5ee4a24353d8efce1c9e38942a67b65ca64d979f93b}\\
+{\scriptsize\loc{logs/v8/cert/apex_cert_3_10_F_vectors.json}} & \texttt{\tiny a719330531cb070bea918f2f8a0b755e48e0100974756bc2aa932e779cff9319}\\
+{\scriptsize\loc{logs/v8/cert/apex_cert_7071_10000_CR.json}} & \texttt{\tiny 204c46e1b8ac59609072a060018373f67ac19e93717fbdc56b0547b863330a0b}\\
+{\scriptsize\loc{logs/v8/cert/apex_cert_7071_10000_CR_vectors.json}} & \texttt{\tiny a719330531cb070bea918f2f8a0b755e48e0100974756bc2aa932e779cff9319}\\
+{\scriptsize\loc{logs/v8/cert/apex_cert_7071_10000_F.json}} & \texttt{\tiny f3fd2f7010379d22b7236f92247f19c8a82a1eaa9947b7c7be27e9cdcff02af0}\\
+{\scriptsize\loc{logs/v8/cert/apex_cert_7071_10000_F_vectors.json}} & \texttt{\tiny ef66990df199ceca552c9986688ebfe82f3c1e050bedfe76b16a415ed40dc728}\\
+{\scriptsize\loc{logs/v8/cert/exact_values.json}} & \texttt{\tiny 21aefbf917ccda4a9a70bc0bc8a1405ea2e556713bd6bd4aa104aeed757926e7}\\
+{\scriptsize\loc{logs/v8/cert/hh_map_3_10_CR.json}} & \texttt{\tiny ee9d20a4b630496ba5340c74e05ae16d2613d21a1b6cb05433b21f5cc1939894}\\
+{\scriptsize\loc{logs/v8/cert/hh_map_3_10_F.json}} & \texttt{\tiny de28306ff18ec729efd27eca9269fa6d75a2fef8839950c4f11978ae41c1c40e}\\
+{\scriptsize\loc{logs/v8/cert/hh_map_7071_10000_CR.json}} & \texttt{\tiny d6c9abe28830ccd985c69466ee1eca53344b69b27216ea3e8a8ef68100aebad5}\\
+{\scriptsize\loc{logs/v8/cert/hh_map_7071_10000_F.json}} & \texttt{\tiny e6f492d4cf6f19b6c9b75f3be96b13ac97a0382c23f8902f92261beb9f30742e}\\
+{\scriptsize\loc{logs/v8/cert/k_support_3_10_CR.json}} & \texttt{\tiny 0e442beaef6ed47ef2e53bfc7f7f9034a83536a4cacda009f88e0fb5fbe22a45}\\
+{\scriptsize\loc{logs/v8/cert/k_support_3_10_F.json}} & \texttt{\tiny 0e442beaef6ed47ef2e53bfc7f7f9034a83536a4cacda009f88e0fb5fbe22a45}\\
+{\scriptsize\loc{logs/v8/cert/k_support_7071_10000_CR.json}} & \texttt{\tiny 0e442beaef6ed47ef2e53bfc7f7f9034a83536a4cacda009f88e0fb5fbe22a45}\\
+{\scriptsize\loc{logs/v8/cert/k_support_7071_10000_F.json}} & \texttt{\tiny 0e442beaef6ed47ef2e53bfc7f7f9034a83536a4cacda009f88e0fb5fbe22a45}\\
+\multicolumn{2}{@{}l}{\textit{Exact sampled port} (1 files)}\\
+{\scriptsize\loc{logs/v8/apex_exact/apex_7071_10000_CR_seed0.json}} & \texttt{\tiny 9b14e0b3f879676cdcd97d162f5507ff9fb9ae64026473b76c00da0d2ad8f4d1}\\
+\multicolumn{2}{@{}l}{\textit{Slice / evanescent / hidden pairs} (11 files)}\\
+{\scriptsize\loc{logs/v8/slice/evanescent_combined.json}} & \texttt{\tiny de6d4bf42a5477bb9c82a331d0a5d77447dee43f8b950ee1140aaf5832ef1054}\\
+{\scriptsize\loc{logs/v8/slice/hidden_mixed.json}} & \texttt{\tiny 4f4c0cb1d3e8a0b53adcd0c94c39515f8d7b06b64f00c043de47d8a2b8731077}\\
+{\scriptsize\loc{logs/v8/slice/slice_D01.json}} & \texttt{\tiny 0a55a654154890d9c8c50e70638d47f59340c05b8afa87842c6e9be2b492f6fb}\\
+{\scriptsize\loc{logs/v8/slice/slice_D02.json}} & \texttt{\tiny 06e19f1c9e8f2acd0f4546c03e3b3e8a4273456c87b5304eab5551f23ef92e74}\\
+{\scriptsize\loc{logs/v8/slice/slice_D03.json}} & \texttt{\tiny c7eb6a6efcfc389f9d2439f2472b62b47ef0ef6201deff6f4ef92d968acf418d}\\
+{\scriptsize\loc{logs/v8/slice/slice_D04.json}} & \texttt{\tiny cc23ad207c516682715544fbafe2434dce83e84785d19e8383adeab0c1a833b7}\\
+{\scriptsize\loc{logs/v8/slice/slice_D05a.json}} & \texttt{\tiny 5a6b5c35ae58f9197a75128b7e002ebee0a8688682b0d4e8f8414687861fa897}\\
+{\scriptsize\loc{logs/v8/slice/slice_D06.json}} & \texttt{\tiny cf0bcdad0d20b76076fcf327fafbbe5c5f2a6a568537e98fd7d4383e64d09786}\\
+{\scriptsize\loc{logs/v8/slice/slice_D11.json}} & \texttt{\tiny f4afed2f0745d95d685294001dab6e0099720733a6e624df8a5971336fcd5656}\\
+{\scriptsize\loc{logs/v8/slice/slice_D12.json}} & \texttt{\tiny acfa367bac579ab8f18c2bd731b3b3550a83aa1862722a4da2250774cdef88be}\\
+{\scriptsize\loc{logs/v8/slice/slice_D13.json}} & \texttt{\tiny eeb384f033363738b9bcd5d0160ee3d69299c8426c2c2fb35ee9b62d628226c6}\\
+\multicolumn{2}{@{}l}{\textit{Duhamel corroboration} (2 files)}\\
+{\scriptsize\loc{logs/v8/duhamel_mode_check.json}} & \texttt{\tiny 2931da69cbc9873704391c64ac13299b41666f1ad59eeaeb67ac4eab63eb86db}\\
+{\scriptsize\loc{logs/v8/duhamel_mode_check2.json}} & \texttt{\tiny 74bc8b04bc98559da3c5e3521d6b96d46e0056d5d09bd411c025b02c56b5fae7}\\
+\multicolumn{2}{@{}l}{\textit{Manifests, environment} (5 files)}\\
+{\scriptsize\loc{logs/v8/manifest_XVIP.json}} & \texttt{\tiny 8dcd372a5977065d7f30e9698917c9b371faf5caa111a84bd9d27a2e4c2714a6}\\
+{\scriptsize\loc{logs/v8/manifest_XVIQ.json}} & \texttt{\tiny c33ef1abe8d6f63a28885a7d41bc70d27455cf45eba06a94697270d5cd0ab337}\\
+{\scriptsize\loc{logs/v8/manifest_XVIR.json}} & \texttt{\tiny 44f17586766b4c13c088080143a99864b397dbc1893a7b39422855e88876fa17}\\
+{\scriptsize\loc{logs/v8/tree_hashes_v8.json}} & \texttt{\tiny a6b3246b70cf27eed7eb7d2f7f475903fbb8d1cd7199283ed1b90b5f42bceb8f}\\
+{\scriptsize\loc{logs/v8/env.json}} & \texttt{\tiny 4a40f99a724e190dad2fa6e65c49b318415204377fa0723aa71128884aed714e}\\
+\end{longtable}}

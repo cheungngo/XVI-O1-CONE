@@ -1,0 +1,93 @@
+
+%======================================================================
+\section{v11 artifacts, hashes and rerun commands}
+\label{app:v11artifacts}
+%======================================================================
+
+Paths are relative to \loc{/workspace/XVI-O1-CONE/}. Long jobs ran
+detached with \loc{setsid}, were logged, and were resumable through
+per-item JSON caches. Environment: Python~3.13.5, SymPy~1.14.0, mpmath~1.3.0.
+Frozen trees before \(=\) after: XVI-P: yes, XVI-Q: yes, XVI-R: yes.
+Digests: XVI-P \texttt{ec965c15ae25cd3b\ldots}, XVI-Q \texttt{0df9a0d10409d31a\ldots}, XVI-R \texttt{57187bc6825f5c6a\ldots}.
+The v9 and v10 sources and PDFs are unchanged: yes. The v1--v8 sources are unchanged: yes.
+The cached \(F(\mu,\nu)\) values (404 files) are hashed in \loc{logs/v11/M10/cache_SHA256SUMS}; the
+superseded first run (Section~\ref{sec:v11bug}) is kept in \loc{logs/v11/M10/cache_superseded/} and feeds no printed value.
+The full manifest is \loc{logs/v11/artifact_manifest_v11.sha256}; the \TeX{} source and PDF are hashed in \loc{SHA256SUMS_v11}.
+
+\emph{Manifest fix.} The v10 manifest hashed \loc{CHECKPOINT_v10.md} one append before its final state
+(\texttt{4c01e1e654d8f967\ldots}); its current hash is
+\texttt{8bb24346c6f7d991\ldots} (\loc{logs/v11/checkpoint_v10_fix.json}). In v11 the last
+append to \loc{CHECKPOINT_v11.md} precedes this hashing, and nothing is appended afterwards.
+
+\paragraph{Rerun commands.}
+\begin{verbatim}
+cd /workspace/XVI-O1-CONE
+python3 code/v11/degree_check.py; python3 code/v11/degree_crosscheck.py
+python3 code/v11/fmode_reduce.py; python3 code/v11/fmode_derive.py
+python3 code/v11/m10_jobs.py > logs/v11/M10/jobs.txt
+setsid nohup bash code/v11/m10_driver.sh > /dev/null 2>&1 &
+python3 code/v11/m10_sum.py
+python3 code/artifacts_v11.py && python3 code/build_v11.py
+pdflatex -halt-on-error XVI-O1-CONE-v11.tex   # until stable
+\end{verbatim}
+
+{\small
+\begin{longtable}{@{}p{.50\linewidth}p{.46\linewidth}@{}}
+\caption{SHA-256 of v11 artifacts.}\\
+\toprule
+File & SHA-256\\
+\midrule
+\endfirsthead
+\toprule
+File & SHA-256\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\textit{Base source (read-only)} (1 files)}\\
+{\scriptsize\loc{XVI-O1-CONE-v10.tex}} & \texttt{\tiny d21c8d84b12b53e50a78227d86dbff204293748d7712ced02e11b08b983b8d25}\\
+\multicolumn{2}{@{}l}{\textit{v11 programs} (12 files)}\\
+{\scriptsize\loc{code/v11/degree_check.py}} & \texttt{\tiny c5c0c48ef4e5f2750235f8da59daa62e157d177250c556b275b6dfbfa93d7362}\\
+{\scriptsize\loc{code/v11/degree_crosscheck.py}} & \texttt{\tiny 09139a504eaf3af98adeacfa3a8ae344455cbf6c133b58b4604d2e73e47d505e}\\
+{\scriptsize\loc{code/v11/fmode_derive.py}} & \texttt{\tiny d16e4f844f54237fde609d74360fb7d81a1169e98b71cfbe96cf378423866a5f}\\
+{\scriptsize\loc{code/v11/fmode_reduce.py}} & \texttt{\tiny 1bcf052a6baf0894b8b14cdd765d88a4933314cd8f595f26c86212c0f45b839c}\\
+{\scriptsize\loc{code/v11/m10_eval.py}} & \texttt{\tiny d01c93f6689f8844efcf5acfca47f7ccaef33325b749b916e96ecb3f60ef904c}\\
+{\scriptsize\loc{code/v11/m10_jobs.py}} & \texttt{\tiny 43f70dfbc390768faaf2573f5c8f4575b3373ea83ac2cca06e4431466e083b25}\\
+{\scriptsize\loc{code/v11/m10_post.py}} & \texttt{\tiny 5b8a6aab7f5d46d4e913b70ae6d93702911326c99c6a31416c290b987189b7d9}\\
+{\scriptsize\loc{code/v11/m10_sum.py}} & \texttt{\tiny 1595ff5aa5ed8e3fe300e71ffaf4514c680cdd3ea44e00ba0ece13c33d5abce3}\\
+{\scriptsize\loc{code/v11/t1v11.py}} & \texttt{\tiny 4660ac0960ab9dfe2e92a01ce2c7900aabb9c295834e60306965f4abdb167dd1}\\
+{\scriptsize\loc{code/v11/m10_driver.sh}} & \texttt{\tiny 627f6ff0aa57b4e6aed21f248af15e5e5dec784eea05f9105377da2558756596}\\
+{\scriptsize\loc{code/build_v11.py}} & \texttt{\tiny a71bde039d87789829333866ab7a3bf31db9d1fa966dfd1500936e629c7bd3fc}\\
+{\scriptsize\loc{code/artifacts_v11.py}} & \texttt{\tiny 8645d9bbfd275047c2a149914f9efc5f94511284f1147916d79a91a3e15385ae}\\
+\multicolumn{2}{@{}l}{\textit{v11 source fragments} (4 files)}\\
+{\scriptsize\loc{v11src/abstract.tex}} & \texttt{\tiny 82c1899a7e301fab8022a089f012d160b59576044a6294d86f0918b588453435}\\
+{\scriptsize\loc{v11src/bib_v11.tex}} & \texttt{\tiny 60374aa56074952db5b9c95fb5965153933e35644ab481052613996402eaa4f9}\\
+{\scriptsize\loc{v11src/opentable.tex}} & \texttt{\tiny 7451352004052c4ef79a1736ea0872691ea47162ac07312215aefec1e0655205}\\
+{\scriptsize\loc{v11src/sec_v11.tex}} & \texttt{\tiny 7431c14dfd2eb064a6738b10fbe11f65cd7a9190a25bed923f0414663add9685}\\
+\multicolumn{2}{@{}l}{\textit{F mode derivation} (2 files)}\\
+{\scriptsize\loc{logs/v11/fmode_reduce.json}} & \texttt{\tiny 6289543dec1700c1b7944344756742677dc6a7e21cd417ed9f03de1e76a46dbc}\\
+{\scriptsize\loc{logs/v11/fmode_derive.json}} & \texttt{\tiny 9b897c1cdd37263e49544181583dc633f2c9c3e365df8da26b0065a3c26402f6}\\
+\multicolumn{2}{@{}l}{\textit{Degree bound (D)} (2 files)}\\
+{\scriptsize\loc{logs/v11/degree_check.json}} & \texttt{\tiny 229f265c1dd566a0b02ccf5173434762b70ae03f162a162680bf45dbe299d35a}\\
+{\scriptsize\loc{logs/v11/degree_crosscheck.json}} & \texttt{\tiny 2901c5d65f674a6a5124a8f600061bd63e0a1efb17ebfad5d943fdef9c985641}\\
+\multicolumn{2}{@{}l}{\textit{Mode sum M10} (9 files)}\\
+{\scriptsize\loc{logs/v11/M10/jobs.txt}} & \texttt{\tiny 5378b8e118373db999c3f5611d7054ef425cc2c5e6a875a7b1178b8034010829}\\
+{\scriptsize\loc{logs/v11/M10/m10.json}} & \texttt{\tiny f58b460f79bc0fbfbbf7196be0e923585586bdaa47ad67058684c0651071980b}\\
+{\scriptsize\loc{logs/v11/M10/cache_SHA256SUMS}} & \texttt{\tiny 4e63c1d913104cd121a044955d1dd4670371ffb88c5ae4f64ee0ec10e1818c71}\\
+{\scriptsize\loc{logs/v11/M10/phi_corrected.json}} & \texttt{\tiny cd4cc6653e3ef9b4385e4f8d8323efa578ebfe71055c70e1984167424ef06558}\\
+{\scriptsize\loc{logs/v11/M10/m10_text.tex}} & \texttt{\tiny a1a666abe117a79edc09c2ed15c5625a8e3e356b52e89345dfafbc9e2f75c3ee}\\
+{\scriptsize\loc{logs/v11/M10/jobs_dedup.txt}} & \texttt{\tiny 72b5560949a87642c8a44ebb56044881a7c31961cbfc6bdff99f0fc88560c561}\\
+{\scriptsize\loc{logs/v11/M10/m10_leading.json}} & \texttt{\tiny 173abaf669a892c4d963bb16080299f95c9f7a55a46ce96c878b04ff85b9e7ad}\\
+{\scriptsize\loc{logs/v11/M10/m10_pslq.json}} & \texttt{\tiny 2e35be6bc699295dc53dda73fb79bec1efcb4dabf51b2d8b49333b3f362627e4}\\
+{\scriptsize\loc{logs/v11/M10/m10_sanity.json}} & \texttt{\tiny 081018c7db3a61b81ed5ac4e47ece9f3e490a1cc49e926dd70872cc4550e7e49}\\
+\multicolumn{2}{@{}l}{\textit{Registry} (1 files)}\\
+{\scriptsize\loc{logs/v11/registry_oct19.sha}} & \texttt{\tiny ba94230ae35fbb1c4456568f0c3787d01310ef19195d5373d5821c5309d91538}\\
+\multicolumn{2}{@{}l}{\textit{Integrity, environment} (7 files)}\\
+{\scriptsize\loc{logs/frozen_v11_before.sha}} & \texttt{\tiny cb9c2a11921e376aa078f2081cea58b7c0a8a0363a1fd6976bf7272df89e7b5b}\\
+{\scriptsize\loc{logs/v11/tree_hashes_v11.json}} & \texttt{\tiny ddf510d823e0af9de28430bdf7be42309eaab04b1d6b9a6c87b39b8e9735626d}\\
+{\scriptsize\loc{logs/v10_hashes_before_v11.sha}} & \texttt{\tiny 1ca9d9369867da38fee1e2458b4e2d94fe277505ab39c3f84392c7b7985ee63a}\\
+{\scriptsize\loc{logs/v11/earlier_versions_sha.json}} & \texttt{\tiny 111da13ad1339049d8fcaeaecf12373f70553db4f0cbe749e707a77aef0e7523}\\
+{\scriptsize\loc{logs/v11/checkpoint_v10_fix.json}} & \texttt{\tiny cd7ab2d3abbebc904e1d32fbdfa78f0e4418ab42884ceba36fda28abb86c6860}\\
+{\scriptsize\loc{logs/v11/env.json}} & \texttt{\tiny f3c3b679dd87e7e87a4a5670b7e7dede9a62e737459a7a2a21d8fc562df914fa}\\
+{\scriptsize\loc{CHECKPOINT_v11.md}} & \texttt{\tiny 0bdb0d051f8b5ad8acb8effd0f8a5c357d86b2357a6fd3738eb1044cb530447c}\\
+\end{longtable}}

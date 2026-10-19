@@ -1,0 +1,262 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable,graphicx,hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\ka}{\kappa}
+\newcommand{\Reg}{M_{\mathrm{reg}}}
+\newcommand{\Hreg}{(\mathrm H_{\rm reg})}
+\newcommand{\Ccb}{\mathcal C}
+\title{Scoped O.1 on the Cone, v4:\\ Spectral Apex Reduction, Exact Constant-Profile Apex Poles of All Two-Point Graphs,\\ the Ghost-Equation Row, and an Unvalidated $hh$ Slavnov--Taylor Test}
+\author{Ngo Cheung}
+\date{18 October 2026 (v4; supersedes XVI-O1-CONE v3 of the same date, which stays unchanged)}
+\begin{document}
+\sloppy
+\maketitle
+\begin{abstract}
+We continue transporting the scoped closure O.1 (XVI-Q record Q11: one loop, $O(\ka^2)$, two-point sector, $m=0$, frozen de Donder gauge, XVI-P prescription) to the flat cone $C_\alpha\times\mathbb R^2$ on the curvature-regular (CR) branch, with Friedrichs (F) kept for comparison. v4 supersedes v3, whose results all stand except the corrections in \S\ref{sec:corr}.
+
+The main new tool is a \emph{spectral apex reduction}. For external fields of constant transverse profile and longitudinal momentum, the apex pole of every one-loop two-point graph equals a sum, over internal helicity classes, of the scale-invariant heat-trace constant
+\[\Ccb_b=\tfrac1{12}\big(\tfrac1\alpha-\alpha\big)-\tfrac{b(1-b)}{2\alpha}\]
+multiplied by the UV pole of the $(d-2)$-dimensional longitudinal integral of the flat XVI-P integrand. This gives \emph{exact closed forms in $\alpha$} for D01, D03, D04, D06, D11 and D13, the bubble values that v3 left open, in the constant-profile sector, and it reproduces the v3 contact tadpoles D02, D05a and D12 exactly. The checks pass:
+\begin{itemize}
+\item F vanishes at $\alpha=1$;
+\item CR equals F at $\alpha=1/2$;
+\item mixed-helicity terms cancel on lattice externals;
+\item the antighost (ghost-equation) row $\Gamma_{\bar cc}=-2\eta\,F\cdot\Gamma_{Kc}$ holds exactly for all $\alpha$.
+\end{itemize}
+The $hh$ Slavnov--Taylor row was tested but \emph{fails its own control}: with all helicity weights set to 1 it should close, and it does not. So the test is not validated, and no conclusion about $\Hreg$ is drawn from it. The full 6 exact $+$ 2 $\phi\phi$ basis values are not obtained, because only the constant-profile ($\partial_\parallel^2$) sector was computed. A short appendix assesses a ``destructive readout'' analogy and finds it not usable for O.1. A registry re-intake found 2 new sheets, used only as cited caution. \textbf{O.1 on the cone remains NOT\_CLOSED.}
+\end{abstract}
+
+\section{Scope and conventions}
+The background and conventions are those of v3 \S1, unchanged:
+\begin{itemize}
+\item the prescription is DRED with quasi-$d$ loop momenta and quasi-4 vertex indices, $\overline{\rm MS}$ and the p22 contract;
+\item $t=1/\alpha$, with CR labels $b(S)=S\alpha$ for $S\ge0$ and $1+S\alpha$ for $S<0$;
+\item for $\alpha>1/2$ the F labels are $\{0,\alpha,2\alpha-1,1-\alpha,2-2\alpha\}$.
+\end{itemize}
+XVI-P, XVI-Q and XVI-R are read-only inputs, and only their copies in \texttt{/tmp/o1cone\_ro} were used. The cone and the CR extension are inputs. $\texttt{bulk\_symmetry\_restored}=\texttt{false}$.
+
+\section{Step 0: registry re-check}\label{sec:intake}
+A re-parse of the registry's id list (from \texttt{<option value=...>}) found \textbf{2 new sheets}, which were fetched read-only to \texttt{/workspace/XVI-R-companion-intake/new\_oct18d/} (with \texttt{SHA256SUMS}, \texttt{index.json} and \texttt{browse.html}). A first pass compared only the old ids and wrongly logged ``0 new''. The checkpoint records the correction.
+\begin{itemize}
+\item \textbf{I-B-VP-5-Ex1-B} (sha256 \texttt{24b8ddd8\dots 268297}): scalar smooth-core finite parts are non-universal, even at equal minimal radius; it includes a heat-normalisation audit.
+\item \textbf{I-B-VP-5-Ex2-B} (sha256 \texttt{db580cd7\dots cfaca8}): smooth flux cores select Friedrichs for (twisted) scalars via Mosco convergence; it also gives a Dirac critical-window selection.
+\end{itemize}
+\emph{Use.} Both sheets are cited caution only. Finite parts are scheme- and core-dependent, and core regularisation favours F for decoupled scalars. Neither addresses spin-2 CR, so CR remains an \emph{input}, not a selected extension. Neither is used as a premise or promoted.
+
+\section{Corrections to v3}\label{sec:corr}
+\begin{enumerate}
+\item \emph{D06 mislabelled.} v3 (Thm.~4.1 and the item-1 list) called D06 ``the D01$+$D03 channel''. In fact D06 is the $\bar cc$ ghost self-energy: two $\bar c h c$ vertices with one graviton and one ghost line. Its inner degrees are covered by the $(c,h|c)$ rows of the v3 classification, so no v3 count changes.
+\item \emph{D05a prefactor.} v3 flagged it as ``by analogy''. It is now confirmed from the XVI-Q record Q02 (symmetry factor $S_f=1/2$), and the v3 value stands. The v4 spectral recomputation agrees exactly (Table~\ref{tab:phi}).
+\item \emph{Item 2 of v3} (``reduced to a Mellin residue, not evaluated'') is superseded in the constant-profile sector by the closed forms of \S\ref{sec:spec}. For other profiles it remains open.
+\item \emph{Registry.} v3 reported 0 new sheets for oct18c. That was correct for oct18c; the v4 re-check (oct18d) found 2 new sheets (\S\ref{sec:intake}).
+\end{enumerate}
+
+\section{Spectral apex reduction}\label{sec:spec}
+\begin{proposition}[apex constant]\label{prop:C}
+Let $-\Delta_b$ be the transverse Laplacian on $C_\alpha$ in helicity channel $b$ (Bessel orders $|n t+\cdots|$ fixed by the label $b$). For $f$ in a Schwartz class, the apex (scale-invariant) part of $\mathrm{Tr}_\perp f(-\Delta_b)$ is $\Ccb_b\,f(0)$, with $\Ccb_b$ as in the abstract. It is $t$-independent apart from $1/\alpha$ and vanishes for $b\in\{0,1\}$ at $\alpha=1$.
+\end{proposition}
+\emph{Source.} This is the standard conical heat-trace constant with a twisted (Aharonov--Bohm-type) label; see [FM97], [S11] and the Ex1/Ex2 heat-normalisation audit. It was re-derived numerically in \texttt{code/spectral\_apex.py} (validation in \texttt{CHECKPOINT\_v4.md}).
+
+\paragraph{Reduction.} Take external fields of constant transverse profile ($n=0$, $m=0$, $S=0$) with momentum $p=(q_0,0,0,q_3)$. The transverse trace of each propagator pair then acts as $\mathrm{Tr}_\perp$ at zero transverse momentum, so
+\[ \text{apex pole}=\sum_{\text{classes}}\Ccb_{b(S)}\times\mathrm{Pole}_{d\to4}\int\!\frac{d^{d-2}l_\parallel}{(2\pi)^{d-2}}\,I_{\rm XVI\text{-}P}(l_\parallel,l_\perp=0;p). \]
+Each internal line is weighted by its helicity class:
+\begin{itemize}
+\item graviton $(L,L)$ and $(L,T)$ lines by $\Ccb_0$, $(M,M)$ by $\Ccb_1$, and the pure $P^{TT}$ block by $\Ccb_2$;
+\item ghost lines with a longitudinal index by $\Ccb_0$ and with a transverse index by $\Ccb_1$;
+\item scalar lines by $\Ccb_0$.
+\end{itemize}
+After Wick rotation, the pole coefficient of $1/(4-d)$ is $\frac{i}{4\pi^2}\int_0^{2\pi}g(\theta)d\theta$, where $g$ is the degree-$(-2)$ part of the integrand times $R^2$.
+
+\paragraph{Hypothesis (H$_I$).} The reduction assumes intertwining, $\partial_\pm G_S=G_{S\pm1}\partial_\pm$, which follows from the Bessel recurrence.
+\begin{itemize}
+\item It holds for scalar$\leftrightarrow$vector on both branches.
+\item It holds for vector$\leftrightarrow$tensor ($S=\pm1\to\pm2$) on CR only. There the regular $S=1$ mode maps to the CR-flipped $S=2$ mode $J_{t-2}$, which explains the BRST stability of CR.
+\item It fails for $S=\pm2\to\pm3$ on CR, because the derivative of the flipped mode is not $L^2$. This is the v3 inner-degree obstruction.
+\end{itemize}
+Consequently D04, D11 and D03 are clean on both branches, and D06 and D13 are clean on CR. \textbf{D01 is conditional on (H$_I$)} for its $S=2\to3$ terms. The $m=2$ ($r^2$) profiles are \emph{not} covered: by cyclicity their apex trace is $-\mathcal D_b f'(0)$, which was not computed.
+
+\paragraph{Exact vertex contractions.} The spectral route evaluates the complete XVI-P vertex tensors (\texttt{F.vt\_route}, with routings as in \texttt{AR.build\_integrands} and Q02). In this sector it therefore \emph{includes} the tensor contractions that the v3 power counting skipped.
+
+\subsection{Results (coefficient of $1/(4-d)$; $P^2:=q_0^2-q_3^2$)}
+The lattice $S=0$ components are $h_{00},h_{03},h_{33}$ and the transverse trace $f_0=h_{11}=h_{22}$ (HC indices $0,3,9,4,7$); the ghost components are $c^0,c^3$. Keys $(a,b)$ give $\Gamma_{ab}$; symmetric partners are omitted.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lll}\toprule
+graph & CR & F\\\midrule
+D04 & $\ka^2(\alpha^2-1)P^2/(48\pi\alpha)$ & same\\
+D05a & $-\ka^2(2\alpha-1)P^2/(4\pi)$ & $-\ka^2(\alpha-1)(2\alpha-1)P^2/(4\pi\alpha)$\\
+D04$+$D05a & $\ka^2(-23\alpha^2+12\alpha-1)P^2/(48\pi\alpha)$ & $\ka^2(\alpha-1)(13-23\alpha)P^2/(48\pi\alpha)$\\\bottomrule
+\end{tabular}
+\caption{$\phi\phi$ apex poles (constant profile). D05a equals v3 exactly. The CR value at $\alpha=1$ is $-\ka^2/(4\pi)$ (the CR remnant, as in v3); CR equals F at $\alpha=1/2$. This is the $\delta_W\phi\,\partial_\parallel^2\phi$-type value. The second $\phi\phi$ value ($m=2$ profile) is \emph{not computed}.}\label{tab:phi}
+\end{table}
+
+\begin{table}[h]\centering\small\resizebox{\textwidth}{!}{
+\begin{tabular}{lll}\toprule
+graph, key & CR & F\\\midrule
+D11 $(4,4)=(4,7)=(7,7)$ & $-\ka^2(\alpha^2-1)P^2/(384\pi\alpha)$ & same\\
+D03 $(0,0)=(0,9)=(9,9)$; $(3,3)$ & $\ka^2(\alpha^2-1)P^2/(192\pi\alpha)$; $-\ka^2(\alpha^2-1)P^2/(48\pi\alpha)$ & same\\
+D03 $(0,4)$; $(3,4)$; $(4,9)$ & $-\ka^2\frac{(\alpha^2-1)(q_0^2-3q_3^2)}{192\pi\alpha}$; $-\ka^2\frac{(\alpha^2-1)q_0q_3}{48\pi\alpha}$; $\ka^2\frac{(\alpha^2-1)(3q_0^2-q_3^2)}{192\pi\alpha}$ & same\\
+D03 $(4,4)$; $(4,7)$ & $-\ka^2(\alpha-1)(19\alpha-5)P^2/(192\pi\alpha)$; $\ka^2(\alpha^2-1)P^2/(192\pi\alpha)$ & same\\
+D01 $(0,0)=(0,9)=(9,9)$; $(3,3)$ & $-\ka^2(\alpha^2-1)P^2/(192\pi\alpha)$; $\ka^2(\alpha^2-1)P^2/(48\pi\alpha)$ & same\\
+D01 $(4,4)$ & $\ka^2(\alpha^2+6\alpha-1)P^2/(96\pi\alpha)$ & $\ka^2(\alpha-5)(\alpha-1)P^2/(96\pi\alpha)$\\
+D01 $(4,7)$ & $\ka^2(11\alpha^2-6\alpha+1)P^2/(96\pi\alpha)$ & $\ka^2(\alpha-1)(11\alpha-7)P^2/(96\pi\alpha)$\\
+D01 $(3,4)$ & $-\ka^2q_0q_3(3\alpha-1)(5\alpha-1)/(16\pi\alpha)$ & $-3\ka^2q_0q_3(\alpha-1)(5\alpha-3)/(16\pi\alpha)$\\
+D01 $(4,9)$ & $\ka^2\frac{(101\alpha^2-60\alpha+7)q_0^2-(11\alpha^2-12\alpha+1)q_3^2}{192\pi\alpha}$ & $\ka^2(\alpha-1)\frac{(101\alpha-55)q_0^2-(11\alpha-1)q_3^2}{192\pi\alpha}$\\
+D01 $(0,4)$ & $-\ka^2\frac{(11\alpha^2-12\alpha+1)q_0^2-(101\alpha^2-60\alpha+7)q_3^2}{192\pi\alpha}$ & $-\ka^2(\alpha-1)\frac{(11\alpha-1)q_0^2-(101\alpha-55)q_3^2}{192\pi\alpha}$\\
+D02, D12 & as v3 (spectral recomputation agrees: 24 terms, 0 difference) & as v3\\\bottomrule
+\end{tabular}}
+\caption{$hh$ apex poles (constant profile, lattice keys). D01 is conditional on (H$_I$). Keys $(4,\cdot)$ and $(7,\cdot)$ agree by transverse symmetry.}\label{tab:hh}
+\end{table}
+
+\begin{table}[h]\centering\small
+\begin{tabular}{ll}\toprule
+graph, key & CR $=$ F\\\midrule
+D06 $(0,0)=(3,3)$; $(0,3)$ & $i\ka^2(\alpha-1)(17\alpha-7)P^2/(96\pi\alpha)$; $0$\\
+D13 $(0,0)$; $(0,3)$ & $-i\ka^2q_0(\alpha-1)(11\alpha-7)/(96\pi\alpha)$; $i\ka^2q_3(\alpha-1)/(16\pi)$\\
+D13 $(3,0)$; $(3,3)$ & $-i\ka^2q_3(\alpha-1)(17\alpha-7)/(192\pi\alpha)$; $i\ka^2q_0(\alpha-1)(17\alpha-7)/(192\pi\alpha)$\\
+D13 $(9,0)$; $(9,3)$ & $-i\ka^2q_0(\alpha-1)/(16\pi)$; $i\ka^2q_3(\alpha-1)(11\alpha-7)/(96\pi\alpha)$\\\bottomrule
+\end{tabular}
+\caption{$\bar cc$ (D06) and $Kc$ (D13) apex poles (constant profile). They are branch-independent, because no $P^{TT}$ ($\Ccb_2$) line occurs.}\label{tab:gh}
+\end{table}
+
+\paragraph{Cross-checks.}
+\begin{enumerate}
+\item F vanishes identically at $\alpha=1$ for every graph.
+\item CR equals F at $\alpha=1/2$ for every graph.
+\item Mixed-helicity contributions cancel on lattice externals. They are nonzero only on non-lattice keys (constant $S=\pm1,\pm2$ components), which are excluded.
+\item D02, D05a and D12 agree exactly with the independent v3 coincidence-route results (\texttt{code/spec\_compare.py}).
+\item \textbf{Ghost-equation row.} $\Gamma_{\bar cc}=-2\eta\,F\cdot\Gamma_{Kc}$, where $F$ is the de Donder operator. With off-diagonal weight 2 and upper $p$, $F\cdot$D13$/$D06 equals $-\tfrac12$ at $(0,0)$ and $+\tfrac12$ at $(3,3)$, with off-diagonal entries 0, exactly for all $\alpha$ on both branches. This is the first ST-type identity verified on the cone apex for bubbles.
+\end{enumerate}
+\textbf{Item 1 status.}
+\begin{itemize}
+\item Computed: exact constant-profile residues for D04 (tadpole and pure-apex parts together), D06, D01 (conditional on (H$_I$)), D03, D11 and D13, plus the cross-checks above.
+\item Not obtained: the projection onto the 34-dim basis. The constant-profile sector fixes only the $\partial_\parallel^2$ (longitudinal) components; the transverse-momentum and $m=2$ components are missing, so the 6 exact $+$ 2 $\phi\phi$ values are \emph{not} determined. One $\phi\phi$ combination (Table~\ref{tab:phi}) is computed. Missing values are not set to zero.
+\end{itemize}
+
+\subsection{The $hh$ Slavnov--Taylor row: test fails its own control}\label{sec:st}
+We tested the row $2B_{hh}(K_2c(p),h(-p))+\lambda\,\Gamma_{Kc}(Eh,c)=0$ on lattice components (\texttt{code/st\_test\_const.py}), with:
+\begin{itemize}
+\item $B_{hh}=$ D01$+$D02$+$D03$+$D11$+$D12;
+\item $E$ the linearised Einstein operator and $K_2c=p_\mu c_\nu+p_\nu c_\mu$;
+\item $\lambda$ a convention constant.
+\end{itemize}
+On CR and F no $\alpha$-independent $\lambda$ fits; residuals are $\propto(\alpha-1)$ (e.g.\ $-320\ka^2(\alpha-1)/\pi$ and $1690\ka^2(\alpha-1)/\pi$ at sample points).
+
+\emph{Control.} With every $\Ccb_S$ set to 1 (branch UNIT), the reduction is the $l_\perp=0$ restriction of the flat integrand. There the integrand-level Ward identities hold pointwise and 2-dimensional DR is shift-invariant, so the row must close. Instead, UNIT gives $B_{hh}(K_2c,h)\equiv0$ but $\Gamma_{Kc}(Eh,c)\neq0$, so only $\lambda=0$ fits. This failure holds in all 72 scanned conventions:
+\begin{itemize}
+\item $K$ off-diagonal weight $\in\{1,2,\frac12\}$;
+\item signs of the $E$ and $K_2$ momenta;
+\item ghost index up or down;
+\item transverse-trace weight $\in\{1,2,\frac12\}$.
+\end{itemize}
+The scan is in \texttt{code/st\_scan.py} and \texttt{logs/v4/st\_scan.json}. Our implementation of the row is therefore missing a term or a convention, for example the gauge-fixed versus invariant $E$, the $b$/$\bar c$ terms, or the momentum routing of the $K$ insertion. \textbf{The CR/F failure is not evidence against $\Hreg$, and the 26 Ward-constrained combinations remain untested.}
+
+\emph{Diagnostic (valid regardless).} The CR/F non-transverse $hh$ part is branch-independent and $\propto(\alpha-1)$. It therefore comes from $\Ccb_1-\Ccb_0=-b(1-b)/(2\alpha)$ with $b=\alpha$ on both branches, while the $\Ccb_2$ (branch-dependent) parts are transverse on lattice keys.
+
+\section{Item 2: (J), joint-apex region}
+In the spectral representation, the joint-apex pole of a bubble is entirely the UV logarithm of the $(d-2)$-dimensional longitudinal integral, with transverse traces giving the finite constants $\Ccb_b$. It is thus regulated by $d$.
+\begin{itemize}
+\item \textbf{Proved} for the constant-profile sector under (H$_I$): unconditional for D03, D04 and D11; on CR also for D06 and D13; conditional for D01.
+\item The skipped vertex contractions are \emph{included} exactly in this sector (\S\ref{sec:spec}).
+\item For general profiles, (J) reduces to finiteness of the higher apex trace coefficients ($\mathcal D_b$ and beyond), which was not proved. Status: partial.
+\end{itemize}
+
+\section{Item 3: $\Hreg$ at $\alpha\in\{1/2,2/3,4/5\}$}
+In the constant-profile sector all apex poles are rational in $\alpha$ with only $1/\alpha$ denominators, so they are continuous through $\{1/2,2/3,4/5\}$. At $1/2$, CR equals F.
+
+The v3 obstruction concerned inner degrees of non-constant jets (the failure of (H$_I$) for $S=2\to3$), and it is not removed. Combined with the v3 result $H^1_{(3)}=0$ at these $\alpha$ (modulo (Span)), any non-removable apex term there would have to be an $\alpha$-local counterterm. We could not show it is absent. \textbf{Status: conditional/open} at $2/3$ and $4/5$ beyond the constant-profile sector; at $1/2$ the same.
+
+\section{Items 4--6}
+\begin{itemize}
+\item \textbf{(4) Evanescent coefficients: open.} The spectral route makes them feasible (keep the $D$-dependence of the tensor averaging in $g(\theta)$), but this was not done. No coefficient is reported.
+\item \textbf{(5) $hh$ 18-dim map: not done.} The D05a normalisation is \emph{confirmed} from Q02 ($S_f=1/2$). D02 and D12 are reproduced exactly by the spectral route.
+\item \textbf{(6) Exact (Span) certificate: open} (as v3). It needs a fraction-free elimination or a minor with a height bound.
+\end{itemize}
+
+\section{Reproducibility}
+The code is in \texttt{code/}:
+\begin{itemize}
+\item \texttt{spectral\_apex.py} (graphs D01--D13 with branches CR, F and UNIT);
+\item \texttt{spec\_compare.py};
+\item \texttt{st\_test\_const.py} and \texttt{st\_scan.py}.
+\end{itemize}
+Logs are in \texttt{logs/v4/} and the progress record is \texttt{CHECKPOINT\_v4.md}. The tree hashes before and after are identical:
+\begin{itemize}
+\item XVI-Q \texttt{0df9a0d1\dots0493c4};
+\item XVI-P \texttt{ec965c15\dots b3aaa6};
+\item XVI-R \texttt{57187bc6\dots331edb}.
+\end{itemize}
+v1--v3 are unchanged. Nothing was pushed or written to the site. No independent review was started.
+
+\section{Ledger}
+\begin{longtable}{p{0.6\textwidth}p{0.32\textwidth}}\toprule
+Item & Status\\\midrule
+Step 0 registry (oct18d: 2 new sheets) & cited caution only\\
+(1) constant-profile apex poles D01, D03, D04, D06, D11, D13 & computed exactly (D01 cond.\ (H$_I$))\\
+(1) $\alpha=1$ (F) and $\alpha=1/2$ (CR$=$F) checks; ghost-equation row & pass\\
+(1) projection to the 34-dim basis; 6 exact $+$ 2 $\phi\phi$ & not obtained (1 $\phi\phi$ combination only)\\
+(1) 26 Ward combinations / $hh$ ST row & test not validated (fails control); untested\\
+(2) (J) & proved, constant-profile sector; general open\\
+(3) $\Hreg$ at $1/2,2/3,4/5$ & continuous in constant-profile sector; otherwise conditional\\
+(4) evanescent & open\\
+(5) D05a normalisation; 18-dim map & confirmed; not done\\
+(6) exact (Span) & open\\\midrule
+\textbf{O.1 on the cone} & \textbf{NOT\_CLOSED}\\
+\texttt{bulk\_symmetry\_restored} & false\\\bottomrule
+\end{longtable}
+
+\appendix
+\section{Remark on the ``destructive readout / shredder'' analogy}
+\emph{Relevance.} It provides no usable input for O.1 on the cone.
+\begin{itemize}
+\item All apex extensions considered (F, CR, and $L_L$ with its bound state) are self-adjoint, so the evolution is unitary.
+\item The boundary form vanishes, so the net probability flux into the apex is zero.
+\item A bound state of a non-Friedrichs extension is a normalisable eigenstate, not a loss channel.
+\end{itemize}
+Lossy behaviour would require a non-self-adjoint (dissipative, maximal-accretive) boundary condition, which is outside the scope (and the BRST structure) of O.1.
+
+\emph{The six statements and their correctness.} The analogy's six theorem-like statements are listed below with an assessment of each.
+\begin{enumerate}
+\item \emph{Classical-record recovery bound.} Recovering a consumed $d$-dimensional quantum name from the classical record alone has worst-case/average error $\ge1-1/d$.
+
+\textbf{Assessment: correct only once the figure of merit is fixed.}
+\begin{itemize}
+\item For \emph{entanglement fidelity}, it is true: every entanglement-breaking (measure-and-prepare) channel has $F_e\le1/d$, so the error is $\ge1-1/d$.
+\item For \emph{average pure-state fidelity}, the optimum is $2/(d+1)$, so the error is only $\ge(d-1)/(d+1)$.
+\item The two are related by $F_{\rm avg}=(dF_e+1)/(d+1)$.
+\end{itemize}
+The bound $1-1/d$ must therefore be stated for entanglement fidelity, or for worst case over entangled inputs, not for average pure-state fidelity.
+
+\item \emph{Non-decrease of classical-record entropy.} The Shannon entropy of the unedited record of successive destructive readouts is monotone non-decreasing, hence there is no Page-curve turnover.
+
+\textbf{Assessment: true but premise-dependent.} The entropy is non-decreasing for the cumulative \emph{joint} record, by the chain rule $H(X_1\dots X_{n+1})\ge H(X_1\dots X_n)$. However, the Page curve concerns the von Neumann entropy of the \emph{quantum} radiation, not the Shannon entropy of a classical record. ``No turnover'' therefore follows only under the premise that the radiation \emph{is} that classical record.
+
+\item \emph{Thermodynamic cost.} Each destructive readout carries strictly positive heat in any implementation that thermalises the erased degrees of freedom. The channel equality readout-and-discard $=$ partial trace does not fix the heat, so a separate energy ledger is needed.
+
+\textbf{Assessment: consistent with Landauer once erasure/reset is included} (Bennett; Sagawa--Ueda). The heat is attributable to erasure/reset of the erased degrees of freedom, not to the readout map as a channel. It is correct that the channel alone does not determine the heat.
+
+\item \emph{Insufficiency of the exterior record.} If the horizon/interface is exclusively destructive readout, then all exterior records plus heat are insufficient to restore the names.
+
+\textbf{Assessment: follows tautologically from the premise} that the interface acts as an entanglement-breaking channel. It is not an independent result.
+
+\item \emph{Endpoint indeterminacy.} The rule does not select between full evaporation, a remnant, or a change of interface.
+
+\textbf{Assessment: a correct statement of under-determination.}
+
+\item \emph{Classical persistence.} In a process consisting only of destructive readouts, the only persistent output is the classical record.
+
+\textbf{Assessment: follows tautologically from the same entanglement-breaking premise.}
+\end{enumerate}
+None of the six statements bears on the cone problem, for the reasons given above: all apex extensions are self-adjoint, so the evolution is unitary and there is zero apex flux. The analogy is not usable for O.1, and nothing in it is certified as physical.
+This is a remark, not a premise. No result of this paper depends on it.
+
+\section*{Non-claims}
+No Einstein dynamics and no emergence are claimed. The cone and the CR extension are inputs. Separations are not bridges, and no direction is certified as physical. Missing values are not zero, and partial results are labelled partial. All new coefficients are unreviewed.
+\end{document}

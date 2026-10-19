@@ -1,0 +1,431 @@
+%======================================================================
+\section{What v10 adds, and what it does not}
+\label{sec:whatv10}
+%======================================================================
+
+v10 keeps every v9 statement \cite{CheungConeV9}. The v9 statements that v10 amends are
+listed in Section~\ref{sec:v10changes}. The new items, with their
+status, are:
+
+\begin{center}
+\small
+\begin{longtable}{@{}L{.30\linewidth}L{.62\linewidth}@{}}
+\caption{v10 verdicts (all executed; hashes in Appendix~\ref{app:v10artifacts}).}\label{tab:v10verdict}\\
+\toprule
+Item & Status\\
+\midrule
+\(\Delta J\) closed form & CR mode \emph{derived}. F mode \emph{identified} by PSLQ and verified at 9 fresh angles (\(\le1.5\times10^{-52}\)), not derived. Section~\ref{sec:v10dJ}.\\
+\(\lambda_{\rm CB},\lambda_{\rm CK}\) & \emph{Derived} from tree operators and the v9 dictionaries (Theorem~\ref{thm:v10lambda}).\\
+Exceptional points inside chambers & \emph{None}: rank 26 on all \(N=34\) chambers, 29 on F above \(\tfrac12\). Conditional on the a priori degree bound (Theorem~\ref{thm:v10chamber}).\\
+Ninth cocycle on F above \(\tfrac12\) & \emph{Resolved}. It is present at every angle; it is not a constant vector, while the other eight are.\\
+Transverse-jet catalogue & \PARTIAL. Exact slice jets for all 9 graphs. Same-channel \(r^2\) part dressed in two declared schemes; mixed and weight \(\ne0\) parts \OPEN{} (Section~\ref{sec:v10jet}).\\
+D04 part of second \(\phi\phi\) value & \PARTIAL. The same-channel part is exactly 0. The full jet term is mixed \((1,0)\), with constant density \(\kappa^2/4\pi\). Per-mode traces are computed; the mode sum is not executed.\\
+20 jet Ward combinations; 34-/18-dim maps; \(e_5,e_6\) & \OPEN. Precise obstruction in Section~\ref{sec:v10conseq}. No residual is claimed, since none was evaluated.\\
+Vector-key finite parts & Computed in a declared \(k\)-\(\zeta\) scheme at 4 angles (Table~\ref{tab:v10vec}).\\
+Registry & Unchanged (258 ids); no new sheet directory written.\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+%======================================================================
+\section{v10: closed form of the finite TT branch difference}
+\label{sec:v10dJ}
+%======================================================================
+
+\begin{proposition}[CR mode; derived]
+\label{prop:v10ICR}
+Let \(\mu=1/\alpha\) and \(\beta=\mu-1\). Then
+\[
+ I(\mu,\mu-2)=\frac{(\mu-1)(6\mu^2+3\mu-2)}6-(\mu-1)^3(\mu+1)\,\psi_1(\mu-1).
+\]
+The same expression gives every \(k\le-2\) mode with \(\mu=m/\alpha\).
+\end{proposition}
+
+\begin{proof}[Derivation]
+In the Gamma series of \loc{code/v9/modefun.py}, use
+\((n+1)!\,\Gamma(\mu+1)/\Gamma(\mu+1+n)=\mu(\mu-1)B(n+2,\beta)\).
+Each sum becomes a log-Beta integral. Continue it analytically,
+keeping the Laurent data at the coincident poles. With
+\(T=\psi_1(\beta)\), the intermediate sums are
+\(G_2=(T\beta-1)/\beta\),
+\(G_3=(-T\mu^2+3T\mu-2T+\mu-\tfrac32)/\beta\) and
+\(G_4=(6T\mu^3-36T\mu^2+66T\mu-36T-6\mu^2+27\mu-25)/(12\beta)\).
+Collecting them gives the formula
+(\loc{code/v10/cr_mode_closed.py}). At \(\alpha=3/5\),
+\(10000/7071\), \(4/7\) and \(99/100\) it matches the 34-digit
+series to \(\le6\times10^{-35}\).
+\end{proof}
+
+\begin{proposition}[F mode; identified, not derived]
+\label{prop:v10IF}
+\[
+ I(\mu,2-\mu)=\frac{(\mu-1)(59\mu^3-57\mu^2-62\mu+48)}{36}-(\mu-1)^3(\mu+1)\frac{\pi^2}6 .
+\]
+\end{proposition}
+PSLQ \cite{PSLQ} on the basis \(\{I,1,\pi^2\}\) found integer relations at
+\(\mu\in\{6/5,5/4,4/3,7/5,3/2,8/5,5/3\}\). The values were computed
+to 55 digits by direct quadrature of Proposition~\ref{prop:v9g}
+(\loc{code/v10/f_mode_pslq.py}). The relations interpolate to the
+displayed polynomial. That polynomial was then checked at \(7/4\)
+and \(9/5\), which were not used in the fit.
+This is an identification, and its status is \emph{verified, not
+derived}.
+
+\begin{corollary}[\(\Delta J\) in closed form]
+\label{cor:v10dJ}
+\[
+ \Delta J(\alpha)=\frac{(\mu-1)(-59\mu^3+93\mu^2+80\mu-60)}{36}
+ -(\mu-1)^3(\mu+1)\Bigl[\psi_1(\mu-1)-\frac{\pi^2}6\Bigr],\qquad \mu=\tfrac1\alpha .
+\]
+It vanishes at \(\alpha=\tfrac12\) (\(\psi_1(1)=\pi^2/6\), and the
+polynomial has a zero at \(\mu=2\)). As \(\alpha\to1\),
+\(\Delta J=-\tfrac12(\mu-1)+O((\mu-1)^2)\), consistent with the v9
+value \(\Delta J(99/100)\approx-4.9\times10^{-3}\).
+\end{corollary}
+
+\begin{center}\scriptsize
+\begin{longtable}{@{}llll@{}}
+\caption{Fresh-angle verification (\loc{code/v10/dJ_closed_verify.py}; quadrature at 60 digits, and 80 digits for a precision check).}\label{tab:v10dJ}\\
+\toprule
+\(\mu=1/\alpha\) & \(|I_{\rm F}^{\rm quad}-I_{\rm F}^{\rm closed}|\) & \(|I_{\rm CR}^{\rm quad}-I_{\rm CR}^{\rm closed}|\) & \(\Delta J\) (closed)\\
+\midrule
+@@DJFRESH@@
+\bottomrule
+\end{longtable}
+\end{center}
+The 14 v9 values of Table~\ref{tab:v9dJ} agree with the closed form
+to \(4.4\times10^{-27}\). The v9 sentence ``we claim no elementary
+closed form'' is therefore superseded for the CR mode and qualified
+for the F mode.
+
+%======================================================================
+\section{v10: the ghost normalizations from tree data}
+\label{sec:v10lambda}
+%======================================================================
+
+\begin{theorem}[Derivation of \(\lambda_{\rm CK}\) and \(\lambda_{\rm CB}\)]
+\label{thm:v10lambda}
+Use the dictionaries of Sections~\ref{sec:v8map} and
+\ref{sec:v9ghost}, with signs \(s_i=1\), \(s_c=-1\), \(s_{\bar c}=1\);
+the \(K\)-dictionary \(K^{00}=-\mathrm{LL}_{\tau\tau}\),
+\(K^{03}=-2\ii\,\mathrm{LL}_{\tau z}\),
+\(K^{33}=\mathrm{LL}_{zz}\); and \(q_0=\ii q_\tau\), \(q_3=q_z\).
+Then the following three tree-level operator identities hold on all
+\(m=0\) atoms and all nine test momenta \((q_\tau,q_z)\in\{1,2,3\}^2\):
+\begin{align*}
+ \text{engine }K_2c&=\rho\,\delta_ch,& \delta_ch_{mn}&=p_mc_n+p_nc_m, & \rho&=-\ii,\\
+ \text{engine }E(-q)h&=\epsilon\,(2-\delta_{mn})E^{mn}_{\rm cat}(h), && & \epsilon&=1,\\
+ \text{engine }C_2^{\mathsf T}(-q)b&=\tau\,Y_b, & Y_b&=-2\eta F_L^{\mathsf T}b, & \tau&=-\ii/2 .
+\end{align*}
+With the eval normalizations of the engine (\(\Gamma_{\rm sym}=4\Gamma\)
+on HH and \(2\Gamma\) on CB and CK), the \(hc\) row becomes
+\(8\rho B+2\lambda_{\rm CK}\epsilon G=0\). Theorem~\ref{thm:ST}
+gives \(B+\lambda_{\rm pred}G=0\), with
+\(\lambda_{\rm pred}=N/(\ii A_{\rm GH})=-2\ii\)
+(Input~\ref{input:tree}). Hence
+\[
+ \lambda_{\rm CK}=\frac{4\rho\lambda_{\rm pred}}{\epsilon}=-8 .
+\]
+The \(b c\) row becomes
+\(2\lambda_{\rm CB}\Gamma_{\rm D06}+2\lambda_{\rm CK}\tau\Gamma_{\rm D06}=0\)
+by the ghost identity
+\(\hat B_{\rm D06}=-2\eta F_L\hat\Gamma_{\rm D13}\)
+(Theorem~\ref{thm:ghost}). Hence
+\[
+ \lambda_{\rm CB}=-\tau\lambda_{\rm CK}=-4\ii .
+\]
+\end{theorem}
+
+\begin{proof}
+\loc{code/v10/lambda_derive.py} evaluates the engine operators of
+\loc{code/v8/apex_exact.py} (\(K_2\) at \(q\); \(E\) and
+\(C_2^{\mathsf T}\) at \(-q\), as in the row construction of
+\loc{apex_certificate.py}). Each ratio is single-valued on every
+nonzero component, with no mismatch
+(\loc{logs/v10/lambda_derive.json}). The two row reductions are
+linear algebra on these ratios.
+\end{proof}
+
+\begin{remark}
+The derivation uses no loop value. It does use the dictionary
+signs, which v9 selected by exact solvability on loop data. The
+values \(-8\) and \(-4\ii\) are therefore no longer free fitted
+parameters, but they are not independent of the v9 sign choice.
+The relation \(\lambda_{\rm CK}=\lambda_{\rm pred}\lambda_{\rm CB}\)
+noted in v9 is explained by the numerical coincidence
+\(4\rho/\epsilon=-4\ii=\lambda_{\rm CB}\), i.e.\ \(-\tau\lambda_{\rm CK}=4\rho/\epsilon\) with
+\(\lambda_{\rm CK}=(4\rho/\epsilon)\lambda_{\rm pred}\).
+\end{remark}
+
+%======================================================================
+\section{v10: chamber ranks without exceptional points}
+\label{sec:v10chamber}
+%======================================================================
+
+\loc{code/v10/minor_poly.py} picks, at one angle per chamber, three
+nonsingular maximal minors with \(\alpha\)-free row tags. The atom
+key is \((C,n,j,i)\) with \(j=(m-\varepsilon|a|)/2\). The program
+then re-evaluates the minors at 11--15 angles per chamber
+(\loc{logs/v10/minor/<tag>/}).
+
+\begin{theorem}[Rank inside chambers]
+\label{thm:v10chamber}
+Assume the a priori bound (D): every ST row entry is a polynomial of
+degree \(\le2\) in \(1/\alpha\) on each chamber. This is argued from
+the construction: \(E\) carries two derivative factors, \(K_2\) one,
+and each is linear in \(1/\alpha\). It is not separately
+machine-checked. Then:
+\begin{enumerate}[label=(\alph*)]
+\item On CR \((\tfrac14,\tfrac13),(\tfrac13,\tfrac12),(\tfrac12,\tfrac23),(\tfrac23,1)\)
+and on F \((\tfrac14,\tfrac13),(\tfrac13,\tfrac12)\) (\(N=34\)), all
+three minors are the same constants at every sampled angle,
+\(124515522497539473408\,\ii\),
+\(-73477495818488684950134624092160000\) and
+\(-4059104145057262382496562859212800\), and their entries are
+\(\alpha\)-independent. The rank is therefore 26 at \emph{every}
+\(\alpha\) in these chambers.
+\item On F \((\tfrac12,\tfrac23)\) and \((\tfrac23,1)\) (\(N=38\)),
+minor~2 equals \(-400569487999071945641108176896000000000\,\ii\) at
+all 28 sampled angles. Its only \(\alpha\)-dependent entries lie in
+one column, so it is affine in that column and constant by (D). Hence
+the rank is \(\ge29\) everywhere. Minors 0 and 1 vary, with 13 and
+15 distinct values, and are never zero.
+\item On F above \(\tfrac12\), \(\dim Z(\alpha)=9\) at 16 angles
+(\loc{code/v10/cocycle9.py}). Every entry fits an affine function of
+\(1/\alpha\) on 8 points per chamber. Write the 9 Cramer kernel
+vectors of minor~2 at \(t=1/\alpha\). The residual \(W(t)\) of the
+remaining rows has degree \(\le6\) by (D) and vanishes at 8 points,
+so it vanishes identically. Hence the generic rank is 29, and the
+rank equals 29 at every \(\alpha\): at most 29 by semicontinuity,
+at least 29 by (b).
+\item The intersection \(\bigcap_\alpha Z(\alpha)\) over the 8
+angles of each chamber is 8-dimensional. Eight cocycles are constant
+vectors. The ninth exists at every angle, but its direction depends
+on \(\alpha\) and is rational in \(\alpha\) by Cramer's rule.
+\end{enumerate}
+\end{theorem}
+This replaces the v9 range ``between 29 and 30'' by exactly 29,
+conditional on (D). It also answers the v9 open item ``exceptional
+set inside chambers'': the set is empty, conditional on (D).
+
+%======================================================================
+\section{v10: the transverse-jet extension of the slice catalogue}
+\label{sec:v10jet}
+%======================================================================
+
+\paragraph{Construction.}
+\loc{code/v10/jet_replay.py} executes the numerator section of the
+frozen v7/v8 replay with one change. The external transverse momenta
+\(p_1,p_2\) are kept as symbols instead of being set to zero. The
+bubble denominator gains \(-p_\perp^2\), and the loop momentum stays
+on the longitudinal slice (\(l_\perp=0\)). This is a declared
+coverage limitation, and the status remains
+\textsf{ALGEBRAIC\_SLICE\_ONLY}. The UV pole is then an exact
+polynomial in \(q_0,q_3,p_\pm\). It is stored per key and channel
+pair, by transverse degree and helicity weight
+(\loc{logs/v10/jet/jet_<G>.json}). No frozen file is edited.
+
+\paragraph{Checks.}
+(i) At order \(p_\perp^0\), \(\sum_s\mathrm{pole}^{(0)}_{ss}z_s\)
+reproduces the v8 catalogue on every computed key: 684 key--branch
+checks with 0 mismatches. (ii) In D04 the UNIT sum is
+\(-\kappa^2(q_0^2-q_3^2-p_\perp^2)/4\pi\), which is flat
+covariance restored by the jet terms.
+
+\paragraph{Census.}
+Summed over the 9 graphs, the jet entries are:
+\begin{itemize}
+\item same-channel \((2,0)\): 128;
+\item mixed \((2,0)\): 84;
+\item same \((2,\pm2)\): 152 each;
+\item mixed \((2,\pm2)\): 70 each;
+\item same \((1,\pm1)\): 252 each;
+\item mixed \((1,\pm1)\): 206 each.
+\end{itemize}
+D12 has none.
+
+\begin{definition}[Declared jet dressing and schemes]
+A same-channel, weight-0 coefficient of \(p_+p_-\) on channel \(s\)
+is dressed by the \(r^2\) moment \(d_s\). In scheme A (the Abel
+subtraction of Theorem~\ref{thm:D}),
+\(d_0=\Dcal_0\), \(d_1=\Dcal_\alpha\),
+\(d_2^{\rm F}=\Dcal_{2\alpha-1}\) and
+\(d_2^{\rm CR}=\Dcal_{2\alpha}\). In scheme Z, each mode's
+\(\Tr[r^{2w}e^{-sA_\mu}]\) is continued from \(\Re w<-\tfrac12\) to
+\(w=1\), and the modes are summed by Hurwitz zeta. This mirrors the
+role of \(\Ccal_b\) at constant profile. It is a reduction contract
+in the sense of Assumption~\ref{ass:reduction}, not a theorem.
+\end{definition}
+
+\begin{proposition}[Scheme Z; executed]
+\label{prop:v10Z}
+Per mode, \(\Tr[r^2e^{-sA_\mu}]^Z=s\,\mu(\mu^2-1)/3\), from the
+Mellin closed form
+\((2s)^w\Gamma(w+1+\mu)\Gamma(-\tfrac12-w)/(2^{w+2}\sqrt\pi\,\Gamma(\mu-w))\).
+This form matches quadrature for \(w<-\tfrac12\) to \(10^{-17}\) or
+better. Its only poles are at half-integer \(w\), so \(w=1\) is
+regular. The mode sum gives
+\[
+ \Dcal^Z_b=\Dcal_b+\frac{11\alpha}{180}\quad\text{(exactly, all }b),
+\]
+so the scheme dependence is a bulk term linear in \(\alpha\). Flipping one mode
+\(\nu\mapsto-\nu\) reproduces \(\Delta\Dcal=2\nu(1-\nu^2)/3\) of
+Proposition~\ref{prop:Dflip}.
+\end{proposition}
+
+\begin{proposition}[Dressed same-channel jets; executed]
+\label{prop:v10dressed}
+In scheme A, all dressed same-channel values vanish at \(\alpha=1\)
+(F), and CR\(=\)F at \(\alpha=\tfrac12\), on every key
+(\loc{logs/v10/jet/jet_analysis.json}). Examples:
+D05a \((0,0)\) gives
+\(\kappa^2(\alpha-1)(2\alpha-1)/(6\pi\alpha)\) (CR) and
+\(\kappa^2(\alpha-1)(2\alpha-1)(\alpha^2-3\alpha+1)/(6\pi\alpha^3)\) (F),
+each times \(p_+p_-\). D11 \((1,1)\) gives
+\(\kappa^2(\alpha^2-1)(11\alpha^2+1)/(2880\pi\alpha^3)\) in scheme A
+and \(-\kappa^2(10\alpha^2+1)/(2880\pi\alpha^3)\) in scheme Z. Of the
+74 keys with weight-0 \(r^2\) content (CR), 38 are complete. The
+other 36 (all of D01, D06, and 9 of D03) also need mixed pairs and
+are \PARTIAL.
+\end{proposition}
+The D05a value is a slice-jet coefficient under the declared
+dressing. It is not compared with the earlier retained statement
+``D05a part \(=0\)''. That statement came from a different reduced
+model (a large-radius count without the slice), and no
+supersession is claimed.
+
+\paragraph{The mixed \(r^2\) trace.}
+Term-by-term integration gives
+\[
+ T_1(x;\mu,\nu)=\tfrac14(4x(1-x))^2\tfrac{\Gamma(h+2)\Gamma(h+1)}{\Gamma(\mu+1)\Gamma(\nu+1)}x^\mu(1-x)^\nu
+ F_4(h+2,h+1;\mu+1,\nu+1;x^2,(1-x)^2)
+\]
+with \(h=(\mu+\nu)/2\). The double series has power divergences
+\(N^{1/2-j}\) and no logarithms. Write \(F_4(h+2,h+1)=(h+1+\theta)(h+\theta)F_4(h,h+1)/(h(h+1))\), with \(\theta\) the
+Euler operator, and apply Bailey's reduction \cite{BaileyF4} off the boundary,
+\(\lambda=1-t^2\). The finite part is then
+\(h(h+1)\phi_0-2(h+1)\phi_2+2\phi_4\) in the Taylor coefficients
+of \(\Phi(t)\) (\loc{code/v10/t1_fp.py}). It agrees with an
+independent shell-by-shell zeta continuation to
+\(10^{-19}\)--\(10^{-24}\) (\loc{logs/v10/jet/t1_fp_check.json}). It
+reproduces \(\mu(\mu^2-1)/3\) exactly at \(\mu=\nu\) for every
+\(x\), and its endpoint values are \(T_1(0)=\mu(\mu^2-1)/3\) and
+\(T_1(1)=\nu(\nu^2-1)/3\). After \(x\)-integration, the shell
+continuation is \emph{not} reliable, because of non-uniform
+endpoint asymptotics (\loc{logs/v10/jet/mixed_r2.json}). It is used
+nowhere.
+
+%======================================================================
+\section{v10: consequences of the jets}
+\label{sec:v10conseq}
+%======================================================================
+
+\paragraph{D04.}
+The constant density for the jet term is
+\(\rho_{(1,0)}=\kappa^2/4\pi\) (\loc{code/v10/jet_density_D04.py}).
+Under the declared rule, the D04 part of the second \(\phi\phi\)
+value is
+\(\tfrac{\kappa^2}{4\pi}M_{10}\), where
+\(M_{10}=\sum_{k\ge0}\varphi(k/\alpha)+\sum_{j\ge1}\varphi(j/\alpha-1)\)
+is \(k\)-\(\zeta\)-regulated and \(\varphi(n)=\int_0^1T_1(x;n+1,n)\,\mathrm dx\).
+It is branch independent, since only channels 0 and 1 enter. We
+have \(\varphi\) at 27 points (for example
+\(\varphi(0)=-0.0578297132876329558555\) and
+\(\varphi(3/2)=2.32785224733468215021\);
+\loc{logs/v10/jet/phi/}). No closed form was found in the basis
+\(\{n^j,n^j\psi_1(n),n^j\psi(n)\}\) (\loc{code/v10/phi_fit.py}). The
+large-\(n\) runs needed for the mode sum were stopped for time.
+\(M_{10}\) is therefore \emph{not evaluated}, and the D04 part is
+\PARTIAL. A further caveat: the bare \(r^2\) insertion between
+channels 1 and 0 omits the frame intertwining \(H_I\), which the
+spin-weight-one channel may require. The candidate is therefore a
+declared-rule quantity, not a derived value.
+
+\paragraph{The 20 jet-level Ward combinations, the 34- and 18-dimensional
+projections, and \(e_5,e_6\).}
+These need catalogue values on the engine's \(m=2\) and weight
+\(\pm1\) atoms. The jet catalogue now supplies the weight-0
+same-channel part (Proposition~\ref{prop:v10dressed}). It does not
+supply the following:
+\begin{enumerate}[label=(\alph*)]
+\item the mixed weight-0 pairs (84 entries), which need \(M_{st}\)
+mode sums as for D04;
+\item weight \(\pm1\) (412 mixed, 504 same entries). These need
+\(k\to k\pm1\) traces with an \(r\,e^{\pm\ii\theta}\) insertion, at
+\(w=\tfrac12\), where scheme Z has a pole: a genuine
+logarithm;
+\item weight \(\pm2\), which needs \(k\to k\pm2\) traces;
+\item a dictionary from jet keys to engine \(m=2\) atoms. Such a
+dictionary was not constructed.
+\end{enumerate}
+No residual was evaluated, and none is reported as zero. Status:
+\OPEN, with the obstructions (a)--(d).
+
+%======================================================================
+\section{v10: vector-key finite parts in a declared scheme}
+\label{sec:v10vector}
+%======================================================================
+
+\begin{proposition}[Executed]
+\label{prop:v10vector}
+Per mode, take scheme Z with \(\Tr_{\rm mode}e^{-A_\mu}=-\mu/2\); this
+is consistent with \(\int g=1/(2(\mu+\nu))\). Then for a pair density
+\(\rho\) with \(R=\int_0^x\rho\),
+\(I_\rho=-R(1)\nu/2-(\mu^2-\nu^2)\int_0^1Rg\). Pair the modes at
+the same \(k\) (channel 0: \(|k|/\alpha\); channel 1:
+\(|k+\alpha|/\alpha\)), and regulate the sum by \(|k|^{-\varepsilon}\)
+(\loc{code/v10/vector_fp.py}, \loc{vector_combine.py}). Then, for
+D01\(+\)D03 in the v7 normalization:
+\begin{enumerate}[label=(\alph*)]
+\item the \(1/\varepsilon\) residues equal the v9 logarithms
+\((\alpha/2)L_{\rm key}\) of Proposition~\ref{prop:v9vector} to
+\(\le1.1\times10^{-20}\) at all four angles. For keys \((1,1)\) and
+\((2,2)\) the pole is \(-\alpha\kappa^2P_L^2/(60\pi\varepsilon)\);
+\item the off-diagonal keys \((1,6),(2,8),(6,1),(8,2)\) have finite
+part 0, because D01 and D03 cancel digit for digit;
+\item the diagonal keys have finite part
+\(+c(\alpha)\kappa^2P_L^2\) on \((1,1),(2,2)\) and
+\(-c(\alpha)\kappa^2P_L^2\) on \((6,6),(8,8)\), with \(c\) given in
+Table~\ref{tab:v10vec}. They are branch independent.
+\end{enumerate}
+\end{proposition}
+\begin{table}[ht]\centering\small
+\caption{Vector-key finite parts (declared \(k\)-\(\zeta\) scheme).}\label{tab:v10vec}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\(\alpha\) & \(c(\alpha)\) (\(k\)-\(\zeta\) finite part)\\
+\midrule
+@@VECTAB@@
+\bottomrule
+\end{tabular}
+\end{table}
+The finite part depends on the scheme. Rescaling the regulator
+\(|k|\to\lambda|k|\) shifts \(c\) by
+\((\alpha/60\pi)\log\lambda\), and a sharp cutoff differs from it
+by the \(\zeta(-1),\zeta(0)\) terms. It is a declared-scheme value
+and not an apex coefficient.
+
+%======================================================================
+\section{v10: changes to v9 statements}
+\label{sec:v10changes}
+%======================================================================
+\begin{itemize}
+\item Table~\ref{tab:v9dJ} discussion: ``PSLQ was not attempted;
+no elementary closed form'' is superseded by
+Corollary~\ref{cor:v10dJ} (CR derived, F identified).
+\item Theorem~\ref{thm:v9ghost}: ``two fitted normalizations'' is
+now ``two normalizations derived from tree operators''
+(Theorem~\ref{thm:v10lambda}).
+\item Theorem~\ref{thm:v9generic}: ``F\((>1/2)\) between 29 and 30''
+is now ``exactly 29 at every angle'', conditional on (D)
+(Theorem~\ref{thm:v10chamber}).
+\item Section~\ref{sec:v9D04}: obstruction (a), ``the slice does not
+export jet densities'', is removed by the jet replay. Obstruction
+(b) is made precise: the D04 jet term is purely mixed, and scheme Z
+regularizes the per-mode power divergence. The mode sum is still
+missing.
+\item Proposition~\ref{prop:v9vector}: the finite parts are now
+computed in a declared scheme.
+\end{itemize}
+No v9 number was found to be in error. The frozen-tree digests
+before and after v10 are in Appendix~\ref{app:v10artifacts}.

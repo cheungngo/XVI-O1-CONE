@@ -1,0 +1,50 @@
+
+%======================================================================
+\section{v8: evanescent coefficients under a declared prescription}
+\label{sec:v8evan}
+%======================================================================
+
+The frozen \(\tilde g\)-leg arrays are still not supplied. v8
+therefore declares a prescription and computes under it.
+
+\begin{definition}[Slice-DRED prescription]
+On the zero-transverse-momentum slice, the UV degree \(-2\) angular
+average uses \(\hat g_L=\eta_L-\tilde G\). The symbols
+\(\tilde G_{00},\tilde G_{03},\tilde G_{33}\) are formal, and
+\(d=2\) at pole level. The average is
+\(\langle P\rangle=(l^2)^j\hat\Delta^jP/(2^jj!\prod_i(d+2i))\).
+The \emph{evanescent coefficients} of a key are the coefficients of
+the \(\tilde G\)-dependent part of its pole.
+\end{definition}
+
+Two checks were run for every pair of every graph. The
+\(\tilde G=0\) part reproduces the circle pole of the replay, and
+the bubble densities integrate to it.
+After combining with \(c_s\) and excluding quarantined and
+evanescent-mixed keys, the counts are as follows
+(\loc{evanescent_combined.json}).
+\begin{center}
+\small
+\begin{tabular}{@{}lccccccccc|c@{}}
+\toprule
+ & D01 & D02 & D03 & D04 & D05a & D06 & D11 & D12 & D13 & total\\
+\midrule
+CR & 21 & 0 & 26 & 0 & 0 & 4 & 25 & 0 & 10 & 86\\
+F & 21 & 0 & 26 & 0 & 0 & 4 & 25 & 0 & 10 & 86\\
+UNIT & 34 & 0 & 34 & 0 & 0 & 6 & 25 & 0 & 14 & 113\\
+\bottomrule
+\end{tabular}
+\end{center}
+Beyond the earlier quarantine, D01 also excludes its five
+evanescent-mixed keys. On the CR branch, D03, D06, D11 and D13
+carry an overall factor \((\alpha-1)\). For example,
+\[
+ \text{D13}\,(4,0):\quad
+ \frac{\ii\ka^2(\alpha^2-1)}{192\pi\alpha}
+ \bigl(\tilde G_{00}q_0-2\tilde G_{03}q_3+\tilde G_{33}q_0\bigr),
+\]
+so the coefficient is \(-c_0/16\) times the bracket.
+\textbf{Status:} \CONDITIONAL{} on the declared prescription. These
+values are not identified with the frozen engine's \(\tilde g\)
+export. Agreement at \(\tilde G=0\) is a consistency check, not a
+proof of identity preservation.

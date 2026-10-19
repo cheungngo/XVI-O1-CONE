@@ -1,0 +1,135 @@
+%======================================================================
+\section{Point-by-point response to the v5 audit (new in v6)}
+\label{sec:response}
+%======================================================================
+
+The table answers every issue v5 raised against v4, in v5's order.
+``Retained'' means v5's correction stands unchanged.
+\textsc{[exec]} marks an executed v6 answer
+(Appendix~\ref{app:artifacts}).
+
+\begingroup
+\small
+\begin{longtable}{@{}L{.035\linewidth}L{.36\linewidth}L{.54\linewidth}@{}}
+\toprule
+\# & v5 issue against v4 & v6 answer\\
+\midrule
+\endfirsthead
+\toprule
+\# & v5 issue against v4 & v6 answer\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1 & Apex functional must be bulk-subtracted. &
+Retained. Extended to the \(r^2\)-weighted trace
+(Definition~\ref{def:weighted}, Theorem~\ref{thm:weighted}).\\
+2 & Nonperiodic CR labels need a singular-channel justification. &
+Retained (Theorem~\ref{thm:flip}). Weighted analogue added
+(Proposition~\ref{prop:weightedflip}).\\
+3 & Flat CR remnant is only a one-sided limit. &
+Retained. New: the remnant is absent from the \(r^2\) moment
+(Corollary~\ref{cor:Dvalues}).\\
+4 & Heat trace and graph reduction need separate hypotheses. &
+Retained (Assumption~\ref{ass:reduction}).
+(R1) is discharged by the archived arrays.
+(R3) is discharged for the D01 composite in the Mellin sense
+(Theorem~\ref{thm:HI}).
+(R2), (R4), and (R5) remain hypotheses.\\
+5 & Catalogue identification conditional; vertex arrays and
+execution artifacts not supplied. &
+\textsc{[exec]} Arrays, routing, and prefactors are archived
+(\loc{code/spectral_apex.py}).
+All v5 entries match the logs exactly (\loc{code/catalogue_check.py}).
+New entries: D01/D03 \((5,5)\), the full D02 array, and D12 \(=0\)
+(Section~\ref{sec:catalogue}).\\
+6 & Mixed-helicity cancellation is only a supplied report. &
+\textsc{[exec]} No mixed-helicity monomial occurs on any lattice
+key.
+Such monomials occur only on vector-type keys, those with one
+transverse index on a leg, in D01, D06, and D13 (listed in
+Section~\ref{sec:catalogue}).
+Those keys are excluded, not set to zero.\\
+7 & D05a symmetry factor rests on a supplied Q02 comparison. &
+\textsc{[exec]} Read directly from the regenerated
+\loc{xviq_regen/Q02_bulk_graphs.json}: D05a \(1/2\), D12 \(1/2\),
+D04 \(1\).
+The engine prefactor is \(-\ka^2/2\), and the D05a value is
+unchanged.\\
+8 & Ghost row needs explicit momentum conventions and the
+transverse source trace. &
+Conventions retained (Theorem~\ref{thm:ghost}).
+\textsc{[exec]} The D13 rows \((11),(22)\) are computed to be zero
+for both ghost components. So \(\mathsf F=\mathsf F_L\) on the
+executed matrix, and the transverse-trace obligation is discharged
+for constant profiles.\\
+9 & UNIT is not valid merely by longitudinal shift invariance
+(slice example). &
+Answered by direct computation instead of by that argument.
+UNIT closes trivially, and \(\lambda\) is fixed a priori
+(Theorem~\ref{thm:STclosure}).\\
+10 & \(hh\) ST test is \UNVALIDATED; no verdict. &
+Diagnosed: the \(K'_{(03)}\) weight should be \(-2\)
+(Section~\ref{sec:STdiag}).
+The derived row closes on CR and F with
+\(\lambda=-2\ii=\lambda_{\rm pred}\), within the scope of
+Remark~\ref{rem:STscope}.\\
+11 & Full \(hh\) tadpole arrays not reconstructed from
+``as v3''. &
+\textsc{[exec]} D02 is printed in full and D12 \(=0\).
+Both agree with the 24-coefficient v3 tadpole comparison recorded in
+\loc{CHECKPOINT_v4.md}.\\
+12 & D01 branch-transversality check omits D02/D12. &
+Done: the complete \(hh\) branch difference is
+\(-\nu\ka^2P^2f_0f_0'/(4\pi)\), which is gauge invariant
+(Corollary~\ref{cor:hhcontent}).\\
+13 & Independent-component weights must not be double counted. &
+Confirmed and used. The \((2-\delta_{mn})\) weight is
+\emph{derived}.
+The flat D11 comparison with \texttt{P18\_D11} fixes off-diagonal
+weight 2 in the covariant basis.\\
+14 & 26 Ward combinations; 34-dimensional projection. &
+\OPEN. One row is tested and closes.
+The basis itself is still not constructed.\\
+15 & Six exact plus two scalar basis values. &
+One scalar value is retained.
+The second is partial: D05a part \(=0\), D04 part \OPEN.
+The six exact values are \OPEN.\\
+16 & \(\mathcal D_b\) was quoted without derivation or value. &
+Derived and checked (Section~\ref{sec:weighted}).\\
+17 & \(\Jcond\) only conditional; \((\mathrm H_{I,\mathrm{D01}})\)
+open. &
+\((\mathrm H_{I,\mathrm{D01}})\): exact \(L^2\) obstruction and an
+exactly zero Mellin value. The prescription choice is
+\CONDITIONAL\ (Corollary~\ref{cor:HI}).
+\(\Jcond\) for general profiles remains open.\\
+18 & \(\Hreg\) at \(\alpha=1/2,2/3,4/5\). &
+Coefficients remain continuous, and so do \(\mathcal D_b\) and
+\(M(z)\) (no resonance for \(0<\nu<1\)).
+The general statement is still open.\\
+19 & \(H^1_{(3)}=0\) mod \(\Span\) only version-qualified. &
+Unchanged; not used.\\
+20 & Evanescent coefficients. &
+Pole-level statement only (Section~\ref{sec:missing}).
+The coefficients are \OPEN.\\
+21 & Complete \(hh\) 18-dimensional map. &
+Partial: the six-structure decomposition is complete.
+The engine map is \OPEN.\\
+22 & Exact \(\Span\) certificate. &
+\OPEN, with reason (Section~\ref{sec:missing}).\\
+23 & Truncated hashes cannot authenticate trees. &
+Full tree digests before and after, and full file digests,
+are in Appendix~\ref{app:artifacts}.\\
+24 & Registry intake only historical. &
+Quick recheck: 251 identifiers, identical in set and content to
+oct18c\(\cup\)oct18d.
+No change, so no \loc{new_oct18e/} directory was created.\\
+25 & Ten-item reproducibility obligation list. &
+Status per item in Section~\ref{sec:repro}.\\
+26 & Compilation not asserted. &
+Two pdfLaTeX passes with no unresolved references
+(Appendix~\ref{app:declarations}).\\
+27 & Readout analogy supplies no premise. &
+Retained unchanged (Appendix~\ref{app:readout}).\\
+\end{longtable}
+\endgroup

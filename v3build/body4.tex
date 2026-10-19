@@ -1,0 +1,53 @@
+\section{Literature}
+Markers as in v2: * equation checked in the downloaded text; ‡ checked at abstract/bibliography level.
+\begin{itemize}
+\item[*] [FM97] D.~V.~Fursaev, G.~Miele, NPB 484 (1997) 697, hep-th/9605153. [S11] S.~N.~Solodukhin, Living Rev.\ Rel.\ 14 (2011) 8, eq.~(70).
+\item[‡] [H83] L.~Hörmander, \emph{The Analysis of Linear Partial Differential Operators I}, Springer 1983, Thm.~3.2.3 (homogeneous extension of homogeneous functions of non-exceptional degree), used in \S\ref{sec:hreg}.
+\item[‡] [S15] S.~N.~Solodukhin, PRD 91 (2015) 084028; [BC24] A.~Blommaert, S.~Colin-Ellerin, arXiv:2405.12276; [K95] D.~Kabat, NPB 453 (1995) 281.
+\item[cited input] Enter companion sheets I-B-VP-1 (v3), I-B-VP-1-Ex1, I-B-VP-6 (unchanged in the oct18c intake). These are cited only. No statement of theirs is used as a premise beyond what they prove, and none is promoted.
+\end{itemize}
+
+\section{Reproducibility}\label{sec:repro}
+The code is in \texttt{/workspace/XVI-O1-CONE/code} and the logs in \texttt{logs/v3/}:
+\begin{itemize}
+\item \texttt{inner\_degrees.py} and \texttt{inner\_degrees\_q24.py} (Thm.~\ref{thm:inner});
+\item \texttt{tadpole2.py} and \texttt{tadpole2\_fast.py} (D12, D05a, D02; \texttt{tad2*\_*.json});
+\item \texttt{tri\_count\_all.py} and \texttt{tri\_run\_all.py} (\texttt{tri\_all\_*});
+\item \texttt{batch\_v3\_p2.sh} (third prime, \texttt{logs/v2apex/*\_p2.json}).
+\end{itemize}
+\texttt{apex\_jets.PRIMES} gained $p_3=1000000021$; this is our own code, not frozen. The progress record is \texttt{CHECKPOINT\_v3.md}. The XVI-P, XVI-Q and XVI-R tree hashes were checked before and after and are identical:
+\begin{itemize}
+\item XVI-Q \texttt{0df9a0d1\dots0493c4};
+\item XVI-P \texttt{ec965c15\dots b3aaa6};
+\item XVI-R \texttt{57187bc6\dots 331edb}.
+\end{itemize}
+v1 and v2 are unchanged. Nothing was pushed or written to the site.
+
+\section{Ledger}
+\begin{longtable}{p{0.6\textwidth}p{0.32\textwidth}}\toprule
+Item & Status\\\midrule
+Step 0: registry re-intake (249 ids; 0 new, 0 changed) & done; nothing new to use\\
+Regular-region locality; FM/Kabat matches; $E=1$ row (D14a,b,c) & as v2 (computed)\\
+Two-point inventory, $H^0_{(2)}=2$, $H^1_{(2)}=0$, all $\alpha$ (CR) & rigorous modulo (Span); 3 primes\\
+(1) $\Hreg$ for bubbles, inner-non-resonant $\alpha$ & proved modulo (J) and standard lemmas\\
+(1) inner-resonant set CR $\{1/2,2/3,4/5\}$, F $\{1/2\}$ & computed, complete; obstruction stated\\
+(2) 26 Ward-constrained pole values $=0$ & modulo (J) (inner-non-resonant $\alpha$)\\
+(2) bubble apex poles D01, D03, D04, D06, D11, D13; 6 exact $+$ 2 $\phi\phi$ values & open (reduced to a Mellin residue; not evaluated)\\
+(3) D12 apex pole & computed, exact, branch-independent\\
+(3) D05a apex pole & computed, exact, CR and F; prefactor flagged\\
+(3) D02 apex pole & computed, exact, CR and F\\
+(3) map of explicit-basis bilinears to the 18-dim $hh$ basis & not done\\
+(4) evanescent apex coefficients & open\\
+(5) $H^1_{(3)}=0$ at $1/3$, $1/2$, $2/3$, $4/5$ (all jets) & computed (2 primes each; modulo (Span))\\
+(6) rank certificates & one-sided rigorous; (Span) probabilistic; not exact\\
+$\ge4$ fields; full nonlinear descent & open\\
+Independent review & not started (not requested)\\\midrule
+\textbf{O.1 on the cone} & \textbf{NOT\_CLOSED}\\
+O.1 (flat, scoped Q11) & CLOSED (scoped), untouched\\
+\texttt{bulk\_symmetry\_restored} & false\\\bottomrule
+\end{longtable}
+\paragraph{Why NOT\_CLOSED.} The scoped analogue of Q11 on the cone (one-loop $\ka^2$ bulk$+$apex two-point sector, CR, $m=0$, frozen gauge, the regularisation of Prop.~\ref{prop:hreg}) requires every two-point graph's apex pole to be computed, projected and shown ST-compatible. The bubble poles (item 2) are not computed, (J) is not proved, $\Hreg$ is obstructed at $\{1/2,2/3,4/5\}$, the evanescent coefficients are open, and the rank certificates rest on (Span). CLOSED\_PENDING\_INDEPENDENT\_REVIEW is therefore not claimed for any scope.
+
+\section*{Non-claims}
+We claim no Einstein dynamics and no emergence. The cone and the CR extension are inputs. No separation is used as a bridge, and no direction is certified as physical. $\texttt{bulk\_symmetry\_restored}=\texttt{false}$. Q11, XVI-P, XVI-Q and XVI-R are unmodified. A missing result is never counted as zero, and partial results are reported as partial. The graviton-loop coefficients (D14a/b, D05a, D02) are new and unreviewed.
+\end{document}

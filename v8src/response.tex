@@ -1,0 +1,99 @@
+
+\subsection{v8 execution of the v7 program and response to its corrections}
+\label{sec:v8response}
+
+The listing of Appendix~\ref{app:code} was extracted byte for byte
+as \loc{code/v8/cone_v7.py} and run unchanged. The results were:
+\begin{itemize}
+\item \loc{selftest}: return code 0. All assertions passed,
+covering the cyclotomic orbifold checks for \(N=2,\dots,8\), the
+catalogue algebra, the ST row, and rank 6 for the six-structure
+decomposition.
+\item legacy log comparison: PASS on all 18 graph--branch pairs.
+Keys absent from the legacy logs are listed rather than read as
+zero.
+\item tree normalization: \(N=1\), \(A_{\rm GH}=1/2\),
+\(\lambda_{\rm pred}=-2\ii\).
+\item frozen-engine replay: 27 runs (graph \(\times\)
+\{CR, F, UNIT\}), all with return code 0. The coverage
+comparison passed on all 18 physical pairs, and the physical
+branch values differ from \loc{logs/v4} by exactly zero.
+\end{itemize}
+The replay quarantines mixed keys. These are D01 \((1,1)\),
+\((1,6)\), \((2,2)\), \((2,8)\), \((6,1)\), \((6,6)\), \((8,2)\),
+\((8,8)\); D06 \((1,1)\), \((2,2)\); and D13 \((1,1)\), \((2,2)\),
+\((6,1)\), \((8,2)\).
+On the UNIT lattice, those keys gain the mixed-pair terms that the
+historical \loc{continue} discarded. For example, D01 \((1,1)\)
+gains \(-\ka^2q_3^2/\pi\), D06 \((1,1)\) gains
+\(\ii\ka^2P^2/(2\pi)\), and D13 \((1,1)\) gains
+\(\ii\ka^2q_0/(4\pi)\).
+Table~\ref{tab:v8verdict} gives the point-by-point verdicts.
+
+\begingroup\small
+\begin{longtable}{@{}p{.04\linewidth}L{.30\linewidth}L{.16\linewidth}L{.42\linewidth}@{}}
+\caption{Verdicts on the v7 static-debugging corrections
+(executed in v8).}
+\label{tab:v8verdict}\\
+\toprule
+\# & v7 correction & Verdict & Executed check and effect on v6 numbers\\
+\midrule
+\endfirsthead
+\toprule
+\# & v7 correction & Verdict & Executed check and effect\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1 & Six structures classify only the reflection-even sector &
+wording, agreed & The rank-6 assertion passes. No number changes.\\
+2 & Contact term and uniqueness of extension & wording, agreed &
+No number changes.\\
+3 & Mellin value should not rest on a routine name & agreed &
+The closed form \eqref{eq:Mclosed} is checked exactly; the value is
+unchanged.\\
+4 & Mixed monomial skipped by \loc{continue} & real defect
+(\loc{spectral_apex.py}, line 134) & No historical physical value
+was affected, because the v4 logs hold no partial values on mixed
+keys. v8 strengthens the point: the quarantine must test pair
+densities, not pole totals (Section~\ref{sec:v8mixed}).\\
+5 & UNIT records omit mixed terms & real defect & The UNIT records
+change on 14 keys. The UNIT statements in v6 were lattice-only, so
+they are unaffected.\\
+6 & A missing key read as a computed zero & real defect &
+The v7 program's explicit \loc{key_status} coverage was run on
+every key. No number changes.\\
+7 & \loc{nsimplify} in \loc{weighted_checks.py} & real defect &
+The exact cyclotomic check passes. No number changes.\\
+8 & Unasserted diagnostics & real defect & The v7 program asserts
+them, and every assertion passes. No number changes.\\
+9 & \loc{eval} on keys & real defect (\loc{st_scan},
+\loc{st_test_const}, \loc{st_v6}) & A literal parser gives
+identical results.\\
+10 & Ward scan not at a radial point & real defect & The true
+radial scan was run. The geometric residual is \(\le10^{-28}\) for
+all \(r\ge0.003\). The Friedrichs residual grows from \(0.0039\)
+at \(r=1\) to \(0.101\) at \(r=0.003\), whereas the historical
+reading was a plateau near \(0.019\). v6 printed no Ward-scan
+number.\\
+11 & Finite resonance and random-rank scans & real limitation &
+Replaced by the complete exact certificates of
+Section~\ref{sec:v8cert}.\\
+12 & Modular rank called only heuristic & addressed &
+Every exact rank equals the historical modular rank, and
+Lemma~\ref{lem:modular} applies.\\
+13 & \(C_4\) normalization & algebra verified &
+\((\alpha/2)(\alpha^{-2}-1)(\alpha^{-2}+11)/90=\Dcal_0\) holds
+identically. The equation-number attribution to the source
+remains from memory (\dag).\\
+14 & Coarse channel marker & verified & \loc{projector_check}
+passes on the frozen engine.\\
+15 & Tree-hash ordering & valid in principle &
+The locale is \loc{C.UTF-8}, and the shell digest is reproducible.
+The frozen-tree digests are unchanged (Section~\ref{sec:v8hash}).\\
+\end{longtable}
+\endgroup
+
+\noindent\textbf{v6 numbers changed: none.}
+One v6 status changes: the \(hh\) branch difference becomes
+conditional (Section~\ref{sec:v8mixed}).

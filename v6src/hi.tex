@@ -1,0 +1,114 @@
+\subsection{The D01 obstruction made exact (new in v6)}
+\label{sec:HI}
+
+Let \(\nu=2-\alpha^{-1}\in(0,1)\).
+In the flipped weight-two channel, the CR--F difference of radial
+heat kernels is
+\[
+\Delta k(s;r,r')=k^-_\nu-k^+_\nu
+=\frac{1}{2s}e^{-(r^2+r'^2)/(4s)}\,
+\frac{2\sin\pi\nu}{\pi}\,K_\nu\!\left(\frac{rr'}{2s}\right).
+\]
+The D01 derivative tower carries this channel into \(S=3\) through
+the raising operator
+\[
+X=\partial_r-\frac{\nu}{r},
+\]
+the radial part of the helicity-raising derivative on the
+\(J_{-\nu}\) branch.
+The term that \((\mathrm H_{I,\mathrm{D01}})\) must control is the
+composite diagonal
+\[
+\mathcal R(s;r)=\bigl[X_rX_{r'}\Delta k(s;r,r')\bigr]_{r'=r}.
+\]
+
+\begin{theorem}[Exact obstruction and Mellin value for D01]
+\label{thm:HI}
+\leavevmode
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Obstruction.}
+As \(r\to0\), \(\mathcal R(s;r)=c_*\,r^{-2\nu-2}+O(r^{-2\nu})\),
+with \(c_*\neq0\) for every \(0<\nu<1\).
+Hence \(\int_0^\epsilon r\,\mathcal R\,\dd r\) diverges.
+No \(L^2\) intertwiner and no trace-class statement holds for the
+composite. The unrestricted \(\HI\) fails, exactly as the v4 record
+states.
+
+\item \emph{Mellin value.}
+The Mellin transform
+\(M(z)=\int_0^\infty r^{1+z}\mathcal R(s;r)\,\dd r\)
+converges for \(\Re z>2\nu\).
+It continues meromorphically, with poles contained in
+\((2\nu-2\NN_0)\cup(-2\nu-2\NN_0)\).
+So it is regular at \(z=0\) for \(0<\nu<1\), and
+\[
+M(0)=0\qquad\text{identically in }\nu\in(0,1).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Put \(s=1/2\), so that \(x=r^2\); by scale invariance
+\(M(0)\) scales as \(s^{-1}\).
+Then
+\[
+\mathcal R=A\,e^{-x}\Bigl[xK-2xK'+K'+xK''
+-2\nu(K'-K)+\nu^2x^{-1}K\Bigr],
+\qquad K=K_\nu(x),
+\]
+where \(A=\sin(\pi\nu)/(\pi s)\).
+Use \(K'=-\tfrac12(K_{\nu-1}+K_{\nu+1})\) and
+\(K''=\tfrac14(K_{\nu-2}+2K_\nu+K_{\nu+2})\).
+Each term then has the form
+\(\int_0^\infty x^{\mu-1}e^{-x}K_m(x)\,\dd x\) with
+\[
+\int_0^\infty x^{\mu-1}e^{-x}K_m(x)\,\dd x
+=\frac{\sqrt\pi\,\Gamma(\mu+m)\Gamma(\mu-m)}
+{2^\mu\,\Gamma(\mu+\tfrac12)},
+\qquad \Re\mu>\abs{\Re m}.
+\]
+This is the \(a\to1\) limit of DLMF~10.43.22 \cite{DLMF}.
+\textsc{[exec]} It is checked by quadrature in its strip to
+\(10^{-16}\) (\loc{logs/v6/hi_d01_exact.json}).
+The right side is meromorphic in \(\mu\), which gives the stated
+continuation and poles.
+Leading-order expansion of \(K_\nu\) gives (i).
+
+At \(z=0\) the bracket is a sum of ten gamma ratios with
+\(\mu\in\{0,1,2\}\) and \(m\in\{\nu,\nu\pm1,\nu\pm2\}\).
+\textsc{[exec]} Applying \(\Gamma(w+1)=w\Gamma(w)\) reduces it
+to \(0\) as a symbolic function of \(\nu\)
+(\loc{code/hi_d01_exact.py}).
+The sum at \(z=10^{-30}\) is \(O(10^{-30})\) for seven values of
+\(\nu\).
+
+An independent route uses direct quadrature with the
+\(r^{-2\nu-2}\) and \(r^{-2\nu}\) heads subtracted and continued
+analytically (\loc{code/hi_d01.py}, 60 digits).
+It gives \(s\,M(0)\in[-1.8\times10^{-21},\,3.7\times10^{-32}]\)
+at \(\alpha=0.6,0.7,0.75,0.8,0.9\), and the value is independent
+of \(s\).
+The residual grows like \(\epsilon^{4-2\nu}\) for the cutoff
+\(\epsilon=10^{-9}\), consistent with zero.
+\end{proof}
+
+\begin{corollary}[Status of \((\mathrm H_{I,\mathrm{D01}})\)]
+\label{cor:HI}
+Interpret the apex coefficient of the forbidden D01 composite by
+homogeneous (Mellin) continuation.
+This is the unique scale-covariant extension of the
+non-integrable diagonal here, since there is no resonance for
+\(0<\nu<1\).
+With that reading the composite contributes \(0\), and the D01
+constant-profile entries of Table~\ref{tab:hhC} need no correction
+from it.
+
+The hypothesis is therefore \emph{upgraded} in two respects: its
+failure as an \(L^2\) statement is now exact, and the Mellin value
+is exactly zero.
+One thing is not shown: that the XVI-P prescription requires
+homogeneous continuation of this composite, as opposed to some
+other extension of the divergent apex integral.
+That is a prescription statement, part of (R3)--(R5), and it is
+recorded as \CONDITIONAL.
+\end{corollary}

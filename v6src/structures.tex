@@ -1,0 +1,106 @@
+%======================================================================
+\section{Invariant decomposition of the constant-profile \texorpdfstring{\(hh\)}{hh} poles (new in v6)}
+\label{sec:structures}
+%======================================================================
+
+On the axisymmetric lattice, write \(h\) for the longitudinal
+\(2\times2\) block, \(\operatorname{tr}h=\eta^{ab}h_{ab}\),
+\(h\cdot h'=h^{ab}h'_{ab}\), and
+\(php=p^ap^bh_{ab}\) for \(a,b\in\{0,3\}\).
+For two-dimensional symmetric matrices the Cayley--Hamilton
+identity removes \(p\,hh'\,p\).
+A symmetric \(SO(1,1)\)-invariant bilinear that is quadratic in
+\(p\) is therefore a combination of six structures:
+\begin{align*}
+S_1&=P^2\operatorname{tr}h\operatorname{tr}h', &
+S_2&=P^2\,h\cdot h', &
+S_3&=(php)\operatorname{tr}h'+\operatorname{tr}h\,(ph'p),\\
+S_6&=P^2(f_0\operatorname{tr}h'+\operatorname{tr}h\,f_0'), &
+S_7&=(php)f_0'+f_0(ph'p), &
+S_8&=P^2f_0f_0'.
+\end{align*}
+
+\begin{proposition}[Structure coefficients]
+\label{prop:structures}
+\textsc{[exec]}
+Every executed constant-profile \(hh\) pole decomposes uniquely as
+\(\sum_ib_iS_i\).
+In units of \(\ka^2/\pi\), the coefficients are the following
+branch-uniform linear forms in \((c_0,c_1,c_2)\):
+\begin{center}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Graph & \(b_1\) & \(b_2\) & \(b_3\) & \(b_6\) & \(b_7\) & \(b_8\)\\
+\midrule
+D01 & \(-\tfrac1{16}c_0\) & \(\tfrac18c_0\) & \(0\) &
+\(-\tfrac18c_0-\tfrac14c_1-\tfrac12c_2\) &
+\(\tfrac14c_0+\tfrac12c_2\) &
+\(\tfrac14c_0-\tfrac12c_1+\tfrac14c_2\)\\
+D02 & \(0\) & \(0\) & \(0\) & \(W\) & \(-W\) & \(-W\)\\
+D03 & \(\tfrac1{16}c_0\) & \(-\tfrac18c_0\) & \(0\) &
+\(\tfrac38c_0\) & \(-\tfrac14c_0\) &
+\(-\tfrac14c_0-\tfrac12c_1\)\\
+D11 & \(0\) & \(0\) & \(0\) & \(0\) & \(0\) & \(\tfrac18c_0\)\\
+D12 & \(0\) & \(0\) & \(0\) & \(0\) & \(0\) & \(0\)\\
+\midrule
+Sum & \(0\) & \(0\) & \(0\) &
+\(\tfrac34(c_0+c_1)\) & \(-\tfrac12c_0-c_1\) &
+\(-\tfrac38c_0-2c_1-\tfrac14c_2\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here \(W=\tfrac12(c_0+2c_1+c_2)\).
+The CR fit determines the forms uniquely.
+On F, where \(c_2^\Fr=7c_0+6c_1\) makes the three coefficients
+linearly dependent, the same forms reproduce every entry
+(\loc{logs/v6/hh\_structures.json}).
+UNIT (\(c\equiv1\)) gives the sum
+\((0,0,0,\tfrac32,-\tfrac32,-\tfrac{21}8)\).
+\end{proposition}
+
+\begin{corollary}[Gauge and branch content of the complete \(hh\) sum]
+\label{cor:hhcontent}
+\leavevmode
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The purely longitudinal structures cancel:
+\(b_1=b_2=b_3=0\).
+This cancellation is between D01 and D03.
+\item The only gauge-variant combination on the lattice is
+\[
+b_6+b_7=\tfrac14(c_0-c_1)\frac{\ka^2}{\pi}
+=-\frac{\ka^2V}{4\pi}
+=-\frac{\ka^2(\alpha-1)}{8\pi},
+\]
+which is branch independent.
+This is exactly the term balanced by the antifield row in
+Theorem~\ref{thm:STclosure}.
+\item The CR--F difference of the complete \(hh\) sum is
+\[
+\Delta\widehat B^{hh}=-\frac{\nu\ka^2}{4\pi}P^2f_0f_0'.
+\]
+It is annihilated by the longitudinal gauge vector
+\eqref{eq:gaugevector}, since \(k_T=0\).
+The D01 difference of Proposition~\ref{prop:branchtransverse} has
+\(S_6,S_7\) parts. They cancel against the D02 difference
+\(\tfrac{\nu}{2}(S_6-S_7-S_8)\ka^2/\pi\).
+This settles the v5 obligation that D02/D12 must be included in
+the branch-transversality check.
+\end{enumerate}
+\end{corollary}
+
+\begin{remark}[Relation to the 18-dimensional engine map]
+Axisymmetric constant-profile data land in the six-dimensional
+space above.
+The programme's complete \(hh\) map is 18-dimensional
+\cite{CheungConeV4,CheungConeV5}; it is computed by the
+XVI-P engine in its own basis.
+That basis also includes transverse-derivative and non-axisymmetric
+structures, which constant profiles cannot see
+(Proposition~\ref{prop:noninjective}).
+The convention map that sends the six coefficients above to their
+images in the engine's 18 coordinates is \(\OPEN\).
+So, therefore, are the components of the 18-dimensional vector
+outside the image.
+They are not set to zero.
+\end{remark}

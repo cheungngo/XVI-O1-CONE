@@ -1,0 +1,125 @@
+
+%======================================================================
+\section{v9 artifacts, hashes and rerun commands}
+\label{app:v9artifacts}
+%======================================================================
+
+Paths are relative to the project directory \loc{XVI-O1-CONE/} under \loc{/workspace}; \loc{intake/} abbreviates the companion intake directory \loc{XVI-R-companion-intake/}. Long jobs
+were run detached with \loc{setsid}, logged, and made resumable
+with per-item JSON caches, because the box runs out of memory at
+about 7~GB and is restored from time to time. Environment:
+Python~3.13.5, SymPy~1.14.0, mpmath~1.3.0, \loc{LC_ALL=C.UTF-8}.
+Frozen trees before = after: XVI-P: yes, XVI-Q: yes, XVI-R: yes.
+The v8 source and PDF are unchanged: yes.
+The modular scan comprises 192 result files, which are hashed individually in
+\loc{logs/v9/scan/SHA256SUMS}. The full manifest is
+\loc{logs/v9/artifact_manifest_v9.sha256}, and the \TeX{} source and
+PDF are hashed in \loc{SHA256SUMS_v9}.
+\loc{code/v9/mixed02.py} is kept only because it produced the
+asymptotic coefficients. Its \({}_3F_2\) shortcut is unreliable at
+large parameter and is not used for any printed value.
+
+\paragraph{Rerun commands.}
+\begin{verbatim}
+cd /workspace/XVI-O1-CONE
+python3 code/v9/g_formula_check.py
+python3 code/v9/mixed02.py   # -> logs/v9/asym02.json (~250 s)
+setsid nohup python3 code/v9/hidden02_run.py \
+   > logs/v9/hidden/run.log 2>&1 &
+python3 code/v9/cbck_map.py 3/10 CR   # and 3/10 F, 7071/10000 CR|F
+python3 code/v9/ck_free.py 3/10 CR    # and the other three points
+python3 code/v9/e_solve.py
+python3 code/v9/chamber_scan.py       # resumable cache
+setsid nohup bash code/v9/scan_driver.sh \
+   > logs/v9/scan/driver.log 2>&1 &
+setsid nohup bash code/v9/scan_driver_rev.sh \
+   > logs/v9/scan/driver_rev.log 2>&1 &
+python3 code/v9/evan_match.py
+python3 code/v9/vector_logs.py
+python3 code/artifacts_v9.py && python3 code/build_v9.py
+pdflatex -halt-on-error XVI-O1-CONE-v9.tex   # twice
+\end{verbatim}
+
+{\small
+\begin{longtable}{@{}p{.50\linewidth}p{.46\linewidth}@{}}
+\caption{SHA-256 of v9 artifacts.}\\
+\toprule
+File & SHA-256\\
+\midrule
+\endfirsthead
+\toprule
+File & SHA-256\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\textit{Base source (read-only)} (1 files)}\\
+{\scriptsize\loc{XVI-O1-CONE-v8.tex}} & \texttt{\tiny 153e4e9dbcf116a138d0f3919607bed1f3646b1a8437f8e5cdbcc5dd686e85f8}\\
+\multicolumn{2}{@{}l}{\textit{v9 programs} (15 files)}\\
+{\scriptsize\loc{code/v9/apex_scan.py}} & \texttt{\tiny 9e03be0cce4c825d42b995384f40846fea9fbac73677acb5e2dfb11edef36529}\\
+{\scriptsize\loc{code/v9/cbck_map.py}} & \texttt{\tiny 68539cf07ee63910f5ddab8e3a309ce9a305070b69d9448cb3bacbe43123600e}\\
+{\scriptsize\loc{code/v9/chamber_scan.py}} & \texttt{\tiny 499d77465702a3d471325b0abf81324a4545dd57a0f76bd775b7504aa917fe24}\\
+{\scriptsize\loc{code/v9/ck_free.py}} & \texttt{\tiny 8cffb01060ba5899e3f1a4055dd0ecf4c1d8eefee915033f656135fe63ea79bf}\\
+{\scriptsize\loc{code/v9/e_solve.py}} & \texttt{\tiny c29ad9480e827430f572ef433425ed1123cd86fd98ce93d654d68142287be119}\\
+{\scriptsize\loc{code/v9/evan_match.py}} & \texttt{\tiny 260a30e2fa25ba065f9ec141bb104e1b6f3ef018a381f74ebc1db55cf0e28005}\\
+{\scriptsize\loc{code/v9/g_formula_check.py}} & \texttt{\tiny 1661f1bc5ec9c3aa4e66e5415630761390e3790e2d92ccb36f4534a284c29def}\\
+{\scriptsize\loc{code/v9/hidden02_run.py}} & \texttt{\tiny 9bcafe3ad4254c68bfdaa95d9d11f0e6db8fc235bdbda39829c5c1668f130487}\\
+{\scriptsize\loc{code/v9/mixed02.py}} & \texttt{\tiny 808a312ab7bfacb834e58e3d1b8988178e220845df162fd2014c19bd483d2530}\\
+{\scriptsize\loc{code/v9/modefun.py}} & \texttt{\tiny 451c91de56316ab65955d0d439cf8f0ed40d63c1431d7e5dcea12149a050689c}\\
+{\scriptsize\loc{code/v9/vector_logs.py}} & \texttt{\tiny cd8a433208136e21180d8f14ed7a7e67e3cf31c5be9718192fca17c0c0973064}\\
+{\scriptsize\loc{code/v9/scan_driver.sh}} & \texttt{\tiny fbc160089288c70e1a201a9c63481cd74bc13c35b20fbbf27876c785c526851f}\\
+{\scriptsize\loc{code/v9/scan_driver_rev.sh}} & \texttt{\tiny e062603c4cdcd258400c4f932ff4583ce2bc1024bd3a75f6c81b2fbe839280dd}\\
+{\scriptsize\loc{code/build_v9.py}} & \texttt{\tiny 6449baa74d39ee947f6c537f7adb3aa0d14565b422ee81362f818b7ac430af71}\\
+{\scriptsize\loc{code/artifacts_v9.py}} & \texttt{\tiny c5e51e8aa1ab4acaa8918e940872c9440abf81e9134a778867820cf40fd480e3}\\
+\multicolumn{2}{@{}l}{\textit{v9 source fragments} (4 files)}\\
+{\scriptsize\loc{v9src/abstract.tex}} & \texttt{\tiny 1367810f9f3f59426a4c29b553724f4955113b48b99c71b140aab7e7e5142ea5}\\
+{\scriptsize\loc{v9src/bib_v9.tex}} & \texttt{\tiny 0fc845a1e879e4863832c91b1c0e41d42068ba1507cdaaa0d32fb73d3734733b}\\
+{\scriptsize\loc{v9src/opentable.tex}} & \texttt{\tiny 5cf973cdb2281f71777c962af3b6056e948ee9dfdbea28b9f2bc7bf2a4c6e477}\\
+{\scriptsize\loc{v9src/sec_v9.tex}} & \texttt{\tiny 362ce962df3d6d5f29c9a547ee3d5da7da4c8a3a22b7d37981750806b1396cdb}\\
+\multicolumn{2}{@{}l}{\textit{Mixed trace and hidden pairs} (16 files)}\\
+{\scriptsize\loc{logs/v9/g_formula_check.json}} & \texttt{\tiny 00a65b245b5217c9c77c05598404dc37334b218e5613aa2088ea74ad44f280aa}\\
+{\scriptsize\loc{logs/v9/asym02.json}} & \texttt{\tiny a3cc63868cdb683638e305f62dfca309e33de9e1046e65f70b6e49613a909abe}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_11_20.json}} & \texttt{\tiny 6c3d9cea71400827e43587ddd37bec984243ddbb35648662b0f5c5f4e7d12fd8}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_17_20.json}} & \texttt{\tiny 512aa07e728aeec0f47b10be0f4860a00d25d9021e0200ce67fd846ef9b89bf3}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_19_20.json}} & \texttt{\tiny e7abcfd32ff1e0e0894484b05e13277f8340c2d0c5b1ef88b4799e8e71c1dce6}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_1_2.json}} & \texttt{\tiny 6e2ba8202b076ce5ec92c54e284c3ce7cfdbf2210ceff6c4a772dc4aac78bc25}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_2_3.json}} & \texttt{\tiny 76194023826555748db3130ed6f04ae20c33000936c38ec69c84b1336ea31ed9}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_2_5.json}} & \texttt{\tiny 601caae331eaf8283387fed0336e7fcdc0308dbb8211ccf2fa6d723c437eb573}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_3_4.json}} & \texttt{\tiny 3a0eb389c6a9337fb0b455aec786aae697edb21e760d87378ddfd808228b67e8}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_3_5.json}} & \texttt{\tiny ece5ba7a75d11370982406ce2f0c3385d754b21308857c409a0e85dec28117e1}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_4_5.json}} & \texttt{\tiny b9693cb7179baba41b508894675c27736167ee0ba694b70b975fbc9d999fcad8}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_7071_10000.json}} & \texttt{\tiny 29acf5b74f782ea5708a880eb9081d12a5ad9831da748428bdc749e6e1fac245}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_7_20.json}} & \texttt{\tiny 5b99ee97bac9315bb96959dd3de3c3ce3b34c734fddf169bb30550fd96b01fc7}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_99_100.json}} & \texttt{\tiny fe6dcf8f07d79fb333b66b44f9898fd2335fd2820b36405f8c4ddc7bae5fabd9}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_9_10.json}} & \texttt{\tiny 33f5d6897ea5a3dd20f58437155b0b7bb62734038648fcf95ef17b11dabaa621}\\
+{\scriptsize\loc{logs/v9/hidden/dJ_9_20.json}} & \texttt{\tiny 7ae4b36c77cbdae96e3d5d22d89f48ca882552947b263fb515d7459a6c330668}\\
+\multicolumn{2}{@{}l}{\textit{Ghost dictionary and exact values} (9 files)}\\
+{\scriptsize\loc{logs/v9/cbck_map_3_10_CR.json}} & \texttt{\tiny 265f5928ebc1c396f0c7a55e7d5b115631966c95b9f12fef38bf61f5e2cddff9}\\
+{\scriptsize\loc{logs/v9/cbck_map_3_10_F.json}} & \texttt{\tiny 0f5e005e2284889ca69c165ca2e225656c4e7c0cf47b41f2449ad129dab30e4d}\\
+{\scriptsize\loc{logs/v9/cbck_map_7071_10000_CR.json}} & \texttt{\tiny 8c8f3fb53f10d9160c091206de68e8a1a7dca7544ae87a4a433e6e6b805fdf5b}\\
+{\scriptsize\loc{logs/v9/cbck_map_7071_10000_F.json}} & \texttt{\tiny c81a43ba76ad1387775b36a1d317e23bb6c4b030ded84ced361f754ac3cc5831}\\
+{\scriptsize\loc{logs/v9/ck_free_3_10_CR.json}} & \texttt{\tiny 5fceb30dbe2e706dff67e8b717d44a8367b5114da9ed7e6d17907de73c55002b}\\
+{\scriptsize\loc{logs/v9/ck_free_3_10_F.json}} & \texttt{\tiny 689499331b250796e9f48a458a928f0f379ccf2b9840ebf114a1d395599d8e98}\\
+{\scriptsize\loc{logs/v9/ck_free_7071_10000_CR.json}} & \texttt{\tiny 4a2dbdb45f12039736b80afd150f92cb952148c6bf3ae367756e89121a4091b3}\\
+{\scriptsize\loc{logs/v9/ck_free_7071_10000_F.json}} & \texttt{\tiny ba3b72e7cd1718401711bca6ce8893b3fe67710e0b2d86e187c2230eb152c404}\\
+{\scriptsize\loc{logs/v9/e_solve.json}} & \texttt{\tiny 99c4b03a828c4ec0560ee2178b11500293e2c9a283ec516d59e50ca974b8d8ee}\\
+\multicolumn{2}{@{}l}{\textit{Chambers and modular scan} (3 files)}\\
+{\scriptsize\loc{logs/v9/chamber_cache2.json}} & \texttt{\tiny 8058faead811c4c2fd3d5cba97de65070dcb27c08447d22a2f62f2963e24e393}\\
+{\scriptsize\loc{logs/v9/scan/SHA256SUMS}} & \texttt{\tiny 2f17bf26b9a0f3f989267752da85a21ddc8d23ae406f81943417d5ad034da4e5}\\
+{\scriptsize\loc{logs/v9/scan/alphas.txt}} & \texttt{\tiny fbdd209b93ebf0cd45dc65800bba9b24f7be32bc38ce5b1cfa0c0190e12a3239}\\
+\multicolumn{2}{@{}l}{\textit{Obstruction checks} (2 files)}\\
+{\scriptsize\loc{logs/v9/evan_match.json}} & \texttt{\tiny 1a273d335cbf50dc9a264ba4bed7dcc4edd6f6c279e799f810ae3a579a6dca81}\\
+{\scriptsize\loc{logs/v9/vector_logs.json}} & \texttt{\tiny 7531cd19399da49e3952ffcaaa70e76a96b70eb4bfa775b0395f4603ec22a6da}\\
+\multicolumn{2}{@{}l}{\textit{Registry} (3 files)}\\
+{\scriptsize\loc{logs/v9/sheets_extract.txt}} & \texttt{\tiny de32592311345e01e242f29888b51b1f4e55e2f78c9b0714391cdfc3fbe6d1b6}\\
+{\scriptsize\loc{logs/v9/sheet_ICEx2_extract.txt}} & \texttt{\tiny b2598ce64a6f6847598fe4896004ca6ad15a9a4263b6c7cc0e390e068e91635d}\\
+{\scriptsize\loc{intake/new_oct18g/SHA256SUMS}} & \texttt{\tiny 4911a83afa44259453723f4a6b81da4b20fad1462642a0bcf8b3ccfbf9249267}\\
+\multicolumn{2}{@{}l}{\textit{Integrity, environment} (7 files)}\\
+{\scriptsize\loc{logs/frozen_v9_before.sha}} & \texttt{\tiny cb9c2a11921e376aa078f2081cea58b7c0a8a0363a1fd6976bf7272df89e7b5b}\\
+{\scriptsize\loc{logs/v9/tree_hashes_v9.json}} & \texttt{\tiny a2358223bf1146b2f118651cb82aad0c6721553eb0a64f91a3b5a80110a02ea7}\\
+{\scriptsize\loc{logs/v9/v8_hashes_before.sha}} & \texttt{\tiny 3dd87be0833964d8d5d9302a2cecca67f0df333d207b829eb57c154cbfe8e5ba}\\
+{\scriptsize\loc{logs/v9/v8_hashes_after.sha}} & \texttt{\tiny 3dd87be0833964d8d5d9302a2cecca67f0df333d207b829eb57c154cbfe8e5ba}\\
+{\scriptsize\loc{logs/v9/earlier_versions_sha.json}} & \texttt{\tiny 7ea1fb72a1f61af6ec47b14a3e0441d2d13c65eefde6c48494ce519115431399}\\
+{\scriptsize\loc{logs/v9/env.json}} & \texttt{\tiny 5633c0d1b2c59fd04977cd8dbe7742a0417a910c10290567be167e4de639c425}\\
+{\scriptsize\loc{CHECKPOINT_v9.md}} & \texttt{\tiny cf3b80bfdbb3340176ac0d147d1da6eb43a95238f5dbb550eedd890003e40df9}\\
+\end{longtable}}

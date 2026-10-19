@@ -1,0 +1,313 @@
+%======================================================================
+\section{What v11 adds, and what it does not}
+\label{sec:whatv11}
+%======================================================================
+
+v11 keeps every v10 statement \cite{CheungConeV10}, except those
+amended in Section~\ref{sec:v11changes}. The new items and their
+status are:
+
+\begin{center}
+\small
+\begin{longtable}{@{}L{.30\linewidth}L{.62\linewidth}@{}}
+\caption{v11 verdicts (all executed; hashes in Appendix~\ref{app:v11artifacts}).}\label{tab:v11verdict}\\
+\toprule
+Item & Status\\
+\midrule
+Mixed \(r^2\) trace evaluator & \emph{Corrected.} The v10 evaluator used a Cauchy radius that is too large near the endpoints and for large \(h\). Every v10 \(\varphi\) value is withdrawn (Section~\ref{sec:v11bug}).\\
+F mode \(I_{\rm F}\) & \emph{Derived} for \(0<\mu<2\) (Theorem~\ref{thm:v11IF}). The v10 PSLQ form is now a theorem there. As a by-product, \(\Delta J=-(\mu-1)B/W_1\) is a single incomplete-Beta integral.\\
+Degree bound (D) & \emph{Machine-checked} by symbolic degree tracking on all 8 chambers and cross-checked against the exact engine (Proposition~\ref{prop:v11D}). Theorem~\ref{thm:v10chamber} is now unconditional in its scope.\\
+\(M_{10}\) (D04 mode sum) & \emph{Executed} in two declared pairings (P0 same-\(k\); P1, the unit angular-momentum shift used as the frame intertwiner \(H_I\)) and two regulators, at four angles (Table~\ref{tab:v11M10}). The precision is set by the data, about @@M10DIGITS@@ digits, not 30. The pairing and the regulator are \emph{declarations}, so D04 stays \PARTIAL.\\
+Weight \(\pm1,\pm2\) and mixed jet traces & \OPEN{} (Section~\ref{sec:v11open}).\\
+Jet-key \(\to m=2\) atom dictionary; 20 Ward combinations; 34-/18-dim maps; \(e_5,e_6\) & \OPEN. Not constructed and not evaluated; no residual is reported.\\
+Transverse loop momentum & \OPEN; obstruction stated in Section~\ref{sec:v11open}.\\
+Registry & Unchanged (258 ids); no new sheet directory written.\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+%======================================================================
+\section{v11: correction of the v10 mixed-trace evaluator}
+\label{sec:v11bug}
+%======================================================================
+
+The v10 evaluator \loc{code/v10/t1_fp.py} extracts the Taylor
+coefficients \(\phi_0,\phi_2,\phi_4\) of \(\Phi(t)\) by a Cauchy
+integral on \(|t|=0.04\). Here \(\lambda=1-t^2\), and
+\(T_1=\tfrac14(4x(1-x))^2\frac{\Gamma(h+2)\Gamma(h+1)}{\Gamma(\mu+1)\Gamma(\nu+1)}x^\mu(1-x)^\nu
+\frac{h(h+1)\phi_0-2(h+1)\phi_2+2\phi_4}{h(h+1)}\). v11 finds two
+defects.
+\begin{enumerate}[label=(\roman*)]
+\item The discriminant of the Bailey change of variables has a second
+root at \(|t_2|=2\sqrt{x(1-x)}/|1-2x|\). For \(x\to0,1\), \(|t_2|\)
+falls below \(0.04\), and the extracted coefficients are then wrong.
+\item Even inside the disc, the integrand grows roughly like
+\(e^{c h|t|}\). The extraction loses about 1.3 digits per unit of
+\(h\): for \(\mu=\nu=7\), the exact diagonal value
+\(\mu(\mu^2-1)/3\) is missed by \(2.6\times10^{-10}\).
+\item Near the endpoints the natural variable is \(t/|t_2|\), and the
+same growth sets in at the scale \(|t_2|/h\). With
+\(r=|t_2|/4\) alone, \(T_1\) is aliased for \(h\gtrsim60\), and the
+error does not depend on the working precision. For example, an
+intermediate v11 run gave \(F(61,60)\) below both endpoint values.
+\end{enumerate}
+The v11 evaluator \loc{code/v11/t1v11.py} uses
+\(r=\min(0.25,|t_2|/4,1/(1+h),|t_2|/(1+h))\) with 56 nodes, and
+\loc{code/v11/m10_eval.py} adds two measures. The half \(x>\tfrac12\)
+is evaluated through the symmetry
+\(T_1(x;\mu,\nu)=T_1(1-x;\nu,\mu)\) (checked to 25 digits), and the
+working precision is raised by 1.5 digits per decade near the
+endpoint. Tanh--sinh is capped at degree 4, since degrees 3, 4 and 5
+agree to \(3\times10^{-23}\) relative. On the diagonal the evaluator
+reproduces \(\mu(\mu^2-1)/3\) to \(\le10^{-24}\) at \(\mu=20,60\)
+and \(x=0.05,0.3\). Near the endpoints, halving the radius and
+raising the node count to 80 change \(T_1\) by less than
+\(10^{-14}\) relative at \(h=60.5\) and \(h\approx131\). Three
+intermediate v11 runs with incomplete fixes are superseded and feed
+no printed number (\loc{logs/v11/M10/cache_superseded*/}). As a
+final sanity check, every cached \(F(\mu,\nu)\) lies between its two
+endpoint values: @@SANITY@@.
+
+Consequences: the corrected value is \(\varphi(3/2)=2.32745055013616982735\),
+while v10 quoted \(2.32785224733468215021\), an error of
+\(4.0\times10^{-4}\). The corrected value is
+\(\varphi(0)=F(1,0)=@@PHI0@@\), while v10 quoted
+\(-0.0578297132876329558555\); these agree to \(1.2\times10^{-17}\),
+since the defect is mild at small \(h\). Because the evaluator was
+defective, all 27 v10 \(\varphi\) values are withdrawn as a set,
+together with the
+v10 negative result ``no closed form in
+\(\{n^j,n^j\psi_1(n),n^j\psi(n)\}\)'' are withdrawn. The v10
+mid-range checks (\(x\in[0.3,0.8]\), \loc{logs/v10/jet/t1_fp_check.json})
+and the diagonal identity are unaffected, and so are the
+same-channel jets, scheme Z and the vector finite parts, none of
+which use \(T_1\) off the diagonal.
+
+%======================================================================
+\section{v11: derivation of the F mode}
+\label{sec:v11IF}
+%======================================================================
+
+\begin{theorem}[F mode; \loc{code/v11/fmode_derive.py}]
+\label{thm:v11IF}
+Let \(0<\mu<2\), \(\nu=2-\mu\), \(w(x)=x^{\mu-1}(1-x)^{1-\mu}\),
+\(W(x)=\int_0^xw\) and \(W_1=W(1)=\Gamma(\mu)\Gamma(2-\mu)\). Then:
+\begin{enumerate}[label=(\alph*)]
+\item \(g(x;\mu,2-\mu)=\dfrac{W(x)\,(W_1-W(x))}{4W_1\,x(1-x)\,w(x)}\).
+Both \({}_2F_1\) factors of Proposition~\ref{prop:v9g} are
+incomplete Beta functions \cite{DLMFBeta}, by
+\({}_2F_1(a,a-1;a+1;x)=a\,x^{-a}B_x(a,2-a)\).
+\item \(I_{\rm F}=I_{\rm CR}+(\mu-1)B/W_1\) and
+\(\Delta J=-(\mu-1)B/W_1\), where
+\(B=\int_0^1(3-2x)W^2/w\,\mathrm dx\). The linear term
+\(\int(3-2x)W/w=\mu^{-1}\sum_n(n+1)!K_n/(\mu+1)_n\) carries the same
+\(K_n\) as the CR mode, and so equals \(-I_{\rm CR}/(\mu-1)\).
+\item \((x(1-x)/w)'=(2-\mu-2x)/w\) gives
+\(B=-2W_1E+(1+\mu)C\), with
+\(E=\tfrac16-\tfrac{\mu(\mu+1)}{12}+\tfrac{\mu(\mu+1)(\mu+2)}{72}\)
+and \(C=\int_0^1W^2/w\).
+\item The series for \(W/w\), together with
+\(\int_0^1Wx^m=W_1\bigl(1-(\mu)_{m+1}/(m+2)!\bigr)/(m+1)\), reduces
+\(C/W_1\) to the v10 Gamma sums \(G_2,G_3\) plus two rational sums.
+The result is
+\[
+\frac{C}{W_1}=\frac{(\mu-2)(5\mu-3)}3+(\mu-1)^2\Bigl[\psi_1(\mu-1)-\frac{\pi^2}6\Bigr].
+\]
+\item Hence
+\(I_{\rm F}(\mu)=\tfrac{(\mu-1)(59\mu^3-57\mu^2-62\mu+48)}{36}-(\mu-1)^3(\mu+1)\tfrac{\pi^2}6\),
+and the difference from the v10 PSLQ form simplifies to \(0\) in
+SymPy.
+\end{enumerate}
+\end{theorem}
+Checks: \(C/W_1\) agrees with direct quadrature to
+\(\le1.2\times10^{-30}\) at \(\mu=7/4,4/3,10/7\)
+(\loc{logs/v11/fmode_derive.json}). The reduction (a)--(b) agrees
+with the v10 closed form to \(\le10^{-31}\) at \(\mu=7/4,5/4,3/2\)
+(\loc{logs/v11/fmode_reduce.json}). The Euler constant and
+\(\psi(\mu-1)\) cancel identically. Scope: \(0<\mu<2\), that is
+\(\alpha>\tfrac12\), where \(B_x(\mu,2-\mu)\) converges. This is the
+range in which the F mode enters \(\Delta J\).
+
+%======================================================================
+\section{v11: machine check of the degree bound (D)}
+\label{sec:v11D}
+%======================================================================
+
+\begin{proposition}[\loc{code/v11/degree_check.py}, \loc{code/v11/degree_crosscheck.py}]
+\label{prop:v11D}
+In the frozen v8 engine, \(\alpha\) enters the ST operators only
+through the derivative coefficients \((m\pm a)/2\), with
+\(a=nt+s\), \(t=1/\alpha\) and \(m=\varepsilon|a|+2j\). The row
+basis is a pivot \emph{selection} of candidates, with no
+\(\alpha\)-dependent combination, and the candidate evaluation is
+multilinear in the operator outputs and polynomial in \(q\).
+Replace \(t\) by a SymPy symbol and apply \(K_2\), \(E(-q)\) and
+\(C_2T\) to every unit atom up to \(\mathrm{DM}=6\) on each of the
+8 chambers (CR and F, \(c_1\)--\(c_4\)). The maximal degrees in
+\(t\) are then 1, 2 and 1, so (D) holds. The atom counts are
+\(c\): 22--52, \(h\): 54--130, \(b\): 16--36 per chamber
+(\loc{logs/v11/degree_check.json}). At \(t=1/\alpha_0\) the symbolic
+outputs equal the exact numeric engine on 3744 coefficients (CR
+\(c_4\), F \(c_3\), CR \(c_1\)), with 0 mismatches
+(\loc{logs/v11/degree_crosscheck.json}).
+\end{proposition}
+The hypothesis of Theorem~\ref{thm:v10chamber} is therefore
+discharged. The chamber ranks (26 on the six \(N=34\) chambers, 29
+on F \((\tfrac12,\tfrac23)\) and \((\tfrac23,1)\), at every
+\(\alpha\) in the chamber) now hold without condition, in the scope
+of the declared ST rows of the frozen engine.
+
+\paragraph{Certificate status.} (i) The v8 four-point exact rank
+certificate is unaffected by v11 and remains
+\CPIR{} in its v8 scope. (ii) The chamber-rank certificate is
+\CPIR{} in the following precise scope: the rank of the declared ST
+row matrix of the frozen v8 engine (\(\mathrm{DM}=6\), \(6\times6\)
+\(q\)-grid) is 26 at every \(\alpha\) in the six \(N=34\) chambers,
+and 29 at every \(\alpha\) in the two F chambers above
+\(\tfrac12\). Every ingredient is executed: exact minors at the
+sampled angles, the constancy and affinity arguments of
+Theorem~\ref{thm:v10chamber}, and the machine-checked (D). The
+certificate does not cover the identification with the interacting
+basis or the walls between chambers.
+
+%======================================================================
+\section{v11: the D04 mode sum \texorpdfstring{\(M_{10}\)}{M10}}
+\label{sec:v11M10}
+%======================================================================
+
+\paragraph{Definitions.} Take \(F(\mu,\nu)=\int_0^1T_1(x;\mu,\nu)\,\mathrm dx\)
+with the corrected evaluator (tanh--sinh, 30 digits; endpoint limits
+for \(x<10^{-22}\)). Two pairings of channel~1 with channel~0 are
+declared:
+\begin{itemize}
+\item P0 (the v10 rule, same \(k\)):
+\((\mu,\nu)=(\tfrac{k+\alpha}\alpha,\tfrac k\alpha)\) for
+\(k\ge0\), and \((\tfrac{j-\alpha}\alpha,\tfrac j\alpha)\) for
+\(j\ge1\).
+\item P1 (the unit angular-momentum shift; v11's implementation of
+the frame intertwiner \(H_I\), as a \emph{declared} pairing):
+\((\tfrac{k+\alpha}\alpha,\tfrac{k+1}\alpha)\) for \(k\ge0\), and
+\((\tfrac{|\alpha-k|}\alpha,\tfrac{|1-k|}\alpha)\) for \(k\ge1\).
+\end{itemize}
+Both involve only channels 0 and 1, so both are branch independent;
+at \(\alpha=\tfrac12\), CR\(=\)F holds trivially. Two regulators are
+used: \(R_k\), weight \(|k|^{-\epsilon}\) (the v10 declaration),
+and \(R_h\), weight \(h^{-\epsilon}\) with \(h=(\mu+\nu)/2\). The
+terms \(k<20\) are summed exactly. For \(k\ge20\) a QR least-squares
+fit \(F\sim\sum_{i<12}c_iu^{3-i}\) on \(k=20,22,\dots,56\) is summed
+through Hurwitz \(\zeta(i-3,u_{20})\). The \(u^{-1}\) term gives a
+pole \(c_4/\epsilon\) (reported) and the finite part
+\(-c_4\psi(u_{20})\), minus \(c_4\log(1/\alpha)\) for \(R_h\). The
+error estimate is the spread over fit orders 10--13 and over fits on
+half the points. A power expansion without logarithms is an
+\emph{ansatz} for the large-\(k\) asymptotics. It is supported by the
+fit residuals, not derived (\loc{code/v11/m10_sum.py},
+\loc{logs/v11/M10/m10.json}).
+
+\paragraph{Check at \(\alpha=1\).} P1 pairs identical modes, and
+\(F(\mu,\mu)=\mu(\mu^2-1)/3\) exactly. The machinery returns
+\(-19/180\) under \(R_k\) (to @@CHK_RK@@) and \(11/180\) under \(R_h\)
+(to @@CHK_RH@@). The latter is the scheme-Z flat value
+\(\Dcal^Z_0(1)=11/180\) of Proposition~\ref{prop:v10Z}. The difference
+\(1/6\) is a pure regulator effect: the shift between the index
+\(k\) and the mode label changes the zeta values. It shows that
+\(M_{10}\) is \emph{not} regulator independent, and that only \(R_h\)
+is consistent with scheme Z on the diagonal.
+
+\begin{center}
+\small
+\begin{longtable}{@{}lllll@{}}
+\caption{\(M_{10}\) finite parts (\(\kappa^2/4\pi\) times these is the D04 term under the stated declaration). Error = spread estimate; pole = coefficient of \(1/\epsilon\).}\label{tab:v11M10}\\
+\toprule
+\(\alpha\) & pairing, reg. & \(M_{10}\) (FP) & error & pole\\
+\midrule
+@@M10TAB@@
+\bottomrule
+\end{longtable}
+\end{center}
+
+@@M10TEXT@@
+
+\paragraph{Status of D04.} Under a declared pairing and regulator,
+the D04 part of the second \(\phi\phi\) value is
+\(\tfrac{\kappa^2}{4\pi}M_{10}\), with \(M_{10}\) as in
+Table~\ref{tab:v11M10}. Neither the pairing nor the regulator is
+derived. The difference between P0 and P1, and between \(R_k\) and
+\(R_h\), measures the size of the undeclared choice. Status:
+\PARTIAL{} (executed, scheme-dependent, precision about @@M10DIGITS@@
+digits). PSLQ in the basis
+\(\{1,\alpha^{\pm1},\alpha^2,\alpha^{-2},\alpha^{-3},\zeta(3)/\alpha^2,\pi^2,\log\alpha\}\)
+with coefficients up to 1000: @@PSLQ@@
+(\loc{logs/v11/M10/m10_pslq.json}).
+
+%======================================================================
+\section{v11: items left open, with precise obstructions}
+\label{sec:v11open}
+%======================================================================
+
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Weight \(\pm1\) traces.} The \(k\to k\pm1\) traces with an
+\(r\,e^{\pm\ii\theta}\) insertion were not built in v11. The task is
+to split the scheme-Z pole at \(w=\tfrac12\) into its residue (the
+genuine, scheme-independent log coefficient) and the finite part
+(scheme dependent). Doing so needs the two-channel finite-part
+evaluator at weight one: the analogue of \(T_1\) with
+\({}_2F_1\) parameters shifted by \(\tfrac12\), and its own mode sum.
+That evaluator was not written. Heuristically, in the same-channel
+analogue the log arises from the \(z^{-1}\) term of
+\(e^{-z}I_\mu(z)\sim(2\pi z)^{-1/2}[1-(4\mu^2-1)/(8z)+\dots]\), but
+this is not a computation of the mixed coefficient, and no number is
+claimed. Status: \OPEN.
+\item \emph{Weight \(\pm2\) and the 84 mixed weight-0 entries.} The
+corrected evaluator applies to the weight-0 mixed entries. Each
+needs a mode sum like \(M_{10}\), with a declared pairing, and none
+was run. Status: \OPEN.
+\item \emph{Dictionary, Ward combinations, projections, \(e_5,e_6\).}
+No map from jet keys \((s,t;w)\) to the engine's \(m=2\) atoms
+\((C,n,j,i)\) was constructed. Without it, the 20 jet-level Ward
+combinations cannot be formed, and neither can the remaining 12
+coordinates of the 18-dim map, the 34-dim projection, or \(e_5,e_6\)
+separately. No residual was evaluated, and none is reported as zero.
+Status: \OPEN.
+\item \emph{Transverse loop momentum.} The jet catalogue evaluates the
+loop at transverse momentum on the slice. Going off the slice needs
+the \(p_\perp\) dependence of every vertex in the catalogue, plus a
+\(p_\perp\) integral in a declared scheme. The v8 atoms are
+polynomial in the slice momenta \(q\) only, and the catalogue
+exports no \(p_\perp\) jets. That export is the missing piece.
+Status: \OPEN.
+\end{enumerate}
+
+%======================================================================
+\section{Changes to v10 statements}
+\label{sec:v11changes}
+%======================================================================
+
+\begin{enumerate}[label=(C\arabic*)]
+\item Section~\ref{sec:v10conseq}, D04: the quoted values
+\(\varphi(0)=-0.0578297132876329558555\) and
+\(\varphi(3/2)=2.32785224733468215021\), the 27 cached values in
+\loc{logs/v10/jet/phi/}, and the negative closed-form search are
+\emph{withdrawn}, because the evaluator was defective
+(Section~\ref{sec:v11bug}). Corrected values are in
+Section~\ref{sec:v11bug}. ``\(M_{10}\) not evaluated'' is superseded
+by Section~\ref{sec:v11M10}.
+\item Section~\ref{sec:v10jet}: the claim that the closed
+finite-part evaluator for the mixed trace is valid for all
+\(x\in(0,1)\) is restricted. With the v10 radius it is valid only
+where \(0.04<|t_2|\) and \(h\) is small. The v11 radius removes the
+restriction.
+\item Proposition~\ref{prop:v10IF}: ``identified by PSLQ, not
+derived'' becomes \emph{derived} for \(0<\mu<2\)
+(Theorem~\ref{thm:v11IF}).
+\item Theorem~\ref{thm:v10chamber}: ``Assume (D) \dots\ not separately
+machine-checked'' is replaced by Proposition~\ref{prop:v11D}, so the
+theorem holds without condition. The v10 release items (xvii) and
+(xiv) lose ``conditional on (D)''.
+\item The v10 artifact manifest hashed \loc{CHECKPOINT_v10.md} one
+append early; the corrected hash is in
+Appendix~\ref{app:v11artifacts}.
+\item Open table: the rows ``\(\Delta J\)'', ``Exact \(\Span\)
+certificate'' and ``D04'' are updated (Table~\ref{tab:open}).
+\end{enumerate}
+No other v10 statement is changed.
